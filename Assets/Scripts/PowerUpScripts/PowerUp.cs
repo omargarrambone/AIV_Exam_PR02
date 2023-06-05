@@ -10,9 +10,9 @@ public class PowerUp : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             powerUpEffect.Apply(other.gameObject);
         }
     }

@@ -26,6 +26,12 @@ public class HealthManager : MonoBehaviour
 
     }
 
+    public void AddHealth(int health)
+    {
+        CurrentHealth += health;
+        HealthBar.SetHealth(CurrentHealth);
+    }
+
     public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;

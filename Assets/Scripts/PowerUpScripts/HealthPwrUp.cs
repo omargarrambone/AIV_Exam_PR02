@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class HealthPwrUp : PowerUpManager
 {
-    public float healthAmount;
+    public int healthAmount;
     public override void Apply(GameObject target)
     {
-        //target.GetComponent<Health>().health.value += healthAmount;
+        target.GetComponent<HealthManager>().AddHealth(healthAmount);
     }
 }
