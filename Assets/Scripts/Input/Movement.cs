@@ -62,6 +62,15 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FluteArrows"",
+                    ""type"": ""Value"",
+                    ""id"": ""5b1baeac-0896-4135-89a1-da7da4121679"",
+                    ""expectedControlType"": ""Dpad"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -135,7 +144,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""09d9fc45-578d-4dd8-b051-9f9c4c8df505"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Interact"",
@@ -152,6 +161,61 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""98e65a48-1c17-41e1-9c42-30977e8d425c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FluteArrows"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""5bb7578d-bee1-46d3-98f2-4616356cedb8"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FluteArrows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9b6d4c90-6a5b-449c-82fb-a74ad1f041b2"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FluteArrows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""202f642f-d96c-415c-a11b-c52cc3aacd95"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FluteArrows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""cb99e4f0-6fac-4760-a5a0-81ecd2fff66d"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FluteArrows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -181,6 +245,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_FluteArrows = m_Player.FindAction("FluteArrows", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -246,6 +311,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_FluteArrows;
     public struct PlayerActions
     {
         private @Movement m_Wrapper;
@@ -254,6 +320,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @FluteArrows => m_Wrapper.m_Player_FluteArrows;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -275,6 +342,9 @@ public partial class @Movement: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @FluteArrows.started += instance.OnFluteArrows;
+            @FluteArrows.performed += instance.OnFluteArrows;
+            @FluteArrows.canceled += instance.OnFluteArrows;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -291,6 +361,9 @@ public partial class @Movement: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @FluteArrows.started -= instance.OnFluteArrows;
+            @FluteArrows.performed -= instance.OnFluteArrows;
+            @FluteArrows.canceled -= instance.OnFluteArrows;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -323,5 +396,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnFluteArrows(InputAction.CallbackContext context);
     }
 }

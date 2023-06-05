@@ -1,0 +1,1 @@
+public enum FluteArrow { Down,Right,Up, Left,LAST}

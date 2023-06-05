@@ -50,19 +50,18 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+
     void CheckIsGrounded()
     {
         if (Physics.Raycast(transform.position, Vector3.down, Height))
         {
             IsGrounded = true;
             jumpCount = 0;
-            Debug.Log("Grounded");
             Debug.DrawRay(transform.position, Vector3.down * Height, UnityEngine.Color.green);
         }
         else
         {
             IsGrounded = false;
-            Debug.Log("Not Grounded!");
             Debug.DrawRay(transform.position, Vector3.down * Height, UnityEngine.Color.red);
         }
 
