@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class FluteUIScript : MonoBehaviour
 {
-    public Transform ArrowsUIParent,ArrowsPrefab;
-    public TMPro.TMP_Text debugText;
-    public int currentArrowIndex;
-    public int arrowsToGenerate;
-    public System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
-
-    public UnityEvent OnCompleted, OnFail;
+    [SerializeField] private Transform ArrowsUIParent,ArrowsPrefab;
+    [SerializeField] private TMPro.TMP_Text debugText;
+    [SerializeField] private int arrowsToGenerate;
+    [SerializeField] private UnityEvent OnCompleted, OnFail;
+    
+    private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
+    private int currentArrowIndex;
 
     void Awake()
     {
@@ -35,10 +34,9 @@ public class FluteUIScript : MonoBehaviour
     {
         currentArrowIndex = 0;
         SetRandomArrows();
-        SetDebugText();
     }
 
-    public void FluteKeysPress(InputAction.CallbackContext context)
+    public void FluteKeysPressCheck(InputAction.CallbackContext context)
     {
         if (!gameObject.activeSelf) return;
 
@@ -50,12 +48,10 @@ public class FluteUIScript : MonoBehaviour
             {
                 ArrowsUIParent.GetChild(currentArrowIndex).gameObject.SetActive(false);
                 currentArrowIndex++;
-                SetDebugText();
 
                 if (currentArrowIndex >= fluteArrows.Length)
                 {
                     OnCompleted.Invoke();
-                    Debug.Log("Completato!");
                     gameObject.SetActive(false);
                 }
             }
@@ -63,12 +59,8 @@ public class FluteUIScript : MonoBehaviour
             {
                 OnFail.Invoke();
                 gameObject.SetActive(false);
-                Debug.Log("Fallito! (Omar Garrambone)");
             }
-
         }
-
-
     }
 
     void SetRandomArrows()
@@ -99,15 +91,6 @@ public class FluteUIScript : MonoBehaviour
             ArrowsUIParent.GetChild(i).gameObject.SetActive(true);
             fluteArrows[i] = new System.Tuple<int, FluteArrow, Vector2>(i,index,direction);
 
-        }
-    }
-
-    void SetDebugText()
-    {
-        debugText.SetText("");
-        for (int i = currentArrowIndex; i < fluteArrows.Length; i++)
-        {
-            debugText.text += fluteArrows[i] + " ";
         }
     }
 }
