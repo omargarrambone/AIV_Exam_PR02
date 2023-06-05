@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7214404325439444994
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -95,7 +95,6 @@ MonoBehaviour:
   ArrowsPrefab: {fileID: 2372628146863541365, guid: 33c875b16a9acd34c8d34943ae0fba0c,
     type: 3}
   debugText: {fileID: 7013249517034614565}
-  currentArrowIndex: 0
   arrowsToGenerate: 4
   OnCompleted:
     m_PersistentCalls:
