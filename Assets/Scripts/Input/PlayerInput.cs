@@ -50,6 +50,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+
     void CheckIsGrounded()
     {
         if (Physics.Raycast(transform.position, Vector3.down, Height))
