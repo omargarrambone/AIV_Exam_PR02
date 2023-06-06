@@ -1,6 +1,10 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
 --- !u!1 &6867000031949466679
+=======
+--- !u!1 &1204646338525221734
+>>>>>>> T-011-Camera-Movement
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +12,19 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 8604858820180799028}
   - component: {fileID: 8860487457091355184}
   - component: {fileID: 42371890670440913}
   - component: {fileID: 8621074329058843745}
   - component: {fileID: 7832322160485889746}
+=======
+  - component: {fileID: 2840015355557135597}
+  - component: {fileID: 3840067325255053999}
+  - component: {fileID: 1291467792275317437}
+  - component: {fileID: 6977256568345817236}
+  - component: {fileID: 1723494380942970216}
+>>>>>>> T-011-Camera-Movement
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -20,28 +32,46 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!4 &8604858820180799028
+=======
+--- !u!4 &2840015355557135597
+>>>>>>> T-011-Camera-Movement
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 6867000031949466679}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 8, z: -20}
+=======
+  m_GameObject: {fileID: 1204646338525221734}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 5, z: -15}
+>>>>>>> T-011-Camera-Movement
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!20 &8860487457091355184
+=======
+--- !u!20 &3840067325255053999
+>>>>>>> T-011-Camera-Movement
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 6867000031949466679}
+=======
+  m_GameObject: {fileID: 1204646338525221734}
+>>>>>>> T-011-Camera-Movement
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -86,21 +116,35 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+<<<<<<< HEAD
 --- !u!81 &42371890670440913
+=======
+--- !u!81 &1291467792275317437
+>>>>>>> T-011-Camera-Movement
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 6867000031949466679}
   m_Enabled: 1
 --- !u!114 &8621074329058843745
+=======
+  m_GameObject: {fileID: 1204646338525221734}
+  m_Enabled: 1
+--- !u!114 &6977256568345817236
+>>>>>>> T-011-Camera-Movement
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 6867000031949466679}
+=======
+  m_GameObject: {fileID: 1204646338525221734}
+>>>>>>> T-011-Camera-Movement
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
@@ -138,21 +182,32 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+<<<<<<< HEAD
 --- !u!114 &7832322160485889746
+=======
+--- !u!114 &1723494380942970216
+>>>>>>> T-011-Camera-Movement
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 6867000031949466679}
+=======
+  m_GameObject: {fileID: 1204646338525221734}
+>>>>>>> T-011-Camera-Movement
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77981b7d093518e4aa747c978ac3a589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+<<<<<<< HEAD
   speed: 0.125
   offset: {x: 0, y: 9, z: -20}
+=======
+>>>>>>> T-011-Camera-Movement
   layerMask:
     serializedVersion: 2
     m_Bits: 8

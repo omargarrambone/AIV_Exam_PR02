@@ -24,9 +24,6 @@ public class CameraFollow : MonoBehaviour
 
     public void RotateCameraWalk()
     {
-        if (target.rot)
-        {
-
-        }
+        
     }
 }
