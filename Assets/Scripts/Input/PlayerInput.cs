@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEngineInternal;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -14,12 +15,20 @@ public class PlayerInput : MonoBehaviour
 
     public bool IsGrounded;
 
+
     public int jumpCount = 0;
 
     public float speed;
     public float JumpHeight;
 
     public float Height = 2.0f;
+
+    [Header("Dash Settings")]
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 24f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,9 +42,25 @@ public class PlayerInput : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isDashing)
+        {
+            return;
+        }
         Vector2 inputVector = Movement.Player.Movement.ReadValue<Vector2>();
+        ChangeDirection(inputVector);
         _rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
         CheckIsGrounded();
+    }
+
+    public void ChangeDirection(Vector2 input)
+    {
+        Vector2 dir = input.normalized;
+
+        if (dir.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -48,6 +73,26 @@ public class PlayerInput : MonoBehaviour
                 _rb.AddForce(Vector3.up * JumpHeight, ForceMode.Impulse);
             }
         }
+    }
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.performed && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        _rb.velocity = transform.forward * dashingPower;
+        yield return new WaitForSeconds(dashingTime);
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+
     }
 
 
@@ -64,8 +109,6 @@ public class PlayerInput : MonoBehaviour
             IsGrounded = false;
             Debug.DrawRay(transform.position, Vector3.down * Height, UnityEngine.Color.red);
         }
-
-
     }
 
 }

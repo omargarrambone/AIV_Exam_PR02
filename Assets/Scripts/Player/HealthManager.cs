@@ -20,12 +20,6 @@ public class HealthManager : MonoBehaviour
         HealthBar.SetMaxHealth(MaxHealth);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void AddHealth(int health)
     {
         CurrentHealth += health;
