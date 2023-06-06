@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class FluteUIScript : MonoBehaviour
 {
@@ -10,7 +9,9 @@ public class FluteUIScript : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text debugText;
     [SerializeField] private int arrowsToGenerate;
     [SerializeField] private UnityEvent OnCompleted, OnFail;
-    
+    [SerializeField] private PlayerInput playerInputScript;
+
+    private float originalSpeed;
     private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
     private int currentArrowIndex;
 
@@ -22,11 +23,21 @@ public class FluteUIScript : MonoBehaviour
         {
             Instantiate(ArrowsPrefab, ArrowsUIParent);
         }
+
+        originalSpeed = playerInputScript.speed;
+
+        gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
         StartMinigame();
+        playerInputScript.speed = 0;
+    }
+
+    private void OnDisable()
+    {
+        playerInputScript.speed = originalSpeed;
     }
 
     [ContextMenu("StartMinigame")]
@@ -36,12 +47,14 @@ public class FluteUIScript : MonoBehaviour
         SetRandomArrows();
     }
 
-    public void FluteKeysPressCheck(InputAction.CallbackContext context)
+    public void FluteKeysPressCheck(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (!gameObject.activeSelf) return;
 
         if (context.performed)
         {
+            //to fix if a player keeps a key pressed (?)
+
             Vector2 value = context.ReadValue<Vector2>();
 
             if(value == fluteArrows[currentArrowIndex].Item3)
@@ -61,6 +74,7 @@ public class FluteUIScript : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
+
     }
 
     void SetRandomArrows()
