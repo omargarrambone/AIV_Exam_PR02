@@ -64,8 +64,6 @@ public class PlayerInput : MonoBehaviour
             IsGrounded = false;
             Debug.DrawRay(transform.position, Vector3.down * Height, UnityEngine.Color.red);
         }
-
-
     }
 
 }
