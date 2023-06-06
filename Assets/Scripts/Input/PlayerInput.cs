@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
 
     public bool IsGrounded;
 
+    public float turnSmooth = 0.1f;
+    float turnSmoothVelocity;
 
     public int jumpCount = 0;
 
@@ -59,7 +61,8 @@ public class PlayerInput : MonoBehaviour
         if (dir.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmooth);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
     }
 
