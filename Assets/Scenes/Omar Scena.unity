@@ -913,6 +913,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972954870}
   m_CullTransparentMesh: 1
+--- !u!114 &2018826395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6810920280398049272, guid: 2981214e7a263c74ab6dccf157e39bd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 7385510993517826473}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206e9fa2b31d0c34b8502f3d3f58d069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2018826401 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3955054653026590645, guid: 2981214e7a263c74ab6dccf157e39bd8,
@@ -1039,6 +1051,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663161517950775961, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
+      propertyPath: m_Drag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 663161517950775961, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 795377411159117821, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
       propertyPath: HealthBar
@@ -1047,7 +1069,7 @@ PrefabInstance:
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
@@ -1056,8 +1078,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: 9a77417a-aa25-4b46-a0f4-4d2c1a1a1efc
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_ActionName
       value: Player/FluteArrows[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Player/Dash[/Keyboard/shift]
       objectReference: {fileID: 0}
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
@@ -1066,8 +1098,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
@@ -1076,7 +1118,17 @@ PrefabInstance:
       objectReference: {fileID: 1718529597}
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2018826395}
+    - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
@@ -1086,8 +1138,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: HealthManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInput, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
@@ -1097,6 +1159,11 @@ PrefabInstance:
     - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446959840007026144, guid: 2981214e7a263c74ab6dccf157e39bd8,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3955054653026590645, guid: 2981214e7a263c74ab6dccf157e39bd8,

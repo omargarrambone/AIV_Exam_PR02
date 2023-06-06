@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEngineInternal;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -46,8 +47,20 @@ public class PlayerInput : MonoBehaviour
             return;
         }
         Vector2 inputVector = Movement.Player.Movement.ReadValue<Vector2>();
+        ChangeDirection(inputVector);
         _rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
         CheckIsGrounded();
+    }
+
+    public void ChangeDirection(Vector2 input)
+    {
+        Vector2 dir = input.normalized;
+
+        if (dir.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
