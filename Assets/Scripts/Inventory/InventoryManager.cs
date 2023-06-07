@@ -37,8 +37,9 @@ public class InventoryManager : MonoBehaviour
     {
         inventoryItems[item] = 1;
 
-        currentSlotIndex = ((int)item);
         ChangeImage((int)item);
+
+        currentSlotIndex = ((int)item);
 
         //Add change sound();
     }
