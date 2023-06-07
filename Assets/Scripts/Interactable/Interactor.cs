@@ -19,7 +19,7 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         actualInteractable = other.GetComponent<Interactable>();
         guiText.SetText($"Take [{actualInteractable.ItemName}]");
