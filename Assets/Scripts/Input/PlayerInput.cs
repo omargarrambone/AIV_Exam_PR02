@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
     public Rigidbody _rb;
     public PlayerInput playerInput;
     private Movement Movement;
+    public Animator _anim;
 
     public bool IsGrounded;
 
@@ -25,6 +26,8 @@ public class PlayerInput : MonoBehaviour
 
     public float Height = 2.0f;
 
+    private Vector2 inputVector;
+
     [Header("Dash Settings")]
     private bool canDash = true;
     private bool isDashing;
@@ -35,6 +38,7 @@ public class PlayerInput : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         Movement = new Movement();
@@ -48,10 +52,15 @@ public class PlayerInput : MonoBehaviour
         {
             return;
         }
-        Vector2 inputVector = Movement.Player.Movement.ReadValue<Vector2>();
+        inputVector = Movement.Player.Movement.ReadValue<Vector2>();
         ChangeDirection(inputVector);
         _rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
         CheckIsGrounded();
+    }
+
+    private void Update()
+    {
+        _anim.SetFloat("Velocity",inputVector.sqrMagnitude);
     }
 
     public void ChangeDirection(Vector2 input)
