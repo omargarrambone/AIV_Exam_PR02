@@ -13,6 +13,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     //public float activationDistance = 5f;
     public int currentWaypoint;
     public FieldOfView fov;
+    public EnemyState currentState;
 
 
 
@@ -20,6 +21,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     void Start()
     {
         fov = GetComponent<FieldOfView>();
+        currentState = EnemyState.Patrol;
         SetNewWaypoint();
     }
 
@@ -27,17 +29,41 @@ public class BasicEnemyAgentAi : MonoBehaviour
     void Update()
     {
         //float distanceFromTarget = Vector3.Distance(playerTarget.position, agent.transform.position);
-        //if (fov.targetCheck() == true && distanceFromTarget <= activationDistance)
-        
-        if (fov.targetCheck() == true)
+        //if (fov.targetCheck() == true && distanceFromTarget <= activationDistance)        
+       
+        switch (currentState)
         {
-            agent.speed = chaseSpeed;
-            agent.SetDestination(playerTarget.position);
-        }
-        else if (agent.remainingDistance < 0.5f)
-        {
-            agent.speed = patrolSpeed;
-            SetNewWaypoint();
+            case EnemyState.Patrol:
+                if (fov.targetCheck() == true)
+                {
+                    currentState = EnemyState.Chase;
+                    break;
+                }
+                else if (agent.remainingDistance < 0.5f)
+                {
+                    currentState = EnemyState.Patrol;
+                    agent.speed = patrolSpeed;
+                    SetNewWaypoint();
+                }               
+                break;
+            case EnemyState.Chase:
+                if (fov.targetCheck() == false)
+                {
+                    currentState = EnemyState.Patrol;
+                    break;
+                }
+                agent.speed = chaseSpeed;
+                agent.SetDestination(playerTarget.position);
+                break;
+            case EnemyState.Attack:
+                break;
+            case EnemyState.Healing:
+                break;
+            case EnemyState.Stun:
+                // Enemy ready to be purified by the sound of the Magic Flute
+                break;
+            default:
+                break;
         }
     }
 
