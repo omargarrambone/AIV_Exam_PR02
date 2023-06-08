@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 663161517950775961}
   - component: {fileID: 6810920280398049272}
   - component: {fileID: 795377411159117821}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -233,6 +233,7 @@ MonoBehaviour:
   _rb: {fileID: 0}
   playerInput: {fileID: 0}
   IsGrounded: 0
+  turnSmooth: 0.1
   jumpCount: 0
   speed: 20
   JumpHeight: 5
