@@ -19,7 +19,7 @@ public class InventoryManager : MonoBehaviour
             { ItemType.SmallKatana, 1 },
             { ItemType.LongKatana, 0 },
             { ItemType.Rod, 0 },
-            { ItemType.Flute, 0 },
+            { ItemType.Flute, 1 },
         };
 
         staticsInventoryImages = inventoryImages;
