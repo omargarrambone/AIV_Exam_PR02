@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private Vector3 offset;
-    //public float distance;
     [SerializeField] private Transform target;
-    private float smoothSpeed = 0.125f;
+    [SerializeField] private float smoothSpeed;
+    private Vector3 offset;
     private Vector3 currentVelocity = Vector3.zero;
 
 
@@ -16,14 +15,14 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 targetPosition = target.position + offset;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothSpeed);
-
-        
+        CameraMovement();
     }
 
-    public void RotateCameraWalk()
+    private void CameraMovement()
     {
-        
+        Vector3 targetPosition = target.position + offset;
+        Vector3 relativePos = target.position - transform.position;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothSpeed);
+        transform.rotation = Quaternion.LookRotation(relativePos);
     }
 }

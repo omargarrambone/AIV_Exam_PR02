@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
     public Rigidbody _rb;
     public PlayerInput playerInput;
     private Movement Movement;
+    public Animator _anim;
 
     public bool IsGrounded;
 
@@ -25,16 +26,20 @@ public class PlayerInput : MonoBehaviour
 
     public float Height = 2.0f;
 
-    [Header("Dash Settings")]
+    private Vector2 inputVector;
+
+    [Header("Dash Variables")]
     private bool canDash = true;
     private bool isDashing;
     private float dashingPower = 24f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
 
+
     // Start is called before the first frame update
     void Awake()
     {
+        _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         Movement = new Movement();
@@ -44,14 +49,17 @@ public class PlayerInput : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isDashing)
-        {
-            return;
-        }
-        Vector2 inputVector = Movement.Player.Movement.ReadValue<Vector2>();
+        Dashing();
+
+        inputVector = Movement.Player.Movement.ReadValue<Vector2>();
         ChangeDirection(inputVector);
         _rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
         CheckIsGrounded();
+    }
+
+    private void Update()
+    {   
+        _anim.SetFloat("Velocity",inputVector.sqrMagnitude);
     }
 
     public void ChangeDirection(Vector2 input)
@@ -78,6 +86,22 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            float interactRange = 2f;
+            Collider [] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
+            foreach (Collider collider in colliderArray)
+            {
+                if (collider.TryGetComponent(out NPCInteractable npcInteractable))
+                {
+                    npcInteractable.Interact();
+                }
+            }
+        }
+    }
+
     public void Dash(InputAction.CallbackContext context)
     {
         if (context.performed && canDash)
@@ -96,6 +120,14 @@ public class PlayerInput : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
 
+    }
+
+    private void Dashing()
+    {
+        if (isDashing)
+        {
+            return;
+        }
     }
 
 
