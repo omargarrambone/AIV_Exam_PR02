@@ -152,7 +152,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""09d9fc45-578d-4dd8-b051-9f9c4c8df505"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
