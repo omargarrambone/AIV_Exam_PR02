@@ -22,7 +22,7 @@ public class EnemyPurification : MonoBehaviour
 
         if (purificatedEnemies < 10)
         {
-
+            purificatedVillagers[1].SetActive(true);
         }
     }
 
