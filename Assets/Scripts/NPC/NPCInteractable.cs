@@ -28,7 +28,7 @@ public class NPCInteractable : MonoBehaviour
             Vector3 relativePos = transform.position - cameraTarget.position;
             Vector3 playerPos = transform.position - playerTarget.position;
 
-            transform.rotation = Quaternion.LookRotation(playerPos);
+            transform.rotation = Quaternion.LookRotation(new Vector3(playerPos.x, 0f, playerPos.z));
             chatBubble.transform.rotation = Quaternion.LookRotation(relativePos);
 
             StartCoroutine(RemoveAfterSeconds(2));
