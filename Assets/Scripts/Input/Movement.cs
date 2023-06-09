@@ -167,17 +167,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0ab3a242-800b-41c4-82d8-82f2c6866783"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": ""StickDeadzone"",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""7e9dda88-fd97-43d7-af28-d0fc07c90ff0"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -200,33 +189,11 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""beb1041a-7803-4f54-bdaa-f3a4eb9c4e86"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""90c7f290-7ff9-4463-ad29-f589738b0187"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""86a05647-8d23-4568-bb9c-b9d2c5dafd1d"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -248,7 +215,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": """",
                     ""action"": ""FluteArrows"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -259,7 +226,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": """",
                     ""action"": ""FluteArrows"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -270,7 +237,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": """",
                     ""action"": ""FluteArrows"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -281,62 +248,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""FluteArrows"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""fde05acf-2995-4bda-b116-82b4e4583b8c"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""FluteArrows"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""42742f63-ad3f-4912-81d5-68fe7e1d14cf"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""FluteArrows"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""c4d6473f-84f0-45ec-aed0-f2f13c3c15ea"",
-                    ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""FluteArrows"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""fa5f628e-7295-4622-826d-491fab817bc1"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""FluteArrows"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""692fb6f3-80e9-4d1b-b37d-56e664d8e5b8"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
                     ""action"": ""FluteArrows"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -353,7 +265,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-<<<<<<< HEAD
                     ""name"": ""1D Axis"",
                     ""id"": ""262c3011-ccb9-41fd-8e78-2fc633ad3551"",
                     ""path"": ""1DAxis"",
@@ -405,15 +316,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""HeavyAttack"",
-=======
-                    ""name"": """",
-                    ""id"": ""729d3a84-2b70-47ed-bf2a-b7cdbf111ae9"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Dash"",
->>>>>>> Hub
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -432,17 +334,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                 },
                 {
                     ""devicePath"": ""<Mouse>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""GamePad"",
-            ""bindingGroup"": ""GamePad"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Gamepad>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -635,15 +526,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
         {
             if (m_KeyboardandmouseSchemeIndex == -1) m_KeyboardandmouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard and mouse");
             return asset.controlSchemes[m_KeyboardandmouseSchemeIndex];
-        }
-    }
-    private int m_GamePadSchemeIndex = -1;
-    public InputControlScheme GamePadScheme
-    {
-        get
-        {
-            if (m_GamePadSchemeIndex == -1) m_GamePadSchemeIndex = asset.FindControlSchemeIndex("GamePad");
-            return asset.controlSchemes[m_GamePadSchemeIndex];
         }
     }
     public interface IPlayerActions
