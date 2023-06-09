@@ -49,8 +49,6 @@ public class PlayerInput : MonoBehaviour
 
     void FixedUpdate()
     {
-        Dashing();
-
         inputVector = Movement.Player.Movement.ReadValue<Vector2>();
         ChangeDirection(inputVector);
         _rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
@@ -109,6 +107,7 @@ public class PlayerInput : MonoBehaviour
             StartCoroutine(Dash());
         }
     }
+
 
     private IEnumerator Dash()
     {
