@@ -6,14 +6,15 @@ using UnityEngine.AI;
 public class BasicEnemyAgentAi : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public float patrolSpeed = 2;
-    public float chaseSpeed = 4;
+    public float patrolSpeed;
+    public float chaseSpeed;
     public List<Transform> patrolWaypoints;
     public Transform playerTarget;
-    public float attackDistance = 2f;
+    public float attackDistance;
     public int currentWaypoint;
     public FieldOfView fov;
     public EnemyState currentState;
+    public Animator anim;
 
 
 
@@ -21,6 +22,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     void Start()
     {
         fov = GetComponent<FieldOfView>();
+        anim = GetComponent<Animator>();
         currentState = EnemyState.Patrol;
         SetNewWaypoint();
     }
@@ -30,21 +32,35 @@ public class BasicEnemyAgentAi : MonoBehaviour
     {
         float distanceFromTarget = Vector3.Distance(playerTarget.position, agent.transform.position);
         //if (fov.targetCheck() == true && distanceFromTarget <= activationDistance)        
+        anim.SetFloat("Speed", agent.velocity.magnitude);
        
         switch (currentState)
         {
             case EnemyState.Patrol:
-                if (fov.targetCheck() == true)
-                {
-                    currentState = EnemyState.Chase;
-                    break;
-                }
-                else if (agent.remainingDistance < 2f)
+                //if (fov.targetCheck() == true)
+                //{
+                //    currentState = EnemyState.Chase;
+                //    break;
+                //}
+                //else if (agent.remainingDistance < 1f)
+                //{
+                //    currentState = EnemyState.Patrol;
+                //    agent.speed = patrolSpeed;
+                //    SetNewWaypoint();
+                //}               
+                //break;
+                float distanceToWaypoint
+                if (agent.remainingDistance < 0.5f)
                 {
                     currentState = EnemyState.Patrol;
                     agent.speed = patrolSpeed;
                     SetNewWaypoint();
-                }               
+                }
+                else if (fov.targetCheck() == true)
+                {
+                    currentState = EnemyState.Chase;
+                    break;
+                }                
                 break;
             case EnemyState.Chase:
                 if (fov.targetCheck() == false)
