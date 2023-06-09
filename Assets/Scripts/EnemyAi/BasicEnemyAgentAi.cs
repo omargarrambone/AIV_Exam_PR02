@@ -36,21 +36,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
        
         switch (currentState)
         {
-            case EnemyState.Patrol:
-                //if (fov.targetCheck() == true)
-                //{
-                //    currentState = EnemyState.Chase;
-                //    break;
-                //}
-                //else if (agent.remainingDistance < 1f)
-                //{
-                //    currentState = EnemyState.Patrol;
-                //    agent.speed = patrolSpeed;
-                //    SetNewWaypoint();
-                //}               
-                //break;
-                float distanceToWaypoint
-                if (agent.remainingDistance < 0.5f)
+            case EnemyState.Patrol:                
+                if (agent.remainingDistance < 2f)
                 {
                     currentState = EnemyState.Patrol;
                     agent.speed = patrolSpeed;
