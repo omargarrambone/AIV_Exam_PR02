@@ -7,11 +7,13 @@ using UnityEngine.Events;
 
 public class ItemBase : MonoBehaviour
 {
+    [SerializeField] private ItemType itemType;
     public UnityEvent onPickUp;
 
     public void PickUp()
     {
         onPickUp.Invoke();
+        InventoryManager.AddItem(itemType);
         gameObject.SetActive(false);
     }
 }

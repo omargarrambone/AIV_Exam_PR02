@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class FluteUIScript : MonoBehaviour
 {
@@ -21,7 +22,9 @@ public class FluteUIScript : MonoBehaviour
 
         for (int i = 0; i < fluteArrows.Length; i++)
         {
-            Instantiate(ArrowsPrefab, ArrowsUIParent);
+            Transform arrow = Instantiate(ArrowsPrefab, ArrowsUIParent);
+            Image image = arrow.GetComponent<Image>();
+            image.color = i%2 == 0 ? Color.red : Color.blue;
         }
 
         originalSpeed = playerInputScript.speed;

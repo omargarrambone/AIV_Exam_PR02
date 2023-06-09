@@ -30,12 +30,13 @@ public class FluteScript : MonoBehaviour
             GameObject enemyObj = enemy.collider.gameObject;
             EnemyPurification enemyPurification = enemyObj.GetComponent<EnemyPurification>();
 
-            if(enemyPurification is not null)
+            if (enemyPurification is not null)
             {
-                if(enemyPurification.IsStunned)
+                if (enemyPurification.IsStunned)
                     enemyObj.transform.SetLocalPositionAndRotation(enemyPurification.PurificatedLocation.position, enemyPurification.PurificatedLocation.rotation);
             }
         }
+
     }
 
     private void OnDrawGizmos()
