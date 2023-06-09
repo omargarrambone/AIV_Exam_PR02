@@ -37,13 +37,13 @@ public class NPCInteractable : MonoBehaviour
 
     IEnumerator RemoveAfterSeconds(int seconds)
     {
-            yield return new WaitForSeconds(seconds);
-            chatBubble.SetActive(false);
+        yield return new WaitForSeconds(seconds);
+        chatBubble.SetActive(false);
     }
 
     private string RandomSentence()
     {
-        string randomWord = sentence[Random.Range(0, sentence.Length)];
-        return randomWord;
+        string randomSentence = sentence[Random.Range(0, sentence.Length)];
+        return randomSentence;
     }
 }
