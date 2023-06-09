@@ -15,6 +15,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public FieldOfView fov;
     public EnemyState currentState;
     public Animator anim;
+    
 
 
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     {
         fov = GetComponent<FieldOfView>();
         anim = GetComponent<Animator>();
+       
         currentState = EnemyState.Patrol;
         SetNewWaypoint();
     }
@@ -32,21 +34,22 @@ public class BasicEnemyAgentAi : MonoBehaviour
         float distanceFromTarget = Vector3.Distance(playerTarget.position, agent.transform.position);
         //if (fov.targetCheck() == true && distanceFromTarget <= activationDistance)        
         anim.SetFloat("Speed", agent.velocity.magnitude);
-       
+
         switch (currentState)
         {
-            case EnemyState.Patrol:                
+            case EnemyState.Patrol:
                 if (agent.remainingDistance < 2f)
                 {
                     currentState = EnemyState.Patrol;
                     agent.speed = patrolSpeed;
                     SetNewWaypoint();
+                    break;
                 }
                 else if (fov.targetCheck() == true)
                 {
                     currentState = EnemyState.Chase;
                     break;
-                }                
+                }
                 break;
             case EnemyState.Chase:
                 if (fov.targetCheck() == false)
@@ -86,12 +89,20 @@ public class BasicEnemyAgentAi : MonoBehaviour
             default:
                 break;
         }
+
+        if (agent.remainingDistance < 2f)
+        {
+            currentState = EnemyState.Patrol;
+            agent.speed = patrolSpeed;
+            SetNewWaypoint();            
+        }
     }
 
 
     public void SetNewWaypoint()
     {
         currentWaypoint = Random.Range(0, patrolWaypoints.Count);
+        //distanceFromWaypoint = Vector3.Distance(agent.transform.position, patrolWaypoints[currentWaypoint].position);
         agent.SetDestination(patrolWaypoints[currentWaypoint].position);
     }
 }
