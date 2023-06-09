@@ -4,23 +4,33 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public struct InventorySlot
+{
+    public ItemType ItemType;
+    public int Value;
+}
+
 public class InventoryManager : MonoBehaviour
 {
-    static private Dictionary<ItemType, int> inventoryItems;
+    static public InventorySlot[] InventoryItems { get; private set; }
     static private Image[] staticsInventoryImages;
-    private static int currentSlotIndex;
+    static public int CurrentSlotIndex { get; private set; }
     [SerializeField] private Image[] inventoryImages;
 
     void Start()
     {
-        inventoryItems = new Dictionary<ItemType, int>
+        InventoryItems = new InventorySlot[5];
+
+        for (int i = 0; i < InventoryItems.Length; i++)
         {
-            { ItemType.Fists, 1 },
-            { ItemType.SmallKatana, 1 },
-            { ItemType.LongKatana, 0 },
-            { ItemType.Rod, 0 },
-            { ItemType.Flute, 1 },
-        };
+            InventoryItems[i].ItemType = (ItemType)i;
+            InventoryItems[i].Value = 0;
+        }
+
+        InventoryItems[((int)ItemType.Fists)].Value = 1;
+        InventoryItems[((int)ItemType.SmallKatana)].Value = 1;
+        InventoryItems[((int)ItemType.Flute)].Value = 1;
 
         staticsInventoryImages = inventoryImages;
 
@@ -30,18 +40,23 @@ public class InventoryManager : MonoBehaviour
         }
 
         staticsInventoryImages[0].gameObject.SetActive(true);
-        currentSlotIndex = 0;
+        CurrentSlotIndex = 0;
     }
 
     public static void AddItem(ItemType item)
     {
-        inventoryItems[item] = 1;
+        InventoryItems[((int)item)].Value = 1;
 
         ChangeImage((int)item);
 
-        currentSlotIndex = ((int)item);
+        CurrentSlotIndex = ((int)item);
 
         //Add change sound();
+    }
+
+    public static void SetInventory(InventorySlot[] inventorySlots)
+    {
+        InventoryItems = inventorySlots;
     }
 
     public void SwapItem(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -50,40 +65,48 @@ public class InventoryManager : MonoBehaviour
         {
             float value = context.ReadValue<float>();
 
-            staticsInventoryImages[currentSlotIndex].gameObject.SetActive(false);
+            staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(false);
 
-            int newSlotIndex = currentSlotIndex;
+            int newSlotIndex = CurrentSlotIndex;
 
-                for (int i = 0; i < inventoryItems.Count; i++)
+                for (int i = 0; i < InventoryItems.Length; i++)
                 {
                     newSlotIndex += ((int)value);
                     newSlotIndex %= ((int)ItemType.LAST);
                     if (newSlotIndex < 0) newSlotIndex = ((int)ItemType.LAST - 1);
 
-                    if (inventoryItems[(ItemType)newSlotIndex] > 0)
+                    if (InventoryItems[newSlotIndex].Value > 0)
                     {
-                        currentSlotIndex = newSlotIndex;
+                        CurrentSlotIndex = newSlotIndex;
                         break;
                     }
                 }
 
-            ChangeImage(currentSlotIndex);
+            ChangeImage(CurrentSlotIndex);
         }
+    }
+
+    static public void SetActualItem(ItemType type)
+    {
+        foreach (Image image in staticsInventoryImages)
+        {
+            image.gameObject.SetActive(false);
+        }
+
+        staticsInventoryImages[((int)type)].gameObject.SetActive(true);
+        CurrentSlotIndex = ((int)type);
     }
 
     static void ChangeImage(int newIndex)
     {
-        staticsInventoryImages[currentSlotIndex].gameObject.SetActive(false);
+        staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(false);
         staticsInventoryImages[newIndex].gameObject.SetActive(true);
     }
 
-    public static bool HasItem(ItemType item)
+    public void LoadInventory()
     {
-        if (inventoryItems.ContainsKey(item))
-        {
-            return true;
-        }
+        SaveData data = SaveDataJSON.SavedData;
 
-        return false;
+        SetInventory(data.playerData.inventoryItems);
     }
 }
