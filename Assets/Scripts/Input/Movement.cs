@@ -303,7 +303,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""LightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -314,7 +314,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""HeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
