@@ -7,11 +7,10 @@ using UnityEngine.UI;
 public class FluteUIScript : MonoBehaviour
 {
     [SerializeField] private Transform ArrowsUIParent,ArrowsPrefab;
-    [SerializeField] private TMPro.TMP_Text debugText;
     [SerializeField] private int arrowsToGenerate;
-    [SerializeField] private UnityEvent OnCompleted, OnFail;
+    [SerializeField] private UnityEvent OnStart,OnCompleted, OnFail;
+    [SerializeField] private UnityEvent<FluteArrow> OnCorrectArrow;
     [SerializeField] private PlayerInput playerInputScript;
-
     private float originalSpeed;
     private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
     private int currentArrowIndex;
@@ -28,6 +27,8 @@ public class FluteUIScript : MonoBehaviour
         }
 
         originalSpeed = playerInputScript.speed;
+        Rigidbody playerRb = playerInputScript.gameObject.GetComponent<Rigidbody>();
+        playerRb.velocity = new Vector3(0, playerRb.velocity.y, 0);
 
         gameObject.SetActive(false);
     }
@@ -36,6 +37,7 @@ public class FluteUIScript : MonoBehaviour
     {
         StartMinigame();
         playerInputScript.speed = 0;
+        OnStart.Invoke();
     }
 
     private void OnDisable()
@@ -63,6 +65,7 @@ public class FluteUIScript : MonoBehaviour
             if(value == fluteArrows[currentArrowIndex].Item3)
             {
                 ArrowsUIParent.GetChild(currentArrowIndex).gameObject.SetActive(false);
+                OnCorrectArrow.Invoke(fluteArrows[currentArrowIndex].Item2);
                 currentArrowIndex++;
 
                 if (currentArrowIndex >= fluteArrows.Length)

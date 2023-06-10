@@ -4,44 +4,106 @@ using UnityEngine;
 
 public class FluteScript : MonoBehaviour
 {
+    private AudioClip[] audioClips;
+    [SerializeField] private AudioClip downClip, rightClip, upClip, leftClip, wrongClip;
     private AudioSource audioSource;
     [SerializeField] private float radius,maxDistance;
     [SerializeField] private LayerMask enemiesLayer;
 
+    [SerializeField] bool isAttacking;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        audioClips = new AudioClip[((int)FluteArrow.LAST)];
+        audioClips[0] = downClip;
+        audioClips[1] = rightClip;
+        audioClips[2] = upClip;
+        audioClips[3] = leftClip;
+    }
+
+    public RaycastHit[] GetHittedEnemies()
+    {
+        return Physics.SphereCastAll(transform.position, radius, transform.forward, maxDistance, enemiesLayer);
     }
 
     [ContextMenu("PlaySound")]
     public void PlaySound()
     {
+        RaycastHit[] hittedEnemies = GetHittedEnemies();
+
+        audioSource.Stop();
         audioSource.Play();
 
-        RaycastHit[] hittedObjects = Physics.SphereCastAll(transform.position, radius, transform.forward, maxDistance, enemiesLayer);
-
-        foreach (RaycastHit enemy in hittedObjects)
+        if (hittedEnemies.Length > 0)
         {
-            //spawn ucelletti in testa a nemici
-            //GameObject birds = Instantiate(fogSystemPrefab, enemy.collider.transform);
-            //birds.GetComponent<ParticleSystem>().Play();
+            //purify attack
 
-            // nemico nell'hub
-            GameObject enemyObj = enemy.collider.gameObject;
-            EnemyPurification enemyPurification = enemyObj.GetComponent<EnemyPurification>();
 
-            if (enemyPurification is not null)
+            foreach (RaycastHit enemy in hittedEnemies)
             {
-                if (enemyPurification.IsStunned)
-                    enemyObj.transform.SetLocalPositionAndRotation(enemyPurification.PurificatedLocation.position, enemyPurification.PurificatedLocation.rotation);
+                GameObject enemyObj = enemy.collider.gameObject;
+                EnemyPurification enemyPurification = enemyObj.GetComponent<EnemyPurification>();
+
+                //TODO: check se il nemico è stordito
+
+                if (enemyPurification is not null)
+                {
+                    if (enemyPurification.IsStunned)
+                        enemyObj.transform.SetLocalPositionAndRotation(enemyPurification.PurificatedLocation.position, enemyPurification.PurificatedLocation.rotation);
+                }
             }
+
         }
+        else
+        {
+            //timer attack
+
+            StartCoroutine(AreaAttack());
+
+        }
+
+    }
+
+    public void PlayCorrectNote(FluteArrow fluteArrow)
+    {
+        audioSource.PlayOneShot(audioClips[(int)fluteArrow]);
+    }
+
+    public void PlayWrongNote()
+    {
+        audioSource.PlayOneShot(wrongClip);
+    }
+
+    IEnumerator AreaAttack()
+    {
+        while (audioSource.isPlaying)
+        {
+            RaycastHit[] hittedEnemies = GetHittedEnemies();
+
+            foreach (RaycastHit enemy in hittedEnemies)
+            {
+                Destroy(enemy.collider.gameObject);
+            }
+
+            isAttacking = true;
+
+            Debug.Log("INIZIATA INEMURATOR " + Time.deltaTime);
+        }
+
+        yield return audioSource.isPlaying;
+        isAttacking = false;
+        Debug.Log("INIZIATA INEMURATOR "+Time.deltaTime);
 
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
+        if (isAttacking)
+        {
+            Gizmos.color = Color.green;
+        }
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
