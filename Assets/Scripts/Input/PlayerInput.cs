@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
 using UnityEngineInternal;
 
 public class PlayerInput : MonoBehaviour
@@ -24,7 +25,15 @@ public class PlayerInput : MonoBehaviour
     public float speed;
     public float JumpHeight;
 
+    [SerializeField] private float animationLightAttackFinishTime = 0.5f;
+    [SerializeField] private float animationHeavyAttackFinishTime = 0.5f;
     public float Height = 2.0f;
+    private bool isRunning = false;
+    private bool isAttacking = false;
+    private bool isHeavyAttacking = false;
+    private bool isAttackingGoing = false;
+    private bool isHeavyAttackingGoing = false;
+
 
     private Vector2 inputVector;
 
@@ -34,7 +43,6 @@ public class PlayerInput : MonoBehaviour
     private float dashingPower = 24f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
-
 
     // Start is called before the first frame update
     void Awake()
@@ -49,17 +57,50 @@ public class PlayerInput : MonoBehaviour
 
     void FixedUpdate()
     {
-        Dashing();
-
         inputVector = Movement.Player.Movement.ReadValue<Vector2>();
         ChangeDirection(inputVector);
         _rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
+        AnimateRun(inputVector);
         CheckIsGrounded();
     }
 
     private void Update()
-    {   
-        _anim.SetFloat("Velocity",inputVector.sqrMagnitude);
+    {
+        _anim.SetFloat("Velocity", inputVector.sqrMagnitude);
+    }
+
+    public void LightAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Attack();
+                isAttackingGoing = true;
+
+            if (isAttacking && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animationLightAttackFinishTime)
+            {
+                isAttacking = false;
+            }
+        }
+    }
+
+    public void HeavyAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            HeavyAttack();
+                isHeavyAttackingGoing = true;
+
+            if (isHeavyAttacking && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animationHeavyAttackFinishTime)
+            {
+                isHeavyAttacking = false;
+            }
+        }
+    }
+
+    void AnimateRun(Vector3 desiredDirection)
+    {
+        isRunning = (inputVector.x > 0 || inputVector.x < -0.0001f) || (inputVector.y > 0 || inputVector.y < -0.0001f) ? true : false;
+        _anim.SetBool("IsRunning", isRunning);
     }
 
     public void ChangeDirection(Vector2 input)
@@ -91,7 +132,7 @@ public class PlayerInput : MonoBehaviour
         if (context.performed)
         {
             float interactRange = 2f;
-            Collider [] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
+            Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
             foreach (Collider collider in colliderArray)
             {
                 if (collider.TryGetComponent(out NPCInteractable npcInteractable))
@@ -109,6 +150,7 @@ public class PlayerInput : MonoBehaviour
             StartCoroutine(Dash());
         }
     }
+
 
     private IEnumerator Dash()
     {
@@ -146,4 +188,21 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    void Attack()
+    {
+        if (!isAttacking)
+        {
+            _anim.SetTrigger("Attacking?");
+            isAttacking= true;
+        }
+    }
+
+    void HeavyAttack()
+    {
+        if (!isHeavyAttacking)
+        {
+            _anim.SetTrigger("HeavyAttacking?");
+            isHeavyAttacking = true;
+        }
+    }
 }

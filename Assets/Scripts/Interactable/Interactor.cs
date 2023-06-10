@@ -23,7 +23,6 @@ public class Interactor : MonoBehaviour
     {
         actualInteractable = other.GetComponent<Interactable>();
         guiText.SetText($"Take [{actualInteractable.ItemName}]");
-        //fai comparire scritta premi E per interagire ed altro
 
     }
 
