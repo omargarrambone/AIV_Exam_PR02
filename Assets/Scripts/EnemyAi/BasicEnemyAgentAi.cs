@@ -100,8 +100,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public void SetNewWaypoint()
     {
-        currentWaypoint = Random.Range(0, patrolWaypoints.Count);
-        //distanceFromWaypoint = Vector3.Distance(agent.transform.position, patrolWaypoints[currentWaypoint].position);
+        currentWaypoint = Random.Range(0, patrolWaypoints.Count);        
         agent.SetDestination(patrolWaypoints[currentWaypoint].position);
     }
 }
