@@ -22,8 +22,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     void Start()
     {
         fov = GetComponent<FieldOfView>();
-        anim = GetComponent<Animator>();
-       
+        anim = GetComponent<Animator>();       
         currentState = EnemyState.Patrol;
         SetNewWaypoint();
     }
