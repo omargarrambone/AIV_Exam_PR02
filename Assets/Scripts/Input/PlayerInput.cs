@@ -74,7 +74,7 @@ public class PlayerInput : MonoBehaviour
         if (context.performed)
         {
             Attack();
-                isAttackingGoing = true;
+            isAttackingGoing = true;
 
             if (isAttacking && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animationLightAttackFinishTime)
             {
@@ -88,7 +88,7 @@ public class PlayerInput : MonoBehaviour
         if (context.performed)
         {
             HeavyAttack();
-                isHeavyAttackingGoing = true;
+            isHeavyAttackingGoing = true;
 
             if (isHeavyAttacking && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animationHeavyAttackFinishTime)
             {
@@ -193,7 +193,7 @@ public class PlayerInput : MonoBehaviour
         if (!isAttacking)
         {
             _anim.SetTrigger("Attacking?");
-            isAttacking= true;
+            isAttacking = true;
         }
     }
 

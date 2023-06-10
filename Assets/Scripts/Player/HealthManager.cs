@@ -9,8 +9,11 @@ public class HealthManager : MonoBehaviour
 {
     public float MaxHealth = 100;
     public float CurrentHealth;
+    public float CurrentStunn;
+    public float MinStunnValue = 0;
 
     public HealthBarScript HealthBar;
+    public HealthBarScript StunnBar;
 
 
     // Start is called before the first frame update
@@ -18,6 +21,7 @@ public class HealthManager : MonoBehaviour
     {
         CurrentHealth = MaxHealth;
         HealthBar.SetMaxHealth(MaxHealth);
+        StunnBar.SetMinStunnValue(MinStunnValue);
     }
 
     public void AddHealth(float health)
@@ -26,10 +30,12 @@ public class HealthManager : MonoBehaviour
         HealthBar.SetHealth(CurrentHealth);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, float stunnDamage = 0)
     {
         CurrentHealth -= damage;
+        CurrentStunn += stunnDamage;
 
         HealthBar.SetHealth(CurrentHealth);
+        StunnBar.SetStunn(CurrentStunn);
     }
 }

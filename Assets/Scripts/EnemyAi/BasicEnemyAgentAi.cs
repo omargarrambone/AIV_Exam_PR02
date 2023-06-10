@@ -24,7 +24,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
         fov = GetComponent<FieldOfView>();
         anim = GetComponent<Animator>();       
         currentState = EnemyState.Patrol;
-        SetNewWaypoint();
+        //SetNewWaypoint();
     }
 
     // Update is called once per frame
