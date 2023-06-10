@@ -4,6 +4,7 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 using UnityEngineInternal;
@@ -43,6 +44,9 @@ public class PlayerInput : MonoBehaviour
     private float dashingPower = 24f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
+
+    [Header("UI")]
+    public GameObject Panel;
 
     // Start is called before the first frame update
     void Awake()
@@ -112,6 +116,29 @@ public class PlayerInput : MonoBehaviour
             float targetAngle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmooth);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        }
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        //if (context.performed && Panel.gameObject.activeSelf == false)
+        //{
+        //    Panel.gameObject.SetActive(true);
+        //    Debug.Log("pause");
+        //}
+        //else if (context.performed && Panel.gameObject.activeSelf == true)
+        //{
+        //    Panel.gameObject.SetActive(false);
+        if (context.performed)
+        {
+            if (Panel.gameObject.activeSelf == false)
+            {
+                Panel.gameObject.SetActive(true);
+            }
+            else
+            {
+                Panel.gameObject.SetActive(false);
+            }
         }
     }
 
