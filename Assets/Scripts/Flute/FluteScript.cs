@@ -11,6 +11,7 @@ public class FluteScript : MonoBehaviour
     [SerializeField] private LayerMask enemiesLayer;
 
     [SerializeField] bool isAttacking;
+    [SerializeField] float attackDmg;
 
     private void Start()
     {
@@ -59,7 +60,7 @@ public class FluteScript : MonoBehaviour
         {
             //timer attack
 
-            StartCoroutine(AreaAttack());
+            isAttacking = true;
 
         }
 
@@ -75,26 +76,26 @@ public class FluteScript : MonoBehaviour
         audioSource.PlayOneShot(wrongClip);
     }
 
-    IEnumerator AreaAttack()
+    private void Update()
     {
-        while (audioSource.isPlaying)
+        if (isAttacking)
         {
-            RaycastHit[] hittedEnemies = GetHittedEnemies();
-
-            foreach (RaycastHit enemy in hittedEnemies)
+            if (audioSource.isPlaying)
             {
-                Destroy(enemy.collider.gameObject);
+                RaycastHit[] hittedEnemies = GetHittedEnemies();
+
+                foreach (RaycastHit enemy in hittedEnemies)
+                {
+                    //TODO: effettuare danno al nemico con un float
+                    //enemy.collider.GetComponent<HealthManager>().AddHealth(-attackDmg*Time.deltaTime);
+                    enemy.collider.gameObject.SetActive(false);
+                }
             }
-
-            isAttacking = true;
-
-            Debug.Log("INIZIATA INEMURATOR " + Time.deltaTime);
+            else
+            {
+                isAttacking = false;
+            }
         }
-
-        yield return audioSource.isPlaying;
-        isAttacking = false;
-        Debug.Log("INIZIATA INEMURATOR "+Time.deltaTime);
-
     }
 
     private void OnDrawGizmos()

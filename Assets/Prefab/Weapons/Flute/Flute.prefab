@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8404364000577026262
 MonoBehaviour:
@@ -47,11 +47,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d279f40117865d04aae6f45eca3a8bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  downClip: {fileID: 8300000, guid: 7ec14812cbfb5bb419fbb88580b67c2b, type: 3}
+  rightClip: {fileID: 8300000, guid: ba15c84c44738474f901cbfdcc39b4f2, type: 3}
+  upClip: {fileID: 8300000, guid: a91685ec6032c104595ff3b93c343a69, type: 3}
+  leftClip: {fileID: 8300000, guid: 40e42177741c6494fb0ef6bbef40825c, type: 3}
+  wrongClip: {fileID: 8300000, guid: 7eb9f6a0e2f19434787dde616fa2e541, type: 3}
   radius: 10
   maxDistance: 0
   enemiesLayer:
     serializedVersion: 2
     m_Bits: 128
+  isAttacking: 0
+  attackDmg: 0
 --- !u!33 &7766945289738858213
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -113,7 +120,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 08d1e5887ce1cf04d9388a58e636e918,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 27ae2a8e62289de48ac8c8ba2faeca48, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f5bf147540aa429468a62b1391e29e79, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1
