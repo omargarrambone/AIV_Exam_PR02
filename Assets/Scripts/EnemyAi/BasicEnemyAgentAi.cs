@@ -6,15 +6,24 @@ using UnityEngine.AI;
 public class BasicEnemyAgentAi : MonoBehaviour
 {
     public NavMeshAgent agent;
+    public float patrolSpeed;
+    public float chaseSpeed;
     public List<Transform> patrolWaypoints;
     public Transform playerTarget;
-    public float activationDistance = 5f;
+    public float attackDistance;
     public int currentWaypoint;
+    public FieldOfView fov;
+    public EnemyState currentState;
+    public Animator anim;
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
+        fov = GetComponent<FieldOfView>();
+        anim = GetComponent<Animator>();       
+        currentState = EnemyState.Patrol;
         SetNewWaypoint();
     }
 
@@ -22,27 +31,76 @@ public class BasicEnemyAgentAi : MonoBehaviour
     void Update()
     {
         float distanceFromTarget = Vector3.Distance(playerTarget.position, agent.transform.position);
-        if (distanceFromTarget <= activationDistance)
+        //if (fov.targetCheck() == true && distanceFromTarget <= activationDistance)        
+        anim.SetFloat("Speed", agent.velocity.magnitude);
+
+        switch (currentState)
         {
-            agent.SetDestination(playerTarget.position);
+            case EnemyState.Patrol:
+                if (agent.remainingDistance < 2f)
+                {
+                    currentState = EnemyState.Patrol;
+                    agent.speed = patrolSpeed;
+                    SetNewWaypoint();
+                    break;
+                }
+                else if (fov.targetCheck() == true)
+                {
+                    currentState = EnemyState.Chase;
+                    break;
+                }
+                break;
+            case EnemyState.Chase:
+                if (fov.targetCheck() == false)
+                {
+                    currentState = EnemyState.Patrol;
+                    break;
+                }
+                else if (fov.targetCheck() == true && distanceFromTarget <= attackDistance)
+                {
+                    agent.speed = 0;
+                    currentState = EnemyState.Attack;
+                    break;
+                }
+                agent.speed = chaseSpeed;
+                agent.SetDestination(playerTarget.position);
+                break;
+            case EnemyState.Attack:
+                if (fov.targetCheck() == true && distanceFromTarget > attackDistance)
+                {
+                    currentState = EnemyState.Chase;
+                    agent.speed = chaseSpeed;
+                    break;
+                }
+                else if (fov.targetCheck() == false)
+                {
+                    currentState = EnemyState.Patrol;
+                    agent.speed = patrolSpeed;
+                    break;
+                }
+                Debug.Log("Attack");
+                break;
+            case EnemyState.Healing:
+                break;
+            case EnemyState.Stun:
+                // Enemy ready to be purified by the sound of the Magic Flute
+                break;
+            default:
+                break;
         }
-        else if (agent.remainingDistance < 0.5f)
+
+        if (agent.remainingDistance < 2f)
         {
-            SetNewWaypoint();
+            currentState = EnemyState.Patrol;
+            agent.speed = patrolSpeed;
+            SetNewWaypoint();            
         }
     }
 
-    private void FixedUpdate()
-    {
-        //if (agent.remainingDistance < 0.5f)
-        //{
-        //    SetNewWaypoint();
-        //}
-    }
 
     public void SetNewWaypoint()
     {
-        currentWaypoint = Random.Range(0, patrolWaypoints.Count);
+        currentWaypoint = Random.Range(0, patrolWaypoints.Count);        
         agent.SetDestination(patrolWaypoints[currentWaypoint].position);
     }
 }
