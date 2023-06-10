@@ -7,8 +7,8 @@ using UnityEngine.Windows;
 
 public class HealthManager : MonoBehaviour
 {
-    public int MaxHealth = 100;
-    public int CurrentHealth;
+    public float MaxHealth = 100;
+    public float CurrentHealth;
 
     public HealthBarScript HealthBar;
 
@@ -20,13 +20,13 @@ public class HealthManager : MonoBehaviour
         HealthBar.SetMaxHealth(MaxHealth);
     }
 
-    public void AddHealth(int health)
+    public void AddHealth(float health)
     {
         CurrentHealth += health;
         HealthBar.SetHealth(CurrentHealth);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
 
