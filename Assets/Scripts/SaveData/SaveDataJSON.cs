@@ -12,7 +12,7 @@ public class SaveDataJSON : MonoBehaviour
     [SerializeField] private UnityEvent OnSave, OnLoad;
     private string persistentPath = "";
 
-    void Awake()
+    void OnEnable()
     {
         SetPaths();
     }
