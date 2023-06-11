@@ -552,7 +552,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   CurrentHealth: 0
+  CurrentStunn: 0
+  MinStunnValue: 0
   HealthBar: {fileID: 389252774}
+  StunnBar: {fileID: 0}
 --- !u!1 &534666253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,6 +1358,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4628788468328982200, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5203937917804468620, guid: b4d505da6851e2848ab8f21d473442e0,
         type: 3}
       propertyPath: m_IsActive
@@ -1475,6 +1483,11 @@ PrefabInstance:
       propertyPath: JumpHeight
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 7972529226759551745, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1c52d2774c714674887d73d447fae430, type: 2}
     - target: {fileID: 8476164271887214229, guid: b4d505da6851e2848ab8f21d473442e0,
         type: 3}
       propertyPath: m_Name
@@ -2256,7 +2269,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   CurrentHealth: 0
+  CurrentStunn: 0
+  MinStunnValue: 0
   HealthBar: {fileID: 389252774}
+  StunnBar: {fileID: 0}
 --- !u!1 &2092313888
 GameObject:
   m_ObjectHideFlags: 0
