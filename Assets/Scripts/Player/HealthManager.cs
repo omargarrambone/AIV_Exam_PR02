@@ -20,6 +20,7 @@ public class HealthManager : MonoBehaviour
     void Start()
     {
         CurrentHealth = MaxHealth;
+        CurrentStunn = MinStunnValue;
         HealthBar.SetMaxHealth(MaxHealth);
         StunnBar.SetMinStunnValue(MinStunnValue);
     }
