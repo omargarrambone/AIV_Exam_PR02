@@ -4,13 +4,13 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private float smoothSpeed;
-    private Vector3 offset;
+    [SerializeField] private Vector3 offset;
     private Vector3 currentVelocity = Vector3.zero;
 
 
     private void Start()
     {
-        offset = transform.position - target.position;
+        //offset = transform.position - target.position;
     }
 
     private void FixedUpdate()
