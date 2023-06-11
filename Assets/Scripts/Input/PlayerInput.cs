@@ -120,6 +120,7 @@ public class PlayerInput : MonoBehaviour
         if (context.performed)
         {
             jumpCount++;
+            _anim.SetInteger("JumpCount", jumpCount);
             if (jumpCount < 2)
             {
                 _rb.AddForce(Vector3.up * JumpHeight, ForceMode.Impulse);
@@ -164,27 +165,21 @@ public class PlayerInput : MonoBehaviour
 
     }
 
-    private void Dashing()
-    {
-        if (isDashing)
-        {
-            return;
-        }
-    }
-
-
     void CheckIsGrounded()
     {
         if (Physics.Raycast(transform.position, Vector3.down, Height))
         {
             IsGrounded = true;
             jumpCount = 0;
+            _anim.SetBool("IsGrounded", IsGrounded);
+            _anim.SetInteger("JumpCount", jumpCount);
             Debug.DrawRay(transform.position, Vector3.down * Height, UnityEngine.Color.green);
         }
         else
         {
             IsGrounded = false;
             Debug.DrawRay(transform.position, Vector3.down * Height, UnityEngine.Color.red);
+            _anim.SetBool("IsGrounded", IsGrounded);
         }
     }
 
