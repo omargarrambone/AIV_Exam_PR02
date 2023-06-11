@@ -10,7 +10,7 @@ public class PowerUp : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && other.gameObject.GetComponent<HealthManager>().CurrentHealth < 100)
         {
             gameObject.SetActive(false);
             powerUpEffect.Apply(other.gameObject);
