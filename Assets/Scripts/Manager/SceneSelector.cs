@@ -5,18 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class SceneSelector : MonoBehaviour
 {
-    public void EnemyScene()
+    public void HubScene()
     {
         SceneManager.LoadScene(0);
     }
-    public void NPCScene()
+
+    public void EnemyScene()
     {
         SceneManager.LoadScene(1);
+    }
+    public void NPCScene()
+    {
+        SceneManager.LoadScene(2);
     }
 
     public void InventoryScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void ExitGame()
