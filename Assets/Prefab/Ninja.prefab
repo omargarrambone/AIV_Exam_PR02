@@ -3444,6 +3444,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: dfbd40f7-33e0-4015-aab8-5ea96f79f06f
     m_ActionName: Player/HeavyAttack[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0384bbe9-14c1-4724-bdcb-1d129ddcfb47
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3471,7 +3475,8 @@ MonoBehaviour:
   JumpHeight: 5
   animationLightAttackFinishTime: 0.5
   animationHeavyAttackFinishTime: 0.5
-  Height: 1.1
+  Height: 0.1
+  Panel: {fileID: 0}
 --- !u!114 &4628788468328982200
 MonoBehaviour:
   m_ObjectHideFlags: 0
