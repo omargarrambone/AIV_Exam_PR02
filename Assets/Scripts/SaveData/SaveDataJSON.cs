@@ -20,7 +20,8 @@ public class SaveDataJSON : MonoBehaviour
     [ContextMenu("SetPaths")]
     private void SetPaths()
     {
-        persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData.json"; 
+        persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData.json";
+        _savedData = new SaveData();
     }
 
     [ContextMenu("Save Game")]
@@ -28,11 +29,11 @@ public class SaveDataJSON : MonoBehaviour
     {
         using (StreamWriter writer = new StreamWriter(persistentPath))
         {
-            SavedData.playerData.inventoryItems = InventoryManager.InventoryItems;
-            SavedData.playerData.currentWeapon = InventoryManager.CurrentSlotIndex;
-            SavedData.playerData.health = healthManager.CurrentHealth;
-            SavedData.playerData.playerPos = player.position;
-            SavedData.playerData.playerRot = player.rotation;
+            _savedData.playerData.inventoryItems = InventoryManager.InventoryItems;
+            _savedData.playerData.currentWeapon = InventoryManager.CurrentSlotIndex;
+            _savedData.playerData.health = healthManager.CurrentHealth;
+            _savedData.playerData.playerPos = player.position;
+            _savedData.playerData.playerRot = player.rotation;
 
             string json = JsonUtility.ToJson(_savedData);
 
@@ -53,6 +54,8 @@ public class SaveDataJSON : MonoBehaviour
             using (StreamReader reader = new StreamReader(persistentPath))
             {
                 string json = reader.ReadToEnd();
+
+                if (json == "") return;
 
                 SaveData saveData = JsonUtility.FromJson<SaveData>(json);
                 _savedData = saveData;
