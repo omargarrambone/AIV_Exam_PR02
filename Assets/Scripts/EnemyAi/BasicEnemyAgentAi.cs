@@ -97,6 +97,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
         }
     }
 
+    public void SetState(int state)
+    {
+        currentState = (EnemyState)state;
+    }
+
 
     public void SetNewWaypoint()
     {

@@ -15,6 +15,7 @@ public class InventoryManager : MonoBehaviour
 {
     static public InventorySlot[] InventoryItems { get; private set; }
     static private Image[] staticsInventoryImages;
+    static private GameObject[] staticsInventoryGameObjects;
     static public int CurrentSlotIndex { get; private set; }
     [SerializeField] private Image[] inventoryImages;
 
@@ -41,6 +42,8 @@ public class InventoryManager : MonoBehaviour
 
         staticsInventoryImages[0].gameObject.SetActive(true);
         CurrentSlotIndex = 0;
+
+        staticsInventoryGameObjects = new GameObject[inventoryImages.Length];
     }
 
     public static void AddItem(ItemType item)
@@ -108,5 +111,7 @@ public class InventoryManager : MonoBehaviour
         SaveData data = SaveDataJSON.SavedData;
 
         SetInventory(data.playerData.inventoryItems);
+
+        SetActualItem((ItemType)data.playerData.currentWeapon);
     }
 }

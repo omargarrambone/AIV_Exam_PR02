@@ -52,7 +52,7 @@ public class FluteUIScript : MonoBehaviour
         SetRandomArrows();
     }
 
-    public void FluteKeysPressCheck(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        public void FluteKeysPressCheck(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (!gameObject.activeSelf) return;
 

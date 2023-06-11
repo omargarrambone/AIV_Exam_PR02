@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SaveData
+public struct SaveData
 {
     public PlayerData playerData;
     public TownData townData;
 }
 
 [System.Serializable]
-public class PlayerData
+public struct PlayerData
 {
     public Vector3 playerPos;
     public Quaternion playerRot;
@@ -20,7 +20,7 @@ public class PlayerData
 }
 
 [System.Serializable]
-public class TownData
+public struct TownData
 {
     public int enemiesKilled;
     public int unlockedLevel;
