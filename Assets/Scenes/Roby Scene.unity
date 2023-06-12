@@ -2118,6 +2118,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: dfbd40f7-33e0-4015-aab8-5ea96f79f06f
     m_ActionName: Player/HeavyAttack[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0384bbe9-14c1-4724-bdcb-1d129ddcfb47
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -4882,6 +4886,7 @@ MonoBehaviour:
   fov: {fileID: 2487297432610990438}
   currentState: 0
   anim: {fileID: 0}
+  isStunned: 0
 --- !u!195 &2487297432610990440
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6458,7 +6463,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   CurrentHealth: 0
+  CurrentStunn: 0
+  MinStunnValue: 0
+  IsStunned: 0
   HealthBar: {fileID: 0}
+  StunnBar: {fileID: 0}
+  OnStun:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &4663917626443222265
 Transform:
   m_ObjectHideFlags: 0
@@ -7695,6 +7707,7 @@ MonoBehaviour:
   animationLightAttackFinishTime: 0.5
   animationHeavyAttackFinishTime: 0.5
   Height: 1.1
+  Panel: {fileID: 0}
 --- !u!4 &7898547454425601480
 Transform:
   m_ObjectHideFlags: 0
@@ -7720,7 +7733,7 @@ Animator:
   m_GameObject: {fileID: 8476164273230043732}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2ba66718d3169ae42a05d8facf302228, type: 3}
-  m_Controller: {fileID: 9100000, guid: e78f1fb0c664aea4e9a49db51faa492b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1c52d2774c714674887d73d447fae430, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

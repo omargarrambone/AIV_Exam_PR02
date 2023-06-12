@@ -15,7 +15,9 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public FieldOfView fov;
     public EnemyState currentState;
     public Animator anim;
-    
+    public bool isStunned;
+
+
 
 
     // Start is called before the first frame update
@@ -65,7 +67,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 agent.speed = chaseSpeed;
                 agent.SetDestination(playerTarget.position);
                 break;
-            case EnemyState.Attack:
+            case EnemyState.Attack:               
                 if (fov.targetCheck() == true && distanceFromTarget > attackDistance)
                 {
                     currentState = EnemyState.Chase;
@@ -78,11 +80,16 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     agent.speed = patrolSpeed;
                     break;
                 }
+                if (isStunned)
+                {
+                    currentState = EnemyState.Stun;
+                }
                 Debug.Log("Attack");
                 break;
             case EnemyState.Healing:
                 break;
             case EnemyState.Stun:
+                anim.SetBool("Stunned", true);
                 // Enemy ready to be purified by the sound of the Magic Flute
                 break;
             default:
