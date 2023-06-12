@@ -10,6 +10,17 @@ public class ItemBase : MonoBehaviour
     [SerializeField] private ItemType itemType;
     public UnityEvent onPickUp;
 
+    private void Start()
+    {
+        foreach (var item in InventoryManager.InventoryItems)
+        {
+            if(item.ItemType == itemType && item.Value == 1)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
     public void PickUp()
     {
         onPickUp.Invoke();
