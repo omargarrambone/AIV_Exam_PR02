@@ -45,7 +45,6 @@ public class InventoryManager : MonoBehaviour
 
         staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(true);
         staticsInventoryGameObjects = inventoryGameObjects;
-        staticsInventoryGameObjects[CurrentSlotIndex].gameObject.SetActive(true);
     }
 
     public static void AddItem(ItemType item)
@@ -89,22 +88,27 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    static public void SetActualItem(int type)
+    {
+        SetActualItem((ItemType)type);
+    }
+
     static public void SetActualItem(ItemType type)
     {
         for (int i = 0; i < ((int)ItemType.LAST); i++)
         {
-            //staticsInventoryGameObjects[i].SetActive(false);
+            staticsInventoryGameObjects[i].SetActive(false);
             staticsInventoryImages[i].gameObject.SetActive(false);
         }
 
-        //staticsInventoryGameObjects[(int)type].gameObject.SetActive(true);
+        staticsInventoryGameObjects[(int)type].gameObject.SetActive(true);
 
         ChangeImage((int)type);
     }
 
     static void ChangeImage(int newIndex)
     {
-        //staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(false);
+        staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(false);
         staticsInventoryImages[newIndex].gameObject.SetActive(true);
         CurrentSlotIndex = ((int)newIndex);
     }
