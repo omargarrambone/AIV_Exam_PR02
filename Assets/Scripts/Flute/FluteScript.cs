@@ -12,6 +12,7 @@ public class FluteScript : MonoBehaviour
 
     [SerializeField] bool isAttacking;
     [SerializeField] float attackDmg;
+    [SerializeField] FluteUIScript fluteUIScript;
 
     private void Start()
     {
@@ -21,6 +22,32 @@ public class FluteScript : MonoBehaviour
         audioClips[1] = rightClip;
         audioClips[2] = upClip;
         audioClips[3] = leftClip;
+    }
+
+    public void ActivateMinigame(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            RaycastHit[] hittedEnemies = GetHittedEnemies();
+            bool atLeastOneEnemyStunned = false;
+
+            if (hittedEnemies.Length > 0)
+            {
+                foreach (RaycastHit enemy in hittedEnemies)
+                {
+                    GameObject enemyObj = enemy.collider.gameObject;
+                    HealthManager healtMngr = enemyObj.GetComponent<HealthManager>();
+
+                    if (healtMngr.IsStunned)
+                    {
+                        atLeastOneEnemyStunned = true;
+                    }
+                }
+            }
+
+            if(atLeastOneEnemyStunned)
+                fluteUIScript.gameObject.SetActive(true);
+        }
     }
 
     public RaycastHit[] GetHittedEnemies()
@@ -39,19 +66,15 @@ public class FluteScript : MonoBehaviour
         if (hittedEnemies.Length > 0)
         {
             //purify attack
-
-
             foreach (RaycastHit enemy in hittedEnemies)
             {
                 GameObject enemyObj = enemy.collider.gameObject;
-                EnemyPurification enemyPurification = enemyObj.GetComponent<EnemyPurification>();
+                HealthManager healtMngr = enemyObj.GetComponent<HealthManager>();
 
-                //TODO: check se il nemico è stordito
-
-                if (enemyPurification is not null)
+                if (healtMngr.IsStunned)
                 {
-                    if (enemyPurification.IsStunned)
-                        enemyObj.transform.SetLocalPositionAndRotation(enemyPurification.PurificatedLocation.position, enemyPurification.PurificatedLocation.rotation);
+                    Destroy(enemyObj);
+                    //TODO: aggiungere numero nemici distrutti
                 }
             }
 

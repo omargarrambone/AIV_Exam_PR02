@@ -6,15 +6,17 @@ public class SaveDataJSON : MonoBehaviour
 {
     public static SaveData SavedData { get; private set; }
 
-    [SerializeField] private HealthManager healthManager;
+    private HealthManager healthManager;
     [SerializeField] private Transform player;
     [SerializeField] private SaveData _savedData;
     [SerializeField] private UnityEvent OnSave, OnLoad;
     private string persistentPath = "";
 
-    void Awake()
+    void Start()
     {
         SetPaths();
+
+        healthManager = player.GetComponent<HealthManager>();
     }
 
     [ContextMenu("SetPaths")]
@@ -22,6 +24,8 @@ public class SaveDataJSON : MonoBehaviour
     {
         persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData.json";
         _savedData = new SaveData();
+        _savedData.playerData = new PlayerData();
+        _savedData.townData = new TownData();
     }
 
     [ContextMenu("Save Game")]

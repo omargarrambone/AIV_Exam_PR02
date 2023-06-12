@@ -7,12 +7,6 @@ public class EnemyDamageManager : MonoBehaviour
     public HealthManager HealthManager;
     public ParticleSystem ucelletti;
 
-    // Start is called before the first frame update
-    void Update()
-    {
-        MaxStunn();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Sword")
@@ -23,13 +17,10 @@ public class EnemyDamageManager : MonoBehaviour
         }
     }
 
-    void MaxStunn()
+    public void SpawnParticles()
     {
-        if (HealthManager.CurrentStunn >= 100)
-        {
-            ucelletti.gameObject.SetActive(true);
-            ucelletti.Play();
-        }
+        ParticleSystem go = Instantiate(ucelletti,transform);
+        go.Play();
     }
 
 }
