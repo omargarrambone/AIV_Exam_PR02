@@ -25,15 +25,7 @@ public class PlayerInput : MonoBehaviour
     public float speed;
     public float JumpHeight;
 
-    [SerializeField] private float animationLightAttackFinishTime = 0.5f;
-    [SerializeField] private float animationHeavyAttackFinishTime = 0.5f;
     public float Height = 2.0f;
-    private bool isRunning = false;
-    private bool isAttacking = false;
-    private bool isHeavyAttacking = false;
-    private bool isAttackingGoing = false;
-    private bool isHeavyAttackingGoing = false;
-
 
     private Vector2 inputVector;
 
@@ -60,7 +52,6 @@ public class PlayerInput : MonoBehaviour
         inputVector = Movement.Player.Movement.ReadValue<Vector2>();
         ChangeDirection(inputVector);
         _rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
-        AnimateRun(inputVector);
         CheckIsGrounded();
     }
 
@@ -69,39 +60,13 @@ public class PlayerInput : MonoBehaviour
         _anim.SetFloat("Velocity", inputVector.sqrMagnitude);
     }
 
-    public void LightAttack(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Attack();
-            isAttackingGoing = true;
-
-            if (isAttacking && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animationLightAttackFinishTime)
-            {
-                isAttacking = false;
-            }
-        }
-    }
-
-    public void HeavyAttack(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            HeavyAttack();
-            isHeavyAttackingGoing = true;
-
-            if (isHeavyAttacking && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= animationHeavyAttackFinishTime)
-            {
-                isHeavyAttacking = false;
-            }
-        }
-    }
-
-    void AnimateRun(Vector3 desiredDirection)
-    {
-        isRunning = (inputVector.x > 0 || inputVector.x < -0.0001f) || (inputVector.y > 0 || inputVector.y < -0.0001f) ? true : false;
-        _anim.SetBool("IsRunning", isRunning);
-    }
+    //public void LightAttack(InputAction.CallbackContext context)
+    //{
+    //    if (context.performed)
+    //    {
+           
+    //    }
+    //}
 
     public void ChangeDirection(Vector2 input)
     {
@@ -183,21 +148,4 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void Attack()
-    {
-        if (!isAttacking)
-        {
-            _anim.SetTrigger("Attacking?");
-            isAttacking = true;
-        }
-    }
-
-    void HeavyAttack()
-    {
-        if (!isHeavyAttacking)
-        {
-            _anim.SetTrigger("HeavyAttacking?");
-            isHeavyAttacking = true;
-        }
-    }
 }
