@@ -7,19 +7,14 @@ public class SceneSelector : MonoBehaviour
 {
     public void HubScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void EnemyScene()
     {
-        SceneManager.LoadScene(1);
-    }
-    public void NPCScene()
-    {
         SceneManager.LoadScene(2);
     }
-
-    public void InventoryScene()
+    public void NPCScene()
     {
         SceneManager.LoadScene(3);
     }

@@ -17,6 +17,7 @@ public class InventoryManager : MonoBehaviour
     static private Image[] staticsInventoryImages;
     static private GameObject[] staticsInventoryGameObjects;
     static public int CurrentSlotIndex { get; private set; }
+    [SerializeField] private GameObject[] inventoryGameObjects;
     [SerializeField] private Image[] inventoryImages;
 
     void Start()
@@ -40,19 +41,17 @@ public class InventoryManager : MonoBehaviour
             image.gameObject.SetActive(false);
         }
 
-        staticsInventoryImages[0].gameObject.SetActive(true);
         CurrentSlotIndex = 0;
 
-        staticsInventoryGameObjects = new GameObject[inventoryImages.Length];
+        staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(true);
+        staticsInventoryGameObjects = inventoryGameObjects;
     }
 
     public static void AddItem(ItemType item)
     {
         InventoryItems[((int)item)].Value = 1;
 
-        ChangeImage((int)item);
-
-        CurrentSlotIndex = ((int)item);
+        SetActualItem(item);
 
         //Add change sound();
     }
@@ -72,38 +71,46 @@ public class InventoryManager : MonoBehaviour
 
             int newSlotIndex = CurrentSlotIndex;
 
-                for (int i = 0; i < InventoryItems.Length; i++)
+            for (int i = 0; i < InventoryItems.Length; i++)
+            {
+                newSlotIndex += ((int)value);
+                newSlotIndex %= ((int)ItemType.LAST);
+                if (newSlotIndex < 0) newSlotIndex = ((int)ItemType.LAST - 1);
+
+                if (InventoryItems[newSlotIndex].Value > 0)
                 {
-                    newSlotIndex += ((int)value);
-                    newSlotIndex %= ((int)ItemType.LAST);
-                    if (newSlotIndex < 0) newSlotIndex = ((int)ItemType.LAST - 1);
-
-                    if (InventoryItems[newSlotIndex].Value > 0)
-                    {
-                        CurrentSlotIndex = newSlotIndex;
-                        break;
-                    }
+                    CurrentSlotIndex = newSlotIndex;
+                    break;
                 }
+            }
 
-            ChangeImage(CurrentSlotIndex);
+            SetActualItem((ItemType)CurrentSlotIndex);
         }
+    }
+
+    static public void SetActualItem(int type)
+    {
+        SetActualItem((ItemType)type);
     }
 
     static public void SetActualItem(ItemType type)
     {
-        foreach (Image image in staticsInventoryImages)
+        for (int i = 0; i < ((int)ItemType.LAST); i++)
         {
-            image.gameObject.SetActive(false);
+            staticsInventoryGameObjects[i].SetActive(false);
+            staticsInventoryImages[i].gameObject.SetActive(false);
         }
 
-        staticsInventoryImages[((int)type)].gameObject.SetActive(true);
-        CurrentSlotIndex = ((int)type);
+        staticsInventoryGameObjects[(int)type].gameObject.SetActive(true);
+
+        ChangeImage((int)type);
     }
 
     static void ChangeImage(int newIndex)
     {
         staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(false);
         staticsInventoryImages[newIndex].gameObject.SetActive(true);
+        CurrentSlotIndex = ((int)newIndex);
     }
 
     public void LoadInventory()

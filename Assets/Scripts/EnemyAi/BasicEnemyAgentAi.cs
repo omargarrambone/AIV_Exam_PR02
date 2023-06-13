@@ -28,6 +28,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
         anim = GetComponent<Animator>();       
         currentState = EnemyState.Patrol;
         //SetNewWaypoint();
+
+        playerTarget = PlayerManager.playerTransform.transform;
     }
 
     // Update is called once per frame
