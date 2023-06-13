@@ -36,9 +36,9 @@ public class FluteScript : MonoBehaviour
                 foreach (RaycastHit enemy in hittedEnemies)
                 {
                     GameObject enemyObj = enemy.collider.gameObject;
-                    HealthManager healtMngr = enemyObj.GetComponent<HealthManager>();
+                    StunnManager stunnMngr = enemyObj.GetComponent<StunnManager>();
 
-                    if (healtMngr.IsStunned)
+                    if (stunnMngr.IsStunned)
                     {
                         atLeastOneEnemyStunned = true;
                     }
@@ -69,9 +69,10 @@ public class FluteScript : MonoBehaviour
             foreach (RaycastHit enemy in hittedEnemies)
             {
                 GameObject enemyObj = enemy.collider.gameObject;
-                HealthManager healtMngr = enemyObj.GetComponent<HealthManager>();
+                StunnManager stunnMngr = enemyObj.GetComponent<StunnManager>();
 
-                if (healtMngr.IsStunned)
+
+                if (stunnMngr.IsStunned)
                 {
                     Destroy(enemyObj);
                     //TODO: aggiungere numero nemici distrutti
