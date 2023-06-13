@@ -18,6 +18,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public bool isStunned;
     public float stunTimer;
     public HealthManager healthManager;
+    public bool isAttacking;
 
 
 
@@ -53,6 +54,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     //currentState = EnemyState.Patrol;
                     agent.speed = patrolSpeed;
                     SetNewWaypoint();
+                    isAttacking = false;
+                    anim.SetBool("Attack", false);
                     break;
                 }                 
                 break;
@@ -74,6 +77,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }
                 agent.speed = chaseSpeed;
                 agent.SetDestination(playerTarget.position);
+                isAttacking = false;
+                anim.SetBool("Attack", false);
                 break;
 
 
@@ -82,11 +87,20 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 //if (healthManager.IsStunned)
                 {
                     currentState = EnemyState.Stun;
+                    isAttacking = false;
+                    anim.SetBool("Attack", false);
+                }
+                else 
+                {
+                    isAttacking = true;
+                    anim.SetBool("Attack", true);
                 }
                 if (fov.targetCheck() == true && distanceFromTarget > attackDistance)
                 {
                     currentState = EnemyState.Chase;
                     agent.speed = chaseSpeed;
+                    //isAttacking = false;
+                    //anim.SetBool("Attack", false);
                     break;
                 }
                 else if (fov.targetCheck() == false)
@@ -94,7 +108,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     currentState = EnemyState.Patrol;
                     agent.speed = patrolSpeed;
                     //break;
-                }              
+                }
+                
                 //Debug.Log("Attack");
                 break;
 
