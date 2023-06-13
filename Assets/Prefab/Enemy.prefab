@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 2264847367667428542}
   - component: {fileID: 5471480942733567155}
   - component: {fileID: 1090163542336165479}
+  - component: {fileID: -5713135514898110062}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -318,7 +319,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthManager: {fileID: 2264847367667428542}
+  StunnManager: {fileID: 0}
   ucelletti: {fileID: 5903096530128574831}
+  PlayerIsAttacking: 0
 --- !u!114 &2264847367667428542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,17 +334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
   CurrentHealth: 0
-  CurrentStunn: 0
-  MinStunnValue: 0
-  IsStunned: 0
-  StunnDecreaseVelocity: 10
   HealthBar: {fileID: 4976899373983337036}
-  StunnBar: {fileID: 5886971703518911214}
-  OnStun:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!136 &5471480942733567155
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -386,6 +380,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5713135514898110062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325853071591752975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a098fe46146af740a5338a09c655759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsStunned: 0
+  StunnBar: {fileID: 0}
+  EnemyDamageManager: {fileID: 0}
+  OnStun:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1610074267848235857
 GameObject:
   m_ObjectHideFlags: 0
