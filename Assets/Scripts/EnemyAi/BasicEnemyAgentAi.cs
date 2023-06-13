@@ -9,12 +9,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public float patrolSpeed;
     public float chaseSpeed;
     public List<Transform> patrolWaypoints;
-    public Transform playerTarget;
+    private Transform playerTarget;
     public float attackDistance;
     public int currentWaypoint;
-    public FieldOfView fov;
+    private FieldOfView fov;
     public EnemyState currentState;
-    public Animator anim;
+    private Animator anim;
     
 
 
@@ -26,7 +26,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
         currentState = EnemyState.Patrol;
         //SetNewWaypoint();
 
-        playerTarget = PlayerManager.playerTransform.transform;
+        playerTarget = PlayerManager.PlayerGameObject.transform;
     }
 
     // Update is called once per frame

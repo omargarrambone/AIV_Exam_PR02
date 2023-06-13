@@ -11,7 +11,7 @@ public class Interactor : MonoBehaviour
     {
         if (context.performed)
         {
-            if(actualInteractable is not null)
+            if(actualInteractable == null)
             {
                 actualInteractable.OnInteract.Invoke();
                 guiText.SetText("");
