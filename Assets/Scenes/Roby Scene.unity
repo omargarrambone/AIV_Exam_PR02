@@ -914,8 +914,8 @@ MonoBehaviour:
   currentState: 0
   anim: {fileID: 5477898545617057439}
   isStunned: 0
-  stunTimer: 0
-  healthManager: {fileID: 0}
+  stunTimer: 7
+  StunnManager: {fileID: 8327916331327359338}
   isAttacking: 0
 --- !u!224 &118116326243920919
 RectTransform:
@@ -23413,7 +23413,19 @@ MonoBehaviour:
   EnemyDamageManager: {fileID: 3288221958193534913}
   OnStun:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3288221958193534913}
+        m_TargetAssemblyTypeName: EnemyDamageManager, Assembly-CSharp
+        m_MethodName: SpawnParticles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &8347672941916532532
 Transform:
   m_ObjectHideFlags: 0

@@ -41,7 +41,7 @@ public class StunnManager : MonoBehaviour
 
         if (CurrentStunn >= 100)
         {
-            OnStun.Invoke();
+s            OnStun.Invoke();
             IsStunned = true;
         }
     }
