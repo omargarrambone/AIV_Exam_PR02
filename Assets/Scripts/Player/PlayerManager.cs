@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
     public static GameObject playerTransform { get; private set; }
     void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player");
+       if(playerTransform == null) playerTransform = GameObject.FindGameObjectWithTag("Player");
     }
 
 }

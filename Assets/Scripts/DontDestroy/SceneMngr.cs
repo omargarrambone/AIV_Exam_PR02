@@ -6,11 +6,17 @@ using UnityEngine.SceneManagement;
 public class SceneMngr : MonoBehaviour
 {
     [SerializeField] bool changeOnStart;
+    [SerializeField] Transform player;
     [SerializeField] string nextScene;
+    [SerializeField] Vector3 playerPositionInNextScene;
 
     void Start()
     {
-        if (changeOnStart) ChangeScene(nextScene);
+        if (changeOnStart)
+        {
+            player.position = playerPositionInNextScene;
+            ChangeScene(nextScene);
+        }
     }
 
     public void ChangeScene(string sceneName)
