@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 625609483}
   - component: {fileID: 625609482}
   - component: {fileID: 625609485}
+  - component: {fileID: 625609486}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -266,6 +267,21 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &625609486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625609481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77981b7d093518e4aa747c978ac3a589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 5496028812228428029}
+  smoothSpeed: 0.3
+  offset: {x: 0, y: 2, z: -7}
 --- !u!4 &633502491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4330157909747113383, guid: 2a052e01478ccdb48bdf07021ecdf7f8,
@@ -6311,6 +6327,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   isStunned: 0
   stunTimer: 7
+  healthManager: {fileID: 0}
 --- !u!195 &2487297432610990440
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8646,7 +8663,6 @@ GameObject:
   - component: {fileID: 2345922547359138705}
   - component: {fileID: 874821858630675944}
   - component: {fileID: 4305560549594370023}
-  - component: {fileID: 7834195381992087155}
   m_Layer: 8
   m_Name: Ninja (1)
   m_TagString: Player
@@ -15392,6 +15408,7 @@ MonoBehaviour:
   anim: {fileID: 1175071674814639356}
   isStunned: 0
   stunTimer: 7
+  healthManager: {fileID: 3900590262550586065}
 --- !u!4 &7118914514978284600
 Transform:
   m_ObjectHideFlags: 0
@@ -16052,21 +16069,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7834195381992087155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4160865571408195013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77981b7d093518e4aa747c978ac3a589, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  smoothSpeed: 0
-  offset: {x: 0, y: 0, z: 0}
 --- !u!4 &7842397366322570472
 Transform:
   m_ObjectHideFlags: 0
