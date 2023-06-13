@@ -16,6 +16,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public EnemyState currentState;
     public Animator anim;
     public bool isStunned;
+    public float stunTimer;
 
 
 
@@ -53,8 +54,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }
                 break;
             case EnemyState.Chase:
+                //fov.angle = 360;
                 if (fov.targetCheck() == false)
                 {
+                    //fov.angle = 150;
                     currentState = EnemyState.Patrol;
                     break;
                 }
@@ -90,7 +93,14 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 break;
             case EnemyState.Stun:
                 anim.SetBool("Stunned", true);
-                // Enemy ready to be purified by the sound of the Magic Flute
+                //Enemy ready to be purified by the sound of the Magic Flute
+                stunTimer -= Time.deltaTime;
+                if (stunTimer <= 0)
+                {
+                    anim.SetBool("Stunned", false);
+                    currentState = EnemyState.Patrol;
+                    isStunned = false;
+                    stunTimer = 7f;                }
                 break;
             default:
                 break;
