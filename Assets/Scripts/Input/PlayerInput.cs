@@ -11,24 +11,24 @@ using UnityEngineInternal;
 
 public class PlayerInput : MonoBehaviour
 {
-    public Rigidbody _rb;
-    public PlayerInput playerInput;
-    private Movement Movement;
-    public Animator _anim;
+    Rigidbody _rb;
+    PlayerInput playerInput;
+    Movement Movement;
+    Animator _anim;
 
-    public bool IsGrounded;
+    bool IsGrounded;
 
-    public float turnSmooth = 0.1f;
+    float turnSmooth = 0.1f;
     float turnSmoothVelocity;
 
     public int jumpCount = 0;
 
     public float speed;
-    public float JumpHeight;
+    float JumpHeight;
 
     [SerializeField] private float animationLightAttackFinishTime = 0.5f;
     [SerializeField] private float animationHeavyAttackFinishTime = 0.5f;
-    public float Height = 2.0f;
+    private float Height = 2.0f;
     private bool isRunning = false;
     private bool isAttacking = false;
     private bool isHeavyAttacking = false;
