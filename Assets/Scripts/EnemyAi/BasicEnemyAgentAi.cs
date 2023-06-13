@@ -42,19 +42,21 @@ public class BasicEnemyAgentAi : MonoBehaviour
         switch (currentState)
         {
             case EnemyState.Patrol:
-                if (agent.remainingDistance < 2f)
-                {
-                    currentState = EnemyState.Patrol;
-                    agent.speed = patrolSpeed;
-                    SetNewWaypoint();
-                    break;
-                }
-                else if (fov.targetCheck() == true)
+                if (fov.targetCheck() == true)
                 {
                     currentState = EnemyState.Chase;
                     break;
                 }
+                else if(agent.remainingDistance < 2f)
+                {
+                    //currentState = EnemyState.Patrol;
+                    agent.speed = patrolSpeed;
+                    SetNewWaypoint();
+                    break;
+                }                 
                 break;
+
+
             case EnemyState.Chase:
                 //fov.angle = 360;
                 if (fov.targetCheck() == false)
@@ -72,7 +74,13 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 agent.speed = chaseSpeed;
                 agent.SetDestination(playerTarget.position);
                 break;
-            case EnemyState.Attack:               
+
+
+            case EnemyState.Attack:
+                if (isStunned)
+                {
+                    currentState = EnemyState.Stun;
+                }
                 if (fov.targetCheck() == true && distanceFromTarget > attackDistance)
                 {
                     currentState = EnemyState.Chase;
@@ -83,16 +91,16 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 {
                     currentState = EnemyState.Patrol;
                     agent.speed = patrolSpeed;
-                    break;
-                }
-                if (isStunned)
-                {
-                    currentState = EnemyState.Stun;
-                }
+                    //break;
+                }              
                 Debug.Log("Attack");
                 break;
+
+
             case EnemyState.Healing:
                 break;
+
+
             case EnemyState.Stun:
                 anim.SetBool("Stunned", true);
                 //Enemy ready to be purified by the sound of the Magic Flute
@@ -101,6 +109,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 {
                     anim.SetBool("Stunned", false);
                     currentState = EnemyState.Patrol;
+                    agent.speed = patrolSpeed;
                     isStunned = false;
                     stunTimer = 7f;                }
                 break;
@@ -108,12 +117,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 break;
         }
 
-        if (agent.remainingDistance < 2f)
-        {
-            currentState = EnemyState.Patrol;
-            agent.speed = patrolSpeed;
-            SetNewWaypoint();            
-        }
+        //if (agent.remainingDistance < 2f)
+        //{
+        //    currentState = EnemyState.Patrol;
+        //    agent.speed = patrolSpeed;
+        //    SetNewWaypoint();            
+        //}
     }
 
     public void SetState(int state)
