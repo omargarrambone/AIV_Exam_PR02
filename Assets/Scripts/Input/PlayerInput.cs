@@ -20,11 +20,12 @@ public class PlayerInput : MonoBehaviour
     public int jumpCount = 0;
 
     public float speed;
+    [SerializeField]
     float JumpHeight;
 
     [SerializeField] private float animationLightAttackFinishTime = 0.5f;
     [SerializeField] private float animationHeavyAttackFinishTime = 0.5f;
-    private float Height = 2.0f;
+    private float Height = 0.1f;
     private bool isRunning = false;
     private bool isAttacking = false;
     private bool isHeavyAttacking = false;
