@@ -23,5 +23,6 @@ public struct PlayerData
 public struct TownData
 {
     public int enemiesKilled;
+    public int enemiesPurified;
     public int unlockedLevel;
 }

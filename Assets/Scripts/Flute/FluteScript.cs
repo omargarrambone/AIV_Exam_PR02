@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FluteScript : MonoBehaviour
 {
+    static public int PurifiedEnemies { get; private set; }
+    static public int KilledEnemies { get; private set; }
+
     private AudioClip[] audioClips;
     [SerializeField] private AudioClip downClip, rightClip, upClip, leftClip, wrongClip;
     private AudioSource audioSource;
@@ -75,7 +78,7 @@ public class FluteScript : MonoBehaviour
                 if (stunnMngr.IsStunned)
                 {
                     Destroy(enemyObj);
-                    //TODO: aggiungere numero nemici distrutti
+                    PurifiedEnemies++;
                 }
             }
 

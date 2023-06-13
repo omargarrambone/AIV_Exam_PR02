@@ -38,6 +38,8 @@ public class SaveDataJSON : MonoBehaviour
             _savedData.playerData.health = healthManager.CurrentHealth;
             _savedData.playerData.playerPos = player.position;
             _savedData.playerData.playerRot = player.rotation;
+            _savedData.townData.enemiesPurified = FluteScript.PurifiedEnemies;
+            _savedData.townData.enemiesKilled = FluteScript.KilledEnemies;
 
             string json = JsonUtility.ToJson(_savedData);
 
@@ -66,6 +68,9 @@ public class SaveDataJSON : MonoBehaviour
                 SavedData = _savedData;
 
                 player.SetPositionAndRotation(SavedData.playerData.playerPos, SavedData.playerData.playerRot);
+
+                //FluteScript.PurifiedEnemies = _savedData.townData.enemiesPurified;
+                //FluteScript.KilledEnemies = _savedData.townData.enemiesKilled;
 
             }
 
