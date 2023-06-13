@@ -96,7 +96,7 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""id"": ""71efa1be-c53a-4d2c-a7e6-bbac8cb21791"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {

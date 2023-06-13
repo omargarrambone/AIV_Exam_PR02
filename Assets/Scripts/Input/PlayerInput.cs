@@ -1,12 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.UIElements;
-using UnityEngineInternal;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -16,6 +10,7 @@ public class PlayerInput : MonoBehaviour
     public Animator _anim;
 
     public bool IsGrounded;
+    public bool IsAttacking;
 
     public float turnSmooth = 0.1f;
     float turnSmoothVelocity;
@@ -60,13 +55,14 @@ public class PlayerInput : MonoBehaviour
         _anim.SetFloat("Velocity", inputVector.sqrMagnitude);
     }
 
-    //public void LightAttack(InputAction.CallbackContext context)
-    //{
-    //    if (context.performed)
-    //    {
-           
-    //    }
-    //}
+    public void LightAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _anim.SetBool("IsAttacking", true);
+        }
+        
+    }
 
     public void ChangeDirection(Vector2 input)
     {
