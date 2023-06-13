@@ -78,8 +78,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
 
             case EnemyState.Attack:
-                //if (isStunned)
-                if (healthManager.IsStunned)
+                if (isStunned)
+                //if (healthManager.IsStunned)
                 {
                     currentState = EnemyState.Stun;
                 }
@@ -95,7 +95,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     agent.speed = patrolSpeed;
                     //break;
                 }              
-                Debug.Log("Attack");
+                //Debug.Log("Attack");
                 break;
 
 
@@ -112,8 +112,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     anim.SetBool("Stunned", false);
                     currentState = EnemyState.Patrol;
                     agent.speed = patrolSpeed;
-                    //isStunned = false;
-                    healthManager.IsStunned = false;
+                    isStunned = false;
+                    //healthManager.IsStunned = false;
                     stunTimer = 7f;                }
                 break;
             default:
