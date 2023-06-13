@@ -59,7 +59,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-            _anim.SetBool("IsAttacking", true);
+            _anim.SetTrigger("IsAttacking");
         }
         
     }
