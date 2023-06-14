@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FluteScript : MonoBehaviour
 {
-    static public int PurifiedEnemies { get; private set; }
-    static public int KilledEnemies { get; private set; }
+    public int PurifiedEnemies;
+    public int KilledEnemies;
 
     private AudioClip[] audioClips;
     [SerializeField] private AudioClip downClip, rightClip, upClip, leftClip, wrongClip;

@@ -112,22 +112,4 @@ public class InventoryManager : MonoBehaviour
         staticsInventoryImages[newIndex].gameObject.SetActive(true);
         CurrentSlotIndex = ((int)newIndex);
     }
-
-    public void LoadInventoryFromSaveGame()
-    {
-        SaveData data = SaveDataJSON.SavedData;
-
-        SetInventory(data.playerData.inventoryItems);
-
-        SetActualItem((ItemType)data.playerData.currentWeapon);
-    }
-
-    public void SaveInventoryIntoSaveGame()
-    {
-        SaveData data = SaveDataJSON.SavedData;
-
-        SetInventory(data.playerData.inventoryItems);
-
-        SetActualItem((ItemType)data.playerData.currentWeapon);
-    }
 }

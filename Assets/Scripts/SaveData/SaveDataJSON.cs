@@ -9,8 +9,9 @@ public class SaveDataJSON : MonoBehaviour
     private HealthManager healthManager;
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private SceneMngr sceneManager;
+    [SerializeField] private FluteScript fluteScript;
 
-    [SerializeField] private SaveData _savedData;
+    [SerializeField] private SaveData savedData;
     [SerializeField] private UnityEvent OnSave, OnLoad;
     private string persistentPath = "";
 
@@ -27,9 +28,9 @@ public class SaveDataJSON : MonoBehaviour
     private void SetPaths()
     {
         persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData.json";
-        _savedData = new SaveData();
-        _savedData.playerData = new PlayerData();
-        _savedData.townData = new TownData();
+        savedData = new SaveData();
+        savedData.playerData = new PlayerData();
+        savedData.townData = new TownData();
     }
 
     [ContextMenu("Save Game")]
@@ -38,21 +39,18 @@ public class SaveDataJSON : MonoBehaviour
         using (StreamWriter writer = new StreamWriter(persistentPath))
         {
             // SAVE VALUES
-            _savedData.playerData.currentHealth = healthManager.CurrentHealth;
-            _savedData.playerData.playerPos = PlayerManager.PlayerGameObject.transform.position;
-            _savedData.playerData.playerRot = PlayerManager.PlayerGameObject.transform.rotation;
-            _savedData.playerData.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-
-            _savedData.playerData.inventoryItems = InventoryManager.InventoryItems;
-            _savedData.playerData.currentWeapon = InventoryManager.CurrentSlotIndex;
-            _savedData.townData.enemiesPurified = FluteScript.PurifiedEnemies;
-            _savedData.townData.enemiesKilled = FluteScript.KilledEnemies;
+            savedData.playerData.currentHealth = healthManager.CurrentHealth;
+            savedData.playerData.playerPos = PlayerManager.PlayerGameObject.transform.position;
+            savedData.playerData.playerRot = PlayerManager.PlayerGameObject.transform.rotation;
+            savedData.playerData.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            savedData.playerData.inventoryItems = InventoryManager.InventoryItems;
+            savedData.playerData.currentWeapon = InventoryManager.CurrentSlotIndex;
+            savedData.townData.enemiesPurified = fluteScript.PurifiedEnemies;
+            savedData.townData.enemiesKilled = fluteScript.KilledEnemies;
 
             // SAVE JSON
-            string json = JsonUtility.ToJson(_savedData);
-
+            string json = JsonUtility.ToJson(savedData);
             writer.Write(json);
-
         }
 
         OnSave.Invoke();
@@ -72,19 +70,22 @@ public class SaveDataJSON : MonoBehaviour
 
                 if (json == "") return;
 
-                SaveData savedData = JsonUtility.FromJson<SaveData>(json);
-                _savedData = savedData;
-                SavedData = _savedData;
+                SaveData savedDataLoadedFromJson = JsonUtility.FromJson<SaveData>(json);
+                savedData = savedDataLoadedFromJson;
+                SavedData = savedData;
 
                 // LOAD VALUES
-                healthManager.CurrentHealth = _savedData.playerData.currentHealth;
+                healthManager.CurrentHealth = savedData.playerData.currentHealth;
                 PlayerManager.PlayerGameObject.transform.SetPositionAndRotation(SavedData.playerData.playerPos, SavedData.playerData.playerRot);
-                sceneManager.NextScene = _savedData.playerData.currentScene;
-                sceneManager.PlayerPositionInNextScene = _savedData.playerData.playerPos;
-                sceneManager.PlayerRotationInNextScene =_savedData.playerData.playerRot;
-                //FluteScript.PurifiedEnemies = _savedData.townData.enemiesPurified;
-                //FluteScript.KilledEnemies = _savedData.townData.enemiesKilled;
+                sceneManager.NextScene = savedData.playerData.currentScene;
+                sceneManager.PlayerPositionInNextScene = savedData.playerData.playerPos;
+                sceneManager.PlayerRotationInNextScene =savedData.playerData.playerRot;
+                InventoryManager.SetInventory(savedData.playerData.inventoryItems);
+                InventoryManager.SetActualItem(savedData.playerData.currentWeapon);
+                fluteScript.PurifiedEnemies = savedData.townData.enemiesPurified;
+                fluteScript.KilledEnemies = savedData.townData.enemiesKilled;
 
+                sceneManager.ChangeScene(sceneManager.NextScene);
             }
 
             OnLoad.Invoke();
