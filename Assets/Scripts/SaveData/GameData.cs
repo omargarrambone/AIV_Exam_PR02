@@ -14,7 +14,8 @@ public struct PlayerData
 {
     public Vector3 playerPos;
     public Quaternion playerRot;
-    public float health;
+    public float currentHealth;
+    public string currentScene;
     public int currentWeapon;
     public InventorySlot[] inventoryItems;
 }

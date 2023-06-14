@@ -15,8 +15,18 @@ public class PlayerManager : MonoBehaviour
         PlayerGameObject.transform.position = newPosition;
     }
 
-    static public void SetPosition(int x,int y,int z)
+    static public void SetPosition(int x, int y, int z)
     {
-        PlayerGameObject.transform.position = new Vector3(x,y,z);
+        PlayerGameObject.transform.position = new Vector3(x, y, z);
+    }
+
+    static public void SetRotation(Vector3 newRotation)
+    {
+        PlayerGameObject.transform.rotation = Quaternion.Euler(newRotation);
+    }
+
+    static public void SetRotation(Quaternion newRotation)
+    {
+        PlayerGameObject.transform.rotation = newRotation;
     }
 }

@@ -80,8 +80,9 @@ Transform:
   - {fileID: 7668322060623375406}
   - {fileID: 1510229997310924293}
   - {fileID: 2793689788657857628}
+  - {fileID: 1703360606135535943}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7254098985651995250
 MonoBehaviour:
@@ -139,35 +140,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37751a611a4a676448e25d9142b5fa3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3417049810263262905}
+  inventoryManager: {fileID: 6657907029336734532}
+  sceneManager: {fileID: 8851494325213788243}
   _savedData:
     playerData:
       playerPos: {x: 0, y: 0, z: 0}
       playerRot: {x: 0, y: 0, z: 0, w: 0}
-      health: 0
+      currentHealth: 0
+      currentScene: 
       currentWeapon: 0
       inventoryItems: []
     townData:
       enemiesKilled: 0
+      enemiesPurified: 0
       unlockedLevel: 0
   OnSave:
     m_PersistentCalls:
       m_Calls: []
   OnLoad:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6657907029336734532}
-        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: LoadInventory
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!1 &4899494993983342969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1703360606135535943}
+  - component: {fileID: 8851494325213788243}
+  m_Layer: 0
+  m_Name: SceneMngr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1703360606135535943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4899494993983342969}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.603537, y: -1.2935362, z: -0.4360299}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 591661635958209730}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8851494325213788243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4899494993983342969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea84deaf19b5de4ab61220302458414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeOnStart: 1
+  player: {fileID: 3417049810263262905}
+  NextScene: Hubbb
+  playerPositionInNextScene: {x: -100, y: 0, z: -50}
 --- !u!1001 &36419863760751864
 PrefabInstance:
   m_ObjectHideFlags: 0

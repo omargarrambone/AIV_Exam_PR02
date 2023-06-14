@@ -8,13 +8,13 @@ public class SceneSelector : MonoBehaviour
     public void HubScene()
     {
         SceneManager.LoadScene(1);
-        PlayerManager.SetPosition(new Vector3(-55, -2, -25));
+        PlayerManager.SetPosition(new Vector3(-64f, 2.3f, -31f));
     }
 
     public void EnemyScene()
     {
         SceneManager.LoadScene(2);
-        PlayerManager.SetPosition(00, 0, 0);
+        PlayerManager.SetPosition(0, 0, 0);
     }
     public void NPCScene()
     {

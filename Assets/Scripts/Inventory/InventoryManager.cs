@@ -113,7 +113,16 @@ public class InventoryManager : MonoBehaviour
         CurrentSlotIndex = ((int)newIndex);
     }
 
-    public void LoadInventory()
+    public void LoadInventoryFromSaveGame()
+    {
+        SaveData data = SaveDataJSON.SavedData;
+
+        SetInventory(data.playerData.inventoryItems);
+
+        SetActualItem((ItemType)data.playerData.currentWeapon);
+    }
+
+    public void SaveInventoryIntoSaveGame()
     {
         SaveData data = SaveDataJSON.SavedData;
 

@@ -7,15 +7,16 @@ public class SceneMngr : MonoBehaviour
 {
     [SerializeField] bool changeOnStart;
     [SerializeField] Transform player;
-    [SerializeField] string nextScene;
-    [SerializeField] Vector3 playerPositionInNextScene;
+    [SerializeField] public string NextScene;
+    [SerializeField] public Vector3 PlayerPositionInNextScene;
+    [SerializeField] public Quaternion PlayerRotationInNextScene;
 
     void Start()
     {
         if (changeOnStart)
         {
-            player.position = playerPositionInNextScene;
-            ChangeScene(nextScene);
+            PlayerManager.PlayerGameObject.transform.SetPositionAndRotation(PlayerPositionInNextScene,PlayerRotationInNextScene);
+            ChangeScene(NextScene);
         }
     }
 
@@ -26,5 +27,10 @@ public class SceneMngr : MonoBehaviour
     public void ChangeScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+    }
+
+    public void LoadSceneFromSaves()
+    {
+        ChangeScene(SaveDataJSON.SavedData.playerData.currentScene);
     }
 }
