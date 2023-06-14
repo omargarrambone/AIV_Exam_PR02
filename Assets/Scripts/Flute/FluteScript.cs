@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class FluteScript : MonoBehaviour
 {
-    public int PurifiedEnemies;
-    public int KilledEnemies;
-
     private AudioClip[] audioClips;
     [SerializeField] private AudioClip downClip, rightClip, upClip, leftClip, wrongClip;
     private AudioSource audioSource;
     [SerializeField] private float radius,maxDistance;
     [SerializeField] private LayerMask enemiesLayer;
-
     [SerializeField] bool isAttacking;
     [SerializeField] float attackDmg;
     [SerializeField] FluteUIScript fluteUIScript;
@@ -74,11 +70,10 @@ public class FluteScript : MonoBehaviour
                 GameObject enemyObj = enemy.collider.gameObject;
                 StunnManager stunnMngr = enemyObj.GetComponent<StunnManager>();
 
-
                 if (stunnMngr.IsStunned)
                 {
                     Destroy(enemyObj);
-                    PurifiedEnemies++;
+                    NPCSpawner.PurifiedEnemies++;
                 }
             }
 
@@ -86,9 +81,7 @@ public class FluteScript : MonoBehaviour
         else
         {
             //timer attack
-
             isAttacking = true;
-
         }
 
     }
@@ -113,8 +106,7 @@ public class FluteScript : MonoBehaviour
 
                 foreach (RaycastHit enemy in hittedEnemies)
                 {
-                    //TODO: effettuare danno al nemico con un float
-                    //enemy.collider.GetComponent<HealthManager>().AddHealth(-attackDmg*Time.deltaTime);
+                    enemy.collider.GetComponent<HealthManager>().AddHealth(-attackDmg*Time.deltaTime);
                     enemy.collider.gameObject.SetActive(false);
                 }
             }

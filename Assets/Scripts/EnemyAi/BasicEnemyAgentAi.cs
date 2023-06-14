@@ -15,8 +15,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
     private FieldOfView fov;
     public EnemyState currentState;
     private Animator anim;
-    
-
 
     // Start is called before the first frame update
     void Start()
@@ -80,7 +78,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     agent.speed = patrolSpeed;
                     break;
                 }
-                Debug.Log("Attack");
+                //Debug.Log("Attack");
                 break;
             case EnemyState.Healing:
                 break;

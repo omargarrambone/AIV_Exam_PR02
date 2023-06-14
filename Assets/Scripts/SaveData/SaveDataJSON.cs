@@ -10,7 +10,6 @@ public class SaveDataJSON : MonoBehaviour
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private SceneMngr sceneManager;
     [SerializeField] private FluteScript fluteScript;
-
     [SerializeField] private SaveData savedData;
     [SerializeField] private UnityEvent OnSave, OnLoad;
     private string persistentPath = "";
@@ -45,8 +44,8 @@ public class SaveDataJSON : MonoBehaviour
             savedData.playerData.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             savedData.playerData.inventoryItems = InventoryManager.InventoryItems;
             savedData.playerData.currentWeapon = InventoryManager.CurrentSlotIndex;
-            savedData.townData.enemiesPurified = fluteScript.PurifiedEnemies;
-            savedData.townData.enemiesKilled = fluteScript.KilledEnemies;
+            savedData.townData.enemiesPurified = NPCSpawner.PurifiedEnemies;
+            savedData.townData.enemiesKilled = NPCSpawner.KilledEnemies;
 
             // SAVE JSON
             string json = JsonUtility.ToJson(savedData);
@@ -82,8 +81,8 @@ public class SaveDataJSON : MonoBehaviour
                 sceneManager.PlayerRotationInNextScene =savedData.playerData.playerRot;
                 InventoryManager.SetInventory(savedData.playerData.inventoryItems);
                 InventoryManager.SetActualItem(savedData.playerData.currentWeapon);
-                fluteScript.PurifiedEnemies = savedData.townData.enemiesPurified;
-                fluteScript.KilledEnemies = savedData.townData.enemiesKilled;
+                NPCSpawner.PurifiedEnemies = savedData.townData.enemiesPurified;
+                NPCSpawner.KilledEnemies = savedData.townData.enemiesKilled;
 
                 sceneManager.ChangeScene(sceneManager.NextScene);
             }

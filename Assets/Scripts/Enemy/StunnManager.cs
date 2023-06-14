@@ -30,12 +30,9 @@ public class StunnManager : MonoBehaviour
 
     public void TakeStunn(float stunnDamage)
     {
-
         if (IsStunned) return;
 
-
         CurrentStunn += stunnDamage;
-
 
         StunnBar.SetStunn(CurrentStunn);
 
@@ -57,12 +54,10 @@ public class StunnManager : MonoBehaviour
             {
                 CurrentStunn -= Time.deltaTime * StunnDecreaseVelocity;
                 StunnBar.SetStunn(CurrentStunn);
-
             }
         }
         if (EnemyDamageManager.PlayerIsAttacking)
         {
-
             counter = 0;
         }
     }

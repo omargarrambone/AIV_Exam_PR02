@@ -11,6 +11,7 @@ public class HealthManager : MonoBehaviour
 {
     private float MaxHealth = 100;
     public float CurrentHealth;
+    public UnityEvent OnDeath;
 
     public HealthBarScript HealthBar;
     void Start()
@@ -31,5 +32,10 @@ public class HealthManager : MonoBehaviour
         CurrentHealth -= damage;
 
         HealthBar.SetHealth(CurrentHealth);
+
+        if (CurrentHealth <= 0)
+        {
+            OnDeath.Invoke();
+        }
     }
 }

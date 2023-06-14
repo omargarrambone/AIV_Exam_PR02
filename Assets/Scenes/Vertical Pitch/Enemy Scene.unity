@@ -900,7 +900,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1380160036}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1380160037}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79780afe8bdddec4da315afc0c27a7ba, type: 3}
@@ -912,7 +912,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1380160036}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1380160037}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db9f9c311351c084080da5b56894317f, type: 3}
@@ -924,7 +924,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1380160036}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1380160037}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a098fe46146af740a5338a09c655759, type: 3}
@@ -954,6 +954,41 @@ PrefabInstance:
       propertyPath: EnemyDamageManager
       value: 
       objectReference: {fileID: 1352601097}
+    - target: {fileID: -5713135514898110062, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5713135514898110062, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5713135514898110062, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1380160038}
+    - target: {fileID: -5713135514898110062, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5713135514898110062, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPurifiedNPCToCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: -5713135514898110062, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NPCCounter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: -5713135514898110062, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: -5033607312950025126, guid: ca7ff53b3bdc84745b7a32e2461464ce,
         type: 3}
       propertyPath: angle
@@ -981,6 +1016,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
         type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
       propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -988,6 +1028,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
         type: 3}
@@ -1001,12 +1046,22 @@ PrefabInstance:
       objectReference: {fileID: 1352601099}
     - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
         type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1380160038}
+    - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
       propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
         type: 3}
       propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
@@ -1021,6 +1076,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
         type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddKilledNPCToCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
       propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: EnemyDamageManager, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -1028,6 +1088,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: BasicEnemyAgentAi, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NPCCounter, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
         type: 3}
@@ -1042,6 +1107,11 @@ PrefabInstance:
     - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
         type: 3}
       propertyPath: OnStun.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264847367667428542, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3364856322581181421, guid: ca7ff53b3bdc84745b7a32e2461464ce,
@@ -1220,5 +1290,27 @@ PrefabInstance:
     - {fileID: 4999562444259947470, guid: ca7ff53b3bdc84745b7a32e2461464ce, type: 3}
     - {fileID: 6907229061032294862, guid: ca7ff53b3bdc84745b7a32e2461464ce, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1325853071591752975, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1380160038}
   m_SourcePrefab: {fileID: 100100000, guid: ca7ff53b3bdc84745b7a32e2461464ce, type: 3}
+--- !u!1 &1380160037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1325853071591752975, guid: ca7ff53b3bdc84745b7a32e2461464ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 1380160036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1380160038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380160037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9305be9a4b674f242aa0e618b6c1c465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
