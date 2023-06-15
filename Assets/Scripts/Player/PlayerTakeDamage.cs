@@ -6,24 +6,6 @@ public class PlayerTakeDamage : MonoBehaviour
 {
     public HealthManager HealthManager;
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag == "EnemyWeapon")
-    //    {
-    //        HealthManager.TakeDamage(10);
-    //    }
-    //}
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.gameObject.tag == "EnemyWeapon")
-    //    {
-    //        HealthManager.TakeDamage(0);
-    //    }
-    //}
-
-
-    // Modified by Roberto
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "EnemyWeapon")
@@ -32,11 +14,6 @@ public class PlayerTakeDamage : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "EnemyWeapon")
-        {
-            HealthManager.TakeDamage(0);
-        }
-    }
+ 
+   
 }

@@ -61,8 +61,9 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }
                 if (StunnManager.IsStunned)
                 {
-                    CurrentState = EnemyState.Stun;
-                    Agent.speed = 0;
+                    StunnManager.OnStun.Invoke();
+                    //CurrentState = EnemyState.Stun;
+                    //Agent.speed = 0;
                     //IsAttacking = false;
                     //Anim.SetBool("Attack", false);
                     break;
@@ -104,11 +105,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
             case EnemyState.Attack:               
                 if (StunnManager.IsStunned)
                 {
-                    CurrentState = EnemyState.Stun;
-                    //SetState((int)EnemyState.Stun);
-                    
-                    IsAttacking = false;
-                    Anim.SetBool("Attack", false);
+                    //CurrentState = EnemyState.Stun;
+                 
+                    StunnManager.OnStun.Invoke();
+                    //IsAttacking = false;
+                    //Anim.SetBool("Attack", false);
+                    break;
                 }
                 else
                 {
@@ -140,9 +142,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
             case EnemyState.Stun:
                 Anim.SetBool("Stunned", true);
                 Ucelletti.gameObject.SetActive(true);
-               
+                IsAttacking = false;
+                Anim.SetBool("Attack", false);
+                Agent.speed = 0;
+
                 //Enemy ready to be purified by the sound of the Magic Flute
-               
+
                 if (StunnManager.CurrentStunn < 1)
                 {
                     Anim.SetBool("Stunned", false);

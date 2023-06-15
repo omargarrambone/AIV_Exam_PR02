@@ -21,7 +21,7 @@ public class StunnManager : MonoBehaviour
     public HealthBarScript StunnBar;
     public EnemyDamageManager EnemyDamageManager;
 
-    //public UnityEvent OnStun;
+    public UnityEvent OnStun;
 
     
     // Start is called before the first frame update
@@ -44,7 +44,7 @@ public class StunnManager : MonoBehaviour
 
         if (CurrentStunn >= 100)
         {
-            //dOnStun.Invoke();
+            OnStun.Invoke();
             IsStunned = true;
         }
     }
