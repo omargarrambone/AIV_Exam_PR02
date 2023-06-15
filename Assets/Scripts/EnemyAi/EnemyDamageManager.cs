@@ -21,6 +21,8 @@ public class EnemyDamageManager : MonoBehaviour
         }
     }
 
+   
+
     private void OnTriggerExit(Collider other)
     {
         PlayerIsAttacking = false;
@@ -32,5 +34,6 @@ public class EnemyDamageManager : MonoBehaviour
         go.gameObject.SetActive(true);
         go.Play();
     }
+
 
 }

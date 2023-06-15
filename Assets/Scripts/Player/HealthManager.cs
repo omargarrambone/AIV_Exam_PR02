@@ -29,7 +29,6 @@ public class HealthManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
-
         HealthBar.SetHealth(CurrentHealth);
     }
 }
