@@ -83,7 +83,6 @@ public class FluteScript : MonoBehaviour
             //timer attack
             isAttacking = true;
         }
-
     }
 
     public void PlayCorrectNote(FluteArrow fluteArrow)
