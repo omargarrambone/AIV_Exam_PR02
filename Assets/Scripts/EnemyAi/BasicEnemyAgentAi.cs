@@ -136,13 +136,13 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     Ucelletti.gameObject.SetActive(false);                   
                     StunnManager.IsStunned = false;
                 }
-                else if (HealthManager.CurrentHealth <= 0)
-                {
-                    Anim.SetBool("Stunned", false);                    
-                    Ucelletti.gameObject.SetActive(false);
-                    StunnManager.IsStunned = false;
-                    Agent.speed = 0;
-                }
+                //else if (HealthManager.CurrentHealth <= 0)
+                //{
+                //    Anim.SetBool("Stunned", false);                    
+                //    Ucelletti.gameObject.SetActive(false);
+                //    StunnManager.IsStunned = false;
+                //    Agent.speed = 0;
+                //}
                 break;
             default:
                 break;

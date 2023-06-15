@@ -22,11 +22,11 @@ public class HealthManager : MonoBehaviour
 
     private void Update()
     {
-        if (CurrentHealth <= 0)
-        {
-            GetComponent<CapsuleCollider>().enabled = false;
-            GetComponent<Animator>().enabled = false;
-        }
+        //if (CurrentHealth <= 0)
+        //{
+        //    GetComponent<CapsuleCollider>().enabled = false;
+        //    GetComponent<Animator>().enabled = false;
+        //}
     }
 
     public void AddHealth(float health)
