@@ -24,7 +24,7 @@ public class CameraFollow : MonoBehaviour
 
         Camera.main.transform.rotation = defaultCameraRotation;
 
-        OnReset.AddListener(StartLerping);
+        //OnReset.AddListener(StartLerping);
     }
 
     private void FixedUpdate()

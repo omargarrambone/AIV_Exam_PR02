@@ -41,7 +41,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
        
         //SetNewWaypoint();
 
-        PlayerTarget = PlayerManager.playerTransform.transform;
+        PlayerTarget = PlayerManager.PlayerGameObject.transform;
     }
 
     // Update is called once per frame
