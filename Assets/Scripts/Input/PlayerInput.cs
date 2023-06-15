@@ -1,31 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 using UnityEngineInternal;
-
 public class PlayerInput : MonoBehaviour
 {
-    public Rigidbody _rb;
-    public PlayerInput playerInput;
-    private Movement Movement;
-    public Animator _anim;
+    Rigidbody _rb;
+    PlayerInput playerInput;
+    Movement Movement;
+    Animator _anim;
 
     public bool IsGrounded;
-
-    public float turnSmooth = 0.1f;
+    public bool IsAttacking;
+    float turnSmooth = 0.1f;
     float turnSmoothVelocity;
 
     public int jumpCount = 0;
 
     public float speed;
-    public float JumpHeight;
-    public float Height = 2.0f;
+    [SerializeField]
+    float JumpHeight;
+
+    [SerializeField] private float animationLightAttackFinishTime = 0.5f;
+    [SerializeField] private float animationHeavyAttackFinishTime = 0.5f;
+    private float Height = 0.1f;
+    private bool isRunning = false;
+    private bool isAttacking = false;
+    private bool isHeavyAttacking = false;
+    private bool isAttackingGoing = false;
+    private bool isHeavyAttackingGoing = false;
 
     private Vector2 inputVector;
 
@@ -67,17 +72,9 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-           
+            _anim.SetTrigger("IsAttacking");
         }
-    }
-
-    public void HeavyAttack(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            
-            
-        }
+        
     }
 
     public void ChangeDirection(Vector2 input)
@@ -182,4 +179,5 @@ public class PlayerInput : MonoBehaviour
             _anim.SetBool("IsGrounded", IsGrounded);
         }
     }
+
 }

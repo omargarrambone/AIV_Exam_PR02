@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    public float radius;
+    public float Radius;
 
-    public float angle = 110f;
+    public float Angle;
 
-    public LayerMask targetMask;
-    public LayerMask obstacleMask;
+    public LayerMask TargetMask;
+    public LayerMask ObstacleMask;
 
-    public bool canSeePlayer;
+    public bool CanSeePlayer;
 
     private float timerCheck = 0.5f;
 
@@ -34,39 +34,39 @@ public class FieldOfView : MonoBehaviour
 
     public bool targetCheck()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius, targetMask);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Radius, TargetMask);
 
         if (hitColliders.Length != 0)
         {
             Transform target = hitColliders[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-            if (Vector3.Angle(transform.forward, directionToTarget) < angle * 0.5f)
+            if (Vector3.Angle(transform.forward, directionToTarget) < Angle * 0.5f)
             {
-                Debug.Log(Time.deltaTime);
+                //Debug.Log(Time.deltaTime);
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstacleMask))
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, ObstacleMask))
                 {
-                    canSeePlayer = true;
+                    CanSeePlayer = true;
                     //Debug.Log("I see You!");
-                    return canSeePlayer;
+                    return CanSeePlayer;
                 }
                 else
                 {
-                    canSeePlayer = false;
+                    CanSeePlayer = false;
                 }
             }
             else
             {
-                canSeePlayer = false;
+                CanSeePlayer = false;
             }
         }
-        else if (canSeePlayer)
+        else if (CanSeePlayer)
         {
-            canSeePlayer = false;
+            CanSeePlayer = false;
         }
-        return canSeePlayer;
+        return CanSeePlayer;
 
     }
 

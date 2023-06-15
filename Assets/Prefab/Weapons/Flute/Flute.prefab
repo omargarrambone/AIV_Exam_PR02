@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7298674598983031026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.34444475, y: 2.396299, z: 1.1740742}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 65, y: 65, z: 65}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,6 +59,7 @@ MonoBehaviour:
     m_Bits: 128
   isAttacking: 0
   attackDmg: 0
+  fluteUIScript: {fileID: 0}
 --- !u!33 &7766945289738858213
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -9,7 +9,6 @@ public class FluteScript : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private float radius,maxDistance;
     [SerializeField] private LayerMask enemiesLayer;
-
     [SerializeField] bool isAttacking;
     [SerializeField] float attackDmg;
     [SerializeField] FluteUIScript fluteUIScript;
@@ -36,9 +35,9 @@ public class FluteScript : MonoBehaviour
                 foreach (RaycastHit enemy in hittedEnemies)
                 {
                     GameObject enemyObj = enemy.collider.gameObject;
-                    HealthManager healtMngr = enemyObj.GetComponent<HealthManager>();
+                    StunnManager stunnMngr = enemyObj.GetComponent<StunnManager>();
 
-                    if (healtMngr.IsStunned)
+                    if (stunnMngr.IsStunned)
                     {
                         atLeastOneEnemyStunned = true;
                     }
@@ -69,12 +68,12 @@ public class FluteScript : MonoBehaviour
             foreach (RaycastHit enemy in hittedEnemies)
             {
                 GameObject enemyObj = enemy.collider.gameObject;
-                HealthManager healtMngr = enemyObj.GetComponent<HealthManager>();
+                StunnManager stunnMngr = enemyObj.GetComponent<StunnManager>();
 
-                if (healtMngr.IsStunned)
+                if (stunnMngr.IsStunned)
                 {
                     Destroy(enemyObj);
-                    //TODO: aggiungere numero nemici distrutti
+                    NPCSpawner.PurifiedEnemies++;
                 }
             }
 
@@ -82,11 +81,8 @@ public class FluteScript : MonoBehaviour
         else
         {
             //timer attack
-
             isAttacking = true;
-
         }
-
     }
 
     public void PlayCorrectNote(FluteArrow fluteArrow)
@@ -109,8 +105,7 @@ public class FluteScript : MonoBehaviour
 
                 foreach (RaycastHit enemy in hittedEnemies)
                 {
-                    //TODO: effettuare danno al nemico con un float
-                    //enemy.collider.GetComponent<HealthManager>().AddHealth(-attackDmg*Time.deltaTime);
+                    enemy.collider.GetComponent<HealthManager>().AddHealth(-attackDmg*Time.deltaTime);
                     enemy.collider.gameObject.SetActive(false);
                 }
             }

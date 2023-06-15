@@ -5,107 +5,162 @@ using UnityEngine.AI;
 
 public class BasicEnemyAgentAi : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public float patrolSpeed;
-    public float chaseSpeed;
-    public List<Transform> patrolWaypoints;
-    public Transform playerTarget;
-    public float attackDistance;
-    public int currentWaypoint;
-    public FieldOfView fov;
-    public EnemyState currentState;
-    public Animator anim;
+    public NavMeshAgent Agent;
+    public Rigidbody Rb;
+    public FieldOfView Fov;
+
+    public Transform PlayerTarget;
+
+    public StunnManager StunnManager;
+    public HealthManager HealthManager;
+
+    public Animator Anim;
+
+    public float PatrolSpeed;
+    public float ChaseSpeed;
     
+    public float AttackDistance;
+
+    public List<Transform> PatrolWaypoints;
+    public int CurrentWaypoint;
+
+    public EnemyState CurrentState;
+
+    public ParticleSystem Ucelletti;
+
+    public bool IsAttacking;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        fov = GetComponent<FieldOfView>();
-        anim = GetComponent<Animator>();       
-        currentState = EnemyState.Patrol;
+        Fov = GetComponent<FieldOfView>();
+        Anim = GetComponent<Animator>();       
+        CurrentState = EnemyState.Patrol;        
+       
         //SetNewWaypoint();
+
+        PlayerTarget = PlayerManager.PlayerGameObject.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distanceFromTarget = Vector3.Distance(playerTarget.position, agent.transform.position);
-        //if (fov.targetCheck() == true && distanceFromTarget <= activationDistance)        
-        anim.SetFloat("Speed", agent.velocity.magnitude);
+        float distanceFromTarget = Vector3.Distance(PlayerTarget.position, Agent.transform.position);
+               
+        Anim.SetFloat("Speed", Agent.velocity.magnitude);
+        
 
-        switch (currentState)
+        switch (CurrentState)
         {
             case EnemyState.Patrol:
-                if (agent.remainingDistance < 2f)
+                if (Fov.targetCheck() == true)
                 {
-                    currentState = EnemyState.Patrol;
-                    agent.speed = patrolSpeed;
+                    CurrentState = EnemyState.Chase;
+                    break;
+                }             
+                else if(Agent.remainingDistance < 2f)
+                {
+                    Fov.Angle = 150;
+                    Agent.speed = PatrolSpeed;
                     SetNewWaypoint();
+                    IsAttacking = false;
+                    Anim.SetBool("Attack", false);
                     break;
-                }
-                else if (fov.targetCheck() == true)
-                {
-                    currentState = EnemyState.Chase;
-                    break;
-                }
+                }                 
                 break;
+
+
             case EnemyState.Chase:
-                if (fov.targetCheck() == false)
+                Fov.Angle = 360;
+                if (Fov.targetCheck() == false)
                 {
-                    currentState = EnemyState.Patrol;
+                    //Fov.Angle = 150;
+                    CurrentState = EnemyState.Patrol;
                     break;
                 }
-                else if (fov.targetCheck() == true && distanceFromTarget <= attackDistance)
+                else if (Fov.targetCheck() == true && distanceFromTarget <= AttackDistance)
                 {
-                    agent.speed = 0;
-                    currentState = EnemyState.Attack;
+                    Agent.speed = 0;
+                    CurrentState = EnemyState.Attack;
                     break;
                 }
-                agent.speed = chaseSpeed;
-                agent.SetDestination(playerTarget.position);
+                Agent.speed = ChaseSpeed;
+                Agent.SetDestination(PlayerTarget.position);
+             
                 break;
+
+
             case EnemyState.Attack:
-                if (fov.targetCheck() == true && distanceFromTarget > attackDistance)
+               
+                IsAttacking = true;
+                Anim.SetBool("Attack", true);
+                
+                if (Fov.targetCheck() == true && distanceFromTarget > AttackDistance)
                 {
-                    currentState = EnemyState.Chase;
-                    agent.speed = chaseSpeed;
+                    CurrentState = EnemyState.Chase;
+                    Agent.speed = ChaseSpeed;
+                    IsAttacking = false;
+                    Anim.SetBool("Attack", false);
                     break;
                 }
-                else if (fov.targetCheck() == false)
+                else if (Fov.targetCheck() == false)
                 {
-                    currentState = EnemyState.Patrol;
-                    agent.speed = patrolSpeed;
+                    CurrentState = EnemyState.Patrol;
+                    Agent.speed = PatrolSpeed;
                     break;
                 }
-                Debug.Log("Attack");
+                
                 break;
+
+
             case EnemyState.Healing:
                 break;
+
+
             case EnemyState.Stun:
-                // Enemy ready to be purified by the sound of the Magic Flute
+                Anim.SetBool("Stunned", true);
+                Ucelletti.gameObject.SetActive(true);
+                IsAttacking = false;
+                Anim.SetBool("Attack", false);
+                Agent.speed = 0;
+
+                //Enemy ready to be purified by the sound of the Magic Flute
+
+                if (StunnManager.CurrentStunn < 1)
+                {
+                    Anim.SetBool("Stunned", false);
+                    CurrentState = EnemyState.Patrol;
+                    Agent.speed = PatrolSpeed;
+                    Ucelletti.gameObject.SetActive(false);                   
+                    StunnManager.IsStunned = false;
+                }
+                else if (HealthManager.CurrentHealth <= 0)
+                {
+                    Anim.SetBool("Stunned", false);                    
+                    Ucelletti.gameObject.SetActive(false);
+                    StunnManager.IsStunned = false;
+                    Agent.speed = 0;
+                }
                 break;
             default:
                 break;
         }
 
-        if (agent.remainingDistance < 2f)
-        {
-            currentState = EnemyState.Patrol;
-            agent.speed = patrolSpeed;
-            SetNewWaypoint();            
-        }
     }
 
     public void SetState(int state)
     {
-        currentState = (EnemyState)state;
+        CurrentState = (EnemyState)state;
     }
 
 
     public void SetNewWaypoint()
     {
-        currentWaypoint = Random.Range(0, patrolWaypoints.Count);        
-        agent.SetDestination(patrolWaypoints[currentWaypoint].position);
+        CurrentWaypoint = Random.Range(0, PatrolWaypoints.Count);        
+        Agent.SetDestination(PatrolWaypoints[CurrentWaypoint].position);
     }
+
+    
 }
