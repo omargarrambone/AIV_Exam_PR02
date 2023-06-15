@@ -45,6 +45,7 @@ public class StunnManager : MonoBehaviour
         if (CurrentStunn >= 100)
         {
             OnStun.Invoke();
+            Debug.Log("Stun");
             IsStunned = true;
         }
     }
@@ -63,14 +64,10 @@ public class StunnManager : MonoBehaviour
             }
         }
 
-
         if (EnemyDamageManager.PlayerIsAttacking)
         {
             counter = 0;
         }
-
     }
-
-
 }
 

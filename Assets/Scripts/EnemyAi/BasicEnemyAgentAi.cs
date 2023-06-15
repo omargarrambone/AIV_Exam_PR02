@@ -12,6 +12,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public Transform PlayerTarget;
 
     public StunnManager StunnManager;
+    public HealthManager HealthManager;
 
     public Animator Anim;
 
@@ -47,7 +48,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     void Update()
     {
         float distanceFromTarget = Vector3.Distance(PlayerTarget.position, Agent.transform.position);
-        //if (fov.targetCheck() == true && distanceFromTarget <= activationDistance)        
+               
         Anim.SetFloat("Speed", Agent.velocity.magnitude);
         
 
@@ -58,19 +59,9 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 {
                     CurrentState = EnemyState.Chase;
                     break;
-                }
-                if (StunnManager.IsStunned)
-                {
-                    StunnManager.OnStun.Invoke();
-                    //CurrentState = EnemyState.Stun;
-                    //Agent.speed = 0;
-                    //IsAttacking = false;
-                    //Anim.SetBool("Attack", false);
-                    break;
-                }
+                }             
                 else if(Agent.remainingDistance < 2f)
                 {
-                    //currentState = EnemyState.Patrol;
                     Fov.Angle = 150;
                     Agent.speed = PatrolSpeed;
                     SetNewWaypoint();
@@ -85,7 +76,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 Fov.Angle = 360;
                 if (Fov.targetCheck() == false)
                 {
-                    Fov.Angle = 150;
+                    //Fov.Angle = 150;
                     CurrentState = EnemyState.Patrol;
                     break;
                 }
@@ -97,26 +88,15 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }
                 Agent.speed = ChaseSpeed;
                 Agent.SetDestination(PlayerTarget.position);
-                //isAttacking = false;
-                //anim.SetBool("Attack", false);
+             
                 break;
 
 
-            case EnemyState.Attack:               
-                if (StunnManager.IsStunned)
-                {
-                    //CurrentState = EnemyState.Stun;
-                 
-                    StunnManager.OnStun.Invoke();
-                    //IsAttacking = false;
-                    //Anim.SetBool("Attack", false);
-                    break;
-                }
-                else
-                {
-                    IsAttacking = true;
-                    Anim.SetBool("Attack", true);
-                }
+            case EnemyState.Attack:
+               
+                IsAttacking = true;
+                Anim.SetBool("Attack", true);
+                
                 if (Fov.targetCheck() == true && distanceFromTarget > AttackDistance)
                 {
                     CurrentState = EnemyState.Chase;
@@ -129,7 +109,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 {
                     CurrentState = EnemyState.Patrol;
                     Agent.speed = PatrolSpeed;
-                    //break;
+                    break;
                 }
                 
                 break;
@@ -156,17 +136,18 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     Ucelletti.gameObject.SetActive(false);                   
                     StunnManager.IsStunned = false;
                 }
+                else if (HealthManager.CurrentHealth <= 0)
+                {
+                    Anim.SetBool("Stunned", false);                    
+                    Ucelletti.gameObject.SetActive(false);
+                    StunnManager.IsStunned = false;
+                    Agent.speed = 0;
+                }
                 break;
             default:
                 break;
         }
 
-        //if (agent.remainingDistance < 2f)
-        //{
-        //    currentState = EnemyState.Patrol;
-        //    agent.speed = patrolSpeed;
-        //    SetNewWaypoint();            
-        //}
     }
 
     public void SetState(int state)
