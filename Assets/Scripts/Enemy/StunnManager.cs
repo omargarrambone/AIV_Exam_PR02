@@ -8,8 +8,11 @@ public class StunnManager : MonoBehaviour
 {
 
     float MinStunnValue = 0;
-    float CurrentStunn;
+
+    // Setted to public by Roberto
+    public float CurrentStunn;
     public bool IsStunned;
+
     float StunnDecreaseVelocity = 20.0f;
 
     float timer = 3.0f;
@@ -20,7 +23,7 @@ public class StunnManager : MonoBehaviour
 
     public UnityEvent OnStun;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,7 @@ public class StunnManager : MonoBehaviour
         if (CurrentStunn >= 100)
         {
             OnStun.Invoke();
+            Debug.Log("Stun");
             IsStunned = true;
         }
     }
@@ -56,6 +60,7 @@ public class StunnManager : MonoBehaviour
                 StunnBar.SetStunn(CurrentStunn);
             }
         }
+
         if (EnemyDamageManager.PlayerIsAttacking)
         {
             counter = 0;

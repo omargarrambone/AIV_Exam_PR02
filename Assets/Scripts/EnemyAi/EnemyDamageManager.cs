@@ -21,6 +21,8 @@ public class EnemyDamageManager : MonoBehaviour
         }
     }
 
+   
+
     private void OnTriggerExit(Collider other)
     {
         PlayerIsAttacking = false;
@@ -29,7 +31,9 @@ public class EnemyDamageManager : MonoBehaviour
     public void SpawnParticles()
     {
         ParticleSystem go = Instantiate(ucelletti, transform);
+        go.gameObject.SetActive(true);
         go.Play();
     }
+
 
 }
