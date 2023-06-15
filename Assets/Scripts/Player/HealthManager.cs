@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 using UnityEngine.Events;
 using UnityEditor;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class HealthManager : MonoBehaviour
 {

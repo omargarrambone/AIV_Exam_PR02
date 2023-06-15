@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -7,6 +9,7 @@ public class CameraFollow : MonoBehaviour
     static private Transform staticDefaultCameraTarget;
     static private Quaternion defaultCameraRotation;
     static private CameraType cameraType;
+    static private UnityEvent OnReset;
 
     [SerializeField] private Transform defaultCameraTarget;
     [SerializeField] private float smoothSpeed;
@@ -20,6 +23,8 @@ public class CameraFollow : MonoBehaviour
         defaultCameraRotation = Quaternion.Euler(new Vector3(16f,0f,0f));
 
         Camera.main.transform.rotation = defaultCameraRotation;
+
+        OnReset.AddListener(StartLerping);
     }
 
     private void FixedUpdate()
@@ -52,7 +57,29 @@ public class CameraFollow : MonoBehaviour
     {
         CameraTarget = staticDefaultCameraTarget;
         cameraType = CameraType.FollowPlayer;
-        Camera.main.transform.rotation = defaultCameraRotation;
+        OnReset.Invoke();
+        
+    }
+
+    void StartLerping()
+    {
+        //StartCoroutine(LerpToDefaultRotation());
+    }
+
+    IEnumerator LerpToDefaultRotation()
+    {
+        float currentTime = 0f;
+        float duration = 3f;
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            //Camera.main.transform.rotation = Mathf.Lerp(Camera.main.transform.rotation,)
+
+            yield return null;
+        }
+
+        yield break;
     }
 
     private void OnLevelWasLoaded(int level)
