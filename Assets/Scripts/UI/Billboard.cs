@@ -7,5 +7,8 @@ public class Billboard : MonoBehaviour
     void LateUpdate()
     {
         //transform.LookAt(Camera.main.transform.position);
+
+        transform.rotation = Quaternion.Euler(0, 180, 0);
+
     }
 }
