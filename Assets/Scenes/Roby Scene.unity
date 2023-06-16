@@ -9238,7 +9238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77981b7d093518e4aa747c978ac3a589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8357618171942446215}
+  defaultCameraTarget: {fileID: 8357618171942446215}
   smoothSpeed: 0.125
   offset: {x: 0, y: 2, z: -7}
 --- !u!114 &1996620940552725892
@@ -12425,6 +12425,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHealth: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
   HealthBar: {fileID: 6641173365608325610}
 --- !u!224 &3722589711201500838
 RectTransform:
@@ -28447,6 +28450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701c14c9f56a36e4896b3ae8c24156ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneMngr: {fileID: 0}
 --- !u!33 &5522025660567999772
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -30730,6 +30734,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHealth: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
   HealthBar: {fileID: 447283391126137524}
 --- !u!1 &6665981761782485990
 GameObject:
@@ -32480,21 +32487,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2731688537642995837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37751a611a4a676448e25d9142b5fa3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3417049810106693591}
-  _savedData:
+  inventoryManager: {fileID: 0}
+  sceneManager: {fileID: 0}
+  fluteScript: {fileID: 0}
+  savedData:
     playerData:
       playerPos: {x: 0, y: 0, z: 0}
       playerRot: {x: 0, y: 0, z: 0, w: 0}
-      health: 0
+      currentHealth: 0
+      currentScene: 
       currentWeapon: 0
       inventoryItems: []
     townData:
       enemiesKilled: 0
+      enemiesPurified: 0
       unlockedLevel: 0
   OnSave:
     m_PersistentCalls:
@@ -33018,6 +33029,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHealth: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
   HealthBar: {fileID: 1820639160251220903}
 --- !u!4 &8008039328682727804
 Transform:
