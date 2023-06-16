@@ -10,7 +10,8 @@ public class PlayerTakeDamage : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyWeapon")
         {
-            HealthManager.TakeDamage(10);
+            //HealthManager.TakeDamage(10);
+            HealthManager.TakeDamage(5);
         }
     }
 

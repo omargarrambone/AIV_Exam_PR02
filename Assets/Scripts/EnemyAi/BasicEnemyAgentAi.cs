@@ -11,6 +11,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public Transform PlayerTarget;
 
+    public GameObject Weapon;
+
     public StunnManager StunnManager;
     public HealthManager HealthManager;
 
@@ -96,7 +98,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
                
                 IsAttacking = true;
                 Anim.SetBool("Attack", true);
-                
+                Weapon.GetComponent<BoxCollider>().enabled = true;
+
                 if (Fov.targetCheck() == true && distanceFromTarget > AttackDistance)
                 {
                     CurrentState = EnemyState.Chase;
@@ -122,6 +125,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
             case EnemyState.Stun:
                 Anim.SetBool("Stunned", true);
                 Ucelletti.gameObject.SetActive(true);
+                Weapon.GetComponent<BoxCollider>().enabled = false;
                 IsAttacking = false;
                 Anim.SetBool("Attack", false);
                 Agent.speed = 0;
@@ -147,6 +151,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
             case EnemyState.Dead:
                 Agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
+                Agent.GetComponent<CapsuleCollider>().enabled = false;
+                Weapon.GetComponent<BoxCollider>().enabled = false;
+                gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+                gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
+                Ucelletti.gameObject.SetActive(false);
                 break;
             default:
                 break;
