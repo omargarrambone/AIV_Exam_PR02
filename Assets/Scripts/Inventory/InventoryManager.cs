@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 [System.Serializable]
 public struct InventorySlot
@@ -17,8 +18,13 @@ public class InventoryManager : MonoBehaviour
     static private Image[] staticsInventoryImages;
     static private GameObject[] staticsInventoryGameObjects;
     static public int CurrentSlotIndex { get; private set; }
+    static private Animator playerAnimator;
+
     [SerializeField] private GameObject[] inventoryGameObjects;
     [SerializeField] private Image[] inventoryImages;
+
+    static private UnityEvent<ItemType> OnChangeItem;
+    [SerializeField] private AnimatorLayerLerper animatorLayerLerper;
 
     void Start()
     {
@@ -45,6 +51,11 @@ public class InventoryManager : MonoBehaviour
 
         staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(true);
         staticsInventoryGameObjects = inventoryGameObjects;
+
+        playerAnimator = PlayerManager.PlayerGameObject.GetComponent<Animator>();
+
+        OnChangeItem = new UnityEvent<ItemType>();
+        OnChangeItem.AddListener(SetAnimatorLayers);
     }
 
     public static void AddItem(ItemType item)
@@ -104,6 +115,31 @@ public class InventoryManager : MonoBehaviour
         staticsInventoryGameObjects[(int)type].gameObject.SetActive(true);
 
         ChangeImage((int)type);
+        OnChangeItem.Invoke(type);        
+    }
+
+    private void SetAnimatorLayers(ItemType type)
+    {
+        StopAllCoroutines();
+
+        switch (type)
+        {
+            case ItemType.Fists:
+                animatorLayerLerper.StartLerp(1, 0);
+                break;
+            case ItemType.SmallKatana:
+                animatorLayerLerper.StartLerp(1, 0);
+                break;
+            case ItemType.LongKatana:
+                animatorLayerLerper.StartLerp(1, 1);
+                break;
+            case ItemType.Rod:
+                animatorLayerLerper.StartLerp(1, 1);
+                break;
+            case ItemType.Flute:
+                animatorLayerLerper.StartLerp(1, 0);
+                break;
+        }
     }
 
     static void ChangeImage(int newIndex)

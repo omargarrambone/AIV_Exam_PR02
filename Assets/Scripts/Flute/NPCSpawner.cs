@@ -11,6 +11,11 @@ public class NPCSpawner : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < PurificatedVillagers.Length; i++)
+        {
+            PurificatedVillagers[i].SetActive(false);
+        }
+
         SetVillagersActive();
     }
 
