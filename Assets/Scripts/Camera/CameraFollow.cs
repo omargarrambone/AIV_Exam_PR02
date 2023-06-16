@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Vector3 offset;
     private Vector3 currentVelocity;
 
-    [SerializeField] float timer, counter;
+    [SerializeField] float timer, counter, speedLerpToForward;
     static Quaternion oldRotation, nextRotation, lookAtRotation;
     static bool isStarted;
 
@@ -28,7 +28,7 @@ public class CameraFollow : MonoBehaviour
         oldRotation = defaultCameraRotation;
         Camera.main.transform.rotation = defaultCameraRotation;
 
-        timer = 1f;
+        timer = 2f;
     }
 
     private void FixedUpdate()
@@ -38,7 +38,6 @@ public class CameraFollow : MonoBehaviour
         if (!isStarted) return;
 
         counter += Time.deltaTime;
-
         Quaternion value = Quaternion.Lerp(oldRotation, nextRotation, counter / timer);
         Camera.main.transform.rotation = value;
 
@@ -52,13 +51,12 @@ public class CameraFollow : MonoBehaviour
         switch (cameraType)
         {
             case CameraType.FollowPlayer:
-                targetVector += new Vector3(PlayerManager.PlayerGameObject.transform.forward.x, 0, 0) * 3f;
+                targetVector += new Vector3(PlayerManager.PlayerGameObject.transform.forward.x, 0, 0) * 2f;
                 break;
             case CameraType.StaticFollowPlayer:
-
                 Vector3 relativePos = PlayerManager.PlayerGameObject.transform.position - transform.position;
                 lookAtRotation = Quaternion.LookRotation(relativePos);
-
+                nextRotation = lookAtRotation;
                 if (!isStarted) Camera.main.transform.rotation = lookAtRotation;
                 break;
         }
@@ -66,35 +64,33 @@ public class CameraFollow : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, targetVector, ref currentVelocity, smoothSpeed);
     }
 
-    public static void SetCameraTarget(Transform target, CameraType type = CameraType.StaticFollowPlayer)
+    public void SetCameraTarget(Transform target, CameraType type = CameraType.StaticFollowPlayer)
     {
         CameraTarget = target;
         cameraType = type;
-
-        oldRotation = Camera.main.transform.rotation;
-        nextRotation = lookAtRotation;
-
-        isStarted = true;
+        
+        SetNewRotations(lookAtRotation);
     }
 
-    public static void ResetCameraTarget()
+    public void ResetCameraTarget()
     {
         CameraTarget = staticDefaultCameraTarget;
         cameraType = CameraType.FollowPlayer;
-        
-        oldRotation = Camera.main.transform.rotation;
-        nextRotation = defaultCameraRotation;
 
-        isStarted = true;
+        SetNewRotations(defaultCameraRotation);
     }
 
-    private void Update()
+    void SetNewRotations(Quaternion nextQuaternion)
     {
-        
+        counter = 0;
+        oldRotation = Camera.main.transform.rotation;
+        nextRotation = nextQuaternion;
+        isStarted = true;
     }
 
     private void OnLevelWasLoaded(int level)
     {
+        ResetCameraTarget();
         transform.position = CameraTarget.position + offset;
     }
 }
