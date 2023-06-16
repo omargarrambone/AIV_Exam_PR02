@@ -44,8 +44,10 @@ public class FluteScript : MonoBehaviour
                 }
             }
 
-            if(atLeastOneEnemyStunned)
+            if (atLeastOneEnemyStunned)
+            {
                 fluteUIScript.gameObject.SetActive(true);
+            }
         }
     }
 
