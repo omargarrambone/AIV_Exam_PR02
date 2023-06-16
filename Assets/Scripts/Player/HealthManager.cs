@@ -34,7 +34,6 @@ public class HealthManager : MonoBehaviour
     {
         CurrentHealth += health;
         HealthBar.SetHealth(CurrentHealth);
-
     }
 
     public void TakeDamage(float damage)
