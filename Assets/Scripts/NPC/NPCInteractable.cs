@@ -8,14 +8,12 @@ using Random = UnityEngine.Random;
 public class NPCInteractable : MonoBehaviour
 {
     public GameObject chatBubble;
-
     public string[] sentence = { "", "", ""};
     public TMP_Text text;
 
 
     public void Interact()
     {
-        Debug.Log("Interact!");
         if (chatBubble.gameObject.activeSelf == false)
         {
             chatBubble.SetActive(true);
@@ -23,8 +21,8 @@ public class NPCInteractable : MonoBehaviour
             string sentenceToDisplay = RandomSentence();
             text.text = sentenceToDisplay;
 
-            Vector3 relativePos = transform.position - Camera.main.transform.position;
-            Vector3 playerPos = transform.position - PlayerManager.PlayerGameObject.transform.position;
+            Vector3 relativePos = (transform.position - Camera.main.transform.position);
+            Vector3 playerPos = (PlayerManager.PlayerGameObject.transform.position - transform.position).normalized;
 
             transform.rotation = Quaternion.LookRotation(new Vector3(playerPos.x, 0f, playerPos.z));
             chatBubble.transform.rotation = Quaternion.LookRotation(relativePos);
