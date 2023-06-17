@@ -8796,7 +8796,6 @@ GameObject:
   - component: {fileID: 6880779985709532650}
   - component: {fileID: 4702961529145689525}
   - component: {fileID: 6097492429170299727}
-  - component: {fileID: 3114247883327874566}
   m_Layer: 7
   m_Name: Enemy Sword
   m_TagString: Untagged
@@ -9019,21 +9018,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3114247883327874566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8356948255825084663}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0513e5842e9f524cafd34f307da643d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyMeshRenderer: {fileID: 8482185490843122119}
-  DissolveMaterial: {fileID: 2100000, guid: 8630bfb40e8026e4ca444a7a0f4d6dc0, type: 2}
-  isMaterialSet: 0
 --- !u!1 &8421974957461466891
 GameObject:
   m_ObjectHideFlags: 0

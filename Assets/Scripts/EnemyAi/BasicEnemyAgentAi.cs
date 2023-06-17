@@ -32,7 +32,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public bool IsAttacking;
 
-    public PowerUp LightHealth;
+    public PowerUp HeavyHealth;
     
 
 
@@ -155,7 +155,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
                 gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
                 Ucelletti.gameObject.SetActive(false);
-                SpawnPowerUp(LightHealth);
+                SpawnPowerUp(HeavyHealth);
                 break;
             default:
                 break;
