@@ -25,7 +25,10 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private Image[] inventoryImages;
 
     static private UnityEvent<ItemType> OnChangeItem;
-    [SerializeField] private AnimatorLayerLerper animatorLayerLerper;
+
+    [SerializeField] private AnimatorLayerLerper animatorLayerLerper1;
+    [SerializeField] private AnimatorLayerLerper animatorLayerLerper2;
+    [SerializeField] private AnimatorLayerLerper animatorLayerLerper3;
 
     void Start()
     {
@@ -58,6 +61,7 @@ public class InventoryManager : MonoBehaviour
         OnChangeItem.AddListener(SetAnimatorLayers);
 
         SetWeaponsDamages();
+        SetAnimatorLayers((ItemType)CurrentSlotIndex);
     }
 
     void SetWeaponsDamages()
@@ -146,19 +150,29 @@ public class InventoryManager : MonoBehaviour
         switch (type)
         {
             case ItemType.Fists:
-                animatorLayerLerper.StartLerp(1, 0);
+                animatorLayerLerper1.StartLerp(1, 0);
+                animatorLayerLerper2.StartLerp(2, 0);
+                animatorLayerLerper3.StartLerp(3, 1);
                 break;
             case ItemType.SmallKatana:
-                animatorLayerLerper.StartLerp(1, 0);
+                animatorLayerLerper1.StartLerp(1, 0);
+                animatorLayerLerper2.StartLerp(2, 1);
+                animatorLayerLerper3.StartLerp(3, 0);
                 break;
             case ItemType.LongKatana:
-                animatorLayerLerper.StartLerp(1, 1);
+                animatorLayerLerper1.StartLerp(1, 1);
+                animatorLayerLerper2.StartLerp(2, 0);
+                animatorLayerLerper3.StartLerp(3, 0);
                 break;
             case ItemType.Rod:
-                animatorLayerLerper.StartLerp(1, 1);
+                animatorLayerLerper1.StartLerp(1, 1);
+                animatorLayerLerper2.StartLerp(2, 0);
+                animatorLayerLerper3.StartLerp(3, 0);
                 break;
             case ItemType.Flute:
-                animatorLayerLerper.StartLerp(1, 0);
+                animatorLayerLerper1.StartLerp(1, 0);
+                animatorLayerLerper2.StartLerp(2, 1);
+                animatorLayerLerper3.StartLerp(3, 0);
                 break;
         }
     }
