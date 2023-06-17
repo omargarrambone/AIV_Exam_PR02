@@ -152,10 +152,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 Agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
                 Agent.GetComponent<CapsuleCollider>().enabled = false;
                 Weapon.GetComponent<BoxCollider>().enabled = false;
+                Agent.GetComponent<Animator>().enabled = false;
                 gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
                 gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
                 Ucelletti.gameObject.SetActive(false);
                 SpawnPowerUp(HeavyHealth);
+                Destroy(this.gameObject, 5f);
                 break;
             default:
                 break;
