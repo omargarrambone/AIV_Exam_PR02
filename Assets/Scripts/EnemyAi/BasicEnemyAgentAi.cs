@@ -11,6 +11,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public Transform PlayerTarget;
 
+    public GameObject Weapon;
+
     public StunnManager StunnManager;
     public HealthManager HealthManager;
 
@@ -29,6 +31,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public ParticleSystem Ucelletti;
 
     public bool IsAttacking;
+
+    public PowerUp HeavyHealth;
+    
+
+
 
 
 
@@ -96,7 +103,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
                
                 IsAttacking = true;
                 Anim.SetBool("Attack", true);
-                
+                Weapon.GetComponent<BoxCollider>().enabled = true;
+
                 if (Fov.targetCheck() == true && distanceFromTarget > AttackDistance)
                 {
                     CurrentState = EnemyState.Chase;
@@ -122,6 +130,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
             case EnemyState.Stun:
                 Anim.SetBool("Stunned", true);
                 Ucelletti.gameObject.SetActive(true);
+                Weapon.GetComponent<BoxCollider>().enabled = false;
                 IsAttacking = false;
                 Anim.SetBool("Attack", false);
                 Agent.speed = 0;
@@ -136,13 +145,17 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     Ucelletti.gameObject.SetActive(false);                   
                     StunnManager.IsStunned = false;
                 }
-                else if (HealthManager.CurrentHealth <= 0)
-                {
-                    Anim.SetBool("Stunned", false);                    
-                    Ucelletti.gameObject.SetActive(false);
-                    StunnManager.IsStunned = false;
-                    Agent.speed = 0;
-                }
+              
+                break;
+
+            case EnemyState.Dead:
+                Agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
+                Agent.GetComponent<CapsuleCollider>().enabled = false;
+                Weapon.GetComponent<BoxCollider>().enabled = false;
+                gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+                gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
+                Ucelletti.gameObject.SetActive(false);
+                SpawnPowerUp(HeavyHealth);
                 break;
             default:
                 break;
@@ -162,5 +175,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
         Agent.SetDestination(PatrolWaypoints[CurrentWaypoint].position);
     }
 
+
+    public void SpawnPowerUp(PowerUp lightHealth)
+    {
+        Instantiate(lightHealth, transform.position + new Vector3(0, 1f, 1f), transform.rotation);
+    }
     
 }

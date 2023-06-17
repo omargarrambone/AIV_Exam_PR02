@@ -7,6 +7,8 @@ using UnityEngine.Windows;
 using UnityEngine.Events;
 using UnityEditor;
 
+
+
 public class HealthManager : MonoBehaviour
 {
     private float MaxHealth = 100;
@@ -32,7 +34,6 @@ public class HealthManager : MonoBehaviour
     {
         CurrentHealth += health;
         HealthBar.SetHealth(CurrentHealth);
-
     }
 
     public void TakeDamage(float damage)

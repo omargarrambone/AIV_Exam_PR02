@@ -22,7 +22,6 @@ public class EnemyDamageManager : MonoBehaviour
     }
 
    
-
     private void OnTriggerExit(Collider other)
     {
         PlayerIsAttacking = false;
