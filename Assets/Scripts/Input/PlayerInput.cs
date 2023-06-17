@@ -74,7 +74,7 @@ public class PlayerInput : MonoBehaviour
         {
             _anim.SetTrigger("IsAttacking");
         }
-        
+
     }
 
     public void ChangeDirection(Vector2 input)
@@ -123,6 +123,7 @@ public class PlayerInput : MonoBehaviour
                 _rb.AddForce(Vector3.up * JumpHeight, ForceMode.Impulse);
             }
         }
+           
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -179,5 +180,4 @@ public class PlayerInput : MonoBehaviour
             _anim.SetBool("IsGrounded", IsGrounded);
         }
     }
-
 }
