@@ -2392,6 +2392,7 @@ GameObject:
   - component: {fileID: 4153946852228242509}
   - component: {fileID: 6552613597917543546}
   - component: {fileID: 2120101128715369859}
+  - component: {fileID: 1470256232070601503}
   m_Layer: 0
   m_Name: Small Katana Enemy
   m_TagString: EnemyWeapon
@@ -2464,6 +2465,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1470256232070601503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4134698194711179341}
+  m_Material: {fileID: 13400000, guid: 93ff06603b0af5742a0ede6b7dfcf0d3, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.009960436, y: 0.8757334, z: 0.04749023}
+  m_Center: {x: 0.0037231015, y: 0.6331632, z: -0.005563575}
 --- !u!1 &4152348823347798324
 GameObject:
   m_ObjectHideFlags: 0
@@ -8152,7 +8174,7 @@ Transform:
   - {fileID: 2510043266931798365}
   - {fileID: 7488007240717037495}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &5111978356073771471
 MonoBehaviour:
