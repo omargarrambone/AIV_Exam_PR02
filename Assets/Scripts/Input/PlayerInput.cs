@@ -61,8 +61,6 @@ public class PlayerInput : MonoBehaviour
         ChangeDirection(inputVector);
         _rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
         CheckIsGrounded();
-        Debug.Log(jumpCount);
-
     }
 
     private void Update()
