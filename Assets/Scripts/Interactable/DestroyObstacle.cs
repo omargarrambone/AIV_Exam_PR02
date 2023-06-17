@@ -12,7 +12,8 @@ public class DestroyObstacle : MonoBehaviour
         {
             Obstacle.SetActive(false);
             BrokenObstacle.SetActive(true);
-            Destroy(BrokenObstacle, 3f);
+
+            Destroy(BrokenObstacle, 8f);
         }
     }
 }
