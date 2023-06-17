@@ -15,12 +15,18 @@ public class SceneSelector : MonoBehaviour
     public void EnemyScene()
     {
         sceneMngr.PlayerPositionInNextScene = Vector3.zero;
-        sceneMngr.ChangeScene(2);
+        sceneMngr.ChangeScene("Enemy Scene");
     }
     public void NPCScene()
     {
         sceneMngr.PlayerPositionInNextScene = Vector3.zero;
-        sceneMngr.ChangeScene(3);
+        sceneMngr.ChangeScene("NPC Scene");
+    }
+
+    public void OvestScene()
+    {
+        sceneMngr.PlayerPositionInNextScene = new Vector3(121.758484f, 0.523557901f, -4.22627974f);
+        sceneMngr.ChangeScene("OvestMap");
     }
 
     public void ExitGame()
