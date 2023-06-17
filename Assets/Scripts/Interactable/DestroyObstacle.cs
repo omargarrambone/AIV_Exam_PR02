@@ -12,8 +12,8 @@ public class DestroyObstacle : MonoBehaviour
         {
             Obstacle.SetActive(false);
             BrokenObstacle.SetActive(true);
-
-            Destroy(BrokenObstacle, 8f);
+            Destroy(BrokenObstacle, 3f);
+            this.GetComponent<Collider>().enabled = false;
         }
     }
 }
