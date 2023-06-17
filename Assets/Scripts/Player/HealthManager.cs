@@ -11,23 +11,20 @@ using UnityEditor;
 
 public class HealthManager : MonoBehaviour
 {
-    private float MaxHealth = 100;
+    public float MaxHealth {get; private set;}
     public float CurrentHealth;
     public UnityEvent OnDeath;
-    private Animator _anim;
+    private Animator anim;
 
     public bool IsDead { get { return CurrentHealth <= 0; } }
 
     public HealthBarScript HealthBar;
     void Start()
     {
+        MaxHealth = 100;
+
         CurrentHealth = MaxHealth;
         HealthBar.SetMaxHealth(MaxHealth);
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void AddHealth(float health)
@@ -48,8 +45,8 @@ public class HealthManager : MonoBehaviour
         if (IsDead)
         {
             //GetComponent<CapsuleCollider>().enabled = false;
-            _anim = GetComponent<Animator>();
-            _anim.SetTrigger("Death");
+            anim = GetComponent<Animator>();
+            anim.SetTrigger("Death");
         }
 
         HealthBar.SetHealth(CurrentHealth);
