@@ -32,6 +32,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public bool IsAttacking;
 
+    public PowerUp LightHealth;
+    
+
+
+
 
 
     // Start is called before the first frame update
@@ -140,13 +145,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     Ucelletti.gameObject.SetActive(false);                   
                     StunnManager.IsStunned = false;
                 }
-                //else if (HealthManager.CurrentHealth <= 0)
-                //{
-                //    Anim.SetBool("Stunned", false);
-                //    Ucelletti.gameObject.SetActive(false);
-                //    StunnManager.IsStunned = false;
-                //    Agent.speed = 0;
-                //}
+              
                 break;
 
             case EnemyState.Dead:
@@ -156,6 +155,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
                 gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
                 Ucelletti.gameObject.SetActive(false);
+                SpawnPowerUp(LightHealth);
                 break;
             default:
                 break;
@@ -175,5 +175,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
         Agent.SetDestination(PatrolWaypoints[CurrentWaypoint].position);
     }
 
+
+    public void SpawnPowerUp(PowerUp lightHealth)
+    {
+        Instantiate(lightHealth, transform.position + new Vector3(0, 1f, 1f), transform.rotation);
+    }
     
 }
