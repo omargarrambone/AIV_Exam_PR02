@@ -180,7 +180,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public void SpawnPowerUp(PowerUp lightHealth)
     {
-        Instantiate(lightHealth, transform.position + new Vector3(0, 1f, 1f), transform.rotation);
+        Instantiate(lightHealth, transform.position + new Vector3(0, 1.5f, 1.5f), lightHealth.transform.rotation);
     }
     
 }
