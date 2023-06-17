@@ -220,7 +220,7 @@ Transform:
   - {fileID: 1703360606135535943}
   - {fileID: 5689817389904847766}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7254098985651995250
 MonoBehaviour:
@@ -2329,6 +2329,31 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 6641173365315457156}
+    - target: {fileID: 4628788468328982200, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628788468328982200, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1840846006554513355}
+    - target: {fileID: 4628788468328982200, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Check
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628788468328982200, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628788468328982200, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5821902129714646212, guid: b4d505da6851e2848ab8f21d473442e0,
         type: 3}
       propertyPath: m_LocalScale.x

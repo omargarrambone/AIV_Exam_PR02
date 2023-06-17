@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -28,5 +29,13 @@ public class PlayerManager : MonoBehaviour
     static public void SetRotation(Quaternion newRotation)
     {
         PlayerGameObject.transform.rotation = newRotation;
+    }
+
+    public void Check()
+    {
+        if (PlayerGameObject.GetComponent<HealthManager>().IsDead == true)
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 }
