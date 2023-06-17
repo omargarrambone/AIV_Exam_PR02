@@ -61,6 +61,8 @@ public class PlayerInput : MonoBehaviour
         ChangeDirection(inputVector);
         _rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
         CheckIsGrounded();
+        Debug.Log(jumpCount);
+
     }
 
     private void Update()
@@ -74,7 +76,7 @@ public class PlayerInput : MonoBehaviour
         {
             _anim.SetTrigger("IsAttacking");
         }
-        
+
     }
 
     public void ChangeDirection(Vector2 input)
@@ -123,6 +125,7 @@ public class PlayerInput : MonoBehaviour
                 _rb.AddForce(Vector3.up * JumpHeight, ForceMode.Impulse);
             }
         }
+           
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -179,5 +182,4 @@ public class PlayerInput : MonoBehaviour
             _anim.SetBool("IsGrounded", IsGrounded);
         }
     }
-
 }
