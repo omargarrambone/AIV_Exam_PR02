@@ -35,8 +35,7 @@ public class InteractableChest : MonoBehaviour
             _anim.SetBool("isOpen", isOpen);
         }
         else if (isOpen == true)
-        {
-            isOpen = false;
+        {          
             _anim.SetBool("isOpen", isOpen);
         }
     }
