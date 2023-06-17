@@ -9,7 +9,9 @@ using UnityEngine.Events;
 public struct InventorySlot
 {
     public ItemType ItemType;
-    public int Value;
+    public float BloodDamage;
+    public float StunDamage;
+    public bool IsTaken;
 }
 
 public class InventoryManager : MonoBehaviour
@@ -18,7 +20,6 @@ public class InventoryManager : MonoBehaviour
     static private Image[] staticsInventoryImages;
     static private GameObject[] staticsInventoryGameObjects;
     static public int CurrentSlotIndex { get; private set; }
-    static private Animator playerAnimator;
 
     [SerializeField] private GameObject[] inventoryGameObjects;
     [SerializeField] private Image[] inventoryImages;
@@ -33,12 +34,13 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < InventoryItems.Length; i++)
         {
             InventoryItems[i].ItemType = (ItemType)i;
-            InventoryItems[i].Value = 0;
         }
 
-        InventoryItems[((int)ItemType.Fists)].Value = 1;
-        InventoryItems[((int)ItemType.SmallKatana)].Value = 1;
-        InventoryItems[((int)ItemType.Flute)].Value = 1;
+        InventoryItems[((int)ItemType.Fists)].IsTaken = true;
+        InventoryItems[((int)ItemType.SmallKatana)].IsTaken = true;
+        InventoryItems[((int)ItemType.LongKatana)].IsTaken = false;
+        InventoryItems[((int)ItemType.Rod)].IsTaken = false;
+        InventoryItems[((int)ItemType.Flute)].IsTaken = true;
 
         staticsInventoryImages = inventoryImages;
 
@@ -52,15 +54,33 @@ public class InventoryManager : MonoBehaviour
         staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(true);
         staticsInventoryGameObjects = inventoryGameObjects;
 
-        playerAnimator = PlayerManager.PlayerGameObject.GetComponent<Animator>();
-
         OnChangeItem = new UnityEvent<ItemType>();
         OnChangeItem.AddListener(SetAnimatorLayers);
+
+        SetWeaponsDamages();
+    }
+
+    void SetWeaponsDamages()
+    {
+        InventoryItems[((int)ItemType.Fists)].BloodDamage = 1f;
+        InventoryItems[((int)ItemType.Fists)].StunDamage = 10f;
+
+        InventoryItems[((int)ItemType.SmallKatana)].BloodDamage = 10f;
+        InventoryItems[((int)ItemType.SmallKatana)].StunDamage = 20f;
+
+        InventoryItems[((int)ItemType.LongKatana)].BloodDamage = 15f;
+        InventoryItems[((int)ItemType.LongKatana)].StunDamage = 20f;
+
+        InventoryItems[((int)ItemType.Rod)].BloodDamage = 5f;
+        InventoryItems[((int)ItemType.Rod)].StunDamage = 30f;
+
+        InventoryItems[((int)ItemType.Flute)].BloodDamage = 0f;
+        InventoryItems[((int)ItemType.Flute)].StunDamage = 0f;
     }
 
     public static void AddItem(ItemType item)
     {
-        InventoryItems[((int)item)].Value = 1;
+        InventoryItems[((int)item)].IsTaken = true;
 
         SetActualItem(item);
 
@@ -88,7 +108,7 @@ public class InventoryManager : MonoBehaviour
                 newSlotIndex %= ((int)ItemType.LAST);
                 if (newSlotIndex < 0) newSlotIndex = ((int)ItemType.LAST - 1);
 
-                if (InventoryItems[newSlotIndex].Value > 0)
+                if (InventoryItems[newSlotIndex].IsTaken == true)
                 {
                     CurrentSlotIndex = newSlotIndex;
                     break;
@@ -115,7 +135,8 @@ public class InventoryManager : MonoBehaviour
         staticsInventoryGameObjects[(int)type].gameObject.SetActive(true);
 
         ChangeImage((int)type);
-        OnChangeItem.Invoke(type);        
+        EnemyDamageManager.ChangeDamage(InventoryItems[((int)type)].BloodDamage, InventoryItems[((int)type)].StunDamage);
+        OnChangeItem.Invoke(type);
     }
 
     private void SetAnimatorLayers(ItemType type)

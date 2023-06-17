@@ -14,7 +14,7 @@ public class ItemBase : MonoBehaviour
     {
         foreach (var item in InventoryManager.InventoryItems)
         {
-            if(item.ItemType == itemType && item.Value == 1)
+            if(item.ItemType == itemType && item.IsTaken == true)
             {
                 gameObject.SetActive(false);
             }
