@@ -43,5 +43,7 @@ public class PlayerManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("GameOverScene");
+        yield return new WaitForSeconds(2);
+        PlayerGameObject.GetComponent<HealthManager>().ResetHealt();
     }
 }

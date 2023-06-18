@@ -60,6 +60,7 @@ public class HealthManager : MonoBehaviour
     public void ResetHealt()
     {
         CurrentHealth = MaxHealth;
-        anim.SetFloat("MaxHealt", CurrentHealth);
+        HealthBar.SetHealth(CurrentHealth);
+        anim.Play("Idle");
     }
 }
