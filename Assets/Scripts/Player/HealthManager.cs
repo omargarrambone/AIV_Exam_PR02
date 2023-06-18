@@ -56,4 +56,10 @@ public class HealthManager : MonoBehaviour
             OnDeath.Invoke();
         }
     }
+
+    public void ResetHealt()
+    {
+        CurrentHealth = MaxHealth;
+        anim.SetFloat("MaxHealt", CurrentHealth);
+    }
 }

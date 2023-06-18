@@ -35,7 +35,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (PlayerGameObject.GetComponent<HealthManager>().IsDead == true)
         {
-            SceneManager.LoadScene("GameOverScene");
+            StartCoroutine(WaitForDeathAnimation());
         }
+    }
+
+    IEnumerator WaitForDeathAnimation()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("GameOverScene");
     }
 }
