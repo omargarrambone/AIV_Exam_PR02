@@ -154,21 +154,25 @@ public class InventoryManager : MonoBehaviour
                 animatorLayerLerper2.StartLerp(2, 0);
                 animatorLayerLerper3.StartLerp(3, 1);
                 break;
+
             case ItemType.SmallKatana:
                 animatorLayerLerper1.StartLerp(1, 0);
                 animatorLayerLerper2.StartLerp(2, 1);
                 animatorLayerLerper3.StartLerp(3, 0);
                 break;
+
             case ItemType.LongKatana:
                 animatorLayerLerper1.StartLerp(1, 1);
                 animatorLayerLerper2.StartLerp(2, 0);
                 animatorLayerLerper3.StartLerp(3, 0);
                 break;
+
             case ItemType.Rod:
                 animatorLayerLerper1.StartLerp(1, 1);
                 animatorLayerLerper2.StartLerp(2, 0);
                 animatorLayerLerper3.StartLerp(3, 0);
                 break;
+
             case ItemType.Flute:
                 animatorLayerLerper1.StartLerp(1, 0);
                 animatorLayerLerper2.StartLerp(2, 1);
