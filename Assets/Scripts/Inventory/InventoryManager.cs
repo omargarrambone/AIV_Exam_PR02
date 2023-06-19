@@ -17,8 +17,9 @@ public struct InventorySlot
 public class InventoryManager : MonoBehaviour
 {
     static public InventorySlot[] InventoryItems { get; private set; }
-    static private Image[] staticsInventoryImages;
-    static private GameObject[] staticsInventoryGameObjects;
+    static private Image[] staticInventoryImages;
+    static private GameObject[] staticInventoryGameObjects;
+    static private Collider[] staticInventoryColliders;
     static public int CurrentSlotIndex { get; private set; }
 
     [SerializeField] private GameObject[] inventoryGameObjects;
@@ -29,6 +30,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private AnimatorLayerLerper animatorLayerLerper1;
     [SerializeField] private AnimatorLayerLerper animatorLayerLerper2;
     [SerializeField] private AnimatorLayerLerper animatorLayerLerper3;
+
+    AnimationEvent OnHit;
 
     void Start()
     {
@@ -45,23 +48,33 @@ public class InventoryManager : MonoBehaviour
         InventoryItems[((int)ItemType.Rod)].IsTaken = false;
         InventoryItems[((int)ItemType.Flute)].IsTaken = true;
 
-        staticsInventoryImages = inventoryImages;
+        staticInventoryImages = inventoryImages;
 
-        foreach (Image image in staticsInventoryImages)
+        foreach (Image image in staticInventoryImages)
         {
             image.gameObject.SetActive(false);
         }
 
         CurrentSlotIndex = 0;
 
-        staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(true);
-        staticsInventoryGameObjects = inventoryGameObjects;
+        staticInventoryImages[CurrentSlotIndex].gameObject.SetActive(true);
+        staticInventoryGameObjects = inventoryGameObjects;
 
         OnChangeItem = new UnityEvent<ItemType>();
         OnChangeItem.AddListener(SetAnimatorLayers);
 
         SetWeaponsDamages();
         SetAnimatorLayers((ItemType)CurrentSlotIndex);
+
+        OnHit = new AnimationEvent();
+
+        staticInventoryColliders = new Collider[inventoryGameObjects.Length-1];
+
+        for (int i = 0; i < staticInventoryColliders.Length; i++)
+        {
+            staticInventoryColliders[i] = staticInventoryGameObjects[i].GetComponent<Collider>();
+            staticInventoryColliders[i].enabled = false;
+        }
     }
 
     void SetWeaponsDamages()
@@ -102,7 +115,7 @@ public class InventoryManager : MonoBehaviour
         {
             float value = context.ReadValue<float>();
 
-            staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(false);
+            staticInventoryImages[CurrentSlotIndex].gameObject.SetActive(false);
 
             int newSlotIndex = CurrentSlotIndex;
 
@@ -123,6 +136,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void OnPiedi(string noemimarfellamadonnainviafotopiedi)
+    {
+        Debug.Log(noemimarfellamadonnainviafotopiedi);
+    }
+
     static public void SetActualItem(int type)
     {
         SetActualItem((ItemType)type);
@@ -132,11 +150,11 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < ((int)ItemType.LAST); i++)
         {
-            staticsInventoryGameObjects[i].SetActive(false);
-            staticsInventoryImages[i].gameObject.SetActive(false);
+            staticInventoryGameObjects[i].SetActive(false);
+            staticInventoryImages[i].gameObject.SetActive(false);
         }
 
-        staticsInventoryGameObjects[(int)type].gameObject.SetActive(true);
+        staticInventoryGameObjects[(int)type].gameObject.SetActive(true);
 
         ChangeImage((int)type);
         EnemyDamageManager.ChangeDamage(InventoryItems[((int)type)].BloodDamage, InventoryItems[((int)type)].StunDamage);
@@ -183,8 +201,16 @@ public class InventoryManager : MonoBehaviour
 
     static void ChangeImage(int newIndex)
     {
-        staticsInventoryImages[CurrentSlotIndex].gameObject.SetActive(false);
-        staticsInventoryImages[newIndex].gameObject.SetActive(true);
+        staticInventoryImages[CurrentSlotIndex].gameObject.SetActive(false);
+        staticInventoryImages[newIndex].gameObject.SetActive(true);
         CurrentSlotIndex = ((int)newIndex);
+    }
+
+    public static void SetObjectsColliders(bool value)
+    {
+        for (int i = 0; i < staticInventoryColliders.Length; i++)
+        {
+            staticInventoryColliders[i].GetComponent<Collider>().enabled = value;
+        }
     }
 }

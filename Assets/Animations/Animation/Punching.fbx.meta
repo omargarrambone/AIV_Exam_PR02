@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2c5610babe1ffbf4fa3354d3fa1f4ee5
+guid: 3c82c6694b095154cabe6856c3eb5c93
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Sword Attack
+      name: Punching
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 76
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -49,30 +49,14 @@ ModelImporter:
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000100000000000000000000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.43320644
-        functionName: CallOnStartHit
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 92c22912e14e12a44ba2a0ac89e5524a,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.6382826
-        functionName: CallOnEndHit
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 92c22912e14e12a44ba2a0ac89e5524a,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

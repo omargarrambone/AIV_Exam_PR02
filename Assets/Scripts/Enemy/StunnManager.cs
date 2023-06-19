@@ -39,7 +39,7 @@ public class StunnManager : MonoBehaviour
 
         StunnBar.SetStunn(CurrentStunn);
 
-        if (CurrentStunn >= 100)
+        if (CurrentStunn >= 95)
         {
             OnStun.Invoke();
             Debug.Log("Stun");
