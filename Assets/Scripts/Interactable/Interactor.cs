@@ -19,16 +19,26 @@ public class Interactor : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (actualInteractable && actualInteractable.isActiveAndEnabled)
+        {
+            guiText.SetText($"Take [{actualInteractable.ItemName}]");
+        }
+        else
+        {
+            guiText.SetText("");
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         actualInteractable = other.GetComponent<Interactable>();
-        guiText.SetText($"Take [{actualInteractable.ItemName}]");
-
+        if (actualInteractable == null) { return; }
     }
 
     private void OnTriggerExit(Collider other)
     {
         actualInteractable = null;
-        guiText.SetText("");
     }
 }
