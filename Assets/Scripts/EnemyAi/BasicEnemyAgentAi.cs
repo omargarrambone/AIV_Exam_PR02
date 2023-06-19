@@ -54,7 +54,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distanceFromTarget = Vector3.Distance(PlayerTarget.position, Agent.transform.position);
+        Vector3 distanceFromTarget = PlayerTarget.position - Agent.transform.position;
+        //float distanceFromTarget = Vector3.Distance(PlayerTarget.position, Agent.transform.position);
                
         Anim.SetFloat("Speed", Agent.velocity.magnitude);
         
@@ -72,7 +73,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     Fov.Angle = 150;
                     Agent.speed = PatrolSpeed;
                     SetNewWaypoint();
-                    IsAttacking = false;
+                    //IsAttacking = false;
                     Anim.SetBool("Attack", false);
                     break;
                 }                 
@@ -87,10 +88,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     CurrentState = EnemyState.Patrol;
                     break;
                 }
-                else if (Fov.targetCheck() == true && distanceFromTarget <= AttackDistance)
+                else if (Fov.targetCheck() == true && distanceFromTarget.magnitude <= AttackDistance)
                 {
                     Agent.speed = 0;
                     CurrentState = EnemyState.Attack;
+                    IsAttacking = true;
                     break;
                 }
                 Agent.speed = ChaseSpeed;
@@ -101,11 +103,15 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
             case EnemyState.Attack:
                
-                IsAttacking = true;
+                //IsAttacking = true;
                 Anim.SetBool("Attack", true);
                 Weapon.GetComponent<BoxCollider>().enabled = true;
+                if (IsAttacking)
+                {
+                    Agent.transform.forward = distanceFromTarget.normalized;
+                }
 
-                if (Fov.targetCheck() == true && distanceFromTarget > AttackDistance)
+                if (Fov.targetCheck() == true && distanceFromTarget.magnitude > AttackDistance)
                 {
                     CurrentState = EnemyState.Chase;
                     Agent.speed = ChaseSpeed;
