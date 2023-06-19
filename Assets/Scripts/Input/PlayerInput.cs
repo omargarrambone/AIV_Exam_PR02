@@ -5,125 +5,94 @@ using TMPro;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 using UnityEngineInternal;
+using static UnityEngine.Rendering.DebugUI;
+
+[RequireComponent(typeof(CharacterController))]
 public class PlayerInput : MonoBehaviour
 {
-    Rigidbody _rb;
-    PlayerInput playerInput;
-    Movement Movement;
-    Animator _anim;
+    [Header("Movement")]
+    private Vector2 _input;
+    private CharacterController _characterController;
+    private Vector3 _direction;
 
-    public bool IsGrounded;
-    public bool IsAttacking;
-    float turnSmooth = 0.1f;
-    float turnSmoothVelocity;
+    [Header("Rotation")]
+    [SerializeField] private float smoothTime = 0.05f;
+    private float _currentVelocity;
+    [SerializeField] private float speed;
 
-    public int jumpCount = 0;
+    [Header("Gravity")]
+    private float _gravity = -9.81f;
+    [SerializeField] private float gravityMultiplier = 3.0f;
+    private float _velocity;
 
-    public float speed;
-    [SerializeField]
-    float JumpHeight;
+    [Header("Jumping")]
+    [SerializeField] private float jumpPower;
+    [SerializeField] private int _numberOfJumps;
+    [SerializeField] private int maxNumberOfJumps = 2;
 
-    [SerializeField] private float animationLightAttackFinishTime = 0.5f;
-    [SerializeField] private float animationHeavyAttackFinishTime = 0.5f;
-    private float Height = 0.1f;
-    private bool isRunning = false;
-    private bool isAttacking = false;
-    private bool isHeavyAttacking = false;
-    private bool isAttackingGoing = false;
-    private bool isHeavyAttackingGoing = false;
-
-    private Vector2 inputVector;
-
-    [Header("Dash Variables")]
-    private bool canDash = true;
-    private bool isDashing;
-    private float dashingPower = 24f;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
+    [Header("Animator")]
+    private Animator _anim;
 
     [Header("UI")]
-    public GameObject Panel;
+    [SerializeField] private GameObject Panel;
 
-    // Start is called before the first frame update
-    void Awake()
+
+    private void Awake()
     {
+        _characterController = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
-        _rb = GetComponent<Rigidbody>();
-        playerInput = GetComponent<PlayerInput>();
-        Movement = new Movement();
-
-        Movement.Player.Enable();
-    }
-
-    void FixedUpdate()
-    {
-        inputVector = Movement.Player.Movement.ReadValue<Vector2>();
-        ChangeDirection(inputVector);
-        _rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
-        CheckIsGrounded();
     }
 
     private void Update()
     {
-        _anim.SetFloat("Velocity", inputVector.sqrMagnitude);
+        ApplyGravity();
+        ApplyRotation();
+        ApplyMovement();
     }
 
-    public void LightAttack(InputAction.CallbackContext context)
+    private void ApplyRotation()
     {
-        if (context.performed)
-        {
-            _anim.SetTrigger("IsAttacking");
-        }
+        if (_input.sqrMagnitude == 0) return;
 
+        var targetAngle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg;
+        var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, smoothTime);
+        transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
     }
 
-    public void ChangeDirection(Vector2 input)
+    private void ApplyMovement()
     {
-        Vector2 dir = input.normalized;
-
-        if (dir.magnitude >= 0.1f)
-        {
-            float targetAngle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmooth);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        }
+        _characterController.Move(_direction * speed * Time.deltaTime);
+        _anim.SetFloat("Velocity", _input.sqrMagnitude);
     }
 
-    public void Pause(InputAction.CallbackContext context)
+    private void ApplyGravity()
     {
-        //if (context.performed && Panel.gameObject.activeSelf == false)
-        //{
-        //    Panel.gameObject.SetActive(true);
-        //    Debug.Log("pause");
-        //}
-        //else if (context.performed && Panel.gameObject.activeSelf == true)
-        //{
-        //    Panel.gameObject.SetActive(false);
-        if (context.performed)
+        if (IsGrounded() && _velocity < 0.0f)
         {
-            if (Panel.gameObject.activeSelf == false)
-            {
-                Panel.gameObject.SetActive(true);
-            }
-            else
-            {
-                Panel.gameObject.SetActive(false);
-            }
+            _velocity = -1.0f;
         }
+        else
+        {
+            _velocity += _gravity * gravityMultiplier * Time.deltaTime;
+        }
+
+        _direction.y = _velocity;
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        _input = context.ReadValue<Vector2>();
+        _direction = new Vector3(_input.x, 0.0f, _input.y);
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            jumpCount++;
-            _anim.SetInteger("JumpCount", jumpCount);
-            if (jumpCount < 2)
-            {
-                _rb.AddForce(Vector3.up * JumpHeight, ForceMode.Impulse);
-            }
-        }
-           
+        if (!context.started) return;
+        if (!IsGrounded() && _numberOfJumps >= maxNumberOfJumps) return;
+        if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
+
+        _numberOfJumps++;
+        _velocity = jumpPower;
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -142,42 +111,30 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    public void Dash(InputAction.CallbackContext context)
+    public void Pause(InputAction.CallbackContext context)
     {
-        if (context.performed && canDash)
+        if (context.performed)
         {
-            StartCoroutine(Dash());
+            if (Panel.gameObject.activeSelf == false)
+            {
+                Panel.gameObject.SetActive(true);
+            }
+            else
+            {
+                Panel.gameObject.SetActive(false);
+            }
         }
     }
 
-
-    private IEnumerator Dash()
+    private IEnumerator WaitForLanding()
     {
-        canDash = false;
-        isDashing = true;
-        _rb.velocity = transform.forward * dashingPower;
-        yield return new WaitForSeconds(dashingTime);
-        isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
-        canDash = true;
+        yield return new WaitUntil(() => !IsGrounded());
+        yield return new WaitUntil(IsGrounded);
 
+        _numberOfJumps = 0;
+        
     }
 
-    void CheckIsGrounded()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, Height))
-        {
-            IsGrounded = true;
-            jumpCount = 0;
-            _anim.SetBool("IsGrounded", IsGrounded);
-            _anim.SetInteger("JumpCount", jumpCount);
-            Debug.DrawRay(transform.position, Vector3.down * Height, UnityEngine.Color.green);
-        }
-        else
-        {
-            IsGrounded = false;
-            Debug.DrawRay(transform.position, Vector3.down * Height, UnityEngine.Color.red);
-            _anim.SetBool("IsGrounded", IsGrounded);
-        }
-    }
+    private bool IsGrounded() => _characterController.isGrounded;
+
 }

@@ -31,7 +31,7 @@ public class CameraFollow : MonoBehaviour
         timer = 2f;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         CameraMovement();
 

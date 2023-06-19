@@ -26,9 +26,9 @@ public class FluteUIScript : MonoBehaviour
             image.color = i%2 == 0 ? Color.red : Color.blue;
         }
 
-        originalSpeed = playerInputScript.speed;
+        //originalSpeed = playerInputScript.speed;
         Rigidbody playerRb = playerInputScript.gameObject.GetComponent<Rigidbody>();
-        playerRb.velocity = new Vector3(0, playerRb.velocity.y, 0);
+        //playerRb.velocity = new Vector3(0, playerRb.velocity.y, 0);
 
         gameObject.SetActive(false);
     }
@@ -36,13 +36,13 @@ public class FluteUIScript : MonoBehaviour
     private void OnEnable()
     {
         StartMinigame();
-        playerInputScript.speed = 0;
+        //playerInputScript.speed = 0;
         OnStart.Invoke();
     }
 
     private void OnDisable()
     {
-        playerInputScript.speed = originalSpeed;
+        //playerInputScript.speed = originalSpeed;
     }
 
     [ContextMenu("StartMinigame")]
