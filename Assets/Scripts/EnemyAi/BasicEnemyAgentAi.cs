@@ -126,8 +126,21 @@ public class BasicEnemyAgentAi : MonoBehaviour
             case EnemyState.Healing:
                 break;
 
+            case EnemyState.Dead:
+                Agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
+                Agent.GetComponent<CapsuleCollider>().enabled = false;
+                Weapon.GetComponent<BoxCollider>().enabled = false;
+                Agent.GetComponent<Animator>().enabled = false;
+                gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+                gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
+                Ucelletti.gameObject.SetActive(false);
+                SpawnPowerUp(HeavyHealth);
+                Destroy(this.gameObject, 5f);
+                break;
 
             case EnemyState.Stun:
+                if(HealthManager.IsDead) { CurrentState = EnemyState.Dead; break; }
+
                 Anim.SetBool("Stunned", true);
                 Ucelletti.gameObject.SetActive(true);
                 Weapon.GetComponent<BoxCollider>().enabled = false;
@@ -148,17 +161,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
               
                 break;
 
-            case EnemyState.Dead:
-                Agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
-                Agent.GetComponent<CapsuleCollider>().enabled = false;
-                Weapon.GetComponent<BoxCollider>().enabled = false;
-                Agent.GetComponent<Animator>().enabled = false;
-                gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
-                gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
-                Ucelletti.gameObject.SetActive(false);
-                SpawnPowerUp(HeavyHealth);
-                Destroy(this.gameObject, 5f);
-                break;
+
             default:
                 break;
         }
