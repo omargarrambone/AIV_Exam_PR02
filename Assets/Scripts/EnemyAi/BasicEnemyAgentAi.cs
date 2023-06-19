@@ -134,11 +134,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
 
             case EnemyState.Stun:
-                if (HealthManager.IsDead)
-                {
-                    CurrentState = EnemyState.Dead;
-                    break;
-                }
+               
                 Anim.SetBool("Stunned", true);
                 Ucelletti.gameObject.SetActive(true);
                 Weapon.GetComponent<BoxCollider>().enabled = false;
