@@ -395,7 +395,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1964313746}
+      objectReference: {fileID: 0}
     - target: {fileID: 231959443550880398, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -554,11 +554,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4152348823347798324, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1964313746}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbf33218603b8964083d320cbb6fbe04, type: 3}
 --- !u!1 &605199440
 GameObject:
@@ -1026,21 +1022,3 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &1964313744 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4152348823347798324, guid: bbf33218603b8964083d320cbb6fbe04,
-    type: 3}
-  m_PrefabInstance: {fileID: 319487978}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1964313746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964313744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f22ac32de522394b886ef88e4c0f699, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
