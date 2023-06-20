@@ -36,6 +36,7 @@ public class PlayerInput : MonoBehaviour
     private float dashingPower = 1000f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
+    [SerializeField] private TrailRenderer _trail;
 
     [Header("Animator")]
     private Animator _anim;
@@ -55,6 +56,15 @@ public class PlayerInput : MonoBehaviour
         ApplyRotation();
         ApplyMovement();
         _anim.SetBool("IsGrounded", IsGrounded());
+    }
+
+    public void LightAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _anim.SetTrigger("IsAttacking");
+        }
+
     }
 
     private void ApplyRotation()
@@ -158,7 +168,9 @@ public class PlayerInput : MonoBehaviour
         isDashing = true;
         _direction = new Vector3(_input.x, 0.0f, _input.y);
         _characterController.Move(_direction * dashingPower * Time.deltaTime);
+        _trail.emitting = true;
         yield return new WaitForSeconds(dashingTime);
+        _trail.emitting = false;
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
