@@ -13,7 +13,7 @@ public class FluteUIScript : MonoBehaviour
     [SerializeField] private PlayerInput playerInputScript;
     private float originalSpeed;
     private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
-    private int currentArrowIndex;
+    private int currentArrowIndex, lastWeaponIndex;
 
     void Awake()
     {
@@ -26,23 +26,27 @@ public class FluteUIScript : MonoBehaviour
             image.color = i%2 == 0 ? Color.red : Color.blue;
         }
 
-        originalSpeed = playerInputScript.speed;
+        //originalSpeed = playerInputScript.speed;
         Rigidbody playerRb = playerInputScript.gameObject.GetComponent<Rigidbody>();
-        playerRb.velocity = new Vector3(0, playerRb.velocity.y, 0);
+        //playerRb.velocity = new Vector3(0, playerRb.velocity.y, 0);
 
         gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
+        lastWeaponIndex = InventoryManager.CurrentSlotIndex;
+
+        Debug.Log(lastWeaponIndex);
+
         StartMinigame();
-        playerInputScript.speed = 0;
+        //playerInputScript.speed = 0;
         OnStart.Invoke();
     }
 
     private void OnDisable()
     {
-        playerInputScript.speed = originalSpeed;
+        //playerInputScript.speed = originalSpeed;
     }
 
     [ContextMenu("StartMinigame")]
@@ -71,16 +75,22 @@ public class FluteUIScript : MonoBehaviour
                 if (currentArrowIndex >= fluteArrows.Length)
                 {
                     OnCompleted.Invoke();
-                    gameObject.SetActive(false);
+                    OnFinished();
                 }
             }
             else
             {
                 OnFail.Invoke();
-                gameObject.SetActive(false);
+                OnFinished();
             }
         }
 
+    }
+
+    void OnFinished()
+    {
+        InventoryManager.SetActualItem(lastWeaponIndex);
+        gameObject.SetActive(false);
     }
 
     void SetRandomArrows()

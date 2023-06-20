@@ -123,18 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &1549633265 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4435707444493445472, guid: e375b58688cc98343962035d2c587cae,
-    type: 3}
-  m_PrefabInstance: {fileID: 9093984855814243739}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 701c14c9f56a36e4896b3ae8c24156ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1678896518
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,30 +249,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 629148269745560209, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1549633265}
-    - target: {fileID: 629148269745560209, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitGame
-      objectReference: {fileID: 0}
     - target: {fileID: 1963203286398237446, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_Name
       value: DontDestroyObjects
       objectReference: {fileID: 0}
-    - target: {fileID: 8066700044974064409, guid: e375b58688cc98343962035d2c587cae,
+    - target: {fileID: 3482226279674244218, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8851494325213788243, guid: e375b58688cc98343962035d2c587cae,
+    - target: {fileID: 3853701637231825745, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853701637231825745, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: m_Emitting
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

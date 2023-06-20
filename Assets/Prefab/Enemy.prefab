@@ -172,15 +172,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169c2304910fef84c8a5200410023208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 20
-  angle: 150
-  targetMask:
+  Radius: 0
+  Angle: 0
+  TargetMask:
     serializedVersion: 2
-    m_Bits: 256
-  obstacleMask:
+    m_Bits: 0
+  ObstacleMask:
     serializedVersion: 2
-    m_Bits: 8
-  canSeePlayer: 1
+    m_Bits: 0
+  CanSeePlayer: 0
 --- !u!114 &4763091180543525966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,20 +193,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9f9c311351c084080da5b56894317f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 8197418345842660604}
-  patrolSpeed: 2
-  chaseSpeed: 4
-  patrolWaypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  playerTarget: {fileID: 0}
-  attackDistance: 3
-  currentWaypoint: 0
-  fov: {fileID: -5033607312950025126}
-  currentState: 0
-  anim: {fileID: 0}
+  Agent: {fileID: 0}
+  Rb: {fileID: 0}
+  Fov: {fileID: 0}
+  PlayerTarget: {fileID: 0}
+  Weapon: {fileID: 0}
+  StunnManager: {fileID: 0}
+  HealthManager: {fileID: 0}
+  Anim: {fileID: 0}
+  PatrolSpeed: 0
+  ChaseSpeed: 0
+  AttackDistance: 1
+  PatrolWaypoints: []
+  CurrentWaypoint: 0
+  CurrentState: 0
+  Ucelletti: {fileID: 0}
+  IsAttacking: 0
+  HeavyHealth: {fileID: 0}
 --- !u!195 &8197418345842660604
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -258,6 +261,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHealth: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
   HealthBar: {fileID: 4976899373983337036}
 --- !u!136 &5471480942733567155
 CapsuleCollider:
@@ -315,6 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a098fe46146af740a5338a09c655759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentStunn: 0
   IsStunned: 0
   StunnBar: {fileID: 0}
   EnemyDamageManager: {fileID: 0}

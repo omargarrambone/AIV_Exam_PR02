@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a10a5497c017b3441be4cfac43d7b3f3
+guid: d2e155ea6752f4d489da2d5ba47322b0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: LightAttack
+      name: Stable Sword Outward Slash
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 62
+      lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -56,7 +56,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.27095944
+        functionName: CallOnStartHit
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 92c22912e14e12a44ba2a0ac89e5524a,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.57289165
+        functionName: CallOnEndHit
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 92c22912e14e12a44ba2a0ac89e5524a,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

@@ -27,11 +27,9 @@ public class CameraFollow : MonoBehaviour
 
         oldRotation = defaultCameraRotation;
         Camera.main.transform.rotation = defaultCameraRotation;
-
-        timer = 2f;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         CameraMovement();
 
