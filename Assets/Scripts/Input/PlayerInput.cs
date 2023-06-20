@@ -54,6 +54,7 @@ public class PlayerInput : MonoBehaviour
         ApplyGravity();
         ApplyRotation();
         ApplyMovement();
+        _anim.SetBool("IsGrounded", IsGrounded());
     }
 
     private void ApplyRotation()
@@ -99,6 +100,7 @@ public class PlayerInput : MonoBehaviour
 
         _numberOfJumps++;
         _velocity = jumpPower;
+        _anim.SetInteger("JumpCount", _numberOfJumps);
     }
 
     private IEnumerator WaitForLanding()
@@ -107,11 +109,9 @@ public class PlayerInput : MonoBehaviour
         yield return new WaitUntil(IsGrounded);
 
         _numberOfJumps = 0;
+        _anim.SetInteger("JumpCount", 0);
 
     }
-
-    private bool IsGrounded() => _characterController.isGrounded;
-
 
     public void Interact(InputAction.CallbackContext context)
     {
@@ -164,4 +164,5 @@ public class PlayerInput : MonoBehaviour
         canDash = true;
 
     }
+    private bool IsGrounded() => _characterController.isGrounded;
 }
