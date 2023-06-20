@@ -6,6 +6,9 @@ public class Interactor : MonoBehaviour
 {
     [SerializeField] private Interactable actualInteractable;
     [SerializeField] private TMPro.TMP_Text guiText;
+    [SerializeField] private float radius, maxDistance;
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private Collider[] colliders;
 
     public void Interact(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
@@ -14,7 +17,6 @@ public class Interactor : MonoBehaviour
             if(actualInteractable != null)
             {
                 actualInteractable.OnInteract.Invoke();
-                guiText.SetText("");
             }
         }
     }
@@ -29,16 +31,22 @@ public class Interactor : MonoBehaviour
         {
             guiText.SetText("");
         }
+
+        colliders = Physics.OverlapSphere(transform.position, radius, layerMask);
+
+        if (colliders.Length > 0)
+        {
+            actualInteractable = colliders[0].GetComponent<Interactable>();
+        }
+        else
+        {
+            actualInteractable = null;
+        }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnDrawGizmos()
     {
-        actualInteractable = other.GetComponent<Interactable>();
-        if (actualInteractable == null) { return; }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        actualInteractable = null;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
