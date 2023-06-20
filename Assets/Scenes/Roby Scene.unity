@@ -470,6 +470,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &1497727392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3907064155493132908, guid: bbf33218603b8964083d320cbb6fbe04,
+    type: 3}
+  m_PrefabInstance: {fileID: 1812082575}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79780afe8bdddec4da315afc0c27a7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1536137683
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +828,11 @@ PrefabInstance:
       objectReference: {fileID: 1751468407}
     - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
+      propertyPath: EnemyDamageManager
+      value: 
+      objectReference: {fileID: 1497727392}
+    - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
       propertyPath: PatrolWaypoints.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -843,6 +860,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5111978356073771471, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
+      propertyPath: Radius
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5621770429164290102, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}

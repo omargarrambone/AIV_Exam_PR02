@@ -15,12 +15,13 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public StunnManager StunnManager;
     public HealthManager HealthManager;
+    public EnemyDamageManager EnemyDamageManager;
 
     public Animator Anim;
 
     public float PatrolSpeed;
     public float ChaseSpeed;
-    
+
     public float AttackDistance;
 
     public List<Transform> PatrolWaypoints;
@@ -33,8 +34,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public bool IsAttacking;
 
     public PowerUp HeavyHealth;
-    
-
 
 
 
@@ -43,69 +42,93 @@ public class BasicEnemyAgentAi : MonoBehaviour
     void Start()
     {
         Fov = GetComponent<FieldOfView>();
-        Anim = GetComponent<Animator>();       
-        CurrentState = EnemyState.Patrol;        
-       
+        Anim = GetComponent<Animator>();
+        CurrentState = EnemyState.Patrol;
+
         //SetNewWaypoint();
 
         PlayerTarget = PlayerManager.PlayerGameObject.transform;
     }
 
+
+
+
     // Update is called once per frame
     void Update()
     {
-        float distanceFromTarget = Vector3.Distance(PlayerTarget.position, Agent.transform.position);
-               
-        Anim.SetFloat("Speed", Agent.velocity.magnitude);
+        Vector3 distanceFromTarget = PlayerTarget.position - Agent.transform.position;
         
+        Anim.SetFloat("Speed", Agent.velocity.magnitude);
+
 
         switch (CurrentState)
         {
+
             case EnemyState.Patrol:
+
+
                 if (Fov.targetCheck() == true)
                 {
                     CurrentState = EnemyState.Chase;
                     break;
-                }             
-                else if(Agent.remainingDistance < 2f)
+                }
+                else if (Agent.remainingDistance < 2f)
                 {
+
                     Fov.Angle = 150;
-                    Agent.speed = PatrolSpeed;
                     SetNewWaypoint();
-                    IsAttacking = false;
+                    Agent.speed = PatrolSpeed;
+                    //IsAttacking = false;
                     Anim.SetBool("Attack", false);
+
                     break;
-                }                 
+                }
+                if (EnemyDamageManager.PlayerIsAttacking)
+                {
+                    CurrentState = EnemyState.Chase;                    
+                    break;
+                }
                 break;
 
 
             case EnemyState.Chase:
+               
+
                 Fov.Angle = 360;
-                if (Fov.targetCheck() == false)
-                {
-                    //Fov.Angle = 150;
-                    CurrentState = EnemyState.Patrol;
-                    break;
-                }
-                else if (Fov.targetCheck() == true && distanceFromTarget <= AttackDistance)
+
+                if (Fov.targetCheck() == true && distanceFromTarget.magnitude <= AttackDistance)
                 {
                     Agent.speed = 0;
                     CurrentState = EnemyState.Attack;
+                    IsAttacking = true;
                     break;
                 }
+                else if (Fov.targetCheck() == false)
+                {
+                    //Fov.Angle = 150;
+                    CurrentState = EnemyState.Patrol;
+                    Agent.speed = PatrolSpeed;
+                    
+                    break;
+                }
+
                 Agent.speed = ChaseSpeed;
                 Agent.SetDestination(PlayerTarget.position);
-             
                 break;
 
 
+
             case EnemyState.Attack:
-               
-                IsAttacking = true;
+
+                //IsAttacking = true;
                 Anim.SetBool("Attack", true);
                 Weapon.GetComponent<BoxCollider>().enabled = true;
+                if (IsAttacking)
+                {
+                    Agent.transform.forward = distanceFromTarget.normalized;
+                }
 
-                if (Fov.targetCheck() == true && distanceFromTarget > AttackDistance)
+                if (Fov.targetCheck() == true && distanceFromTarget.magnitude > AttackDistance)
                 {
                     CurrentState = EnemyState.Chase;
                     Agent.speed = ChaseSpeed;
@@ -119,7 +142,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     Agent.speed = PatrolSpeed;
                     break;
                 }
-                
+
                 break;
 
 
@@ -139,8 +162,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 break;
 
             case EnemyState.Stun:
-                if(HealthManager.IsDead) { CurrentState = EnemyState.Dead; break; }
-
+                if (HealthManager.IsDead)
+                {
+                    CurrentState = EnemyState.Dead;
+                    break;
+                }
                 Anim.SetBool("Stunned", true);
                 Ucelletti.gameObject.SetActive(true);
                 Weapon.GetComponent<BoxCollider>().enabled = false;
@@ -154,11 +180,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 {
                     Anim.SetBool("Stunned", false);
                     CurrentState = EnemyState.Patrol;
-                    Agent.speed = PatrolSpeed;
-                    Ucelletti.gameObject.SetActive(false);                   
+                    //Agent.speed = PatrolSpeed;
+                    Ucelletti.gameObject.SetActive(false);
                     StunnManager.IsStunned = false;
                 }
-              
+
                 break;
 
 
@@ -176,7 +202,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public void SetNewWaypoint()
     {
-        CurrentWaypoint = Random.Range(0, PatrolWaypoints.Count);        
+        CurrentWaypoint = Random.Range(0, PatrolWaypoints.Count);
         Agent.SetDestination(PatrolWaypoints[CurrentWaypoint].position);
     }
 
@@ -185,5 +211,5 @@ public class BasicEnemyAgentAi : MonoBehaviour
     {
         Instantiate(lightHealth, transform.position + new Vector3(0, 1f, 1f), lightHealth.transform.rotation);
     }
-    
+
 }
