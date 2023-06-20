@@ -33,7 +33,7 @@ public class PlayerInput : MonoBehaviour
     [Header("Dash Variables")]
     private bool canDash = true;
     private bool isDashing;
-    private float dashingPower = 5f;
+    private float dashingPower = 1000f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
 
@@ -157,7 +157,7 @@ public class PlayerInput : MonoBehaviour
         canDash = false;
         isDashing = true;
         _direction = new Vector3(_input.x, 0.0f, _input.y);
-        _characterController.Move(_direction * dashingPower);
+        _characterController.Move(_direction * dashingPower * Time.deltaTime);
         yield return new WaitForSeconds(dashingTime);
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
