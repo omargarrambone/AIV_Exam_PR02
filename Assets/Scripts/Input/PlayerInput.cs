@@ -30,12 +30,18 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private int _numberOfJumps;
     [SerializeField] private int maxNumberOfJumps = 2;
 
+    [Header("Dash Variables")]
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 5f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+
     [Header("Animator")]
     private Animator _anim;
 
     [Header("UI")]
     [SerializeField] private GameObject Panel;
-
 
     private void Awake()
     {
@@ -95,6 +101,18 @@ public class PlayerInput : MonoBehaviour
         _velocity = jumpPower;
     }
 
+    private IEnumerator WaitForLanding()
+    {
+        yield return new WaitUntil(() => !IsGrounded());
+        yield return new WaitUntil(IsGrounded);
+
+        _numberOfJumps = 0;
+
+    }
+
+    private bool IsGrounded() => _characterController.isGrounded;
+
+
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -126,15 +144,24 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForLanding()
+    public void Dash(InputAction.CallbackContext context)
     {
-        yield return new WaitUntil(() => !IsGrounded());
-        yield return new WaitUntil(IsGrounded);
-
-        _numberOfJumps = 0;
-        
+        if (context.performed && canDash)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
-    private bool IsGrounded() => _characterController.isGrounded;
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        _direction = new Vector3(_input.x, 0.0f, _input.y);
+        _characterController.Move(_direction * dashingPower);
+        yield return new WaitForSeconds(dashingTime);
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
 
+    }
 }
