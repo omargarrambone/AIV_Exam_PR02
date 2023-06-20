@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
     public static GameObject PlayerGameObject { get; private set; }
-    public static CharacterController _charactercontroller;
+    public static CharacterController PlayerCharactercontroller;
     void Awake()
     {
        if(PlayerGameObject == null) PlayerGameObject = GameObject.FindGameObjectWithTag("Player");
+
+        PlayerCharactercontroller = PlayerGameObject.GetComponent<CharacterController>();
     }
 
     static public void SetPosition(Vector3 newPosition)
@@ -32,19 +34,18 @@ public class PlayerManager : MonoBehaviour
         PlayerGameObject.transform.rotation = newRotation;
     }
 
-    public void Check()
+    public void Death()
     {
-        if (PlayerGameObject.GetComponent<HealthManager>().IsDead == true)
-        {
-            StartCoroutine(WaitForDeathAnimation());
-        }
+        StartCoroutine(WaitForDeathAnimation());
+        SetPosition(Vector3.zero);
+        PlayerCharactercontroller.enabled = false;
     }
 
     IEnumerator WaitForDeathAnimation()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("GameOverScene");
-        yield return new WaitForSeconds(2);
-        PlayerGameObject.GetComponent<HealthManager>().ResetHealt();
+        yield return new WaitForSeconds(0.1f);
+        PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
     }
 }

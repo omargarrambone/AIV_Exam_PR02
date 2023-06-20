@@ -57,7 +57,7 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    public void ResetHealt()
+    public void ResetHealth()
     {
         CurrentHealth = MaxHealth;
         HealthBar.SetHealth(CurrentHealth);

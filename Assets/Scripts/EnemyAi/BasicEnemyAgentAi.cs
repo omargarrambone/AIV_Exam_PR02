@@ -6,37 +6,22 @@ using UnityEngine.AI;
 public class BasicEnemyAgentAi : MonoBehaviour
 {
     public NavMeshAgent Agent;
-    public Rigidbody Rb;
     public FieldOfView Fov;
-
-    public Transform PlayerTarget;
-
+    private Transform PlayerTarget;
     public GameObject Weapon;
-
     public StunnManager StunnManager;
     public HealthManager HealthManager;
     public EnemyDamageManager EnemyDamageManager;
-
     public Animator Anim;
-
     public float PatrolSpeed;
     public float ChaseSpeed;
-
     public float AttackDistance;
-
     public List<Transform> PatrolWaypoints;
     public int CurrentWaypoint;
-
     public EnemyState CurrentState;
-
-    public ParticleSystem Ucelletti;
-
+    public ParticleSystem Arancini;
     public bool IsAttacking;
-
     public PowerUp HeavyHealth;
-
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -156,7 +141,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 Agent.GetComponent<Animator>().enabled = false;
                 gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
                 gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
-                Ucelletti.gameObject.SetActive(false);
+                Arancini.gameObject.SetActive(false);
                 SpawnPowerUp(HeavyHealth);
                 Destroy(this.gameObject, 5f);
                 break;
@@ -168,7 +153,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     break;
                 }
                 Anim.SetBool("Stunned", true);
-                Ucelletti.gameObject.SetActive(true);
+                Arancini.gameObject.SetActive(true);
                 Weapon.GetComponent<BoxCollider>().enabled = false;
                 IsAttacking = false;
                 Anim.SetBool("Attack", false);
@@ -181,7 +166,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     Anim.SetBool("Stunned", false);
                     CurrentState = EnemyState.Patrol;
                     //Agent.speed = PatrolSpeed;
-                    Ucelletti.gameObject.SetActive(false);
+                    Arancini.gameObject.SetActive(false);
                     StunnManager.IsStunned = false;
                 }
 

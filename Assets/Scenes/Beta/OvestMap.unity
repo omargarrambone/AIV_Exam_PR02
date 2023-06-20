@@ -8630,7 +8630,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1593032
+  m_Name: pb_Mesh-1120336
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9996,7 +9996,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.120000005
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 6fbb099e01212364fa1a39c042faa8ea, type: 2}
   m_BuildHeightMesh: 0
@@ -10898,6 +10898,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
+      propertyPath: EnemyDamageManager
+      value: 
+      objectReference: {fileID: 1235728692}
+    - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
       propertyPath: PatrolWaypoints.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -11021,6 +11026,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbf33218603b8964083d320cbb6fbe04, type: 3}
+--- !u!114 &1235728692 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3907064155493132908, guid: bbf33218603b8964083d320cbb6fbe04,
+    type: 3}
+  m_PrefabInstance: {fileID: 1235728691}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79780afe8bdddec4da315afc0c27a7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1239431210
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -75,6 +75,8 @@ public class InventoryManager : MonoBehaviour
             staticInventoryColliders[i] = staticInventoryGameObjects[i].GetComponent<Collider>();
             staticInventoryColliders[i].enabled = false;
         }
+
+        SetActualItem(CurrentSlotIndex);
     }
 
     void SetWeaponsDamages()

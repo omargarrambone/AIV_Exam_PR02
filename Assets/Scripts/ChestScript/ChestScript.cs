@@ -13,22 +13,11 @@ public class InteractableChest : MonoBehaviour
 
     void Start()
     {
-        
         _anim = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OpenCloseChest()
     {
-
-        Debug.Log("Omar gay");
-
-
         if (isOpen == false)
         {
             isOpen = true;
