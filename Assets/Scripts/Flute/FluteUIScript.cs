@@ -13,7 +13,7 @@ public class FluteUIScript : MonoBehaviour
     [SerializeField] private PlayerInput playerInputScript;
     private float originalSpeed;
     private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
-    private int currentArrowIndex;
+    private int currentArrowIndex, lastWeaponIndex;
 
     void Awake()
     {
@@ -35,6 +35,10 @@ public class FluteUIScript : MonoBehaviour
 
     private void OnEnable()
     {
+        lastWeaponIndex = InventoryManager.CurrentSlotIndex;
+
+        Debug.Log(lastWeaponIndex);
+
         StartMinigame();
         playerInputScript.speed = 0;
         OnStart.Invoke();
@@ -71,16 +75,22 @@ public class FluteUIScript : MonoBehaviour
                 if (currentArrowIndex >= fluteArrows.Length)
                 {
                     OnCompleted.Invoke();
-                    gameObject.SetActive(false);
+                    OnFinished();
                 }
             }
             else
             {
                 OnFail.Invoke();
-                gameObject.SetActive(false);
+                OnFinished();
             }
         }
 
+    }
+
+    void OnFinished()
+    {
+        InventoryManager.SetActualItem(lastWeaponIndex);
+        gameObject.SetActive(false);
     }
 
     void SetRandomArrows()
