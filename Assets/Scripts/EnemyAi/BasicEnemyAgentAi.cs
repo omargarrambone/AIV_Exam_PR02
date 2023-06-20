@@ -34,6 +34,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public bool IsAttacking;
 
     public PowerUp HeavyHealth;
+
+    public float WaitTime;
     
 
 
@@ -52,6 +54,9 @@ public class BasicEnemyAgentAi : MonoBehaviour
         PlayerTarget = PlayerManager.PlayerGameObject.transform;
     }
 
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -63,6 +68,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
         switch (CurrentState)
         {
+           
             case EnemyState.Patrol:
                 if (Fov.targetCheck() == true)
                 {
@@ -71,11 +77,17 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }             
                 else if(Agent.remainingDistance < 2f)
                 {
-                    Fov.Angle = 150;
-                    Agent.speed = PatrolSpeed;
-                    SetNewWaypoint();
-                    //IsAttacking = false;
-                    Anim.SetBool("Attack", false);
+                    WaitTime -= Time.deltaTime;
+                    if (WaitTime <= 0)
+                    {
+                        Fov.Angle = 150;
+                        Agent.speed = PatrolSpeed;
+                        SetNewWaypoint();
+                        //IsAttacking = false;
+                        Anim.SetBool("Attack", false);
+                        WaitTime = 3;
+                    }
+
                     break;
                 }
                 if (EnemyDamageManager.PlayerIsAttacking)
@@ -83,6 +95,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     CurrentState = EnemyState.Chase;
                     break;
                 }
+               
                 break;
 
 
@@ -140,7 +153,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
 
             case EnemyState.Stun:
-               
+
                 Anim.SetBool("Stunned", true);
                 Ucelletti.gameObject.SetActive(true);
                 Weapon.GetComponent<BoxCollider>().enabled = false;
