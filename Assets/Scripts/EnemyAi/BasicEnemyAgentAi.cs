@@ -21,7 +21,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public float PatrolSpeed;
     public float ChaseSpeed;
-    
+
     public float AttackDistance;
 
     public List<Transform> PatrolWaypoints;
@@ -35,17 +35,16 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public PowerUp HeavyHealth;
 
-    public float WaitTime;
-    
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         Fov = GetComponent<FieldOfView>();
-        Anim = GetComponent<Animator>();       
-        CurrentState = EnemyState.Patrol;        
-       
+        Anim = GetComponent<Animator>();
+        CurrentState = EnemyState.Patrol;
+
         //SetNewWaypoint();
 
         PlayerTarget = PlayerManager.PlayerGameObject.transform;
@@ -58,17 +57,16 @@ public class BasicEnemyAgentAi : MonoBehaviour
     void Update()
     {
         Vector3 distanceFromTarget = PlayerTarget.position - Agent.transform.position;
-        //float distanceFromTarget = Vector3.Distance(PlayerTarget.position, Agent.transform.position);
-               
-        Anim.SetFloat("Speed", Agent.velocity.magnitude);
         
+        Anim.SetFloat("Speed", Agent.velocity.magnitude);
+
 
         switch (CurrentState)
         {
-           
+
             case EnemyState.Patrol:
 
-                
+
                 if (Fov.targetCheck() == true)
                 {
                     CurrentState = EnemyState.Chase;
@@ -76,50 +74,52 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }
                 else if (Agent.remainingDistance < 2f)
                 {
-                    WaitTime -= Time.deltaTime;
-                    if (WaitTime <= 0)
-                    {
-                        Fov.Angle = 150;
-                        SetNewWaypoint();
-                        Agent.speed = PatrolSpeed;
-                        //IsAttacking = false;
-                        Anim.SetBool("Attack", false);
-                        WaitTime = 3;
-                    }
+
+                    Fov.Angle = 150;
+                    SetNewWaypoint();
+                    Agent.speed = PatrolSpeed;
+                    //IsAttacking = false;
+                    Anim.SetBool("Attack", false);
 
                     break;
                 }
                 if (EnemyDamageManager.PlayerIsAttacking)
                 {
-                    CurrentState = EnemyState.Chase;
+                    CurrentState = EnemyState.Chase;                    
                     break;
                 }
-                
                 break;
+
+
             case EnemyState.Chase:
+               
+
                 Fov.Angle = 360;
-                if (Fov.targetCheck() == false)
-                {
-                    //Fov.Angle = 150;
-                    CurrentState = EnemyState.Patrol;
-                    EnemyDamageManager.PlayerIsAttacking = false;
-                    break;
-                }
-                else if (Fov.targetCheck() == true && distanceFromTarget.magnitude <= AttackDistance)
+
+                if (Fov.targetCheck() == true && distanceFromTarget.magnitude <= AttackDistance)
                 {
                     Agent.speed = 0;
                     CurrentState = EnemyState.Attack;
                     IsAttacking = true;
                     break;
                 }
+                else if (Fov.targetCheck() == false)
+                {
+                    //Fov.Angle = 150;
+                    CurrentState = EnemyState.Patrol;
+                    Agent.speed = PatrolSpeed;
+                    
+                    break;
+                }
+
                 Agent.speed = ChaseSpeed;
                 Agent.SetDestination(PlayerTarget.position);
-             
                 break;
 
 
+
             case EnemyState.Attack:
-               
+
                 //IsAttacking = true;
                 Anim.SetBool("Attack", true);
                 Weapon.GetComponent<BoxCollider>().enabled = true;
@@ -142,7 +142,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     Agent.speed = PatrolSpeed;
                     break;
                 }
-                
+
                 break;
 
 
@@ -169,10 +169,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     Anim.SetBool("Stunned", false);
                     CurrentState = EnemyState.Patrol;
                     //Agent.speed = PatrolSpeed;
-                    Ucelletti.gameObject.SetActive(false);                   
+                    Ucelletti.gameObject.SetActive(false);
                     StunnManager.IsStunned = false;
                 }
-              
+
                 break;
 
             case EnemyState.Dead:
@@ -200,7 +200,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public void SetNewWaypoint()
     {
-        CurrentWaypoint = Random.Range(0, PatrolWaypoints.Count);        
+        CurrentWaypoint = Random.Range(0, PatrolWaypoints.Count);
         Agent.SetDestination(PatrolWaypoints[CurrentWaypoint].position);
     }
 
@@ -209,5 +209,5 @@ public class BasicEnemyAgentAi : MonoBehaviour
     {
         Instantiate(lightHealth, transform.position + new Vector3(0, 1f, 1f), lightHealth.transform.rotation);
     }
-    
+
 }
