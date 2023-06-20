@@ -29,7 +29,7 @@ public class CameraFollow : MonoBehaviour
         Camera.main.transform.rotation = defaultCameraRotation;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         CameraMovement();
 

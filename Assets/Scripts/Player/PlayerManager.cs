@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
     public static GameObject PlayerGameObject { get; private set; }
+    public static CharacterController _charactercontroller;
     void Awake()
     {
        if(PlayerGameObject == null) PlayerGameObject = GameObject.FindGameObjectWithTag("Player");
