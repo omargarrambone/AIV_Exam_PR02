@@ -15,6 +15,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public StunnManager StunnManager;
     public HealthManager HealthManager;
+    public EnemyDamageManager EnemyDamageManager;
 
     public Animator Anim;
 
@@ -76,7 +77,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     //IsAttacking = false;
                     Anim.SetBool("Attack", false);
                     break;
-                }                 
+                }
+                if (EnemyDamageManager.PlayerIsAttacking)
+                {
+                    CurrentState = EnemyState.Chase;
+                    break;
+                }
                 break;
 
 
