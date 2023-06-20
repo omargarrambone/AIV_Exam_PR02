@@ -108,9 +108,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 //IsAttacking = true;
                 Anim.SetBool("Attack", true);
                 Weapon.GetComponent<BoxCollider>().enabled = true;
+
                 if (IsAttacking)
                 {
-                    Agent.transform.forward = distanceFromTarget.normalized;
+                    Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
                 }
 
                 if (Fov.targetCheck() == true && distanceFromTarget.magnitude > AttackDistance)
