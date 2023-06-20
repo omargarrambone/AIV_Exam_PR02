@@ -39,9 +39,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
     
 
 
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -70,19 +67,21 @@ public class BasicEnemyAgentAi : MonoBehaviour
         {
            
             case EnemyState.Patrol:
+
+                
                 if (Fov.targetCheck() == true)
                 {
                     CurrentState = EnemyState.Chase;
                     break;
-                }             
-                else if(Agent.remainingDistance < 2f)
+                }
+                else if (Agent.remainingDistance < 2f)
                 {
                     WaitTime -= Time.deltaTime;
                     if (WaitTime <= 0)
                     {
                         Fov.Angle = 150;
-                        Agent.speed = PatrolSpeed;
                         SetNewWaypoint();
+                        Agent.speed = PatrolSpeed;
                         //IsAttacking = false;
                         Anim.SetBool("Attack", false);
                         WaitTime = 3;
@@ -95,16 +94,15 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     CurrentState = EnemyState.Chase;
                     break;
                 }
-               
+                
                 break;
-
-
             case EnemyState.Chase:
                 Fov.Angle = 360;
                 if (Fov.targetCheck() == false)
                 {
                     //Fov.Angle = 150;
                     CurrentState = EnemyState.Patrol;
+                    EnemyDamageManager.PlayerIsAttacking = false;
                     break;
                 }
                 else if (Fov.targetCheck() == true && distanceFromTarget.magnitude <= AttackDistance)
@@ -153,7 +151,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
 
             case EnemyState.Stun:
-
+                if (HealthManager.IsDead)
+                {
+                    CurrentState = EnemyState.Dead;
+                }
                 Anim.SetBool("Stunned", true);
                 Ucelletti.gameObject.SetActive(true);
                 Weapon.GetComponent<BoxCollider>().enabled = false;
@@ -167,7 +168,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 {
                     Anim.SetBool("Stunned", false);
                     CurrentState = EnemyState.Patrol;
-                    Agent.speed = PatrolSpeed;
+                    //Agent.speed = PatrolSpeed;
                     Ucelletti.gameObject.SetActive(false);                   
                     StunnManager.IsStunned = false;
                 }
