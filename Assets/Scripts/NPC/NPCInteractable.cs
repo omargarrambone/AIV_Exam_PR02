@@ -10,6 +10,7 @@ public class NPCInteractable : MonoBehaviour
     public GameObject chatBubble;
     public string[] sentence = { "", "", ""};
     public TMP_Text text;
+    public int lastSentenceIndex;
 
 
     public void Interact()
@@ -39,7 +40,16 @@ public class NPCInteractable : MonoBehaviour
 
     private string RandomSentence()
     {
-        string randomWord = sentence[Random.Range(0, sentence.Length)];
+        int newSentenceIndex;
+
+        do
+        {
+            newSentenceIndex = Random.Range(0, sentence.Length);
+        } while (newSentenceIndex == lastSentenceIndex);
+
+        string randomWord = sentence[newSentenceIndex];
+
+        lastSentenceIndex = newSentenceIndex;
         return randomWord;
     }
 }
