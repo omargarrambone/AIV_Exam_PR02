@@ -292,6 +292,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DontDestroyObjects
       objectReference: {fileID: 0}
+    - target: {fileID: 2249420776414779013, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: speed
+      value: 8.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3482226279674244218, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_IsActive
@@ -310,6 +315,16 @@ PrefabInstance:
     - target: {fileID: 3853701637231825745, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_Emitting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853701637231825745, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853701637231825745, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6798346953351734511, guid: e375b58688cc98343962035d2c587cae,
