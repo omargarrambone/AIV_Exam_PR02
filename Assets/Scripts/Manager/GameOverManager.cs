@@ -5,18 +5,24 @@ using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
-
-    public SaveDataJSON SavedData;
+    public SceneSelector SceneSelector;
+    public SaveDataJSON DataSaver;
 
     // Start is called before the first frame update
     void Start()
     {
-        SavedData = FindObjectOfType<SaveDataJSON>();
+        DataSaver = FindObjectOfType<SaveDataJSON>();
     }
 
     public void LoadLastSave()
     {
-        SavedData.LoadData();
+        if (DataSaver.DoesSavesExist())
+        {
+            DataSaver.LoadData();
+        }
+        else
+        {
+            SceneSelector.HubScene();
+        }
     }
-
 }
