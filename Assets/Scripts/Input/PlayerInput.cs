@@ -33,12 +33,12 @@ public class PlayerInput : MonoBehaviour
     [Header("Dash Variables")]
     private bool canDash = true;
     private bool isDashing;
-    private float dashingPower = 1000f;
+    private float dashingPower = 3f;
     private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
+    private float dashingCooldown = 0.6f;
     [SerializeField] private TrailRenderer _trail;
 
-    [Header("Animator")]
+    [Header("Animator and RigidBody")]
     private Animator _anim;
 
     [Header("UI")]
@@ -48,6 +48,7 @@ public class PlayerInput : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
+
     }
 
     private void Update()
@@ -55,7 +56,7 @@ public class PlayerInput : MonoBehaviour
         ApplyGravity();
         ApplyRotation();
         ApplyMovement();
-        _anim.SetBool("IsGrounded", IsGrounded());
+        CheckIsGrounded();
     }
 
     public void LightAttack(InputAction.CallbackContext context)
@@ -94,6 +95,12 @@ public class PlayerInput : MonoBehaviour
         }
 
         _direction.y = _velocity;
+    }
+
+    private void CheckIsGrounded()
+    {
+
+        _anim.SetBool("IsGrounded", IsGrounded());
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -167,7 +174,7 @@ public class PlayerInput : MonoBehaviour
         canDash = false;
         isDashing = true;
         _direction = new Vector3(_input.x, 0.0f, _input.y);
-        _characterController.Move(_direction * dashingPower * Time.deltaTime);
+        _characterController.Move(_direction * dashingPower);
         _trail.emitting = true;
         yield return new WaitForSeconds(dashingTime);
         _trail.emitting = false;
