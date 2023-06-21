@@ -6,7 +6,7 @@ public class FluteScript : MonoBehaviour
 {
     private AudioClip[] audioClips;
     [SerializeField] private AudioClip downClip, rightClip, upClip, leftClip, wrongClip;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private float radius,maxDistance;
     [SerializeField] private LayerMask enemiesLayer;
     [SerializeField] bool isAttacking;
@@ -15,7 +15,6 @@ public class FluteScript : MonoBehaviour
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         audioClips = new AudioClip[((int)FluteArrow.LAST)];
         audioClips[0] = downClip;
         audioClips[1] = rightClip;

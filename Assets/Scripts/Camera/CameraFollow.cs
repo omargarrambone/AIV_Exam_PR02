@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
     static private CameraType cameraType;
 
     [SerializeField] private Transform defaultCameraTarget;
-    [SerializeField] private float smoothSpeed;
+    [SerializeField] private float smoothSpeed, cameraSpeed;
     [SerializeField] private Vector3 offset;
     private Vector3 currentVelocity;
 
@@ -35,7 +35,7 @@ public class CameraFollow : MonoBehaviour
 
         if (!isStarted) return;
 
-        counter += Time.deltaTime;
+        counter += Time.deltaTime * cameraSpeed;
         Quaternion value = Quaternion.Lerp(oldRotation, nextRotation, counter / timer);
         Camera.main.transform.rotation = value;
 
