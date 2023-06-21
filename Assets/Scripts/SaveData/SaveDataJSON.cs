@@ -57,10 +57,15 @@ public class SaveDataJSON : MonoBehaviour
         Debug.Log("Saved Game!");
     }
 
+    public bool DoesSavesExist()
+    {
+       return File.Exists(persistentPath);
+    }
+
     [ContextMenu("Load Game")]
     public void LoadData()
     {
-        if (File.Exists(persistentPath))
+        if (DoesSavesExist())
         {
             using (StreamReader reader = new StreamReader(persistentPath))
             {
@@ -78,7 +83,7 @@ public class SaveDataJSON : MonoBehaviour
                 PlayerManager.PlayerGameObject.transform.SetPositionAndRotation(SavedData.playerData.playerPos, SavedData.playerData.playerRot);
                 sceneManager.NextScene = savedData.playerData.currentScene;
                 sceneManager.PlayerPositionInNextScene = savedData.playerData.playerPos;
-                sceneManager.PlayerRotationInNextScene =savedData.playerData.playerRot;
+                sceneManager.PlayerRotationInNextScene = savedData.playerData.playerRot;
                 InventoryManager.SetInventory(savedData.playerData.inventoryItems);
                 InventoryManager.SetActualItem(savedData.playerData.currentWeapon);
                 NPCSpawner.PurifiedEnemies = savedData.townData.enemiesPurified;

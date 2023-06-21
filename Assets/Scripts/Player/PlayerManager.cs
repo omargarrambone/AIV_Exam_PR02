@@ -37,7 +37,6 @@ public class PlayerManager : MonoBehaviour
     public void Death()
     {
         StartCoroutine(WaitForDeathAnimation());
-        SetPosition(Vector3.zero);
         PlayerCharactercontroller.enabled = false;
     }
 
@@ -45,6 +44,7 @@ public class PlayerManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("GameOverScene");
+        SetPosition(Vector3.zero);
         yield return new WaitForSeconds(0.1f);
         PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
     }
