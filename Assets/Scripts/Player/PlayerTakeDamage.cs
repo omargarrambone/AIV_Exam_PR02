@@ -13,7 +13,4 @@ public class PlayerTakeDamage : MonoBehaviour
             HealthManager.TakeDamage(5);            
         }
     }
-
- 
-   
 }

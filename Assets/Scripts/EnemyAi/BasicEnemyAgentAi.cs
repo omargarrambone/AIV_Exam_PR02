@@ -24,12 +24,15 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public PowerUp HeavyHealth;
     public float TimeAttack;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         Fov = GetComponent<FieldOfView>();
         Anim = GetComponent<Animator>();
         CurrentState = EnemyState.Patrol;
+        Weapon.GetComponent<BoxCollider>().enabled = false;
 
         //SetNewWaypoint();
 
@@ -107,24 +110,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
             case EnemyState.Attack:
 
-                //IsAttacking = true;
-                //Anim.SetBool("Attack", false);
-                //Weapon.GetComponent<BoxCollider>().enabled = false;
-
-                //TimeAttack -= Time.deltaTime;
-                //if (TimeAttack <= 0)
-                //{
-                //    Anim.SetBool("Attack", true);
-                //    Weapon.GetComponent<BoxCollider>().enabled = true;
-                //    TimeAttack = 5;                    
-                //}
                 
                 Anim.SetBool("Attack", true);
-                //Weapon.GetComponent<BoxCollider>().enabled = true;
-                //if (IsAttacking)
-                //{
+              
                 Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
-                //}
+                
 
                 if (Fov.targetCheck() == true && distanceFromTarget.magnitude > AttackDistance)
                 {

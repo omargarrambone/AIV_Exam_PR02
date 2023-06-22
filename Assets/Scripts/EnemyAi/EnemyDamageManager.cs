@@ -17,7 +17,7 @@ public class EnemyDamageManager : MonoBehaviour
         if (other.gameObject.tag == "Sword")
         {
             HealthManager.TakeDamage(damage);
-            StunnManager.TakeStunn(stunDamage);
+            StunnManager.TakeStunn(stunDamage);            
             PlayerIsAttacking = true; 
 
         }
