@@ -22,7 +22,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public ParticleSystem Arancini;
     public bool IsAttacking;
     public PowerUp HeavyHealth;
-    public float TimeAttack;
+
+    //public float TimeParry = 0.5f;
 
 
 
@@ -49,12 +50,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
         
         Anim.SetFloat("Speed", Agent.velocity.magnitude);
 
+       
+      
 
         switch (CurrentState)
         {
-
             case EnemyState.Patrol:
-
 
                 if (Fov.targetCheck() == true)
                 {
@@ -110,11 +111,21 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
             case EnemyState.Attack:
 
-                
                 Anim.SetBool("Attack", true);
               
                 Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
-                
+
+                //if (EnemyDamageManager.ParryTimeIndex <= 0.4f && StunnManager.IsStunned == false)
+                //{
+                //    Anim.SetBool("IsParrying", true);
+                //    TimeParry -= Time.deltaTime;
+                //    if (TimeParry <= 0)
+                //    {
+                //        Anim.SetBool("IsParrying", false);
+                //        TimeParry = 0.5f;
+                //    }
+                //    break;
+                //}
 
                 if (Fov.targetCheck() == true && distanceFromTarget.magnitude > AttackDistance)
                 {

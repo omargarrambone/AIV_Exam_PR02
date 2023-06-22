@@ -23,7 +23,6 @@ public class StunnManager : MonoBehaviour
 
     public UnityEvent OnStun;
 
-    
     // Start is called before the first frame update
     void Start()
     {

@@ -10,7 +10,8 @@ public class EnemyDamageManager : MonoBehaviour
     public StunnManager StunnManager;
     public ParticleSystem ucelletti;
     public bool PlayerIsAttacking;
-    
+    public float ParryTimeIndex;
+    //public bool IsParrying;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,8 +19,18 @@ public class EnemyDamageManager : MonoBehaviour
         {
             HealthManager.TakeDamage(damage);
             StunnManager.TakeStunn(stunDamage);            
-            PlayerIsAttacking = true; 
-
+            PlayerIsAttacking = true;
+            ParryTimeIndex = Random.Range(0f, 1f);
+            //if (ParryTimeIndex < 0.4f)
+            //{
+            //    IsParrying = true;
+            //    ChangeDamage(0f, 0f);
+            //}
+            //else
+            //{
+            //    IsParrying = false;
+            //    ChangeDamage();
+            //}
         }
     }
 
