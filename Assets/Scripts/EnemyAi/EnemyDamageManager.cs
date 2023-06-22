@@ -8,8 +8,28 @@ public class EnemyDamageManager : MonoBehaviour
 
     public HealthManager HealthManager;
     public StunnManager StunnManager;
-    public ParticleSystem ucelletti;
+    public ParticleSystem arancini;
     public bool PlayerIsAttacking;
+
+    public float timer, counter;
+
+    private void Start()
+    {
+        timer = 1f;
+    }
+
+    private void Update()
+    {
+        if (PlayerIsAttacking)
+        {
+            counter -= Time.deltaTime;
+
+            if (counter < 0)
+            {
+                PlayerIsAttacking = false;
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,7 +38,8 @@ public class EnemyDamageManager : MonoBehaviour
             HealthManager.TakeDamage(damage);
             StunnManager.TakeStunn(stunDamage);
 
-            PlayerIsAttacking = true; 
+            PlayerIsAttacking = true;
+            counter = timer;
         }
     }
 
@@ -27,15 +48,10 @@ public class EnemyDamageManager : MonoBehaviour
         damage = bloodDamage;
         stunDamage = stunnDamage;
     }
-   
-    private void OnTriggerExit(Collider other)
-    {
-        PlayerIsAttacking = false;
-    }
 
     public void SpawnParticles()
     {
-        ParticleSystem go = Instantiate(ucelletti, transform);
+        ParticleSystem go = Instantiate(arancini, transform);
         go.gameObject.SetActive(true);
         go.Play();
     }
