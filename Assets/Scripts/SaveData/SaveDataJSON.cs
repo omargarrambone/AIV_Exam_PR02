@@ -7,7 +7,7 @@ public class SaveDataJSON : MonoBehaviour
     public static SaveData SavedData { get; private set; }
 
     private HealthManager healthManager;
-    [SerializeField] private InventoryManager inventoryManager;
+    [SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private SceneMngr sceneManager;
     [SerializeField] private FluteScript fluteScript;
     [SerializeField] private SaveData savedData;
@@ -42,8 +42,8 @@ public class SaveDataJSON : MonoBehaviour
             savedData.playerData.playerPos = PlayerManager.PlayerGameObject.transform.position;
             savedData.playerData.playerRot = PlayerManager.PlayerGameObject.transform.rotation;
             savedData.playerData.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-            savedData.playerData.inventoryItems = InventoryManager.InventoryItems;
-            savedData.playerData.currentWeapon = InventoryManager.CurrentSlotIndex;
+            savedData.playerData.takenItems = weaponsManager.TakenWeapons;
+            savedData.playerData.currentWeapon = weaponsManager.CurrentSlotIndex;
             savedData.townData.enemiesPurified = NPCSpawner.PurifiedEnemies;
             savedData.townData.enemiesKilled = NPCSpawner.KilledEnemies;
 
@@ -84,8 +84,8 @@ public class SaveDataJSON : MonoBehaviour
                 sceneManager.NextScene = savedData.playerData.currentScene;
                 sceneManager.PlayerPositionInNextScene = savedData.playerData.playerPos;
                 sceneManager.PlayerRotationInNextScene = savedData.playerData.playerRot;
-                InventoryManager.SetInventory(savedData.playerData.inventoryItems);
-                InventoryManager.SetActualItem(savedData.playerData.currentWeapon);
+                weaponsManager.SetInventory(savedData.playerData.takenItems);
+                weaponsManager.SetActualItem(savedData.playerData.currentWeapon);
                 NPCSpawner.PurifiedEnemies = savedData.townData.enemiesPurified;
                 NPCSpawner.KilledEnemies = savedData.townData.enemiesKilled;
 

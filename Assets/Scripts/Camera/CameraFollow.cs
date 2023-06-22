@@ -14,7 +14,6 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform defaultCameraTarget;
     [SerializeField] private float smoothSpeed;
     [SerializeField] private Vector3 defaultCameraOffset, cameraForwardOffset;
-    //[SerializeField] private float maxDistanceFromCamera;
     [SerializeField] private float playerForwardDistance;
 
 
@@ -32,8 +31,6 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float lerpTimer, lerpCounter;
     [SerializeField] Quaternion oldRotation, nextRotation;
     [SerializeField] private float slerpSpeedRotation;
-
-    //Vector3 cameraNoOffsetPosition, newTarget;
 
     private void Awake()
     {
@@ -111,15 +108,6 @@ public class CameraFollow : MonoBehaviour
             }
         }
 
-        //cameraNoOffsetPosition = new Vector3(transform.position.x - cameraForwardOffset.x, 0, 0);
-        //newTarget = new Vector3(ActualCameraTarget.position.x, 0, 0);
-
-
-        //if (Vector3.Distance(cameraNoOffsetPosition, newTarget) > maxDistanceFromCamera)
-        //{
-        //    cameraForwardOffset = new Vector3(Mathf.Sign(ActualCameraTarget.forward.x), 0, 0) * playerForwardDistance;
-        //}
-
         transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + cameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
     }
 
@@ -166,38 +154,5 @@ public class CameraFollow : MonoBehaviour
     {
         ResetCameraTarget();
         transform.position = ActualCameraTarget.position + defaultCameraOffset;
-    }
-
-    private void OnDrawGizmos()
-    {
-        //if (!Application.isPlaying) return;
-
-        ///*
-        // * 
-        // * 
-        //        cameraNoOffsetPosition = new Vector3(transform.position.x - cameraForwardOffset.x, 0, ActualCameraTarget.position.z);
-        //        newTarget = new Vector3(ActualCameraTarget.position.x, 0, ActualCameraTarget.position.z);
-
-        //        if (Vector3.Distance(cameraNoOffsetPosition, newTarget) > maxDistanceFromCamera)
-        //        {
-        //            cameraForwardOffset = new Vector3(Mathf.Sign(ActualCameraTarget.forward.x), 0, 0) * playerForwardDistance;
-        //        }
-
-        //        transform.position = Vector3.SmoothDamp(transform.position, cameraPosition + cameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
-        // * 
-        // * 
-        // */
-
-        //Vector3 zOffset = new Vector3(0, 0, ActualCameraTarget.position.z);
-
-        //Gizmos.color = Color.grey;
-        //Gizmos.DrawLine(cameraNoOffsetPosition + Vector3.up * 5f + zOffset + new Vector3(0, 0, 0.3f), newTarget + Vector3.up * 5f + zOffset);
-
-
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawRay(cameraNoOffsetPosition + Vector3.up * 4.5f + zOffset, Vector3.right * maxDistanceFromCamera);
-        //Gizmos.color = Color.green;
-        //Gizmos.DrawRay(cameraNoOffsetPosition + Vector3.up * 4.5f + zOffset, -Vector3.right * maxDistanceFromCamera);
-
     }
 }

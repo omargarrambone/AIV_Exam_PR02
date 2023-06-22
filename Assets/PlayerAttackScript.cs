@@ -6,17 +6,18 @@ using UnityEngine.Events;
 public class PlayerAttackScript : MonoBehaviour
 {
     public UnityEvent OnStartAttack,OnEndAttack;
+    public WeaponsManager weaponsManager;
 
     public void CallOnStartHit()
     {
-        InventoryManager.SetObjectsColliders(true);
+        weaponsManager.SetObjectsColliders(true);
 
         OnStartAttack.Invoke();
     }
 
     public void CallOnEndHit()
     {
-        InventoryManager.SetObjectsColliders(false);
+        weaponsManager.SetObjectsColliders(false);
 
         OnEndAttack.Invoke();
     }

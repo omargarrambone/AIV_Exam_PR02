@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class FluteUIScript : MonoBehaviour
 {
+    [SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private Transform ArrowsUIParent,ArrowsPrefab;
     [SerializeField] private int arrowsToGenerate;
     [SerializeField] private UnityEvent OnStart,OnCompleted, OnFail;
     [SerializeField] private UnityEvent<FluteArrow> OnCorrectArrow;
     [SerializeField] private PlayerInput playerInputScript;
-    private float originalSpeed;
     private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
     private int currentArrowIndex, lastWeaponIndex;
 
@@ -26,27 +26,17 @@ public class FluteUIScript : MonoBehaviour
             image.color = i%2 == 0 ? Color.red : Color.blue;
         }
 
-        //originalSpeed = playerInputScript.speed;
-        Rigidbody playerRb = playerInputScript.gameObject.GetComponent<Rigidbody>();
-        //playerRb.velocity = new Vector3(0, playerRb.velocity.y, 0);
-
         gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
-        lastWeaponIndex = InventoryManager.CurrentSlotIndex;
+        lastWeaponIndex = weaponsManager.CurrentSlotIndex;
 
         Debug.Log(lastWeaponIndex);
 
         StartMinigame();
-        //playerInputScript.speed = 0;
         OnStart.Invoke();
-    }
-
-    private void OnDisable()
-    {
-        //playerInputScript.speed = originalSpeed;
     }
 
     [ContextMenu("StartMinigame")]
@@ -89,7 +79,7 @@ public class FluteUIScript : MonoBehaviour
 
     void OnFinished()
     {
-        InventoryManager.SetActualItem(lastWeaponIndex);
+        weaponsManager.SetActualItem(lastWeaponIndex);
         gameObject.SetActive(false);
     }
 
@@ -120,7 +110,6 @@ public class FluteUIScript : MonoBehaviour
             ArrowsUIParent.GetChild(i).localRotation = Quaternion.Euler(0, 0, ((int)index) * 90);
             ArrowsUIParent.GetChild(i).gameObject.SetActive(true);
             fluteArrows[i] = new System.Tuple<int, FluteArrow, Vector2>(i,index,direction);
-
         }
     }
 }
