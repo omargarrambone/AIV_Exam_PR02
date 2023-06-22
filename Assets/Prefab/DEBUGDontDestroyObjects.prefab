@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37751a611a4a676448e25d9142b5fa3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryManager: {fileID: 6657907029336734532}
+  weaponsManager: {fileID: 0}
   sceneManager: {fileID: 8851494325213788243}
   fluteScript: {fileID: 519915119367509874}
   savedData:
@@ -287,7 +287,7 @@ MonoBehaviour:
       currentHealth: 0
       currentScene: 
       currentWeapon: 0
-      inventoryItems: []
+      takenItems: 
     townData:
       enemiesKilled: 0
       enemiesPurified: 0
@@ -362,6 +362,94 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneMngr: {fileID: 8851494325213788243}
+--- !u!1 &7148578764311178239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7118516480731959334}
+  - component: {fileID: 6120383472954885606}
+  - component: {fileID: 6356082695549351753}
+  - component: {fileID: 3800925634405986365}
+  m_Layer: 0
+  m_Name: InitWeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7118516480731959334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7148578764311178239}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -707.1829, y: -564.51587, z: -7.7420683}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7668322060623375406}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6120383472954885606
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7148578764311178239}
+  m_Material: {fileID: 13400000, guid: 93ff06603b0af5742a0ede6b7dfcf0d3, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 11.276352, y: 0.48468983, z: 13.315502}
+  m_Center: {x: 0.36706614, y: -0.25765508, z: -0.09377766}
+--- !u!114 &6356082695549351753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7148578764311178239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cd492dfc809204a82056f6f01c06e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  ItemName: 
+--- !u!114 &3800925634405986365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7148578764311178239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085b7df3cb801e6418f3f05b15e063be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initWeaponsManager: 0
+  itemType: 5
+  onPickUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8066700044974064409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,7 +1547,11 @@ PrefabInstance:
       objectReference: {fileID: 1648116719290742614}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4650765706550728413, guid: bee547f3ac2c72f4592c1cfb38ec1269,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7118516480731959334}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee547f3ac2c72f4592c1cfb38ec1269, type: 3}
 --- !u!114 &6657907029336734532 stripped

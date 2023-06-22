@@ -15,8 +15,8 @@ public class StunnManager : MonoBehaviour
 
     float StunnDecreaseVelocity = 20.0f;
 
-    float timer = 3.0f;
-    float counter;
+    [SerializeField] float timer = 3.0f;
+    [SerializeField] float counter;
 
     public HealthBarScript StunnBar;
     public EnemyDamageManager EnemyDamageManager;
@@ -41,7 +41,6 @@ public class StunnManager : MonoBehaviour
         if (CurrentStunn >= 95)
         {
             OnStun.Invoke();
-            Debug.Log("Stun");
             IsStunned = true;
         }
     }
