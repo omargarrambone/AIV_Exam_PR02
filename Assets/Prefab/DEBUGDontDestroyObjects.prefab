@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37751a611a4a676448e25d9142b5fa3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponsManager: {fileID: 0}
+  weaponsManager: {fileID: 6657907029336734532}
   sceneManager: {fileID: 8851494325213788243}
   fluteScript: {fileID: 519915119367509874}
   savedData:
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085b7df3cb801e6418f3f05b15e063be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initWeaponsManager: 0
+  initWeaponsManager: 1
   itemType: 5
   onPickUp:
     m_PersistentCalls:
@@ -1064,6 +1064,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 591661635958209730}
     m_Modifications:
+    - target: {fileID: 315961554311713554, guid: 4acec09d19bcae24ab2696ccd6993a45,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 349371901373918778, guid: 4acec09d19bcae24ab2696ccd6993a45,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 514620371966703439, guid: 4acec09d19bcae24ab2696ccd6993a45,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 589347369703249372, guid: 4acec09d19bcae24ab2696ccd6993a45,
+        type: 3}
+      propertyPath: weaponsManager
+      value: 
+      objectReference: {fileID: 6657907029336734532}
     - target: {fileID: 589347369703249372, guid: 4acec09d19bcae24ab2696ccd6993a45,
         type: 3}
       propertyPath: playerInputScript
@@ -1173,6 +1193,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5142345329025826492, guid: 4acec09d19bcae24ab2696ccd6993a45,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6249980519869730329, guid: 4acec09d19bcae24ab2696ccd6993a45,
         type: 3}
@@ -1288,6 +1313,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766810327147507892, guid: 4acec09d19bcae24ab2696ccd6993a45,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -1408,7 +1438,7 @@ PrefabInstance:
     - target: {fileID: 2140565220340327000, guid: bee547f3ac2c72f4592c1cfb38ec1269,
         type: 3}
       propertyPath: m_Name
-      value: InventoryManager
+      value: WeaponsManager
       objectReference: {fileID: 0}
     - target: {fileID: 4650765706550728413, guid: bee547f3ac2c72f4592c1cfb38ec1269,
         type: 3}
@@ -1467,6 +1497,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540003187321995703, guid: bee547f3ac2c72f4592c1cfb38ec1269,
         type: 3}
+      propertyPath: Weapons.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540003187321995703, guid: bee547f3ac2c72f4592c1cfb38ec1269,
+        type: 3}
       propertyPath: animatorLayerLerper
       value: 
       objectReference: {fileID: 2138099521076603001}
@@ -1485,6 +1520,36 @@ PrefabInstance:
       propertyPath: animatorLayerLerper3
       value: 
       objectReference: {fileID: 1418544143875579117}
+    - target: {fileID: 8540003187321995703, guid: bee547f3ac2c72f4592c1cfb38ec1269,
+        type: 3}
+      propertyPath: Weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: a69449c1fd2d2a349a51559dbb4ed1d1,
+        type: 2}
+    - target: {fileID: 8540003187321995703, guid: bee547f3ac2c72f4592c1cfb38ec1269,
+        type: 3}
+      propertyPath: Weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: ab443387be8c0674a83593876c865cab,
+        type: 2}
+    - target: {fileID: 8540003187321995703, guid: bee547f3ac2c72f4592c1cfb38ec1269,
+        type: 3}
+      propertyPath: Weapons.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: b97a56f7ac7c1b044acedbb4f10ef8e9,
+        type: 2}
+    - target: {fileID: 8540003187321995703, guid: bee547f3ac2c72f4592c1cfb38ec1269,
+        type: 3}
+      propertyPath: Weapons.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 90fbd5b9d80ec2643b218175a1c71b6c,
+        type: 2}
+    - target: {fileID: 8540003187321995703, guid: bee547f3ac2c72f4592c1cfb38ec1269,
+        type: 3}
+      propertyPath: Weapons.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9156cd26af05ae44a8aa20efd6086f24,
+        type: 2}
     - target: {fileID: 8540003187321995703, guid: bee547f3ac2c72f4592c1cfb38ec1269,
         type: 3}
       propertyPath: inventoryImages.Array.size
@@ -1667,6 +1732,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7675922727242480008, guid: 77237156cebbaf44bb6463bf954a205d,
         type: 3}
+      propertyPath: forwardTimer
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675922727242480008, guid: 77237156cebbaf44bb6463bf954a205d,
+        type: 3}
       propertyPath: speedLerpToForward
       value: 5
       objectReference: {fileID: 0}
@@ -1694,6 +1764,11 @@ PrefabInstance:
         type: 3}
       propertyPath: playerForwardDistance
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675922727242480008, guid: 77237156cebbaf44bb6463bf954a205d,
+        type: 3}
+      propertyPath: diabloCameraRotationOffset.x
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8316991118256608094, guid: 77237156cebbaf44bb6463bf954a205d,
         type: 3}
@@ -1754,6 +1829,11 @@ PrefabInstance:
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1840846006554513355}
+    - target: {fileID: 6141781858902244683, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: weaponsManager
+      value: 
+      objectReference: {fileID: 6657907029336734532}
     - target: {fileID: 6687031375049185533, guid: b4d505da6851e2848ab8f21d473442e0,
         type: 3}
       propertyPath: m_RootOrder
