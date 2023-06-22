@@ -5,6 +5,8 @@ using UnityEngine;
 public class CameraLockWall : MonoBehaviour
 {
     [SerializeField] private Transform cameraTarget;
+    [SerializeField] private bool isTargetPlayer;
+    [SerializeField] private CameraType cameraType=CameraType.LookAtPlayer;
     static private CameraFollow cameraFollow;
 
     private void Start()
@@ -20,7 +22,11 @@ public class CameraLockWall : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        cameraFollow.SetCameraTarget(cameraTarget);
+        if (isTargetPlayer)
+        {
+            cameraFollow.SetCameraTarget(PlayerManager.PlayerGameObject.transform, cameraType);
+        }
+        else cameraFollow.SetCameraTarget(cameraTarget, cameraType);
     }
 
     private void OnTriggerExit(Collider other)

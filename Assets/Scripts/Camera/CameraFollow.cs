@@ -6,6 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     private Transform ActualCameraTarget;
     private Quaternion defaultCameraRotation;
+    private Vector3 smoothDampVelocity;
 
     [SerializeField] private CameraType cameraType;
 
@@ -13,16 +14,26 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform defaultCameraTarget;
     [SerializeField] private float smoothSpeed;
     [SerializeField] private Vector3 defaultCameraOffset, cameraForwardOffset;
-    [SerializeField] private float maxDistanceFromCamera;
+    //[SerializeField] private float maxDistanceFromCamera;
     [SerializeField] private float playerForwardDistance;
 
-    private Vector3 smoothDampVelocity;
+
+    [Header("Change Forward Camera")]
+    [SerializeField] bool isChanging;
+    [SerializeField] float forwardTimer, forwardCounter;
+    [SerializeField] int lastDirection;
+
+    [Header("Diablo Camera Variables")]
+    [SerializeField] Vector3 diabloCameraPositionOffset;
+    [SerializeField] Vector3 diabloCameraRotationOffset;
 
     [Header("Lerp Variables")]
     [SerializeField] bool hasStartedLerping;
-    [SerializeField] float timer, counter;
-    static Quaternion oldRotation, nextRotation, lookAtRotation;
+    [SerializeField] float lerpTimer, lerpCounter;
+    [SerializeField] Quaternion oldRotation, nextRotation;
     [SerializeField] private float slerpSpeedRotation;
+
+    //Vector3 cameraNoOffsetPosition, newTarget;
 
     private void Awake()
     {
@@ -44,53 +55,95 @@ public class CameraFollow : MonoBehaviour
     {
         if (!hasStartedLerping) return;
 
-        counter += Time.deltaTime;
-        Quaternion value = Quaternion.Lerp(oldRotation, nextRotation, counter / timer);
+        lerpCounter += Time.deltaTime;
+        Quaternion value = Quaternion.Lerp(oldRotation, nextRotation, lerpCounter / lerpTimer);
         Camera.main.transform.rotation = value;
 
-        if (counter > timer) { hasStartedLerping = false; counter = 0; Camera.main.transform.rotation = nextRotation; }
+        if (lerpCounter > lerpTimer) { hasStartedLerping = false; lerpCounter = 0; Camera.main.transform.rotation = nextRotation; }
     }
 
     private void CameraMovement()
     {
-        Vector3 cameraPosition = ActualCameraTarget.position + defaultCameraOffset;
+        Vector3 newCameraPosition = ActualCameraTarget.position + defaultCameraOffset;
 
         switch (cameraType)
         {
             case CameraType.FollowPlayer:
-                Vector3 cameraNoOffsetPosition = new Vector3(transform.position.x - cameraForwardOffset.x, ActualCameraTarget.position.y, ActualCameraTarget.position.z);
-                Vector3 newTarget = new Vector3(ActualCameraTarget.position.x, ActualCameraTarget.position.y, ActualCameraTarget.position.z);
-
-                if (Vector3.Distance(cameraNoOffsetPosition, newTarget) > maxDistanceFromCamera)
-                {
-                    cameraForwardOffset = new Vector3(Mathf.Sign(ActualCameraTarget.forward.x), 0, 0) * playerForwardDistance;
-                }
-
-                transform.position = Vector3.SmoothDamp(transform.position, cameraPosition + cameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
-
+                FollowPlayer(newCameraPosition);
                 break;
 
             case CameraType.LookAtPlayer:
-                Vector3 relativePos = PlayerManager.PlayerGameObject.transform.position - transform.position;
-                lookAtRotation = Quaternion.LookRotation(relativePos);
+                LookAtPlayer(newCameraPosition);
+                break;
 
-                lookAtRotation = Quaternion.Slerp(Camera.main.transform.rotation, lookAtRotation, Time.deltaTime * slerpSpeedRotation);
-
-                nextRotation = lookAtRotation;
-                if (!hasStartedLerping) Camera.main.transform.rotation = lookAtRotation;
-
-                transform.position = Vector3.SmoothDamp(transform.position, cameraPosition, ref smoothDampVelocity, smoothSpeed);
+            case CameraType.DiabloCamera:
+                DiabloCamera(newCameraPosition);
                 break;
         }
+    }
 
+
+    private void DiabloCamera(Vector3 newCameraPosition)
+    {
+        nextRotation = Quaternion.Euler(diabloCameraRotationOffset);
+        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + diabloCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
+    }
+
+    private void FollowPlayer(Vector3 newCameraPosition)
+    {
+        int newDirection = Mathf.RoundToInt(ActualCameraTarget.forward.x);
+
+        if (newDirection != lastDirection)
+        {
+            lastDirection = newDirection;
+            forwardCounter = forwardTimer;
+            isChanging = true;
+        }
+
+        if (isChanging)
+        {
+            forwardCounter -= Time.deltaTime;
+
+            if (forwardCounter < 0)
+            {
+                cameraForwardOffset = new Vector3(Mathf.Sign(ActualCameraTarget.forward.x), 0, 0) * playerForwardDistance;
+                isChanging = false;
+            }
+        }
+
+        //cameraNoOffsetPosition = new Vector3(transform.position.x - cameraForwardOffset.x, 0, 0);
+        //newTarget = new Vector3(ActualCameraTarget.position.x, 0, 0);
+
+
+        //if (Vector3.Distance(cameraNoOffsetPosition, newTarget) > maxDistanceFromCamera)
+        //{
+        //    cameraForwardOffset = new Vector3(Mathf.Sign(ActualCameraTarget.forward.x), 0, 0) * playerForwardDistance;
+        //}
+
+        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + cameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
+    }
+
+    private void LookAtPlayer(Vector3 newCameraPosition)
+    {
+        Vector3 relativePos = PlayerManager.PlayerGameObject.transform.position - transform.position;
+        nextRotation = Quaternion.LookRotation(relativePos);
+
+        nextRotation = Quaternion.Slerp(Camera.main.transform.rotation, nextRotation, Time.deltaTime * slerpSpeedRotation);
+
+        if (!hasStartedLerping) Camera.main.transform.rotation = nextRotation;
+
+        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition, ref smoothDampVelocity, smoothSpeed);
     }
 
     public void SetCameraTarget(Transform target, CameraType type = CameraType.LookAtPlayer)
     {
         ActualCameraTarget = target;
         cameraType = type;
-        
-        SetNewRotations(lookAtRotation);
+
+        Vector3 relativePos = PlayerManager.PlayerGameObject.transform.position - transform.position;
+        nextRotation = Quaternion.LookRotation(relativePos);
+
+        SetNewRotations(nextRotation);
     }
 
     public void ResetCameraTarget()
@@ -103,7 +156,7 @@ public class CameraFollow : MonoBehaviour
 
     void SetNewRotations(Quaternion nextQuaternion)
     {
-        counter = 0;
+        lerpCounter = 0;
         oldRotation = Camera.main.transform.rotation;
         nextRotation = nextQuaternion;
         hasStartedLerping = true;
@@ -113,5 +166,38 @@ public class CameraFollow : MonoBehaviour
     {
         ResetCameraTarget();
         transform.position = ActualCameraTarget.position + defaultCameraOffset;
+    }
+
+    private void OnDrawGizmos()
+    {
+        //if (!Application.isPlaying) return;
+
+        ///*
+        // * 
+        // * 
+        //        cameraNoOffsetPosition = new Vector3(transform.position.x - cameraForwardOffset.x, 0, ActualCameraTarget.position.z);
+        //        newTarget = new Vector3(ActualCameraTarget.position.x, 0, ActualCameraTarget.position.z);
+
+        //        if (Vector3.Distance(cameraNoOffsetPosition, newTarget) > maxDistanceFromCamera)
+        //        {
+        //            cameraForwardOffset = new Vector3(Mathf.Sign(ActualCameraTarget.forward.x), 0, 0) * playerForwardDistance;
+        //        }
+
+        //        transform.position = Vector3.SmoothDamp(transform.position, cameraPosition + cameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
+        // * 
+        // * 
+        // */
+
+        //Vector3 zOffset = new Vector3(0, 0, ActualCameraTarget.position.z);
+
+        //Gizmos.color = Color.grey;
+        //Gizmos.DrawLine(cameraNoOffsetPosition + Vector3.up * 5f + zOffset + new Vector3(0, 0, 0.3f), newTarget + Vector3.up * 5f + zOffset);
+
+
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawRay(cameraNoOffsetPosition + Vector3.up * 4.5f + zOffset, Vector3.right * maxDistanceFromCamera);
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawRay(cameraNoOffsetPosition + Vector3.up * 4.5f + zOffset, -Vector3.right * maxDistanceFromCamera);
+
     }
 }

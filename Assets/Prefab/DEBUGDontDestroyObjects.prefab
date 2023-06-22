@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 2747492804823516832}
   - component: {fileID: 6061038782799226232}
   - component: {fileID: 3234511642316148617}
+  - component: {fileID: 1171931456567044255}
   m_Layer: 5
   m_Name: LoadingCanvas
   m_TagString: Untagged
@@ -448,6 +449,19 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &1171931456567044255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8066700044974064409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ea839dc51403a4d9ace732c55c3f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingText: {fileID: 867824949597442275}
 --- !u!1 &8573403018416517902
 GameObject:
   m_ObjectHideFlags: 0
