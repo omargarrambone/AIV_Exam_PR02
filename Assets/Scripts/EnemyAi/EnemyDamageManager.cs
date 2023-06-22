@@ -10,6 +10,7 @@ public class EnemyDamageManager : MonoBehaviour
     public StunnManager StunnManager;
     public ParticleSystem ucelletti;
     public bool PlayerIsAttacking;
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,8 +18,8 @@ public class EnemyDamageManager : MonoBehaviour
         {
             HealthManager.TakeDamage(damage);
             StunnManager.TakeStunn(stunDamage);
-
             PlayerIsAttacking = true; 
+
         }
     }
 

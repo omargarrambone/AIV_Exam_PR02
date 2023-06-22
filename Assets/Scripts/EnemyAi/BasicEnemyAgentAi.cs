@@ -22,6 +22,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public ParticleSystem Arancini;
     public bool IsAttacking;
     public PowerUp HeavyHealth;
+    public float TimeAttack;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +81,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                
 
                 Fov.Angle = 360;
+                //Weapon.GetComponent<BoxCollider>().enabled = false;
 
                 if (Fov.targetCheck() == true && distanceFromTarget.magnitude <= AttackDistance)
                 {
@@ -106,20 +108,30 @@ public class BasicEnemyAgentAi : MonoBehaviour
             case EnemyState.Attack:
 
                 //IsAttacking = true;
-                Anim.SetBool("Attack", true);
-                Weapon.GetComponent<BoxCollider>().enabled = true;
+                //Anim.SetBool("Attack", false);
+                //Weapon.GetComponent<BoxCollider>().enabled = false;
 
-                if (IsAttacking)
-                {
-                    Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
-                }
+                //TimeAttack -= Time.deltaTime;
+                //if (TimeAttack <= 0)
+                //{
+                //    Anim.SetBool("Attack", true);
+                //    Weapon.GetComponent<BoxCollider>().enabled = true;
+                //    TimeAttack = 5;                    
+                //}
+                
+                Anim.SetBool("Attack", true);
+                //Weapon.GetComponent<BoxCollider>().enabled = true;
+                //if (IsAttacking)
+                //{
+                Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
+                //}
 
                 if (Fov.targetCheck() == true && distanceFromTarget.magnitude > AttackDistance)
                 {
-                    CurrentState = EnemyState.Chase;
-                    Agent.speed = ChaseSpeed;
-                    IsAttacking = false;
                     Anim.SetBool("Attack", false);
+                    Agent.speed = ChaseSpeed;
+                    CurrentState = EnemyState.Chase;
+                    IsAttacking = false;
                     break;
                 }
                 else if (Fov.targetCheck() == false)
@@ -198,4 +210,13 @@ public class BasicEnemyAgentAi : MonoBehaviour
         Instantiate(lightHealth, transform.position + new Vector3(0, 1f, 1f), lightHealth.transform.rotation);
     }
 
+    public void StartAttack()
+    {
+        Weapon.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    public void EndAttack()
+    {
+        Weapon.GetComponent<BoxCollider>().enabled = false;
+    }
 }
