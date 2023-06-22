@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class CampFire : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ShowHideMenu()
     {
-        
+        PauseMenuManager.PauseMenu.SetActive(!PauseMenuManager.PauseMenu.activeSelf);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HideMenu()
     {
-        
+        PauseMenuManager.PauseMenu.SetActive(false);
     }
 }

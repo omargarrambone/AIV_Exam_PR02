@@ -38,8 +38,9 @@ public class Interactor : MonoBehaviour
         {
             actualInteractable = colliders[0].GetComponent<Interactable>();
         }
-        else
+        else if(actualInteractable!= null)
         {
+            actualInteractable.OnPlayerExitRange.Invoke();
             actualInteractable = null;
         }
     }
