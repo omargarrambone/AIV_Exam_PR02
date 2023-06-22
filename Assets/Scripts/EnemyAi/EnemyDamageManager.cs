@@ -11,7 +11,7 @@ public class EnemyDamageManager : MonoBehaviour
     public ParticleSystem arancini;
     public bool PlayerIsAttacking;
     public float ParryTimeIndex;
-    //public bool IsParrying;
+    public bool IsParrying;
 
     public float timer, counter;
 
@@ -38,19 +38,20 @@ public class EnemyDamageManager : MonoBehaviour
         if (other.gameObject.tag == "Sword")
         {
             HealthManager.TakeDamage(damage);
+            StunnManager.TakeStunn(stunDamage);
            
             ParryTimeIndex = Random.Range(0f, 1f);
-            //if (ParryTimeIndex < 0.4f)
-            //{
-            //    IsParrying = true;
-            //    ChangeDamage(0f, 0f);
-            //}
-            //else
-            //{
-            //    IsParrying = false;
-            //    ChangeDamage();
-            //}
-            StunnManager.TakeStunn(stunDamage);
+            if (ParryTimeIndex < 0.4f)
+            {
+                IsParrying = true;
+                HealthManager.TakeDamage(0f);
+                StunnManager.TakeStunn(0f);
+            }
+            else
+            {
+                IsParrying = false;
+                
+            }
 
             PlayerIsAttacking = true;
             counter = timer;
