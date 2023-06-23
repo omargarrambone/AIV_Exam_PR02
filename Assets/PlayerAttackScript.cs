@@ -8,35 +8,26 @@ using UnityEngine.VFX;
 public class PlayerAttackScript : MonoBehaviour
 {
     public UnityEvent OnStartAttack, OnEndAttack;
-    public VisualEffect swordSlash;
+    public VisualEffect[] swordSlash;
 
 
     public void CallOnStartHit()
     {
-
-
-        if (InventoryManager.CurrentSlotIndex == 0)
-        {
+           
             InventoryManager.SetObjectsColliders(true);
             OnStartAttack.Invoke();
 
-        }
-        else
-        {
-            InventoryManager.SetObjectsColliders(true);
-            OnStartAttack.Invoke();
+            swordSlash[InventoryManager.CurrentSlotIndex].playRate = 0.80f;
+            swordSlash[InventoryManager.CurrentSlotIndex].Play();
 
-            swordSlash.playRate = 0.80f;
-            swordSlash.Play();
-
-        }
+        
     }
 
     public void CallOnEndHit()
     {
         InventoryManager.SetObjectsColliders(false);
 
-        swordSlash.Stop();
+        swordSlash[InventoryManager.CurrentSlotIndex].Stop();
         OnEndAttack.Invoke();
 
     }
