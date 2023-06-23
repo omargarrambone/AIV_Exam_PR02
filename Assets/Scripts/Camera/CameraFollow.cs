@@ -53,7 +53,7 @@ public class CameraFollow : MonoBehaviour
 
     public void LoadCameraPosition()
     {
-        if (CameraPositionOnChangeScene == Vector3.zero) CameraPositionOnChangeScene = SaveDataJSON.SavedData.playerData.playerPos + DefaultCameraOffset;
+        CameraPositionOnChangeScene = SaveDataJSON.SavedData.playerData.playerPos + DefaultCameraOffset + Vector3.forward*playerForwardDistance;
         
     }
 

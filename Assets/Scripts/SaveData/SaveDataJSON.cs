@@ -19,14 +19,12 @@ public class SaveDataJSON : MonoBehaviour
         SetPaths();
         healthManager = PlayerManager.PlayerGameObject.GetComponent<HealthManager>();
 
-        if (DoesSavesExist())
-        {
-            LoadData();
-        }
-        else
+        if (!DoesSavesExist())
         {
             CreateDefaultSaveData();
         }
+
+            LoadData();
 
     }
 
