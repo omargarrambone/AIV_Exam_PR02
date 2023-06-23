@@ -68,6 +68,15 @@ public class PlayerInput : MonoBehaviour
 
     }
 
+    public void Kick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _anim.SetTrigger("IsKicking");
+        }
+
+    }
+
     private void ApplyRotation()
     {
         if (_input.sqrMagnitude == 0) return;
