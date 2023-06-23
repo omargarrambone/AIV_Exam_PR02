@@ -19,8 +19,15 @@ public class SaveDataJSON : MonoBehaviour
         SetPaths();
         healthManager = PlayerManager.PlayerGameObject.GetComponent<HealthManager>();
 
+        if (DoesSavesExist())
+        {
+            LoadData();
+        }
+        else
+        {
+            CreateDefaultSaveData();
+        }
 
-        LoadData();
     }
 
     [ContextMenu("SetPaths")]
@@ -96,5 +103,29 @@ public class SaveDataJSON : MonoBehaviour
 
             Debug.Log("Loaded Game!");
         }
+    }
+
+    public void CreateDefaultSaveData()
+    {
+        using (StreamWriter writer = new StreamWriter(persistentPath))
+        {
+            // SAVE VALUES
+            savedData.playerData.currentHealth = 100;
+            savedData.playerData.playerPos = new Vector3(-64f, 2.272f, -30f);
+            savedData.playerData.playerRot = Quaternion.identity;
+            savedData.playerData.currentScene = "HubBeta";
+            savedData.playerData.takenItems = weaponsManager.TakenWeapons;
+            savedData.playerData.currentWeapon = 0;
+            savedData.townData.enemiesPurified = 0;
+            savedData.townData.enemiesKilled = 0;
+
+            // SAVE JSON
+            string json = JsonUtility.ToJson(savedData);
+            writer.Write(json);
+        }
+
+        OnSave.Invoke();
+
+        Debug.Log("Saved Game!");
     }
 }
