@@ -13,6 +13,8 @@ public class SceneMngr : MonoBehaviour
     [SerializeField] public Vector3 PlayerPositionInNextScene;
     [SerializeField] public Quaternion PlayerRotationInNextScene;
 
+    [SerializeField] CameraFollow cameraFollow;
+
     void Start()
     {
         if (changeOnStart)
@@ -29,14 +31,12 @@ public class SceneMngr : MonoBehaviour
         SetPlayerPosition();
         loadingCanvas.SetActive(true);
         StartCoroutine(LoadSceneAsync(sceneName));
-        //SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
     }
     public void ChangeScene(int sceneIndex)
     {
         SetPlayerPosition();
         loadingCanvas.SetActive(true);
         StartCoroutine(LoadSceneAsync(sceneIndex));
-        //SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
     }
 
     IEnumerator LoadSceneAsync(int sceneIndex)

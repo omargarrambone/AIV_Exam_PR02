@@ -14,7 +14,6 @@ public class CameraLockWall : MonoBehaviour
         if (!cameraFollow)
         {
             cameraFollow = Camera.main.GetComponent<CameraFollow>();
-            Debug.Log(cameraFollow);
         }
     }
 
