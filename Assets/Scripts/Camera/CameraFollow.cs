@@ -154,7 +154,7 @@ public class CameraFollow : MonoBehaviour
     {
         //ResetCameraTarget();
         transform.position = ActualCameraTarget.position;
-        Debug.Break();
+        //Debug.Break();
         //transform.position = ActualCameraTarget.position + defaultCameraOffset;
     }
 }
