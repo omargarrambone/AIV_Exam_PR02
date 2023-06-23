@@ -12,6 +12,7 @@ public class EnemyDamageManager : MonoBehaviour
     public bool PlayerIsAttacking;
     public float ParryTimeIndex;
     public bool IsParrying;
+    public float ParryChance = 0.4f;
 
     public float timer, counter;
 
@@ -37,23 +38,24 @@ public class EnemyDamageManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Sword")
         {
-            HealthManager.TakeDamage(damage);
-            StunnManager.TakeStunn(stunDamage);
+            //HealthManager.TakeDamage(damage);
+            //StunnManager.TakeStunn(stunDamage);
            
+            PlayerIsAttacking = true;
             ParryTimeIndex = Random.Range(0f, 1f);
-            if (ParryTimeIndex < 0.4f)
+            if (ParryTimeIndex < ParryChance && StunnManager.IsStunned == false)
             {
                 IsParrying = true;
                 HealthManager.TakeDamage(0f);
                 StunnManager.TakeStunn(0f);
             }
-            else
+            else 
             {
                 IsParrying = false;
-                
+                HealthManager.TakeDamage(damage);
+                StunnManager.TakeStunn(stunDamage);
             }
 
-            PlayerIsAttacking = true;
             counter = timer;
         }
     }

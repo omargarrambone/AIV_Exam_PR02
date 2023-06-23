@@ -23,7 +23,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public bool IsAttacking;
     public PowerUp HeavyHealth;
 
-    //public float TimeParry = 0.5f;
+    public float TimeParry = 0.3f;
 
 
 
@@ -115,17 +115,20 @@ public class BasicEnemyAgentAi : MonoBehaviour
               
                 Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
 
-                //if (EnemyDamageManager.ParryTimeIndex <= 0.4f && StunnManager.IsStunned == false)
-                //{
-                //    Anim.SetBool("IsParrying", true);
-                //    TimeParry -= Time.deltaTime;
-                //    if (TimeParry <= 0)
-                //    {
-                //        Anim.SetBool("IsParrying", false);
-                //        TimeParry = 0.5f;
-                //    }
-                //    break;
-                //}
+                //if (EnemyDamageManager.IsParrying && StunnManager.IsStunned == false)
+                if (EnemyDamageManager.IsParrying)
+                {
+                    Anim.SetBool("IsParrying", true);
+                    TimeParry -= Time.deltaTime;
+                    //if (TimeParry <= 0 || EnemyDamageManager.PlayerIsAttacking == false)
+                    if (TimeParry <= 0)
+                    {
+                        EnemyDamageManager.IsParrying = false;
+                        Anim.SetBool("IsParrying", false);
+                        TimeParry = 0.3f;
+                    }
+                    break;
+                }
 
                 if (Fov.targetCheck() == true && distanceFromTarget.magnitude > AttackDistance)
                 {
