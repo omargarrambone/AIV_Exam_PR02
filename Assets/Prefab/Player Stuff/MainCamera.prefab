@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2001727912521350729
 Camera:
@@ -150,4 +150,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77981b7d093518e4aa747c978ac3a589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  cameraType: 0
+  defaultCameraTarget: {fileID: 0}
+  smoothSpeed: 0.125
+  defaultCameraOffset: {x: 0, y: 2, z: -7}
+  cameraForwardOffset: {x: 0, y: 0, z: 0}
+  maxDistanceFromCamera: 1
+  playerForwardDistance: 2
+  hasStartedLerping: 0
+  timer: 0.2
+  counter: 0
+  slerpSpeedRotation: 2

@@ -5,11 +5,15 @@ using UnityEngine;
 public class CameraLockWall : MonoBehaviour
 {
     [SerializeField] private Transform cameraTarget;
-    [SerializeField] private CameraFollow cameraFollow;
+    static private CameraFollow cameraFollow;
 
     private void Start()
     {
-        cameraFollow = Camera.main.GetComponent<CameraFollow>();
+        if (!cameraFollow)
+        {
+            cameraFollow = Camera.main.GetComponent<CameraFollow>();
+            Debug.Log(cameraFollow);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

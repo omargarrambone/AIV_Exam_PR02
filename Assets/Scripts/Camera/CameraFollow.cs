@@ -4,24 +4,29 @@ using UnityEngine.Events;
 
 public class CameraFollow : MonoBehaviour
 {
-    static public Transform CameraTarget { get; private set; }
+    private Transform ActualCameraTarget;
+    private Quaternion defaultCameraRotation;
 
-    static private Transform staticDefaultCameraTarget;
-    static private Quaternion defaultCameraRotation;
-    static private CameraType cameraType;
+    [SerializeField] private CameraType cameraType;
 
+    [Header("Follow Player Variables")]
     [SerializeField] private Transform defaultCameraTarget;
-    [SerializeField] private float smoothSpeed, cameraSpeed;
-    [SerializeField] private Vector3 offset;
-    private Vector3 currentVelocity;
+    [SerializeField] private float smoothSpeed;
+    [SerializeField] private Vector3 defaultCameraOffset, cameraForwardOffset;
+    [SerializeField] private float maxDistanceFromCamera;
+    [SerializeField] private float playerForwardDistance;
 
-    [SerializeField] float timer, counter, speedLerpToForward;
+    private Vector3 smoothDampVelocity;
+
+    [Header("Lerp Variables")]
+    [SerializeField] bool hasStartedLerping;
+    [SerializeField] float timer, counter;
     static Quaternion oldRotation, nextRotation, lookAtRotation;
-    static bool isStarted;
+    [SerializeField] private float slerpSpeedRotation;
 
     private void Awake()
     {
-        CameraTarget = staticDefaultCameraTarget = defaultCameraTarget;
+        ActualCameraTarget = defaultCameraTarget;
 
         defaultCameraRotation = Quaternion.Euler(new Vector3(16f,0f,0f));
 
@@ -32,39 +37,57 @@ public class CameraFollow : MonoBehaviour
     private void Update()
     {
         CameraMovement();
+        LerpCamera();
+    }
 
-        if (!isStarted) return;
+    void LerpCamera()
+    {
+        if (!hasStartedLerping) return;
 
-        counter += Time.deltaTime * cameraSpeed;
+        counter += Time.deltaTime;
         Quaternion value = Quaternion.Lerp(oldRotation, nextRotation, counter / timer);
         Camera.main.transform.rotation = value;
 
-        if (counter > timer) { isStarted = false; counter = 0; Camera.main.transform.rotation = nextRotation; }
+        if (counter > timer) { hasStartedLerping = false; counter = 0; Camera.main.transform.rotation = nextRotation; }
     }
 
     private void CameraMovement()
     {
-        Vector3 targetVector = CameraTarget.position + offset;
+        Vector3 cameraPosition = ActualCameraTarget.position + defaultCameraOffset;
 
         switch (cameraType)
         {
             case CameraType.FollowPlayer:
-                targetVector += new Vector3(PlayerManager.PlayerGameObject.transform.forward.x, 0, 0) * 2f;
+                Vector3 cameraNoOffsetPosition = new Vector3(transform.position.x - cameraForwardOffset.x, ActualCameraTarget.position.y, ActualCameraTarget.position.z);
+                Vector3 newTarget = new Vector3(ActualCameraTarget.position.x, ActualCameraTarget.position.y, ActualCameraTarget.position.z);
+
+                if (Vector3.Distance(cameraNoOffsetPosition, newTarget) > maxDistanceFromCamera)
+                {
+                    cameraForwardOffset = new Vector3(Mathf.Sign(ActualCameraTarget.forward.x), 0, 0) * playerForwardDistance;
+                }
+
+                transform.position = Vector3.SmoothDamp(transform.position, cameraPosition + cameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
+
                 break;
-            case CameraType.StaticFollowPlayer:
+
+            case CameraType.LookAtPlayer:
                 Vector3 relativePos = PlayerManager.PlayerGameObject.transform.position - transform.position;
                 lookAtRotation = Quaternion.LookRotation(relativePos);
+
+                lookAtRotation = Quaternion.Slerp(Camera.main.transform.rotation, lookAtRotation, Time.deltaTime * slerpSpeedRotation);
+
                 nextRotation = lookAtRotation;
-                if (!isStarted) Camera.main.transform.rotation = lookAtRotation;
+                if (!hasStartedLerping) Camera.main.transform.rotation = lookAtRotation;
+
+                transform.position = Vector3.SmoothDamp(transform.position, cameraPosition, ref smoothDampVelocity, smoothSpeed);
                 break;
         }
 
-        transform.position = Vector3.SmoothDamp(transform.position, targetVector, ref currentVelocity, smoothSpeed);
     }
 
-    public void SetCameraTarget(Transform target, CameraType type = CameraType.StaticFollowPlayer)
+    public void SetCameraTarget(Transform target, CameraType type = CameraType.LookAtPlayer)
     {
-        CameraTarget = target;
+        ActualCameraTarget = target;
         cameraType = type;
         
         SetNewRotations(lookAtRotation);
@@ -72,7 +95,7 @@ public class CameraFollow : MonoBehaviour
 
     public void ResetCameraTarget()
     {
-        CameraTarget = staticDefaultCameraTarget;
+        ActualCameraTarget = defaultCameraTarget;
         cameraType = CameraType.FollowPlayer;
 
         SetNewRotations(defaultCameraRotation);
@@ -83,12 +106,12 @@ public class CameraFollow : MonoBehaviour
         counter = 0;
         oldRotation = Camera.main.transform.rotation;
         nextRotation = nextQuaternion;
-        isStarted = true;
+        hasStartedLerping = true;
     }
 
     private void OnLevelWasLoaded(int level)
     {
         ResetCameraTarget();
-        transform.position = CameraTarget.position + offset;
+        transform.position = ActualCameraTarget.position + defaultCameraOffset;
     }
 }

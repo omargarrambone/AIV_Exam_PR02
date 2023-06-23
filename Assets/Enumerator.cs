@@ -4,4 +4,4 @@ public enum EnemyState { Patrol, Chase, Attack, Stun, Healing, Dead, LAST }
 
 public enum ItemType { Fists,SmallKatana,LongKatana,Rod,Flute,LAST }
 
-public enum CameraType { FollowPlayer, StaticFollowPlayer, LAST}
+public enum CameraType { FollowPlayer, LookAtPlayer, LAST}
