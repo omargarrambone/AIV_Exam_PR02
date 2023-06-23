@@ -7,6 +7,7 @@ public class SceneMngr : MonoBehaviour
 {
     [SerializeField] bool changeOnStart;
     [SerializeField] GameObject loadingCanvas;
+    [SerializeField] LoadingScreen loadingScript;
     [SerializeField] public string OverrideStartScene;
     [SerializeField] public string NextScene;
     [SerializeField] public Vector3 PlayerPositionInNextScene;
@@ -27,13 +28,47 @@ public class SceneMngr : MonoBehaviour
     {
         SetPlayerPosition();
         loadingCanvas.SetActive(true);
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        StartCoroutine(LoadSceneAsync(sceneName));
+        //SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
     }
     public void ChangeScene(int sceneIndex)
     {
         SetPlayerPosition();
         loadingCanvas.SetActive(true);
-        SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+        StartCoroutine(LoadSceneAsync(sceneIndex));
+        //SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+    }
+
+    IEnumerator LoadSceneAsync(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Single);
+
+        while (!operation.isDone)
+        {
+            if(loadingScript != null) loadingScript.ChangeText();
+
+            yield return null;
+        }
+
+        SetPlayerPosition();
+        loadingCanvas.gameObject.SetActive(false);
+        yield break;
+    }
+
+    IEnumerator LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+
+        while (!operation.isDone)
+        {
+            loadingScript.ChangeText();
+
+            yield return null;
+        }
+
+        SetPlayerPosition();
+        loadingCanvas.gameObject.SetActive(false);
+        yield break;
     }
 
     void SetPlayerPosition()
@@ -41,11 +76,5 @@ public class SceneMngr : MonoBehaviour
         PlayerManager.PlayerCharactercontroller.enabled = false;
         PlayerManager.PlayerGameObject.transform.SetPositionAndRotation(PlayerPositionInNextScene, PlayerRotationInNextScene);
         PlayerManager.PlayerCharactercontroller.enabled = true;
-    }
-
-
-    private void OnLevelWasLoaded(int level)
-    {
-        loadingCanvas.SetActive(false);
     }
 }

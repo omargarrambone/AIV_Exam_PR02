@@ -12,7 +12,7 @@ public class LoadingScreen : MonoBehaviour
 
     private void Awake()
     {
-        timer = 0.1f;
+        timer = 0.01f;
         counter = timer;
         loadingTexts = new string[] { "Loading.", "Loading..", "Loading...", "Loading...." };
     }
@@ -22,7 +22,7 @@ public class LoadingScreen : MonoBehaviour
         loadingText.SetText(loadingTexts[Random.Range(0,loadingTexts.Length)]);
     }
 
-    void Update()
+    public void ChangeText()
     {
         counter -= Time.deltaTime;
 

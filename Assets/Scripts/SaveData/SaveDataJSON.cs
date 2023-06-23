@@ -87,7 +87,6 @@ public class SaveDataJSON : MonoBehaviour
 
                 // LOAD VALUES
                 healthManager.CurrentHealth = savedData.playerData.currentHealth;
-                PlayerManager.PlayerGameObject.transform.SetPositionAndRotation(SavedData.playerData.playerPos, SavedData.playerData.playerRot);
                 sceneManager.NextScene = savedData.playerData.currentScene;
                 sceneManager.PlayerPositionInNextScene = savedData.playerData.playerPos;
                 sceneManager.PlayerRotationInNextScene = savedData.playerData.playerRot;
@@ -95,8 +94,8 @@ public class SaveDataJSON : MonoBehaviour
                 weaponsManager.SetActualItem(savedData.playerData.currentWeapon);
                 NPCSpawner.PurifiedEnemies = savedData.townData.enemiesPurified;
                 NPCSpawner.KilledEnemies = savedData.townData.enemiesKilled;
-
                 sceneManager.ChangeScene(sceneManager.NextScene);
+                PlayerManager.PlayerGameObject.transform.SetPositionAndRotation(SavedData.playerData.playerPos, SavedData.playerData.playerRot);
             }
 
             OnLoad.Invoke();
