@@ -49,7 +49,12 @@ public class CameraFollow : MonoBehaviour
         Camera.main.transform.rotation = DefaultCameraRotation;
         OldRotation = Camera.main.transform.rotation;
 
+    }
+
+    public void LoadCameraPosition()
+    {
         if (CameraPositionOnChangeScene == Vector3.zero) CameraPositionOnChangeScene = SaveDataJSON.SavedData.playerData.playerPos + DefaultCameraOffset;
+        
     }
 
     private void Update()
