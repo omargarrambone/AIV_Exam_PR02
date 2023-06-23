@@ -152,7 +152,9 @@ public class CameraFollow : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        ResetCameraTarget();
-        transform.position = ActualCameraTarget.position + defaultCameraOffset;
+        //ResetCameraTarget();
+        transform.position = ActualCameraTarget.position;
+        Debug.Break();
+        //transform.position = ActualCameraTarget.position + defaultCameraOffset;
     }
 }

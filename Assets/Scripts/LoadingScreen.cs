@@ -12,7 +12,7 @@ public class LoadingScreen : MonoBehaviour
 
     private void Awake()
     {
-        timer = 0.01f;
+        timer = 0.1f;
         counter = timer;
         loadingTexts = new string[] { "Loading.", "Loading..", "Loading...", "Loading...." };
     }
