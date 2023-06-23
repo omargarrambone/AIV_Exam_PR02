@@ -12,7 +12,7 @@ public class SaveDataJSON : MonoBehaviour
     [SerializeField] private FluteScript fluteScript;
     [SerializeField] private SaveData savedData;
     [SerializeField] private UnityEvent OnSave, OnLoad;
-    private string persistentPath = "";
+    static public string persistentPath = "";
 
     void Start()
     {
