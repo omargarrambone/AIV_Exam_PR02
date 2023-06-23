@@ -45,7 +45,7 @@ public class SceneMngr : MonoBehaviour
 
         while (!operation.isDone)
         {
-            if(loadingScript != null) loadingScript.ChangeText();
+            if(loadingScript != null) loadingScript.ChangeText(operation);
 
             yield return null;
         }
@@ -61,7 +61,7 @@ public class SceneMngr : MonoBehaviour
 
         while (!operation.isDone)
         {
-            loadingScript.ChangeText();
+            loadingScript.ChangeText(operation);
 
             yield return null;
         }

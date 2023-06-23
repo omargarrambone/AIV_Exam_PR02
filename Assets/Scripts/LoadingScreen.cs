@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadingScreen : MonoBehaviour
 {
     float timer, counter;
     int currentIndex;
     [SerializeField] TMPro.TMP_Text loadingText;
+    [SerializeField] Image loadingBar;
+
 
     string[] loadingTexts;
 
@@ -22,14 +25,20 @@ public class LoadingScreen : MonoBehaviour
         loadingText.SetText(loadingTexts[Random.Range(0,loadingTexts.Length)]);
     }
 
-    public void ChangeText()
+    public void ChangeText(AsyncOperation operation)
     {
+        float value = Mathf.Clamp01(operation.progress / 0.9f);
+
+        loadingBar.fillAmount = value;
+        
+        
         counter -= Time.deltaTime;
 
         if (counter < 0)
         {
             currentIndex++;
             currentIndex %= loadingTexts.Length;
+
 
             loadingText.SetText(loadingTexts[currentIndex]);
 
