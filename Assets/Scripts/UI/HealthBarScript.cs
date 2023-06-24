@@ -12,7 +12,7 @@ public class HealthBarScript : MonoBehaviour
 
     public Image fill;
 
-    public void SetMaxHealth(float health)
+    public virtual void SetMaxHealth(float health)
     {
         slider.maxValue = health;
         slider.value = health;
@@ -28,7 +28,7 @@ public class HealthBarScript : MonoBehaviour
         fill.color = gradient.Evaluate(1f);
     }
 
-    public void SetHealth(float health)
+    public virtual void SetHealth(float health)
     {
         slider.value = health;
         fill.color = gradient.Evaluate(slider.normalizedValue);
@@ -36,7 +36,6 @@ public class HealthBarScript : MonoBehaviour
 
     public void SetStunn(float value)
     {
-
         slider.value = value;
         fill.color = gradient.Evaluate(value);
     }
