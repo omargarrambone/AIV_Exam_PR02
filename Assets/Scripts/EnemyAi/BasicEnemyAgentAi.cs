@@ -21,9 +21,9 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public EnemyState CurrentState;
     public ParticleSystem Arancini;
     public bool IsAttacking;
-    public PowerUp HeavyHealth;
-
+    public PowerUp HeavyHealth;   
     public float TimeParry = 0.3f;
+   
 
 
 
@@ -189,7 +189,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
                 break;
 
-
             default:
                 break;
         }
@@ -223,4 +222,5 @@ public class BasicEnemyAgentAi : MonoBehaviour
     {
         Weapon.GetComponent<BoxCollider>().enabled = false;
     }
+
 }

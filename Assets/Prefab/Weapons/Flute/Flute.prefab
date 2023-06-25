@@ -52,6 +52,7 @@ MonoBehaviour:
   upClip: {fileID: 8300000, guid: a91685ec6032c104595ff3b93c343a69, type: 3}
   leftClip: {fileID: 8300000, guid: 40e42177741c6494fb0ef6bbef40825c, type: 3}
   wrongClip: {fileID: 8300000, guid: 7eb9f6a0e2f19434787dde616fa2e541, type: 3}
+  audioSource: {fileID: 0}
   radius: 10
   maxDistance: 0
   enemiesLayer:
@@ -60,6 +61,8 @@ MonoBehaviour:
   isAttacking: 0
   attackDmg: 0
   fluteUIScript: {fileID: 0}
+  Dissolve: {fileID: 2732767235089498024, guid: 36c9cae896a428b4bac6606b9b77aa00,
+    type: 3}
 --- !u!33 &7766945289738858213
 MeshFilter:
   m_ObjectHideFlags: 0
