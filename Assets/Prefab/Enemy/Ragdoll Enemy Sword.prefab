@@ -3421,8 +3421,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthManager: {fileID: 231959443550880398}
   StunnManager: {fileID: 2591736530132064491}
-  ucelletti: {fileID: 0}
+  arancini: {fileID: 257288705335826567}
   PlayerIsAttacking: 0
+  timer: 0
+  counter: 0
 --- !u!114 &2591736530132064491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3437,6 +3439,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentStunn: 0
   IsStunned: 0
+  timer: 3
+  counter: 0
   StunnBar: {fileID: 6121127982897752603}
   EnemyDamageManager: {fileID: 3907064155493132908}
   OnStun:

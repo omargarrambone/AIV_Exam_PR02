@@ -72,6 +72,15 @@ public class PlayerInput : MonoBehaviour
 
     }
 
+    public void Kick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _anim.SetTrigger("IsKicking");
+        }
+
+    }
+
     private void ApplyRotation()
     {
         if (_input.sqrMagnitude == 0) return;
@@ -116,6 +125,7 @@ public class PlayerInput : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
         if (!context.started) return;
+
         if (!IsGrounded() && _numberOfJumps >= maxNumberOfJumps) return;
         if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
 

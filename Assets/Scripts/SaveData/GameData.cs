@@ -17,7 +17,7 @@ public struct PlayerData
     public float currentHealth;
     public string currentScene;
     public int currentWeapon;
-    public InventorySlot[] inventoryItems;
+    public bool[] takenItems;
 }
 
 [System.Serializable]

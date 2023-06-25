@@ -157,7 +157,15 @@ MonoBehaviour:
   cameraForwardOffset: {x: 0, y: 0, z: 0}
   maxDistanceFromCamera: 1
   playerForwardDistance: 2
+  isChanging: 0
+  forwardTimer: 0
+  forwardCounter: 0
+  lastDirection: 0
+  diabloCameraPositionOffset: {x: 0, y: 8, z: -1}
+  diabloCameraRotationOffset: {x: 45, y: 0, z: 0}
   hasStartedLerping: 0
-  timer: 0.2
-  counter: 0
+  lerpTimer: 0
+  lerpCounter: 0
   slerpSpeedRotation: 2
+  cameraNoOffsetPosition: {x: 0, y: 0, z: 0}
+  newTarget: {x: 0, y: 0, z: 0}

@@ -38,13 +38,14 @@ public class Interactor : MonoBehaviour
         {
             actualInteractable = colliders[0].GetComponent<Interactable>();
         }
-        else
+        else if(actualInteractable!= null)
         {
+            actualInteractable.OnPlayerExitRange.Invoke();
             actualInteractable = null;
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
