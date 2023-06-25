@@ -25,6 +25,10 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Vector3 diabloCameraPositionOffset;
     [SerializeField] Vector3 diabloCameraRotationOffset;
 
+    [Header("Maze Camera Variables")]
+    [SerializeField] Vector3 mazeCameraPositionOffset;
+    [SerializeField] Vector3 mazeCameraRotationOffset;
+
     [Header("Lerp Variables")]
     [SerializeField] bool hasStartedLerping;
     [SerializeField] float lerpTimer, lerpCounter;
@@ -93,6 +97,11 @@ public class CameraFollow : MonoBehaviour
             case CameraType.DiabloCamera:
                 DiabloCamera(newCameraPosition);
                 break;
+
+            case CameraType.MazeCamera:
+                MazeCamera();
+                break;
+
         }
     }
 
@@ -100,6 +109,11 @@ public class CameraFollow : MonoBehaviour
     {
         NextRotation = Quaternion.Euler(diabloCameraRotationOffset);
         transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + diabloCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
+    }
+    private void MazeCamera()
+    {
+        NextRotation = Quaternion.Euler(mazeCameraRotationOffset);
+        transform.position = Vector3.SmoothDamp(transform.position, actualCameraTarget.position + mazeCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
     }
 
     private void FollowPlayer(Vector3 newCameraPosition)
