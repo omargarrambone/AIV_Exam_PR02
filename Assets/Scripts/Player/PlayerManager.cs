@@ -7,31 +7,39 @@ public class PlayerManager : MonoBehaviour
 {
     public static GameObject PlayerGameObject { get; private set; }
     public static CharacterController PlayerCharactercontroller;
+    public float minY;
     void Awake()
     {
        if(PlayerGameObject == null) PlayerGameObject = GameObject.FindGameObjectWithTag("Player");
-
-        PlayerCharactercontroller = PlayerGameObject.GetComponent<CharacterController>();
+       if (PlayerCharactercontroller == null) PlayerCharactercontroller = PlayerGameObject.GetComponent<CharacterController>();
     }
 
     static public void SetPosition(Vector3 newPosition)
     {
+        PlayerCharactercontroller.enabled = false;
         PlayerGameObject.transform.position = newPosition;
+        PlayerCharactercontroller.enabled = true;
     }
 
-    static public void SetPosition(int x, int y, int z)
+    static public void SetPosition(int x=0, int y=0, int z=0)
     {
+        PlayerCharactercontroller.enabled = false;
         PlayerGameObject.transform.position = new Vector3(x, y, z);
+        PlayerCharactercontroller.enabled = true;
     }
 
     static public void SetRotation(Vector3 newRotation)
     {
+        PlayerCharactercontroller.enabled = false;
         PlayerGameObject.transform.rotation = Quaternion.Euler(newRotation);
+        PlayerCharactercontroller.enabled = true;
     }
 
     static public void SetRotation(Quaternion newRotation)
     {
+        PlayerCharactercontroller.enabled = false;
         PlayerGameObject.transform.rotation = newRotation;
+        PlayerCharactercontroller.enabled = true;
     }
 
     public void Death()
@@ -47,5 +55,15 @@ public class PlayerManager : MonoBehaviour
         SetPosition(Vector3.zero);
         yield return new WaitForSeconds(0.1f);
         PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
+    }
+
+    private void Update()
+    {
+        if(PlayerGameObject.transform.position.y < minY)
+        {
+            SceneManager.LoadScene("GameOverScene");
+            SetPosition(Vector3.zero);
+            PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
+        }
     }
 }
