@@ -6,10 +6,13 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 using UnityEngineInternal;
 using static UnityEngine.Rendering.DebugUI;
+using System.Linq.Expressions;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInput : MonoBehaviour
 {
+
     [Header("Movement")]
     private Vector2 _input;
     private CharacterController _characterController;
@@ -44,6 +47,7 @@ public class PlayerInput : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject Panel;
 
+
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -62,7 +66,7 @@ public class PlayerInput : MonoBehaviour
     public void LightAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
+        {            
             _anim.SetTrigger("IsAttacking");
         }
 
@@ -194,4 +198,5 @@ public class PlayerInput : MonoBehaviour
 
     }
     private bool IsGrounded() => _characterController.isGrounded;
+
 }
