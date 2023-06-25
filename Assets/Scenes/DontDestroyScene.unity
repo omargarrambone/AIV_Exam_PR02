@@ -228,6 +228,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!2083052967 &1540103596 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 1501535457750444172, guid: e375b58688cc98343962035d2c587cae,
+    type: 3}
+  m_PrefabInstance: {fileID: 9093984855814243739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1803856462
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +357,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 322434970050091763, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: bloodFx
+      value: 
+      objectReference: {fileID: 1540103596}
     - target: {fileID: 591661635958209730, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_RootOrder
