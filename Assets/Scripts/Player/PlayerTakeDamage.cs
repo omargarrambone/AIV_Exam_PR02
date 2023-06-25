@@ -19,12 +19,10 @@ public class PlayerTakeDamage : MonoBehaviour
 
         if (other.gameObject.tag == "EnemyWeapon")
         {
-
             bloodFx.gameObject.SetActive(true);
             bloodFx.playRate = 1f;
             bloodFx.Play();
             HealthManager.TakeDamage(5);
-
         }
     }
 

@@ -12,6 +12,8 @@ public class FluteScript : MonoBehaviour
     [SerializeField] bool isAttacking;
     [SerializeField] float attackDmg;
     [SerializeField] FluteUIScript fluteUIScript;
+    public ParticleSystem Dissolve;
+
 
     private void Start()
     {
@@ -73,7 +75,9 @@ public class FluteScript : MonoBehaviour
 
                 if (stunnMngr.IsStunned)
                 {
-                    Destroy(enemyObj);
+                    ParticleSystem dis = Instantiate(Dissolve, enemyObj.transform.position, Dissolve.transform.rotation);                    
+                    Destroy(enemyObj, 0.2f);
+                    Destroy(dis.gameObject, 1);
                     NPCSpawner.PurifiedEnemies++;
                 }
             }
@@ -116,6 +120,7 @@ public class FluteScript : MonoBehaviour
             }
         }
     }
+
 
     private void OnDrawGizmos()
     {
