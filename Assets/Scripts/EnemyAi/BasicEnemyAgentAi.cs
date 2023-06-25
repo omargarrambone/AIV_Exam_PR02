@@ -23,12 +23,17 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public bool IsAttacking;
     public PowerUp HeavyHealth;
 
+    public float TimeParry = 0.3f;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         Fov = GetComponent<FieldOfView>();
         Anim = GetComponent<Animator>();
         CurrentState = EnemyState.Patrol;
+        Weapon.GetComponent<BoxCollider>().enabled = false;
 
         //SetNewWaypoint();
 
@@ -45,12 +50,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
         
         Anim.SetFloat("Speed", Agent.velocity.magnitude);
 
+       
+      
 
         switch (CurrentState)
         {
-
             case EnemyState.Patrol:
-
 
                 if (Fov.targetCheck() == true)
                 {
@@ -80,6 +85,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                
 
                 Fov.Angle = 360;
+                //Weapon.GetComponent<BoxCollider>().enabled = false;
 
                 if (Fov.targetCheck() == true && distanceFromTarget.magnitude <= AttackDistance)
                 {
@@ -105,21 +111,31 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
             case EnemyState.Attack:
 
-                //IsAttacking = true;
                 Anim.SetBool("Attack", true);
-                Weapon.GetComponent<BoxCollider>().enabled = true;
+              
+                Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
 
-                if (IsAttacking)
+                //if (EnemyDamageManager.IsParrying && StunnManager.IsStunned == false)
+                if (EnemyDamageManager.IsParrying)
                 {
-                    Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
+                    Anim.SetBool("IsParrying", true);
+                    TimeParry -= Time.deltaTime;
+                    //if (TimeParry <= 0 || EnemyDamageManager.PlayerIsAttacking == false)
+                    if (TimeParry <= 0)
+                    {
+                        EnemyDamageManager.IsParrying = false;
+                        Anim.SetBool("IsParrying", false);
+                        TimeParry = 0.3f;
+                    }
+                    break;
                 }
 
                 if (Fov.targetCheck() == true && distanceFromTarget.magnitude > AttackDistance)
                 {
-                    CurrentState = EnemyState.Chase;
-                    Agent.speed = ChaseSpeed;
-                    IsAttacking = false;
                     Anim.SetBool("Attack", false);
+                    Agent.speed = ChaseSpeed;
+                    CurrentState = EnemyState.Chase;
+                    IsAttacking = false;
                     break;
                 }
                 else if (Fov.targetCheck() == false)
@@ -198,4 +214,13 @@ public class BasicEnemyAgentAi : MonoBehaviour
         Instantiate(lightHealth, transform.position + new Vector3(0, 1f, 1f), lightHealth.transform.rotation);
     }
 
+    public void StartAttack()
+    {
+        Weapon.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    public void EndAttack()
+    {
+        Weapon.GetComponent<BoxCollider>().enabled = false;
+    }
 }

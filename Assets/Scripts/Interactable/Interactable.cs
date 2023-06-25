@@ -6,6 +6,6 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    public UnityEvent OnInteract;
+    public UnityEvent OnInteract, OnPlayerExitRange;
     public string ItemName;
 }

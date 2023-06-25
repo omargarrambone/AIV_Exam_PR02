@@ -4,34 +4,57 @@ using UnityEngine.Events;
 
 public class CameraFollow : MonoBehaviour
 {
-    private Transform ActualCameraTarget;
-    private Quaternion defaultCameraRotation;
+    [SerializeField] private Transform actualCameraTarget;
+    public Quaternion DefaultCameraRotation;
+    private Vector3 smoothDampVelocity = Vector3.zero;
 
     [SerializeField] private CameraType cameraType;
 
     [Header("Follow Player Variables")]
     [SerializeField] private Transform defaultCameraTarget;
     [SerializeField] private float smoothSpeed;
-    [SerializeField] private Vector3 defaultCameraOffset, cameraForwardOffset;
-    [SerializeField] private float maxDistanceFromCamera;
+    public Vector3 DefaultCameraOffset, CameraForwardOffset;
     [SerializeField] private float playerForwardDistance;
 
-    private Vector3 smoothDampVelocity;
+    [Header("Change Forward Camera")]
+    [SerializeField] bool isChanging;
+    [SerializeField] float forwardTimer, forwardCounter;
+    [SerializeField] int lastDirection;
+
+    [Header("Diablo Camera Variables")]
+    [SerializeField] Vector3 diabloCameraPositionOffset;
+    [SerializeField] Vector3 diabloCameraRotationOffset;
 
     [Header("Lerp Variables")]
     [SerializeField] bool hasStartedLerping;
-    [SerializeField] float timer, counter;
-    static Quaternion oldRotation, nextRotation, lookAtRotation;
+    [SerializeField] float lerpTimer, lerpCounter;
+    public Quaternion OldRotation, NextRotation;
     [SerializeField] private float slerpSpeedRotation;
+
+    static public Vector3 CameraPositionOnChangeScene;
+    static public Vector3 CameraRotationOnChangeScene;
+    static public CameraType ResetCameraType;
+
+    public Vector3 _CameraRotationOnChangeScene;
+    public Vector3 _CameraPositionOnChangeScene;
 
     private void Awake()
     {
-        ActualCameraTarget = defaultCameraTarget;
+        //get player as target
+        actualCameraTarget = defaultCameraTarget;
 
-        defaultCameraRotation = Quaternion.Euler(new Vector3(16f,0f,0f));
+        //cool inquadratura
+        CameraRotationOnChangeScene = new Vector3(16f, 0f, 0f);
+        DefaultCameraRotation = Quaternion.Euler(CameraRotationOnChangeScene);
+        Camera.main.transform.rotation = DefaultCameraRotation;
+        OldRotation = Camera.main.transform.rotation;
 
-        oldRotation = defaultCameraRotation;
-        Camera.main.transform.rotation = defaultCameraRotation;
+    }
+
+    public void LoadCameraPosition()
+    {
+        CameraPositionOnChangeScene = SaveDataJSON.SavedData.playerData.playerPos + DefaultCameraOffset + Vector3.forward*playerForwardDistance;
+        
     }
 
     private void Update()
@@ -44,74 +67,109 @@ public class CameraFollow : MonoBehaviour
     {
         if (!hasStartedLerping) return;
 
-        counter += Time.deltaTime;
-        Quaternion value = Quaternion.Lerp(oldRotation, nextRotation, counter / timer);
+        lerpCounter += Time.deltaTime;
+        Quaternion value = Quaternion.Lerp(OldRotation, NextRotation, lerpCounter / lerpTimer);
         Camera.main.transform.rotation = value;
 
-        if (counter > timer) { hasStartedLerping = false; counter = 0; Camera.main.transform.rotation = nextRotation; }
+        if (lerpCounter > lerpTimer) { hasStartedLerping = false; lerpCounter = 0; Camera.main.transform.rotation = NextRotation; }
     }
 
     private void CameraMovement()
     {
-        Vector3 cameraPosition = ActualCameraTarget.position + defaultCameraOffset;
+        if (!actualCameraTarget) return;
+
+        Vector3 newCameraPosition = actualCameraTarget.position + DefaultCameraOffset;
 
         switch (cameraType)
         {
             case CameraType.FollowPlayer:
-                Vector3 cameraNoOffsetPosition = new Vector3(transform.position.x - cameraForwardOffset.x, ActualCameraTarget.position.y, ActualCameraTarget.position.z);
-                Vector3 newTarget = new Vector3(ActualCameraTarget.position.x, ActualCameraTarget.position.y, ActualCameraTarget.position.z);
-
-                if (Vector3.Distance(cameraNoOffsetPosition, newTarget) > maxDistanceFromCamera)
-                {
-                    cameraForwardOffset = new Vector3(Mathf.Sign(ActualCameraTarget.forward.x), 0, 0) * playerForwardDistance;
-                }
-
-                transform.position = Vector3.SmoothDamp(transform.position, cameraPosition + cameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
-
+                FollowPlayer(newCameraPosition);
                 break;
 
             case CameraType.LookAtPlayer:
-                Vector3 relativePos = PlayerManager.PlayerGameObject.transform.position - transform.position;
-                lookAtRotation = Quaternion.LookRotation(relativePos);
+                LookAtPlayer(newCameraPosition);
+                break;
 
-                lookAtRotation = Quaternion.Slerp(Camera.main.transform.rotation, lookAtRotation, Time.deltaTime * slerpSpeedRotation);
-
-                nextRotation = lookAtRotation;
-                if (!hasStartedLerping) Camera.main.transform.rotation = lookAtRotation;
-
-                transform.position = Vector3.SmoothDamp(transform.position, cameraPosition, ref smoothDampVelocity, smoothSpeed);
+            case CameraType.DiabloCamera:
+                DiabloCamera(newCameraPosition);
                 break;
         }
+    }
 
+    private void DiabloCamera(Vector3 newCameraPosition)
+    {
+        NextRotation = Quaternion.Euler(diabloCameraRotationOffset);
+        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + diabloCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
+    }
+
+    private void FollowPlayer(Vector3 newCameraPosition)
+    {
+        int newDirection = Mathf.RoundToInt(defaultCameraTarget.forward.x);
+
+        if (newDirection != lastDirection)
+        {
+            lastDirection = newDirection;
+            forwardCounter = forwardTimer;
+            isChanging = true;
+        }
+
+        if (isChanging)
+        {
+            forwardCounter -= Time.deltaTime;
+
+            if (forwardCounter < 0)
+            {
+                CameraForwardOffset = new Vector3(Mathf.Sign(defaultCameraTarget.forward.x), 0, 0) * playerForwardDistance;
+                isChanging = false;
+            }
+        }
+
+        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + CameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
+    }
+
+    private void LookAtPlayer(Vector3 newCameraPosition)
+    {
+        Vector3 relativePos = defaultCameraTarget.position - transform.position;
+
+        NextRotation = Quaternion.LookRotation(relativePos);
+        NextRotation = Quaternion.Slerp(Camera.main.transform.rotation, NextRotation, Time.deltaTime * slerpSpeedRotation);
+        Camera.main.transform.rotation = NextRotation;
+
+        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition, ref smoothDampVelocity, smoothSpeed);
     }
 
     public void SetCameraTarget(Transform target, CameraType type = CameraType.LookAtPlayer)
     {
-        ActualCameraTarget = target;
+        actualCameraTarget = target;
         cameraType = type;
-        
-        SetNewRotations(lookAtRotation);
+
+        Vector3 relativePos = defaultCameraTarget.position - transform.position;
+        NextRotation = Quaternion.LookRotation(relativePos);
+
+
+        SetNewRotations(NextRotation);
     }
 
     public void ResetCameraTarget()
     {
-        ActualCameraTarget = defaultCameraTarget;
         cameraType = CameraType.FollowPlayer;
+        actualCameraTarget = defaultCameraTarget;
 
-        SetNewRotations(defaultCameraRotation);
+        SetNewRotations(DefaultCameraRotation);
     }
 
     void SetNewRotations(Quaternion nextQuaternion)
     {
-        counter = 0;
-        oldRotation = Camera.main.transform.rotation;
-        nextRotation = nextQuaternion;
+        lerpCounter = 0;
+        OldRotation = Camera.main.transform.rotation;
+        NextRotation = nextQuaternion;
         hasStartedLerping = true;
     }
 
     private void OnLevelWasLoaded(int level)
     {
-        ResetCameraTarget();
-        transform.position = ActualCameraTarget.position + defaultCameraOffset;
+        transform.position = CameraPositionOnChangeScene;
+        transform.rotation = Quaternion.Euler(CameraRotationOnChangeScene);
+
     }
 }

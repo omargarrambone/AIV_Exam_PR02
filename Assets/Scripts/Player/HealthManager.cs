@@ -25,6 +25,8 @@ public class HealthManager : MonoBehaviour
 
         CurrentHealth = MaxHealth;
         HealthBar.SetMaxHealth(MaxHealth);
+
+        anim = GetComponent<Animator>();
     }
 
     public void AddHealth(float health)
@@ -45,7 +47,6 @@ public class HealthManager : MonoBehaviour
         if (IsDead)
         {
             //GetComponent<CapsuleCollider>().enabled = false;
-            anim = GetComponent<Animator>();
             anim.SetTrigger("Death");
         }
 
