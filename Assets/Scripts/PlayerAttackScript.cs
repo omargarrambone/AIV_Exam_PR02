@@ -9,25 +9,26 @@ public class PlayerAttackScript : MonoBehaviour
 {
     public UnityEvent OnStartAttack, OnEndAttack;
     public VisualEffect[] swordSlash;
+    public WeaponsManager weaponsManager;
 
 
     public void CallOnStartHit()
     {
-           
-            InventoryManager.SetObjectsColliders(true);
+
+            weaponsManager.SetObjectsColliders(true);
             OnStartAttack.Invoke();
 
-            swordSlash[InventoryManager.CurrentSlotIndex].playRate = 0.80f;
-            swordSlash[InventoryManager.CurrentSlotIndex].Play();
+            swordSlash[weaponsManager.CurrentSlotIndex].playRate = 0.80f;
+            swordSlash[weaponsManager.CurrentSlotIndex].Play();
 
         
     }
 
     public void CallOnEndHit()
     {
-        InventoryManager.SetObjectsColliders(false);
+        weaponsManager.SetObjectsColliders(false);
 
-        swordSlash[InventoryManager.CurrentSlotIndex].Stop();
+        swordSlash[weaponsManager.CurrentSlotIndex].Stop();
         OnEndAttack.Invoke();
 
     }
