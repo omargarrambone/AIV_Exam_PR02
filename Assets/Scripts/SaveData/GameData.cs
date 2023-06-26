@@ -6,7 +6,7 @@ using UnityEngine;
 public struct SaveData
 {
     public PlayerData playerData;
-    public TownData townData;
+    public WorldData worldData;
 }
 
 [System.Serializable]
@@ -21,9 +21,12 @@ public struct PlayerData
 }
 
 [System.Serializable]
-public struct TownData
+public struct WorldData
 {
+    //Enemies Data
     public int enemiesKilled;
     public int enemiesPurified;
-    public int unlockedLevel;
+
+    //Arenas Data
+    public bool[] arenasCompleted;
 }

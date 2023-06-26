@@ -1,22 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCCounter : MonoBehaviour
+public static class NPCCounter
 {
-    public void ResetCounters()
+    static public Action OnKilledEnemy, OnPurifiedEnemy, OnFinishedEnemy;
+
+    static NPCCounter()
     {
-        NPCSpawner.KilledEnemies = 0;
-        NPCSpawner.PurifiedEnemies = 0;
+        OnKilledEnemy = new Action( () => { } );
+        OnPurifiedEnemy = new Action( () => { } );
+        OnFinishedEnemy = new Action( () => { } );
+
     }
 
-    public void AddKilledNPCToCounter()
+    public static void ResetCounters()
     {
-        NPCSpawner.KilledEnemies++;
+        NPCManager.KilledEnemies = 0;
+        NPCManager.PurifiedEnemies = 0;
     }
 
-    public void AddPurifiedNPCToCounter()
+    public static void AddKilledNPCToCounter()
     {
-        NPCSpawner.PurifiedEnemies++;
+        NPCManager.KilledEnemies++;
+        OnKilledEnemy.Invoke();
+        OnFinishedEnemy.Invoke();
+    }
+
+    public static void AddPurifiedNPCToCounter()
+    {
+        NPCManager.PurifiedEnemies++;
+        OnPurifiedEnemy.Invoke();
+        OnFinishedEnemy.Invoke();
     }
 }

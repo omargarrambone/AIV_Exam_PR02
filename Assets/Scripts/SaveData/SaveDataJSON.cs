@@ -19,7 +19,7 @@ public class SaveDataJSON : MonoBehaviour
         SetPaths();
         healthManager = PlayerManager.PlayerGameObject.GetComponent<HealthManager>();
 
-        if (!DoesSavesExist())
+        if (!DoesSavedDataExist())
         {
             CreateDefaultSaveData();
         }
@@ -34,7 +34,7 @@ public class SaveDataJSON : MonoBehaviour
         persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData.json";
         savedData = new SaveData();
         savedData.playerData = new PlayerData();
-        savedData.townData = new TownData();
+        savedData.worldData = new WorldData();
     }
 
     [ContextMenu("Save Game")]
@@ -49,8 +49,9 @@ public class SaveDataJSON : MonoBehaviour
             savedData.playerData.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             savedData.playerData.takenItems = weaponsManager.TakenWeapons;
             savedData.playerData.currentWeapon = weaponsManager.CurrentSlotIndex;
-            savedData.townData.enemiesPurified = NPCSpawner.PurifiedEnemies;
-            savedData.townData.enemiesKilled = NPCSpawner.KilledEnemies;
+            savedData.worldData.enemiesPurified = NPCManager.PurifiedEnemies;
+            savedData.worldData.enemiesKilled = NPCManager.KilledEnemies;
+            savedData.worldData.arenasCompleted = ArenaScript.CompletedArenas;
 
             // SAVE JSON
             string json = JsonUtility.ToJson(savedData);
@@ -62,7 +63,7 @@ public class SaveDataJSON : MonoBehaviour
         Debug.Log("Saved Game!");
     }
 
-    public bool DoesSavesExist()
+    public bool DoesSavedDataExist()
     {
        return File.Exists(persistentPath);
     }
@@ -70,7 +71,7 @@ public class SaveDataJSON : MonoBehaviour
     [ContextMenu("Load Game")]
     public void LoadData()
     {
-        if (DoesSavesExist())
+        if (DoesSavedDataExist())
         {
             using (StreamReader reader = new StreamReader(persistentPath))
             {
@@ -90,8 +91,12 @@ public class SaveDataJSON : MonoBehaviour
                 sceneManager.PlayerRotationInNextScene = savedData.playerData.playerRot;
                 weaponsManager.SetInventory(savedData.playerData.takenItems);
                 weaponsManager.SetActualItem(savedData.playerData.currentWeapon);
-                NPCSpawner.PurifiedEnemies = savedData.townData.enemiesPurified;
-                NPCSpawner.KilledEnemies = savedData.townData.enemiesKilled;
+                NPCManager.PurifiedEnemies = savedData.worldData.enemiesPurified;
+                NPCManager.KilledEnemies = savedData.worldData.enemiesKilled;
+                ArenaScript.CompletedArenas = savedData.worldData.arenasCompleted;
+
+                //LOAD SCENE
+
                 sceneManager.ChangeScene(sceneManager.NextScene);
                 PlayerManager.PlayerGameObject.transform.SetPositionAndRotation(SavedData.playerData.playerPos, SavedData.playerData.playerRot);
             }
@@ -113,8 +118,9 @@ public class SaveDataJSON : MonoBehaviour
             savedData.playerData.currentScene = "HubBeta";
             savedData.playerData.takenItems = weaponsManager.TakenWeapons;
             savedData.playerData.currentWeapon = 0;
-            savedData.townData.enemiesPurified = 0;
-            savedData.townData.enemiesKilled = 0;
+            savedData.worldData.enemiesPurified = 0;
+            savedData.worldData.enemiesKilled = 0;
+            savedData.worldData.arenasCompleted = new bool[ArenaScript.MaxArenas];
 
             // SAVE JSON
             string json = JsonUtility.ToJson(savedData);

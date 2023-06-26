@@ -15,10 +15,8 @@ public class HealthManager : MonoBehaviour
     public float CurrentHealth;
     public UnityEvent OnDeath;
     private Animator anim;
-
     public bool IsDead { get { return CurrentHealth <= 0; } }
-
-    public HealthBarScript HealthBar;
+    public BarScript HealthBar;
     void Start()
     {
         MaxHealth = 100;

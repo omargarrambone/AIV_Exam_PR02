@@ -16,7 +16,7 @@ public class GameOverManager : MonoBehaviour
 
     public void LoadLastSave()
     {
-        if (DataSaver.DoesSavesExist())
+        if (DataSaver.DoesSavedDataExist())
         {
             DataSaver.LoadData();
         }

@@ -33,8 +33,6 @@ public class FluteUIScript : MonoBehaviour
     {
         lastWeaponIndex = weaponsManager.CurrentSlotIndex;
 
-        Debug.Log(lastWeaponIndex);
-
         StartMinigame();
         OnStart.Invoke();
     }

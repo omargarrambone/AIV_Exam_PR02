@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class HealthBarScript : MonoBehaviour
+public class BarScript : MonoBehaviour
 {
     public Gradient gradient;
     public Image fill;
