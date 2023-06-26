@@ -65,9 +65,9 @@ public class EnemyDamageManager : MonoBehaviour
         //if (ParryTimeIndex < HitChance && StunnManager.IsStunned == false)
         {
             IsHitting = true;
+            GetComponent<Animator>().Play("Knockback");
             //HealthManager.TakeDamage(0f);
             //StunnManager.TakeStunn(0f);
-            
         }
      
     }
