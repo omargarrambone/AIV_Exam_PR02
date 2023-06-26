@@ -3109,7 +3109,7 @@ Transform:
   - {fileID: 2510043266931798365}
   - {fileID: 7488007240717037495}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &5111978356073771471
 MonoBehaviour:
@@ -3145,6 +3145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Agent: {fileID: 2148418299946819558}
+  Rb: {fileID: 0}
   Fov: {fileID: 5111978356073771471}
   Weapon: {fileID: 4134698194711179341}
   StunnManager: {fileID: 2591736530132064491}
@@ -3154,7 +3155,11 @@ MonoBehaviour:
   PatrolSpeed: 2
   ChaseSpeed: 4
   AttackDistance: 2.5
-  PatrolWaypoints: []
+  PatrolWaypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   CurrentWaypoint: 0
   CurrentState: 0
   Arancini: {fileID: 257288705335826567}
@@ -3202,6 +3207,7 @@ MonoBehaviour:
   PlayerIsAttacking: 0
   ParryTimeIndex: 0
   IsParrying: 0
+  IsHitting: 0
   ParryChance: 0.4
   timer: 0
   counter: 0
@@ -3315,7 +3321,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b6835bb50391f524aad4ebc526f88f41, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
