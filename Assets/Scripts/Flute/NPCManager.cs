@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCSpawner : MonoBehaviour
+public class NPCManager : MonoBehaviour
 {
     public static int PurifiedEnemies;
     public static int KilledEnemies;
+    public static int FinishedEnemies => PurifiedEnemies + KilledEnemies;
 
     public GameObject[] PurificatedVillagers;
 
@@ -29,12 +30,6 @@ public class NPCSpawner : MonoBehaviour
         for (int i = 0; i < purificatedEnemies; i++)
         {
             PurificatedVillagers[i].SetActive(true);
-            //SetPurificatedAnimation(PurificatedVillagers[i]);
         }
-    }
-
-    public void SetPurificatedAnimation(GameObject go)
-    {
-         go.GetComponent<Animator>().SetBool("Purificated", true);
     }
 }

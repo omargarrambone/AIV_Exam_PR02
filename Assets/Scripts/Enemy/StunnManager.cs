@@ -18,7 +18,7 @@ public class StunnManager : MonoBehaviour
     [SerializeField] float timer = 3.0f;
     [SerializeField] float counter;
 
-    public HealthBarScript StunnBar;
+    public BarScript StunnBar;
     public EnemyDamageManager EnemyDamageManager;
 
     public UnityEvent OnStun;

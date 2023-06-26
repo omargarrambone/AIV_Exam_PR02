@@ -78,7 +78,7 @@ public class FluteScript : MonoBehaviour
                     ParticleSystem dis = Instantiate(Dissolve, enemyObj.transform.position, Dissolve.transform.rotation);                    
                     Destroy(enemyObj, 0.2f);
                     Destroy(dis.gameObject, 1);
-                    NPCSpawner.PurifiedEnemies++;
+                    NPCCounter.AddPurifiedNPCToCounter();
                 }
             }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthBarScript : HealthBarScript
+public class PlayerHealthBarScript : BarScript
 {
     public Image border;
 
