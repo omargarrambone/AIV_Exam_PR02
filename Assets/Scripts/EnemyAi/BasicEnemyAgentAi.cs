@@ -53,8 +53,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
         
         Anim.SetFloat("Speed", Agent.velocity.magnitude);
 
-       
-      
 
         switch (CurrentState)
         {
@@ -70,8 +68,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
                     Fov.Angle = 150;
                     SetNewWaypoint();
-                    Agent.speed = PatrolSpeed;
-                    //IsAttacking = false;
+                    Agent.speed = PatrolSpeed;                 
                     Anim.SetBool("Attack", false);
 
                     break;
