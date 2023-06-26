@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class BasicEnemyAgentAi : MonoBehaviour
 {
     public NavMeshAgent Agent;
+    public Rigidbody Rb;
     public FieldOfView Fov;
     private Transform PlayerTarget;
     public GameObject Weapon;
@@ -23,6 +24,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public bool IsAttacking;
     public PowerUp HeavyHealth;   
     public float TimeParry = 0.3f;
+    public float TimeHit = 0.7f;
    
 
 
@@ -30,8 +32,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         Fov = GetComponent<FieldOfView>();
         Anim = GetComponent<Animator>();
+        Rb = GetComponent<Rigidbody>();
         CurrentState = EnemyState.Patrol;
         Weapon.GetComponent<BoxCollider>().enabled = false;
 
@@ -115,7 +119,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
               
                 Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
 
-                //if (EnemyDamageManager.IsParrying && StunnManager.IsStunned == false)
+                ////if (EnemyDamageManager.IsParrying && StunnManager.IsStunned == false)
                 if (EnemyDamageManager.IsParrying)
                 {
                     Anim.SetBool("IsParrying", true);
@@ -126,6 +130,27 @@ public class BasicEnemyAgentAi : MonoBehaviour
                         EnemyDamageManager.IsParrying = false;
                         Anim.SetBool("IsParrying", false);
                         TimeParry = 0.3f;
+                    }
+                    break;
+                }
+
+                if (EnemyDamageManager.IsHitting && StunnManager.IsStunned == false)
+                {
+                    Anim.SetBool("IsHitting", true);
+                    //Agent.GetComponent<NavMeshAgent>().enabled = false;                   
+                    //Rb.isKinematic = false;
+                    //Rb.AddForce(-Agent.transform.forward * 4, ForceMode.Impulse);
+                    TimeHit -= Time.deltaTime;
+                   
+                    if (TimeHit <= 0 && StunnManager.IsStunned == false)
+                    {
+                        EnemyDamageManager.IsHitting = false;
+                        //Agent.GetComponent<NavMeshAgent>().enabled = true;
+                        //Rb.isKinematic = true;
+                        //Agent.SetDestination(PlayerTarget.position);
+                        Anim.SetBool("IsHitting", false);
+                        
+                        TimeHit = 0.7f;
                     }
                     break;
                 }
