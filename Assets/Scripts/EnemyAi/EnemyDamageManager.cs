@@ -12,8 +12,8 @@ public class EnemyDamageManager : MonoBehaviour
     public bool PlayerIsAttacking;
     public float ParryTimeIndex;
     public bool IsParrying;
+    public bool IsHitting;
     public float ParryChance = 0.4f;
-
     public float timer, counter;
 
     private void Start()
@@ -32,6 +32,7 @@ public class EnemyDamageManager : MonoBehaviour
                 PlayerIsAttacking = false;
             }
         }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,7 +41,7 @@ public class EnemyDamageManager : MonoBehaviour
         {
             //HealthManager.TakeDamage(damage);
             //StunnManager.TakeStunn(stunDamage);
-           
+
             PlayerIsAttacking = true;
             ParryTimeIndex = Random.Range(0f, 1f);
             if (ParryTimeIndex < ParryChance && StunnManager.IsStunned == false)
@@ -48,16 +49,27 @@ public class EnemyDamageManager : MonoBehaviour
                 IsParrying = true;
                 HealthManager.TakeDamage(0f);
                 StunnManager.TakeStunn(0f);
-            }
+            }           
             else 
             {
                 IsParrying = false;
+                //IsHitting = false;
                 HealthManager.TakeDamage(damage);
                 StunnManager.TakeStunn(stunDamage);
             }
 
             counter = timer;
         }
+        
+        if (other.gameObject.tag == "Kick")
+        //if (ParryTimeIndex < HitChance && StunnManager.IsStunned == false)
+        {
+            IsHitting = true;
+            //HealthManager.TakeDamage(0f);
+            //StunnManager.TakeStunn(0f);
+            
+        }
+     
     }
 
     public static void ChangeDamage(float bloodDamage=10f, float stunnDamage=20f)

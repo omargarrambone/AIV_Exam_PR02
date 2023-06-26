@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class BasicEnemyAgentAi : MonoBehaviour
 {
     public NavMeshAgent Agent;
+    public Rigidbody Rb;
     public FieldOfView Fov;
     private Transform PlayerTarget;
     public GameObject Weapon;
@@ -30,8 +31,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         Fov = GetComponent<FieldOfView>();
         Anim = GetComponent<Animator>();
+        Rb = GetComponent<Rigidbody>();
         CurrentState = EnemyState.Patrol;
         Weapon.GetComponent<BoxCollider>().enabled = false;
 
@@ -85,7 +88,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                
 
                 Fov.Angle = 360;
-                //Weapon.GetComponent<BoxCollider>().enabled = false;
+             
 
                 if (Fov.targetCheck() == true && distanceFromTarget.magnitude <= AttackDistance)
                 {
@@ -115,18 +118,26 @@ public class BasicEnemyAgentAi : MonoBehaviour
               
                 Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
 
-                //if (EnemyDamageManager.IsParrying && StunnManager.IsStunned == false)
                 if (EnemyDamageManager.IsParrying)
                 {
                     Anim.SetBool("IsParrying", true);
                     TimeParry -= Time.deltaTime;
-                    //if (TimeParry <= 0 || EnemyDamageManager.PlayerIsAttacking == false)
+                 
                     if (TimeParry <= 0)
                     {
                         EnemyDamageManager.IsParrying = false;
                         Anim.SetBool("IsParrying", false);
                         TimeParry = 0.3f;
                     }
+                    break;
+                }
+
+                if (EnemyDamageManager.IsHitting && StunnManager.IsStunned == false)
+                {
+                    Anim.SetTrigger("IsHitting");
+
+                    EnemyDamageManager.IsHitting = false;
+                 
                     break;
                 }
 
