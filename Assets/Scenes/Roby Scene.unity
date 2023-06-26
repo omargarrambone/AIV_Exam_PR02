@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!2083052967 &295265127 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 1501535457750444172, guid: e375b58688cc98343962035d2c587cae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1717661302}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &536084568
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,11 +719,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 322434970050091763, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: bloodFx
-      value: 
-      objectReference: {fileID: 295265127}
     - target: {fileID: 591661635958209730, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_RootOrder
@@ -790,93 +779,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DEBUGDontDestroyObjects
       objectReference: {fileID: 0}
-    - target: {fileID: 1963203286398237446, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919309499062627871, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5498602407421624072, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
-      value: 451eb481-7157-47a1-b5c9-81ba723a22b1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
-      value: Player/Kick[/Mouse/rightButton]
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1751468408}
-    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Kick
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerInput, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6972104699478142412, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      propertyPath: m_TagString
-      value: Kick
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e375b58688cc98343962035d2c587cae, type: 3}
---- !u!114 &1751468408 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2249420776414779013, guid: e375b58688cc98343962035d2c587cae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1717661302}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 206e9fa2b31d0c34b8502f3d3f58d069, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1813311972
 GameObject:
   m_ObjectHideFlags: 0
