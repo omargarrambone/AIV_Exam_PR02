@@ -8,7 +8,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public NavMeshAgent Agent;
     public Rigidbody Rb;
     public FieldOfView Fov;
-    private Transform PlayerTarget;
+    protected Transform PlayerTarget;
     public GameObject Weapon;
     public StunnManager StunnManager;
     public HealthManager HealthManager;
@@ -24,14 +24,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public bool IsAttacking;
     public PowerUp HeavyHealth;   
     public float TimeParry = 0.3f;
-   
-
-
 
     // Start is called before the first frame update
-    void Start()
+    virtual protected void Start()
     {
-        
         Fov = GetComponent<FieldOfView>();
         Anim = GetComponent<Animator>();
         Rb = GetComponent<Rigidbody>();
@@ -47,7 +43,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    virtual protected void Update()
     {
         Vector3 distanceFromTarget = PlayerTarget.position - Agent.transform.position;
         
