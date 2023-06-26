@@ -1807,7 +1807,7 @@ PrefabInstance:
     - target: {fileID: 2110609369236761904, guid: 36ca1ebd7fee4f148830c5964f6155da,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4374758732337247449, guid: 36ca1ebd7fee4f148830c5964f6155da,
         type: 3}
@@ -4190,26 +4190,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ragdoll Enemy Sword (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886741121094267258, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886741121094267258, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149443665228102436, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149443665228102436, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9035985288689505002, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
@@ -9011,7 +8991,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-217760
+  m_Name: pb_Mesh-331956
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -10817,7 +10797,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 133354, guid: 1c64fbe146825d4439e21d3a3c64b4fb, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 158026, guid: 1c64fbe146825d4439e21d3a3c64b4fb, type: 3}
       propertyPath: m_Name
@@ -10825,7 +10805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 158026, guid: 1c64fbe146825d4439e21d3a3c64b4fb, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 436350, guid: 1c64fbe146825d4439e21d3a3c64b4fb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11434,6 +11414,11 @@ PrefabInstance:
       propertyPath: PatrolWaypoints.Array.data[3]
       value: 
       objectReference: {fileID: 956904889}
+    - target: {fileID: 4510432120227637773, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4707804355045447749, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
       propertyPath: m_Height
@@ -11453,26 +11438,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ragdoll Enemy Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886741121094267258, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886741121094267258, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149443665228102436, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149443665228102436, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9035985288689505002, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
@@ -12409,7 +12374,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 133354, guid: 1c64fbe146825d4439e21d3a3c64b4fb, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 158026, guid: 1c64fbe146825d4439e21d3a3c64b4fb, type: 3}
       propertyPath: m_Name
@@ -12417,7 +12382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 158026, guid: 1c64fbe146825d4439e21d3a3c64b4fb, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 473108, guid: 1c64fbe146825d4439e21d3a3c64b4fb, type: 3}
       propertyPath: m_RootOrder
@@ -18729,79 +18694,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b07d3f75bc828a419183410854772fb, type: 3}
---- !u!1001 &2078069409
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3996505983119499751, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_Name
-      value: FogWall (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9999772
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.0067583695
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.774
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8679272b44efaef459ad94912e42b309, type: 3}
 --- !u!1 &2082493752
 GameObject:
   m_ObjectHideFlags: 0
@@ -18882,6 +18774,11 @@ PrefabInstance:
       propertyPath: PatrolWaypoints.Array.data[3]
       value: 
       objectReference: {fileID: 956904889}
+    - target: {fileID: 4510432120227637773, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4707804355045447749, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
       propertyPath: m_Height
@@ -18901,26 +18798,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ragdoll Enemy Sword (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886741121094267258, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886741121094267258, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149443665228102436, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149443665228102436, guid: bbf33218603b8964083d320cbb6fbe04,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8760005527359952587, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
@@ -19657,7 +19534,7 @@ PrefabInstance:
     - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.5
+      value: -3.67
       objectReference: {fileID: 0}
     - target: {fileID: 4535054223208084381, guid: 8679272b44efaef459ad94912e42b309,
         type: 3}
