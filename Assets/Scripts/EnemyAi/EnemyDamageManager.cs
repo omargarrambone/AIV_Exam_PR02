@@ -14,7 +14,6 @@ public class EnemyDamageManager : MonoBehaviour
     public bool IsParrying;
     public bool IsHitting;
     public float ParryChance = 0.4f;
-    //public float HitChance = 0.6f;
     public float timer, counter;
 
     private void Start()
@@ -33,6 +32,7 @@ public class EnemyDamageManager : MonoBehaviour
                 PlayerIsAttacking = false;
             }
         }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,14 +67,9 @@ public class EnemyDamageManager : MonoBehaviour
             IsHitting = true;
             //HealthManager.TakeDamage(0f);
             //StunnManager.TakeStunn(0f);
+            
         }
-        else
-        {
-           
-            IsHitting = false;
-            //HealthManager.TakeDamage(damage);
-            //StunnManager.TakeStunn(stunDamage);
-        }
+     
     }
 
     public static void ChangeDamage(float bloodDamage=10f, float stunnDamage=20f)
