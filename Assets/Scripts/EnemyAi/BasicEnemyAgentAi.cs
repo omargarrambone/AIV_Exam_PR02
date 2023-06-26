@@ -24,7 +24,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public bool IsAttacking;
     public PowerUp HeavyHealth;   
     public float TimeParry = 0.3f;
-    public float TimeHit = 0.7f;
+    public float TimeHit = 0.4f;
    
 
 
@@ -150,7 +150,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                         //Agent.SetDestination(PlayerTarget.position);
                         Anim.SetBool("IsHitting", false);
                         
-                        TimeHit = 0.7f;
+                        TimeHit = 0.4f;
                     }
                     break;
                 }
