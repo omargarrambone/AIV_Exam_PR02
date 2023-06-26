@@ -39,9 +39,6 @@ public class EnemyDamageManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Sword")
         {
-            //HealthManager.TakeDamage(damage);
-            //StunnManager.TakeStunn(stunDamage);
-
             PlayerIsAttacking = true;
             ParryTimeIndex = Random.Range(0f, 1f);
             if (ParryTimeIndex < ParryChance && StunnManager.IsStunned == false)
@@ -52,8 +49,7 @@ public class EnemyDamageManager : MonoBehaviour
             }           
             else 
             {
-                IsParrying = false;
-                //IsHitting = false;
+                IsParrying = false;              
                 HealthManager.TakeDamage(damage);
                 StunnManager.TakeStunn(stunDamage);
             }
@@ -63,7 +59,7 @@ public class EnemyDamageManager : MonoBehaviour
         
         if (other.gameObject.tag == "Kick")      
         {
-            IsHitting = true;
+            IsHitting = true;        
             GetComponent<Animator>().Play("Knockback");
             //HealthManager.TakeDamage(0f);
             //StunnManager.TakeStunn(0f);
