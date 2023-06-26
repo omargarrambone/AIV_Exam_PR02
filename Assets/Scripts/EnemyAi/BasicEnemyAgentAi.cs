@@ -135,9 +135,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 if (EnemyDamageManager.IsHitting && StunnManager.IsStunned == false)
                 {
                     Anim.SetTrigger("IsHitting");
-
-                    EnemyDamageManager.IsHitting = false;
-                 
+                    EnemyDamageManager.IsHitting = false;                 
                     break;
                 }
 

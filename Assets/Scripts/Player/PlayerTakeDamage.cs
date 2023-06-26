@@ -37,7 +37,6 @@ public class PlayerTakeDamage : MonoBehaviour
         {
             if (timer < delay)
             {
-
                 timer += Time.deltaTime;
             }
             if (timer >= delay)

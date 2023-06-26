@@ -61,8 +61,7 @@ public class EnemyDamageManager : MonoBehaviour
             counter = timer;
         }
         
-        if (other.gameObject.tag == "Kick")
-        //if (ParryTimeIndex < HitChance && StunnManager.IsStunned == false)
+        if (other.gameObject.tag == "Kick")      
         {
             IsHitting = true;
             GetComponent<Animator>().Play("Knockback");
