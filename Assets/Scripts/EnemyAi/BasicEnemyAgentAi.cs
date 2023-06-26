@@ -25,9 +25,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public PowerUp HeavyHealth;   
     public float TimeParry = 0.3f;
 
-
-
-
     // Start is called before the first frame update
     virtual protected void Start()
     {
