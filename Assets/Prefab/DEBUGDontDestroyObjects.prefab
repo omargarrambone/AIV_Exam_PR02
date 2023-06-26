@@ -395,10 +395,10 @@ MonoBehaviour:
       currentScene: 
       currentWeapon: 0
       takenItems: 
-    townData:
+    worldData:
       enemiesKilled: 0
       enemiesPurified: 0
-      unlockedLevel: 0
+      arenasCompleted: 
   OnSave:
     m_PersistentCalls:
       m_Calls: []
@@ -2100,6 +2100,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2001727912521350729, guid: 77237156cebbaf44bb6463bf954a205d,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 6654520611129980831, guid: 77237156cebbaf44bb6463bf954a205d,
         type: 3}
       propertyPath: m_RenderPostProcessing
@@ -2526,6 +2531,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ninja
       objectReference: {fileID: 0}
+    - target: {fileID: 8637714746155713719, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: bloodFx
+      value: 
+      objectReference: {fileID: 1501535457750444172}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2577,6 +2587,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb741934c69de824ba9da31b425f68e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!2083052967 &1501535457750444172 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 7453547141938706120, guid: b4d505da6851e2848ab8f21d473442e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8333584734126612036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1648116719290742614 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7312049489312278802, guid: b4d505da6851e2848ab8f21d473442e0,
