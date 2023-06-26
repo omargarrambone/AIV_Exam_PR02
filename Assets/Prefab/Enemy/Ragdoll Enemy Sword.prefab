@@ -2303,7 +2303,7 @@ GameObject:
   - component: {fileID: 6552613597917543546}
   - component: {fileID: 2120101128715369859}
   - component: {fileID: 1470256232070601503}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Small Katana Enemy
   m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
@@ -3109,7 +3109,7 @@ Transform:
   - {fileID: 2510043266931798365}
   - {fileID: 7488007240717037495}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &5111978356073771471
 MonoBehaviour:
@@ -5788,13 +5788,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 700870817330327490, guid: bd20022ebe62c704b9fc99f9347df52c,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 700870817330327490, guid: bd20022ebe62c704b9fc99f9347df52c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 700870817330327490, guid: bd20022ebe62c704b9fc99f9347df52c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 700870817330327490, guid: bd20022ebe62c704b9fc99f9347df52c,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 700870817330327490, guid: bd20022ebe62c704b9fc99f9347df52c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 700870817330327490, guid: bd20022ebe62c704b9fc99f9347df52c,
         type: 3}
@@ -5835,6 +5850,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 700870817330327490, guid: bd20022ebe62c704b9fc99f9347df52c,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1728271151565769664, guid: bd20022ebe62c704b9fc99f9347df52c,
         type: 3}

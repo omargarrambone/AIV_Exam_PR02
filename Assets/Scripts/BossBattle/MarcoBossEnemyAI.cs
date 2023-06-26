@@ -3,57 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BasicEnemyAgentAi : MonoBehaviour
+public class MarcoBossEnemyAI : BasicEnemyAgentAi
 {
-    public NavMeshAgent Agent;
-    public Rigidbody Rb;
-    public FieldOfView Fov;
-    protected Transform PlayerTarget;
-    public GameObject Weapon;
-    public StunnManager StunnManager;
-    public HealthManager HealthManager;
-    public EnemyDamageManager EnemyDamageManager;
-    public Animator Anim;
-    public float PatrolSpeed;
-    public float ChaseSpeed;
-    public float AttackDistance;
-    public List<Transform> PatrolWaypoints;
-    public int CurrentWaypoint;
-    public EnemyState CurrentState;
-    public ParticleSystem Arancini;
-    public bool IsAttacking;
-    public PowerUp HeavyHealth;   
-    public float TimeParry = 0.3f;
-
-
-
-
-    // Start is called before the first frame update
-    virtual protected void Start()
+    protected override void Start()
     {
-        Fov = GetComponent<FieldOfView>();
-        Anim = GetComponent<Animator>();
-        Rb = GetComponent<Rigidbody>();
-        CurrentState = EnemyState.Patrol;
-        Weapon.GetComponent<BoxCollider>().enabled = false;
-
-        //SetNewWaypoint();
-
-        PlayerTarget = PlayerManager.PlayerGameObject.transform;
+        base.Start();
     }
 
-
-
-
-    // Update is called once per frame
-    virtual protected void Update()
+    protected override void Update()
     {
         Vector3 distanceFromTarget = PlayerTarget.position - Agent.transform.position;
-        
-        Anim.SetFloat("Speed", Agent.velocity.magnitude);
 
-       
-      
+        Anim.SetFloat("Speed", Agent.velocity.magnitude);
 
         switch (CurrentState)
         {
@@ -77,17 +38,17 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }
                 if (EnemyDamageManager.PlayerIsAttacking)
                 {
-                    CurrentState = EnemyState.Chase;                    
+                    CurrentState = EnemyState.Chase;
                     break;
                 }
                 break;
 
 
             case EnemyState.Chase:
-               
+
 
                 Fov.Angle = 360;
-             
+
 
                 if (Fov.targetCheck() == true && distanceFromTarget.magnitude <= AttackDistance)
                 {
@@ -101,7 +62,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     //Fov.Angle = 150;
                     CurrentState = EnemyState.Patrol;
                     Agent.speed = PatrolSpeed;
-                    
+
                     break;
                 }
 
@@ -114,14 +75,14 @@ public class BasicEnemyAgentAi : MonoBehaviour
             case EnemyState.Attack:
 
                 Anim.SetBool("Attack", true);
-              
-                Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
+
+                Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0, distanceFromTarget.normalized.z);
 
                 if (EnemyDamageManager.IsParrying)
                 {
                     Anim.SetBool("IsParrying", true);
                     TimeParry -= Time.deltaTime;
-                 
+
                     if (TimeParry <= 0)
                     {
                         EnemyDamageManager.IsParrying = false;
@@ -136,7 +97,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     Anim.SetTrigger("IsHitting");
 
                     EnemyDamageManager.IsHitting = false;
-                 
+
                     break;
                 }
 
@@ -198,39 +159,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }
 
                 break;
-
-            default:
-                break;
         }
-
     }
-
-    public void SetState(int state)
-    {
-        CurrentState = (EnemyState)state;
-    }
-
-
-    public void SetNewWaypoint()
-    {
-        CurrentWaypoint = Random.Range(0, PatrolWaypoints.Count);
-        Agent.SetDestination(PatrolWaypoints[CurrentWaypoint].position);
-    }
-
-
-    public void SpawnPowerUp(PowerUp lightHealth)
-    {
-        Instantiate(lightHealth, transform.position + new Vector3(0, 1f, 1f), lightHealth.transform.rotation);
-    }
-
-    public void StartAttack()
-    {
-        Weapon.GetComponent<BoxCollider>().enabled = true;
-    }
-
-    public void EndAttack()
-    {
-        Weapon.GetComponent<BoxCollider>().enabled = false;
-    }
-
 }
+
