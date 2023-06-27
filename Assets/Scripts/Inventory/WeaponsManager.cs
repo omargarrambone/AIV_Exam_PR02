@@ -41,10 +41,17 @@ public class WeaponsManager : MonoBehaviour
 
         weaponsColliders = new Collider[inventoryGameObjects.Length-1]; // no flute
 
-        for (int i = 0; i < weaponsColliders.Length; i++)
+        int lastColliderIndex=0;
+
+        for (int i = 0; i < inventoryGameObjects.Length; i++)
         {
-            weaponsColliders[i] = inventoryGameObjects[i].GetComponent<Collider>();
-            weaponsColliders[i].enabled = false;
+            Collider collider = inventoryGameObjects[i].GetComponent<Collider>();
+
+            if (collider == null) continue;
+
+            weaponsColliders[lastColliderIndex] = collider;
+            weaponsColliders[lastColliderIndex].enabled = false;
+            lastColliderIndex++;
         }
 
         SetActualItem(CurrentSlotIndex);

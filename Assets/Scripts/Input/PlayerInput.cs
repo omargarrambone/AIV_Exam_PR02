@@ -74,11 +74,12 @@ public class PlayerInput : MonoBehaviour
 
     public void Kick(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && IsGrounded())
         {
             _anim.SetTrigger("IsKicking");
-        }
 
+            PlayerManager.DisablePlayerMovement();
+        }
     }
 
     private void ApplyRotation()
