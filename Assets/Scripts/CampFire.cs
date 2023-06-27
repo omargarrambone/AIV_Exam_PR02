@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CampFire : MonoBehaviour
 {
-    public void ShowHideMenu()
+    public void ShowHideSaveMenu()
     {
-        PauseMenuManager.PauseMenu.SetActive(!PauseMenuManager.PauseMenu.activeSelf);
+        InGameMenusManager.ShowHideSaveMenu();
     }
 
-    public void HideMenu()
+    public void HideSaveMenu()
     {
-        PauseMenuManager.PauseMenu.SetActive(false);
+        InGameMenusManager.ShowHideSaveMenu(false);
     }
 }

@@ -25,6 +25,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
     public PowerUp HeavyHealth;   
     public float TimeParry = 0.3f;
 
+
+
     // Start is called before the first frame update
     virtual protected void Start()
     {
@@ -33,9 +35,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
         Rb = GetComponent<Rigidbody>();
         CurrentState = EnemyState.Patrol;
         Weapon.GetComponent<BoxCollider>().enabled = false;
-
-        //SetNewWaypoint();
-
         PlayerTarget = PlayerManager.PlayerGameObject.transform;
     }
 
@@ -49,8 +48,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
         
         Anim.SetFloat("Speed", Agent.velocity.magnitude);
 
-       
-      
 
         switch (CurrentState)
         {
@@ -66,17 +63,17 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
                     Fov.Angle = 150;
                     SetNewWaypoint();
-                    Agent.speed = PatrolSpeed;
-                    //IsAttacking = false;
+                    Agent.speed = PatrolSpeed;                 
                     Anim.SetBool("Attack", false);
 
                     break;
                 }
-                if (EnemyDamageManager.PlayerIsAttacking)
+                if (EnemyDamageManager.PlayerIsAttacking || EnemyDamageManager.IsHitting)              
                 {
                     CurrentState = EnemyState.Chase;                    
                     break;
                 }
+               
                 break;
 
 
@@ -130,10 +127,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
                 if (EnemyDamageManager.IsHitting && StunnManager.IsStunned == false)
                 {
-                    Anim.SetTrigger("IsHitting");
-
                     EnemyDamageManager.IsHitting = false;
-                 
                     break;
                 }
 
@@ -183,13 +177,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 Anim.SetBool("Attack", false);
                 Agent.speed = 0;
 
-                //Enemy ready to be purified by the sound of the Magic Flute
-
                 if (StunnManager.CurrentStunn < 1)
                 {
                     Anim.SetBool("Stunned", false);
-                    CurrentState = EnemyState.Patrol;
-                    //Agent.speed = PatrolSpeed;
+                    CurrentState = EnemyState.Patrol;                 
                     Arancini.gameObject.SetActive(false);
                     StunnManager.IsStunned = false;
                 }

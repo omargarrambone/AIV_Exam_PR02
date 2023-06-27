@@ -4884,7 +4884,7 @@ Transform:
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &734773188689068647
 MeshFilter:
@@ -4953,7 +4953,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7015726857929243711}
         m_TargetAssemblyTypeName: CampFire, Assembly-CSharp
-        m_MethodName: ShowHideMenu
+        m_MethodName: ShowHideSaveMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4968,7 +4968,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7015726857929243711}
         m_TargetAssemblyTypeName: CampFire, Assembly-CSharp
-        m_MethodName: HideMenu
+        m_MethodName: HideSaveMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
