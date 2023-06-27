@@ -561,82 +561,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!1 &6805110547097336049
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 220005288085541376}
-  - component: {fileID: 1152389505796897432}
-  - component: {fileID: 3523552670557565874}
-  m_Layer: 5
-  m_Name: music sheet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &220005288085541376
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6805110547097336049}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4335201782134604503}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -63}
-  m_SizeDelta: {x: 600, y: 128}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1152389505796897432
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6805110547097336049}
-  m_CullTransparentMesh: 1
---- !u!114 &3523552670557565874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6805110547097336049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c3889c9d7aec714886b11b033fe99c6, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7176356103314958543
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,7 +666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c264be12c4dd1b740b531ffaf8b0c920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 2355705824749077327}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.1830691, b: 0, a: 1}
@@ -861,51 +784,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArrowMinigamePanel
       objectReference: {fileID: 0}
-    - target: {fileID: 1048047494172792012, guid: 1ce6666aa1e5023418ce285a6698c92a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5772143303174852361, guid: 1ce6666aa1e5023418ce285a6698c92a,
-        type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5772143303174852361, guid: 1ce6666aa1e5023418ce285a6698c92a,
-        type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5772143303174852361, guid: 1ce6666aa1e5023418ce285a6698c92a,
-        type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5772143303174852361, guid: 1ce6666aa1e5023418ce285a6698c92a,
-        type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActualItem
-      objectReference: {fileID: 0}
-    - target: {fileID: 5772143303174852361, guid: 1ce6666aa1e5023418ce285a6698c92a,
-        type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InventoryManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5772143303174852361, guid: 1ce6666aa1e5023418ce285a6698c92a,
-        type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5772143303174852361, guid: 1ce6666aa1e5023418ce285a6698c92a,
-        type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5772143303174852361, guid: 1ce6666aa1e5023418ce285a6698c92a,
-        type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7214404325439444994, guid: 1ce6666aa1e5023418ce285a6698c92a,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1013,11 +891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7214404325439444994, guid: 1ce6666aa1e5023418ce285a6698c92a,
-        type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 220005288085541376}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ce6666aa1e5023418ce285a6698c92a, type: 3}
 --- !u!224 &4335201782134604503 stripped

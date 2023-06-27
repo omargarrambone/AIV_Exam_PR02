@@ -12,6 +12,7 @@ public class FluteUIScript : MonoBehaviour
     [SerializeField] private UnityEvent OnStart,OnCompleted, OnFail;
     [SerializeField] private UnityEvent<FluteArrow> OnCorrectArrow;
     [SerializeField] private PlayerInput playerInputScript;
+    [SerializeField] private Image musicSheet;
     private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
     private int currentArrowIndex, lastWeaponIndex;
 
@@ -42,15 +43,17 @@ public class FluteUIScript : MonoBehaviour
     {
         currentArrowIndex = 0;
         SetRandomArrows();
+
+        musicSheet.color = Color.red;
     }
 
-        public void FluteKeysPressCheck(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void FluteKeysPressCheck(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (!gameObject.activeSelf) return;
 
         if (context.performed)
         {
-            //to fix if a player keeps a key pressed (?)
+            //TODO: to fix if a player keeps a key pressed (?)
 
             Vector2 value = context.ReadValue<Vector2>();
 
@@ -58,6 +61,8 @@ public class FluteUIScript : MonoBehaviour
             {
                 ArrowsUIParent.GetChild(currentArrowIndex).gameObject.SetActive(false);
                 OnCorrectArrow.Invoke(fluteArrows[currentArrowIndex].Item2);
+                musicSheet.color = currentArrowIndex % 2 != 0 ? Color.red : Color.blue;
+
                 currentArrowIndex++;
 
                 if (currentArrowIndex >= fluteArrows.Length)
