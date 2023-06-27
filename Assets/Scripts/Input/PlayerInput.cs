@@ -124,7 +124,7 @@ public class PlayerInput : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!context.started) return;
+        if (!context.performed) return;
 
         if (!IsGrounded() && _numberOfJumps >= maxNumberOfJumps) return;
         if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
