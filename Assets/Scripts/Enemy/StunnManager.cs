@@ -6,15 +6,11 @@ using UnityEngine.Events;
 
 public class StunnManager : MonoBehaviour
 {
-
     float MinStunnValue = 0;
-
-    // Setted to public by Roberto
     public float CurrentStunn;
     public bool IsStunned;
 
-    float StunnDecreaseVelocity = 20.0f;
-
+    [SerializeField] float StunnDecreaseVelocity = 20.0f;
     [SerializeField] float timer = 3.0f;
     [SerializeField] float counter;
 

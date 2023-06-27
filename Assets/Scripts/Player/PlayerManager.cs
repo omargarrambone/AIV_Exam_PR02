@@ -7,11 +7,13 @@ public class PlayerManager : MonoBehaviour
 {
     public static GameObject PlayerGameObject { get; private set; }
     public static CharacterController PlayerCharactercontroller;
+    public static PlayerInput PlayerInput;
     public float minY;
     void Awake()
     {
        if(PlayerGameObject == null) PlayerGameObject = GameObject.FindGameObjectWithTag("Player");
        if (PlayerCharactercontroller == null) PlayerCharactercontroller = PlayerGameObject.GetComponent<CharacterController>();
+       if (PlayerInput == null) PlayerInput = PlayerGameObject.GetComponent<PlayerInput>();
     }
 
     static public void SetPosition(Vector3 newPosition)
@@ -65,5 +67,15 @@ public class PlayerManager : MonoBehaviour
             SetPosition(Vector3.zero);
             PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
         }
+    }
+
+    static public void DisablePlayerMovement()
+    {
+        PlayerInput.enabled = false;
+    }
+
+    static public void EnablePlayerMovement()
+    {
+        PlayerInput.enabled = true;
     }
 }

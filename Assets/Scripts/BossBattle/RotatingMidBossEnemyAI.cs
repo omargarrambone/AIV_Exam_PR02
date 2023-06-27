@@ -5,10 +5,13 @@ using UnityEngine.AI;
 
 public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
 {
+    float dizzinessCounter, dizzinessTimer;
+
     protected override void Start()
     {
         base.Start();
         Weapon.GetComponent<BoxCollider>().enabled = true;
+        dizzinessTimer = 4f;
     }
 
     protected override void Update()
@@ -25,6 +28,12 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
                     SetNewWaypoint();
                     Agent.speed = PatrolSpeed;
 
+                    dizzinessCounter += Time.deltaTime;
+
+                    if(dizzinessCounter > dizzinessTimer)
+                    {
+                        CurrentState = EnemyState.Stun;
+                    }
                 }
 
                 break;

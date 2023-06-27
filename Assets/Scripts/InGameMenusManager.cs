@@ -6,7 +6,6 @@ public class InGameMenusManager : MonoBehaviour
 {
     public static GameObject PauseMenu, SaveMenu;
     [SerializeField] private GameObject pauseMenu, saveMenu;
-    // Start is called before the first frame update
     void Awake()
     {
         PauseMenu = pauseMenu;
