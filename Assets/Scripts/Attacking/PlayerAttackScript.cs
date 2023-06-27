@@ -27,6 +27,5 @@ public class PlayerAttackScript : MonoBehaviour
 
         swordSlash[weaponsManager.CurrentSlotIndex].Stop();
         OnEndAttack.Invoke();
-
     }
 }
