@@ -5062,11 +5062,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6658686295529348793}
+  - {fileID: 1861687991539401934}
   - {fileID: 4516636779410185077}
   - {fileID: 4494512853427322876}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &9214509987150865373
 MonoBehaviour:
@@ -5101,27 +5101,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce81ff758858a34ca0c86bc8ed470c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Agent: {fileID: 2627876041869194610}
-  Rb: {fileID: 0}
-  Fov: {fileID: 9214509987150865373}
-  Weapon: {fileID: 3858968903812287310}
-  StunnManager: {fileID: 7099051901857183523}
-  HealthManager: {fileID: 8927651966519115845}
-  EnemyDamageManager: {fileID: 5053846933391460361}
-  Anim: {fileID: 3153458516362878516}
-  PatrolSpeed: 2
-  ChaseSpeed: 2
-  AttackDistance: 2
-  PatrolWaypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  CurrentWaypoint: 0
-  CurrentState: 0
-  Arancini: {fileID: 6242996641999769626}
-  IsAttacking: 0
-  HeavyHealth: {fileID: 5330846943788339623, guid: 80ecebc23a35916499eb6b787e3723d3,
+  agent: {fileID: 2627876041869194610}
+  currentState: 0
+  playerTarget: {fileID: 0}
+  weapon: {fileID: 3858968903812287310}
+  stunnManager: {fileID: 7099051901857183523}
+  healthManager: {fileID: 8927651966519115845}
+  anim: {fileID: 3153458516362878516}
+  patrolSpeed: 2
+  arancini: {fileID: 1377530750148184685}
+  heavyHealth: {fileID: 5330846943788339623, guid: 80ecebc23a35916499eb6b787e3723d3,
     type: 3}
-  TimeParry: 0.3
+  enemyDamageManager: {fileID: 5053846933391460361}
+  fov: {fileID: 9214509987150865373}
+  chaseSpeed: 2
+  attackDistance: 2
+  patrolWaypoints: []
+  timeParry: 0.3
 --- !u!195 &2627876041869194610
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5158,7 +5154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthManager: {fileID: 8927651966519115845}
   StunnManager: {fileID: 7099051901857183523}
-  arancini: {fileID: 6242996641999769626}
+  arancini: {fileID: 1377530750148184685}
   PlayerIsAttacking: 0
   ParryTimeIndex: 0
   IsParrying: 0
@@ -5180,6 +5176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentStunn: 0
   IsStunned: 0
+  StunnDecreaseVelocity: 20
   timer: 3
   counter: 0
   StunnBar: {fileID: 5080394394200240552}
@@ -5305,7 +5302,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4516636779410185077}
-  - component: {fileID: 3120248244648243936}
   m_Layer: 0
   m_Name: Character_Samurai_Grunt_Black
   m_TagString: Untagged
@@ -5336,27 +5332,6 @@ Transform:
   m_Father: {fileID: 5208131769330494903}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &3120248244648243936
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8197945996905278544}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2ba66718d3169ae42a05d8facf302228, type: 3}
-  m_Controller: {fileID: 9100000, guid: d62af11c372059a4d9c2feacf46a754a, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8269851504649057571
 GameObject:
   m_ObjectHideFlags: 0
@@ -5862,13 +5837,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd20022ebe62c704b9fc99f9347df52c, type: 3}
---- !u!198 &6242996641999769626 stripped
+--- !u!198 &1377530750148184685 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 248276313695773025, guid: bd20022ebe62c704b9fc99f9347df52c,
     type: 3}
   m_PrefabInstance: {fileID: 1184434705588054796}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &6658686295529348793 stripped
+--- !u!4 &1861687991539401934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 700870817330327490, guid: bd20022ebe62c704b9fc99f9347df52c,
     type: 3}

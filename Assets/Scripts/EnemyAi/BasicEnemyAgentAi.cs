@@ -5,72 +5,65 @@ using UnityEngine.AI;
 
 public class BasicEnemyAgentAi : MonoBehaviour
 {
-    public NavMeshAgent Agent;
-    public Rigidbody Rb;
-    public FieldOfView Fov;
-    protected Transform PlayerTarget;
-    public GameObject Weapon;
-    public StunnManager StunnManager;
-    public HealthManager HealthManager;
-    public EnemyDamageManager EnemyDamageManager;
-    public Animator Anim;
-    public float PatrolSpeed;
-    public float ChaseSpeed;
-    public float AttackDistance;
-    public List<Transform> PatrolWaypoints;
-    public int CurrentWaypoint;
-    public EnemyState CurrentState;
-    public ParticleSystem Arancini;
-    public bool IsAttacking;
-    public PowerUp HeavyHealth;   
-    public float TimeParry = 0.3f;
+    [Header("Variables")]
+    [SerializeField] protected EnemyState currentState;
+    [SerializeField] protected float chaseSpeed;
+    [SerializeField] protected float patrolSpeed;
+    [SerializeField] protected float timeParry = 0.3f;
+    [SerializeField] protected float attackDistance;
 
+    [Header("References")]
+    [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected GameObject weapon;
+    [SerializeField] protected StunnManager stunnManager;
+    [SerializeField] protected HealthManager healthManager;
+    [SerializeField] protected Animator anim;
+    [SerializeField] protected ParticleSystem arancini;
+    [SerializeField] protected PowerUp heavyHealth;
+    [SerializeField] protected EnemyDamageManager enemyDamageManager;
+    [SerializeField] protected FieldOfView fov;
+    [SerializeField] protected List<Transform> patrolWaypoints;
+    protected Transform playerTarget;
+    protected int currentWaypoint;
 
 
     // Start is called before the first frame update
     virtual protected void Start()
     {
-        Fov = GetComponent<FieldOfView>();
-        Anim = GetComponent<Animator>();
-        Rb = GetComponent<Rigidbody>();
-        CurrentState = EnemyState.Patrol;
-        Weapon.GetComponent<BoxCollider>().enabled = false;
-        PlayerTarget = PlayerManager.PlayerGameObject.transform;
+        fov = GetComponent<FieldOfView>();
+        anim = GetComponent<Animator>();
+        currentState = EnemyState.Patrol;
+        weapon.GetComponent<BoxCollider>().enabled = false;
+        playerTarget = PlayerManager.PlayerGameObject.transform;
     }
-
-
-
 
     // Update is called once per frame
     virtual protected void Update()
     {
-        Vector3 distanceFromTarget = PlayerTarget.position - Agent.transform.position;
+        Vector3 distanceFromTarget = playerTarget.position - agent.transform.position;
         
-        Anim.SetFloat("Speed", Agent.velocity.magnitude);
+        anim.SetFloat("Speed", agent.velocity.magnitude);
 
-
-        switch (CurrentState)
+        switch (currentState)
         {
             case EnemyState.Patrol:
 
-                if (Fov.targetCheck() == true)
+                if (fov.targetCheck() == true)
                 {
-                    CurrentState = EnemyState.Chase;
+                    currentState = EnemyState.Chase;
                     break;
                 }
-                else if (Agent.remainingDistance < 2f)
+                else if (agent.remainingDistance < 2f)
                 {
-
-                    Fov.Angle = 150;
+                    fov.Angle = 150;
                     SetNewWaypoint();
-                    Agent.speed = PatrolSpeed;                 
-                    Anim.SetBool("Attack", false);
-
+                    agent.speed = patrolSpeed;                 
+                    anim.SetBool("Attack", false);
                     break;
                 }
-                if (EnemyDamageManager.PlayerIsAttacking || EnemyDamageManager.IsHitting)              
+                if (enemyDamageManager.PlayerIsAttacking || enemyDamageManager.IsHitting)              
                 {
-                    CurrentState = EnemyState.Chase;                    
+                    currentState = EnemyState.Chase;                    
                     break;
                 }
                
@@ -80,69 +73,67 @@ public class BasicEnemyAgentAi : MonoBehaviour
             case EnemyState.Chase:
                
 
-                Fov.Angle = 360;
+                fov.Angle = 360;
              
 
-                if (Fov.targetCheck() == true && distanceFromTarget.magnitude <= AttackDistance)
+                if (fov.targetCheck() == true && distanceFromTarget.magnitude <= attackDistance)
                 {
-                    Agent.speed = 0;
-                    CurrentState = EnemyState.Attack;
-                    IsAttacking = true;
+                    agent.speed = 0;
+                    currentState = EnemyState.Attack;
                     break;
                 }
-                else if (Fov.targetCheck() == false)
+                else if (fov.targetCheck() == false)
                 {
                     //Fov.Angle = 150;
-                    CurrentState = EnemyState.Patrol;
-                    Agent.speed = PatrolSpeed;
+                    currentState = EnemyState.Patrol;
+                    agent.speed = patrolSpeed;
                     
                     break;
                 }
 
-                Agent.speed = ChaseSpeed;
-                Agent.SetDestination(PlayerTarget.position);
+                agent.speed = chaseSpeed;
+                agent.SetDestination(playerTarget.position);
                 break;
 
 
 
             case EnemyState.Attack:
 
-                Anim.SetBool("Attack", true);
+                anim.SetBool("Attack", true);
               
-                Agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
+                agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0,distanceFromTarget.normalized.z);
 
-                if (EnemyDamageManager.IsParrying)
+                if (enemyDamageManager.IsParrying)
                 {
-                    Anim.SetBool("IsParrying", true);
-                    TimeParry -= Time.deltaTime;
+                    anim.SetBool("IsParrying", true);
+                    timeParry -= Time.deltaTime;
                  
-                    if (TimeParry <= 0)
+                    if (timeParry <= 0)
                     {
-                        EnemyDamageManager.IsParrying = false;
-                        Anim.SetBool("IsParrying", false);
-                        TimeParry = 0.3f;
+                        enemyDamageManager.IsParrying = false;
+                        anim.SetBool("IsParrying", false);
+                        timeParry = 0.3f;
                     }
                     break;
                 }
 
-                if (EnemyDamageManager.IsHitting && StunnManager.IsStunned == false)
+                if (enemyDamageManager.IsHitting && stunnManager.IsStunned == false)
                 {
-                    EnemyDamageManager.IsHitting = false;
+                    enemyDamageManager.IsHitting = false;
                     break;
                 }
 
-                if (Fov.targetCheck() == true && distanceFromTarget.magnitude > AttackDistance)
+                if (fov.targetCheck() == true && distanceFromTarget.magnitude > attackDistance)
                 {
-                    Anim.SetBool("Attack", false);
-                    Agent.speed = ChaseSpeed;
-                    CurrentState = EnemyState.Chase;
-                    IsAttacking = false;
+                    anim.SetBool("Attack", false);
+                    agent.speed = chaseSpeed;
+                    currentState = EnemyState.Chase;
                     break;
                 }
-                else if (Fov.targetCheck() == false)
+                else if (fov.targetCheck() == false)
                 {
-                    CurrentState = EnemyState.Patrol;
-                    Agent.speed = PatrolSpeed;
+                    currentState = EnemyState.Patrol;
+                    agent.speed = patrolSpeed;
                     break;
                 }
 
@@ -153,36 +144,35 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 break;
 
             case EnemyState.Dead:
-                Agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
-                Agent.GetComponent<CapsuleCollider>().enabled = false;
-                Weapon.GetComponent<BoxCollider>().enabled = false;
-                Agent.GetComponent<Animator>().enabled = false;
+                agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
+                agent.GetComponent<CapsuleCollider>().enabled = false;
+                weapon.GetComponent<BoxCollider>().enabled = false;
+                agent.GetComponent<Animator>().enabled = false;
                 gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
                 gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
-                Arancini.gameObject.SetActive(false);
-                SpawnPowerUp(HeavyHealth);
+                arancini.gameObject.SetActive(false);
+                SpawnPowerUp(heavyHealth);
                 Destroy(this.gameObject, 5f);
                 break;
 
             case EnemyState.Stun:
-                if (HealthManager.IsDead)
+                if (healthManager.IsDead)
                 {
-                    CurrentState = EnemyState.Dead;
+                    currentState = EnemyState.Dead;
                     break;
                 }
-                Anim.SetBool("Stunned", true);
-                Arancini.gameObject.SetActive(true);
-                Weapon.GetComponent<BoxCollider>().enabled = false;
-                IsAttacking = false;
-                Anim.SetBool("Attack", false);
-                Agent.speed = 0;
+                anim.SetBool("Stunned", true);
+                arancini.gameObject.SetActive(true);
+                weapon.GetComponent<BoxCollider>().enabled = false;
+                anim.SetBool("Attack", false);
+                agent.speed = 0;
 
-                if (StunnManager.CurrentStunn < 1)
+                if (stunnManager.CurrentStunn < 1)
                 {
-                    Anim.SetBool("Stunned", false);
-                    CurrentState = EnemyState.Patrol;                 
-                    Arancini.gameObject.SetActive(false);
-                    StunnManager.IsStunned = false;
+                    anim.SetBool("Stunned", false);
+                    currentState = EnemyState.Patrol;                 
+                    arancini.gameObject.SetActive(false);
+                    stunnManager.IsStunned = false;
                 }
 
                 break;
@@ -195,14 +185,14 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public void SetState(int state)
     {
-        CurrentState = (EnemyState)state;
+        currentState = (EnemyState)state;
     }
 
 
     public void SetNewWaypoint()
     {
-        CurrentWaypoint = Random.Range(0, PatrolWaypoints.Count);
-        Agent.SetDestination(PatrolWaypoints[CurrentWaypoint].position);
+        currentWaypoint = Random.Range(0, patrolWaypoints.Count);
+        agent.SetDestination(patrolWaypoints[currentWaypoint].position);
     }
 
 
@@ -213,12 +203,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public void StartAttack()
     {
-        Weapon.GetComponent<BoxCollider>().enabled = true;
+        weapon.GetComponent<BoxCollider>().enabled = true;
     }
 
     public void EndAttack()
     {
-        Weapon.GetComponent<BoxCollider>().enabled = false;
+        weapon.GetComponent<BoxCollider>().enabled = false;
     }
 
 }

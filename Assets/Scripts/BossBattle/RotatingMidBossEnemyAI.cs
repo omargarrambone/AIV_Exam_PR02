@@ -10,80 +10,65 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
     protected override void Start()
     {
         base.Start();
-        Weapon.GetComponent<BoxCollider>().enabled = true;
-        dizzinessTimer = 4f;
+        weapon.GetComponent<BoxCollider>().enabled = true;
+        dizzinessTimer = 4f; // random float 4 - 7
     }
 
     protected override void Update()
     {
-        Anim.SetFloat("Speed", Agent.velocity.magnitude);
+        anim.SetFloat("Speed", agent.velocity.magnitude);
 
-        switch (CurrentState)
+        switch (currentState)
         {
             case EnemyState.Patrol:
-                if (Agent.remainingDistance < 2f)
+                if (agent.remainingDistance < 2f)
                 {
-
-                    Fov.Angle = 150;
                     SetNewWaypoint();
-                    Agent.speed = PatrolSpeed;
+                    agent.speed = patrolSpeed;
 
                     dizzinessCounter += Time.deltaTime;
 
                     if(dizzinessCounter > dizzinessTimer)
                     {
-                        CurrentState = EnemyState.Stun;
+                        currentState = EnemyState.Stun;
                     }
                 }
 
                 break;
-            case EnemyState.Attack:
-
-                Anim.SetBool("Attack", true);
-
-                if (EnemyDamageManager.IsHitting && StunnManager.IsStunned == false)
-                {
-                    Anim.SetTrigger("IsHitting");
-
-                    EnemyDamageManager.IsHitting = false;
-                }
-
-                break;
-
             case EnemyState.Dead:
-                Agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
-                Agent.GetComponent<CapsuleCollider>().enabled = false;
-                Weapon.GetComponent<BoxCollider>().enabled = false;
-                Agent.GetComponent<Animator>().enabled = false;
+
+                agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
+                agent.GetComponent<CapsuleCollider>().enabled = false;
+                weapon.GetComponent<BoxCollider>().enabled = false;
+                agent.GetComponent<Animator>().enabled = false;
+
                 gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
                 gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
-                Arancini.gameObject.SetActive(false);
-                SpawnPowerUp(HeavyHealth);
+                arancini.gameObject.SetActive(false);
+                SpawnPowerUp(heavyHealth);
                 Destroy(this.gameObject, 5f);
                 break;
-
             case EnemyState.Stun:
-                if (HealthManager.IsDead)
+                if (healthManager.IsDead)
                 {
-                    CurrentState = EnemyState.Dead;
+                    currentState = EnemyState.Dead;
                     break;
                 }
-                Anim.SetBool("Stunned", true);
-                Arancini.gameObject.SetActive(true);
-                Weapon.GetComponent<BoxCollider>().enabled = false;
-                IsAttacking = false;
-                Anim.SetBool("Attack", false);
-                Agent.speed = 0;
+                anim.SetBool("Stunned", true);
+                arancini.gameObject.SetActive(true);
+                weapon.GetComponent<BoxCollider>().enabled = false;
+                anim.SetBool("Attack", false);
+                agent.speed = 0;
 
                 //Enemy ready to be purified by the sound of the Magic Flute
 
-                if (StunnManager.CurrentStunn < 1)
+                if (stunnManager.CurrentStunn < 1)
                 {
-                    Anim.SetBool("Stunned", false);
-                    CurrentState = EnemyState.Patrol;
+                    anim.SetBool("Stunned", false);
+                    currentState = EnemyState.Patrol;
                     //Agent.speed = PatrolSpeed;
-                    Arancini.gameObject.SetActive(false);
-                    StunnManager.IsStunned = false;
+                    arancini.gameObject.SetActive(false);
+                    stunnManager.IsStunned = false;
                 }
 
                 break;

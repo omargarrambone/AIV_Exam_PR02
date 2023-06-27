@@ -36,6 +36,7 @@ public class FluteUIScript : MonoBehaviour
 
         StartMinigame();
         OnStart.Invoke();
+        PlayerManager.DisablePlayerMovement();
     }
 
     [ContextMenu("StartMinigame")]
@@ -84,6 +85,8 @@ public class FluteUIScript : MonoBehaviour
     {
         weaponsManager.SetActualItem(lastWeaponIndex);
         gameObject.SetActive(false);
+
+        PlayerManager.EnablePlayerMovement();
     }
 
     void SetRandomArrows()

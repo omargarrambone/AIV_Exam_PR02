@@ -2074,7 +2074,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2510043266931798365}
-  - component: {fileID: 202512841454614141}
   m_Layer: 0
   m_Name: Character_Samurai_Grunt_Black
   m_TagString: Untagged
@@ -2105,27 +2104,6 @@ Transform:
   m_Father: {fileID: 9035985288689505002}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &202512841454614141
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3500169839859282726}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2ba66718d3169ae42a05d8facf302228, type: 3}
-  m_Controller: {fileID: 9100000, guid: d62af11c372059a4d9c2feacf46a754a, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3813349785629627049
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,29 +3122,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9f9c311351c084080da5b56894317f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Agent: {fileID: 2148418299946819558}
-  Rb: {fileID: 0}
-  Fov: {fileID: 5111978356073771471}
-  Weapon: {fileID: 4134698194711179341}
-  StunnManager: {fileID: 2591736530132064491}
-  HealthManager: {fileID: 231959443550880398}
-  EnemyDamageManager: {fileID: 3907064155493132908}
-  Anim: {fileID: 858944726829091537}
-  PatrolSpeed: 2
-  ChaseSpeed: 4
-  AttackDistance: 2.5
-  PatrolWaypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  CurrentWaypoint: 0
-  CurrentState: 0
-  Arancini: {fileID: 257288705335826567}
-  IsAttacking: 0
-  HeavyHealth: {fileID: 5330846943788339623, guid: 80ecebc23a35916499eb6b787e3723d3,
+  currentState: 0
+  chaseSpeed: 4
+  patrolSpeed: 2
+  timeParry: 0.3
+  attackDistance: 2.5
+  agent: {fileID: 2148418299946819558}
+  weapon: {fileID: 4134698194711179341}
+  stunnManager: {fileID: 2591736530132064491}
+  healthManager: {fileID: 231959443550880398}
+  anim: {fileID: 858944726829091537}
+  arancini: {fileID: 257288705335826567}
+  heavyHealth: {fileID: 5330846943788339623, guid: 80ecebc23a35916499eb6b787e3723d3,
     type: 3}
-  TimeParry: 0.3
+  enemyDamageManager: {fileID: 3907064155493132908}
+  fov: {fileID: 5111978356073771471}
+  patrolWaypoints: []
 --- !u!195 &2148418299946819558
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3225,6 +3196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentStunn: 0
   IsStunned: 0
+  StunnDecreaseVelocity: 20
   timer: 3
   counter: 0
   StunnBar: {fileID: 4715791065202561210}
