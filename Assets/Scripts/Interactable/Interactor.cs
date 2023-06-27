@@ -40,7 +40,7 @@ public class Interactor : MonoBehaviour
         }
         else if(actualInteractable!= null)
         {
-            actualInteractable.OnPlayerExitRange.Invoke();
+            //actualInteractable.OnPlayerExitRange.Invoke();
             actualInteractable = null;
         }
     }

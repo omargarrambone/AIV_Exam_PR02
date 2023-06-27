@@ -78,4 +78,9 @@ public class PlayerManager : MonoBehaviour
     {
         PlayerInput.enabled = true;
     }
+
+    static public void EnableDisablePlayerMovement(bool value)
+    {
+        PlayerInput.enabled = value;
+    }
 }
