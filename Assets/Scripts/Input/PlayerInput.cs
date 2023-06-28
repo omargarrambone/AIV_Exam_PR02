@@ -1,13 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.UIElements;
-using UnityEngineInternal;
-using static UnityEngine.Rendering.DebugUI;
-using System.Linq.Expressions;
-using System.Collections.Generic;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInput : MonoBehaviour
@@ -167,11 +160,11 @@ public class PlayerInput : MonoBehaviour
         {
             if (Panel.gameObject.activeSelf == false)
             {
-                Panel.gameObject.SetActive(true);
+                InGameMenusManager.ShowHidePauseMenu(true);
             }
             else
             {
-                Panel.gameObject.SetActive(false);
+                InGameMenusManager.ShowHidePauseMenu(false);
             }
         }
     }

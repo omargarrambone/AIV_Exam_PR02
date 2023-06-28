@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
        if(PlayerGameObject == null) PlayerGameObject = GameObject.FindGameObjectWithTag("Player");
        if (PlayerCharactercontroller == null) PlayerCharactercontroller = PlayerGameObject.GetComponent<CharacterController>();
        if (PlayerInput == null) PlayerInput = PlayerGameObject.GetComponent<PlayerInput>();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     static public void SetPosition(Vector3 newPosition)
@@ -47,7 +49,8 @@ public class PlayerManager : MonoBehaviour
     public void Death()
     {
         StartCoroutine(WaitForDeathAnimation());
-        PlayerCharactercontroller.enabled = false;
+
+        DisablePlayerMovement();
     }
 
     IEnumerator WaitForDeathAnimation()
