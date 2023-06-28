@@ -164,7 +164,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 arancini.gameObject.SetActive(true);
                 weapon.GetComponent<BoxCollider>().enabled = false;
                 anim.SetBool("Attack", false);
-                agent.speed = 0;
+                agent.isStopped = true;
 
                 if (stunnManager.CurrentStunn < 1)
                 {
@@ -172,6 +172,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     currentState = EnemyState.Patrol;                 
                     arancini.gameObject.SetActive(false);
                     stunnManager.IsStunned = false;
+                    agent.isStopped = false;
                 }
 
                 break;

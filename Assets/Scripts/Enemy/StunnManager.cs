@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class StunnManager : MonoBehaviour
 {
     float MinStunnValue = 0;
-    public float CurrentStunn;
+    public float CurrentStunn { get; private set; }
     public bool IsStunned;
 
     public float StunnDecreaseVelocity = 20.0f;

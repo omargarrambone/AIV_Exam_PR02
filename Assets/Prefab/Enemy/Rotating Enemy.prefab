@@ -5066,7 +5066,7 @@ Transform:
   - {fileID: 4516636779410185077}
   - {fileID: 4494512853427322876}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &9214509987150865373
 MonoBehaviour:
@@ -5101,23 +5101,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce81ff758858a34ca0c86bc8ed470c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 2627876041869194610}
   currentState: 0
-  playerTarget: {fileID: 0}
+  chaseSpeed: 1
+  patrolSpeed: 10
+  timeParry: 0
+  attackDistance: 2
+  agent: {fileID: 2627876041869194610}
   weapon: {fileID: 3858968903812287310}
   stunnManager: {fileID: 7099051901857183523}
   healthManager: {fileID: 8927651966519115845}
   anim: {fileID: 3153458516362878516}
-  patrolSpeed: 2
   arancini: {fileID: 1377530750148184685}
-  heavyHealth: {fileID: 5330846943788339623, guid: 80ecebc23a35916499eb6b787e3723d3,
-    type: 3}
   enemyDamageManager: {fileID: 5053846933391460361}
   fov: {fileID: 9214509987150865373}
-  chaseSpeed: 2
-  attackDistance: 2
-  patrolWaypoints: []
-  timeParry: 0.3
+  patrolWaypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  dizzinessCounter: 0
+  dizzinessTimer: 5000000
 --- !u!195 &2627876041869194610
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5128,11 +5129,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.36
-  m_Speed: 2
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 720
-  m_StoppingDistance: 0
+  m_AngularSpeed: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -5244,7 +5245,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8194704234999075467}
-  m_Material: {fileID: 13400000, guid: 93ff06603b0af5742a0ede6b7dfcf0d3, type: 2}
+  m_Material: {fileID: 13400000, guid: 244b4a7544d56814795fc14cde26a17c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
