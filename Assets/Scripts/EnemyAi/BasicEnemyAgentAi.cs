@@ -19,7 +19,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected HealthManager healthManager;
     [SerializeField] protected Animator anim;
     [SerializeField] protected ParticleSystem arancini;
-    [SerializeField] protected PowerUp heavyHealth;
     [SerializeField] protected EnemyDamageManager enemyDamageManager;
     [SerializeField] protected FieldOfView fov;
     [SerializeField] protected List<Transform> patrolWaypoints;
@@ -151,7 +150,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
                 gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
                 arancini.gameObject.SetActive(false);
-                SpawnPowerUp(heavyHealth);
+                PowerUpManager.SpawnPowerUpRandom(transform.position);
                 Destroy(this.gameObject, 5f);
                 break;
 
@@ -176,9 +175,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }
 
                 break;
-
-            default:
-                break;
         }
 
     }
@@ -193,12 +189,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
     {
         currentWaypoint = Random.Range(0, patrolWaypoints.Count);
         agent.SetDestination(patrolWaypoints[currentWaypoint].position);
-    }
-
-
-    public void SpawnPowerUp(PowerUp lightHealth)
-    {
-        Instantiate(lightHealth, transform.position + new Vector3(0, 1f, 1f), lightHealth.transform.rotation);
     }
 
     public void StartAttack()

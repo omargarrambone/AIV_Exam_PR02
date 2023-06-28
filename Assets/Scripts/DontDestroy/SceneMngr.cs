@@ -8,11 +8,10 @@ public class SceneMngr : MonoBehaviour
     [SerializeField] bool changeOnStart;
     [SerializeField] GameObject loadingCanvas;
     [SerializeField] LoadingScreen loadingScript;
-    [SerializeField] public string OverrideStartScene;
-    [SerializeField] public string NextScene;
-    [SerializeField] public Vector3 PlayerPositionInNextScene;
-    [SerializeField] public Quaternion PlayerRotationInNextScene;
-
+    public string OverrideStartScene;
+    public string NextScene;
+    public Vector3 PlayerPositionInNextScene;
+    public Quaternion PlayerRotationInNextScene;
     [SerializeField] CameraFollow cameraFollow;
 
     void Start()

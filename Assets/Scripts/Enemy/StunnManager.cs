@@ -10,7 +10,7 @@ public class StunnManager : MonoBehaviour
     public float CurrentStunn;
     public bool IsStunned;
 
-    [SerializeField] float StunnDecreaseVelocity = 20.0f;
+    public float StunnDecreaseVelocity = 20.0f;
     [SerializeField] float timer = 3.0f;
     [SerializeField] float counter;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    public PowerUpManager powerUpEffect;
+    public PowerUpScriptable powerUpEffect;
 
     private void OnTriggerEnter(Collider other)
     {
