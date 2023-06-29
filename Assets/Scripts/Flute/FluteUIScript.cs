@@ -6,46 +6,64 @@ using UnityEngine.UI;
 
 public class FluteUIScript : MonoBehaviour
 {
+    private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
+    [SerializeField] private int currentArrowIndex, lastWeaponIndex;
+    [Header("References")]
     [SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private Transform ArrowsUIParent,ArrowsPrefab;
-    [SerializeField] private int arrowsToGenerate;
-    [SerializeField] private UnityEvent OnStart,OnCompleted, OnFail;
-    [SerializeField] private UnityEvent<FluteArrow> OnCorrectArrow;
     [SerializeField] private PlayerInput playerInputScript;
     [SerializeField] private Image musicSheet;
-    private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
-    private int currentArrowIndex, lastWeaponIndex;
+    [SerializeField] private int arrowsToGenerate, lastArrowsToGenerate;
+    [Header("Events")]
+    [SerializeField] private UnityEvent<FluteArrow> OnCorrectArrow;
+    [SerializeField] private UnityEvent OnStart,OnCompleted, OnFail;
 
     void Awake()
     {
-        fluteArrows = new System.Tuple<int, FluteArrow, Vector2>[arrowsToGenerate];
+        OnStart.AddListener(StartMinigame);
+        OnStart.AddListener(PlayerManager.DisablePlayerMovement);
 
-        for (int i = 0; i < fluteArrows.Length; i++)
-        {
-            Transform arrow = Instantiate(ArrowsPrefab, ArrowsUIParent);
-            Image image = arrow.GetComponent<Image>();
-            image.color = i%2 == 0 ? Color.red : Color.blue;
-        }
+        musicSheet.color = Color.red;
 
         gameObject.SetActive(false);
     }
 
-    private void OnEnable()
+    void GenerateArrows()
     {
-        lastWeaponIndex = weaponsManager.CurrentSlotIndex;
+        lastArrowsToGenerate = arrowsToGenerate;
+        fluteArrows = new System.Tuple<int, FluteArrow, Vector2>[arrowsToGenerate];
 
-        StartMinigame();
-        OnStart.Invoke();
-        PlayerManager.DisablePlayerMovement();
+        for (int i = 0; i < ArrowsUIParent.childCount; i++)
+        {
+            Destroy(ArrowsUIParent.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < fluteArrows.Length; i++)
+        {
+            Transform arrow = Instantiate(ArrowsPrefab, ArrowsUIParent);
+            arrow.name = i + " arrow";
+            Image image = arrow.GetComponent<Image>();
+            image.color = i % 2 == 0 ? Color.red : Color.blue;
+        }
+
     }
 
-    [ContextMenu("StartMinigame")]
+    private void OnEnable()
+    {
+        if(lastArrowsToGenerate != arrowsToGenerate)
+        {
+            GenerateArrows();
+        }
+
+        lastWeaponIndex = weaponsManager.CurrentSlotIndex;
+
+        OnStart.Invoke();        
+    }
+
     void StartMinigame()
     {
         currentArrowIndex = 0;
         SetRandomArrows();
-
-        musicSheet.color = Color.red;
     }
 
     public void FluteKeysPressCheck(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -57,6 +75,8 @@ public class FluteUIScript : MonoBehaviour
             //TODO: to fix if a player keeps a key pressed (?)
 
             Vector2 value = context.ReadValue<Vector2>();
+
+           //Debug.Log(value + " == " + fluteArrows[currentArrowIndex].Item3);
 
             if(value == fluteArrows[currentArrowIndex].Item3)
             {
@@ -113,7 +133,12 @@ public class FluteUIScript : MonoBehaviour
                     break;
             }
 
-            ArrowsUIParent.GetChild(i).localRotation = Quaternion.Euler(0, 0, ((int)index) * 90);
+            Vector3 rotation = new Vector3(0, 0, ((int)index) * 90);
+
+            ArrowsUIParent.GetChild(i).localEulerAngles = rotation;
+
+            Debug.Log(rotation + "==" + ArrowsUIParent.GetChild(i).localEulerAngles);
+
             ArrowsUIParent.GetChild(i).gameObject.SetActive(true);
             fluteArrows[i] = new System.Tuple<int, FluteArrow, Vector2>(i,index,direction);
         }

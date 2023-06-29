@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
     public static CharacterController PlayerCharactercontroller;
     public static PlayerInput PlayerInput;
     public float minY;
+
+    //[SerializeField] private Material invisibleWall;
     void Awake()
     {
        if(PlayerGameObject == null) PlayerGameObject = GameObject.FindGameObjectWithTag("Player");
@@ -70,6 +72,9 @@ public class PlayerManager : MonoBehaviour
             SetPosition(Vector3.zero);
             PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
         }
+
+        //invisibleWall.SetVector("_PlayerPosition", PlayerGameObject.transform.position);
+        //Debug.Log(invisibleWall.GetVector("_PlayerPosition"));
     }
 
     static public void DisablePlayerMovement()

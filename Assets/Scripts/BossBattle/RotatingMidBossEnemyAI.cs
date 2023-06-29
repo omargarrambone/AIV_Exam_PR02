@@ -10,16 +10,15 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
     {
         base.Start();
         weapon.GetComponent<BoxCollider>().enabled = true;
-        dizzinessTimer = 4f; // random float 4 - 7
+        //dizzinessTimer = 4f; // random float 4 - 7
 
-        stunnManager.StunnDecreaseVelocity = 30.0f;
+        stunnManager.StunnDecreaseVelocity = 50.0f;
+        stunnManager.Timer = 2f;
 
     }
 
     protected override void Update()
     {
-        anim.SetFloat("Speed", agent.velocity.magnitude);
-
         switch (currentState)
         {
             case EnemyState.Patrol:
@@ -28,7 +27,7 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
 
                 if (dizzinessCounter > dizzinessTimer)
                 {
-                    stunnManager.CurrentStunn = 100;
+                    stunnManager.TakeStunn(100);
                     dizzinessCounter = 0;
                     currentState = EnemyState.Stun;
                     break;
@@ -68,7 +67,7 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
                 arancini.gameObject.SetActive(true);
                 weapon.GetComponent<BoxCollider>().enabled = false;
                 anim.SetBool("Attack", false);
-                agent.speed = 0;
+                agent.isStopped = true;
 
                 if (stunnManager.CurrentStunn < 1)
                 {
@@ -76,7 +75,7 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
                     currentState = EnemyState.Patrol;
                     arancini.gameObject.SetActive(false);
                     stunnManager.IsStunned = false;
-                    SetNewWaypoint();
+                    agent.isStopped = false;
                 }
 
                 break;
