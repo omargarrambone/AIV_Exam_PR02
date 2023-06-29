@@ -17,7 +17,7 @@ public class PlayerAttackScript : MonoBehaviour
             weaponsManager.SetObjectsColliders(true);
             OnStartAttack.Invoke();
 
-            swordSlash[weaponsManager.CurrentSlotIndex].playRate = 0.80f;
+            swordSlash[weaponsManager.CurrentSlotIndex].playRate = 1.25f;
             swordSlash[weaponsManager.CurrentSlotIndex].Play();
     }
 
