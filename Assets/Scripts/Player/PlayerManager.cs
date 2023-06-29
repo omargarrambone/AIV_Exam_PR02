@@ -51,7 +51,6 @@ public class PlayerManager : MonoBehaviour
     public void Death()
     {
         StartCoroutine(WaitForDeathAnimation());
-
         DisablePlayerMovement();
     }
 
@@ -59,7 +58,7 @@ public class PlayerManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("GameOverScene");
-        SetPosition(Vector3.zero);
+        SetPosition(new Vector3(41.6f, 19.8f, 11.9f));
         yield return new WaitForSeconds(0.1f);
         PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
     }

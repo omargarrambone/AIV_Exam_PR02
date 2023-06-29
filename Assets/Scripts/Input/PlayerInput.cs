@@ -59,7 +59,9 @@ public class PlayerInput : MonoBehaviour
     public void LightAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {            
+        {
+            if (GameManager.GameState == GameState.Paused) return;
+
             _anim.SetTrigger("IsAttacking");
         }
 
@@ -158,6 +160,8 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
+            
+
             if (Panel.gameObject.activeSelf == false)
             {
                 InGameMenusManager.ShowHidePauseMenu(true);
@@ -173,6 +177,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed && canDash)
         {
+            if (GameManager.GameState == GameState.Paused) return;
             StartCoroutine(Dash());
         }
     }
