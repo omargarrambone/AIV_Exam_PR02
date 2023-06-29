@@ -358,6 +358,18 @@ Transform:
   m_Father: {fileID: 367730703}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &632107089 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7809641861034983656, guid: e375b58688cc98343962035d2c587cae,
+    type: 3}
+  m_PrefabInstance: {fileID: 693055548}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1c94b3e7dd3fc4195a4a432eba09dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &685765286
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +509,7 @@ PrefabInstance:
     - target: {fileID: 591661635958209730, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 591661635958209730, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
@@ -549,11 +561,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1359904180259677389, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: arrowsToGenerate
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1963203286398237446, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_Name
       value: DEBUGDontDestroyObjects
       objectReference: {fileID: 0}
+    - target: {fileID: 6868148583474456178, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: eventSystemManger
+      value: 
+      objectReference: {fileID: 632107089}
     - target: {fileID: 7752182401103372101, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_Enabled
@@ -591,7 +613,7 @@ PrefabInstance:
     - target: {fileID: 1965668056305609991, guid: 36ca1ebd7fee4f148830c5964f6155da,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1965668056305609991, guid: 36ca1ebd7fee4f148830c5964f6155da,
         type: 3}
@@ -751,50 +773,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36ca1ebd7fee4f148830c5964f6155da, type: 3}
---- !u!1 &1170067956
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1170067958}
-  - component: {fileID: 1170067957}
-  m_Layer: 0
-  m_Name: VillagersSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1170067957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170067956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a36a394b773753499846ac2429f3e7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1170067958
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170067956}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.3672976, y: 3.5192528, z: -1.6322659}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1231072681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,7 +1101,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1885848445
 GameObject:
@@ -1492,7 +1470,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 37424cc23d9c58d4bbb035e5e88f1416, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1547,6 +1525,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}
+      propertyPath: dizzinessTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
       propertyPath: patrolWaypoints.Array.data[0]
       value: 
       objectReference: {fileID: 1394633955}
@@ -1558,7 +1541,7 @@ PrefabInstance:
     - target: {fileID: 5208131769330494903, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5208131769330494903, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}

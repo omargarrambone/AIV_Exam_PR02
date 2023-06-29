@@ -11,7 +11,7 @@ public class StunnManager : MonoBehaviour
     public bool IsStunned;
 
     public float StunnDecreaseVelocity = 20.0f;
-    [SerializeField] float timer = 3.0f;
+    public float Timer = 3.0f;
     [SerializeField] float counter;
 
     public BarScript StunnBar;
@@ -45,10 +45,10 @@ public class StunnManager : MonoBehaviour
     {
         if (CurrentStunn > 0)
         {
-            if (counter <= timer)
+            if (counter <= Timer)
                 counter += Time.deltaTime;
 
-            if (counter >= timer)
+            if (counter >= Timer)
             {
                 CurrentStunn -= Time.deltaTime * StunnDecreaseVelocity;
                 StunnBar.SetStunn(CurrentStunn);

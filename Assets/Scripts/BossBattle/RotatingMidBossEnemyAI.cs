@@ -13,6 +13,7 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
         //dizzinessTimer = 4f; // random float 4 - 7
 
         stunnManager.StunnDecreaseVelocity = 50.0f;
+        stunnManager.Timer = 2f;
 
     }
 
