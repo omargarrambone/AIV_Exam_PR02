@@ -97,4 +97,9 @@ public class InGameMenusManager : MonoBehaviour
             hasOpenedMenu = false;
         }
     }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        CloseAllMenus();
+    }
 }

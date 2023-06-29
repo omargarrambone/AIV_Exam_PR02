@@ -27,9 +27,8 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
 
                 if (dizzinessCounter > dizzinessTimer)
                 {
-                    stunnManager.TakeStunn(100);
                     dizzinessCounter = 0;
-                    currentState = EnemyState.Stun;
+                    currentState = EnemyState.Dizzy;
                     break;
                 }
 
@@ -37,6 +36,19 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
                 {
                     SetNewWaypoint();
                     agent.speed = patrolSpeed;
+                }
+
+                break;
+
+            case EnemyState.Dizzy:
+
+                dizzinessCounter += Time.deltaTime;
+
+                if (dizzinessCounter > dizzinessTimer)
+                {
+                    dizzinessCounter = 0;
+                    currentState = EnemyState.Patrol;
+                    break;
                 }
 
                 break;

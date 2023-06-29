@@ -10,7 +10,7 @@ public class PlayerAttackScript : MonoBehaviour
     public UnityEvent OnStartAttack, OnEndAttack;
     public VisualEffect[] swordSlash;
     public WeaponsManager weaponsManager;
-    [Range(0f,2f)]
+
     public float slashPlayRate;
 
 
