@@ -27,12 +27,14 @@ public class SceneMngr : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
+        Time.timeScale = 1;
         SetPlayerPosition();
         loadingCanvas.SetActive(true);
         StartCoroutine(LoadSceneAsync(sceneName));
     }
     public void ChangeScene(int sceneIndex)
     {
+        Time.timeScale = 1;
         SetPlayerPosition();
         loadingCanvas.SetActive(true);
         StartCoroutine(LoadSceneAsync(sceneIndex));

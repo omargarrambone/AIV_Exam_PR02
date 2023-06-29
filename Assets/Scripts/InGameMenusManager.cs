@@ -27,6 +27,8 @@ public class InGameMenusManager : MonoBehaviour
     {
         if (hasOpenedMenu) { CloseAllMenus(); return; }
 
+        Time.timeScale = value  ? 0 : 1;
+
         PauseMenu.SetActive(value);
         CursorLocker(value);
     }
@@ -56,6 +58,8 @@ public class InGameMenusManager : MonoBehaviour
         if (SaveMenu.activeSelf) { SaveMenu.SetActive(false); ChangeCameraOnSaving(false); }
 
         CursorLocker(false);
+
+        Time.timeScale = 1;
     }
 
     public static void ChangeCameraOnSaving(bool value)
@@ -63,10 +67,13 @@ public class InGameMenusManager : MonoBehaviour
         if (value)
         {
             staticEventSystemManger.SwitchCurrentButton(SaveMenu.transform.GetChild(0).GetChild(1).GetChild(0).gameObject);
+            PlayerManager.PlayerGameObject.GetComponent<Animator>().SetTrigger("IsResting");
             staticCameraFollow.SetCameraTarget(type:CameraType.SavingCamera);
+
         }
         else
         {
+            PlayerManager.PlayerGameObject.GetComponent<Animator>().SetTrigger("IsNotResting");
             staticCameraFollow.ResetCameraTarget();
         }
 
@@ -77,7 +84,6 @@ public class InGameMenusManager : MonoBehaviour
     {
         if (value)
         {
-            PlayerManager.PlayerGameObject.GetComponent<Animator>().SetTrigger("IsResting");
             PlayerManager.EnableDisablePlayerMovement(false);
             GameManager.GameState = GameState.Paused;
             Cursor.lockState = CursorLockMode.Confined;
@@ -85,11 +91,15 @@ public class InGameMenusManager : MonoBehaviour
         }
         else
         {
-            PlayerManager.PlayerGameObject.GetComponent<Animator>().SetTrigger("IsNotResting");
             PlayerManager.EnableDisablePlayerMovement(true);
             GameManager.GameState = GameState.Playing;
             Cursor.lockState = CursorLockMode.Locked;
             hasOpenedMenu = false;
         }
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        CloseAllMenus();
     }
 }
