@@ -566,10 +566,20 @@ PrefabInstance:
       propertyPath: arrowsToGenerate
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1359904180259677389, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: currentArrowIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1963203286398237446, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_Name
       value: DEBUGDontDestroyObjects
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964332382339667971, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: smoothSpeed
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6868148583474456178, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
@@ -833,7 +843,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df4d05201bd00e64482a9d4ea6853a30, type: 2}
+  - {fileID: 2100000, guid: 5f88d8208b0f48240bffdef89fcee3b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1525,8 +1535,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}
+      propertyPath: parryChance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
       propertyPath: dizzinessTimer
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}

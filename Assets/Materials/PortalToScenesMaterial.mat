@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Cubemap:
-        m_Texture: {fileID: 8900000, guid: dc383fcb324f6734e9aa57fbe7fb8533, type: 2}
+        m_Texture: {fileID: 8900000, guid: 2c3fb40135d451a4ea4f4a8c7cab4715, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
@@ -63,11 +63,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth: 2.02
-    - _EmissionMultiplier: 1
+    - _Depth: 1
+    - _EmissionMultiplier: 0.65
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Tiling: 1
+    - _TimeMultiplier: 2
     - _ViewDirMulty: 1
-    m_Colors: []
+    m_Colors:
+    - _OffsetCamera: {r: -0.5, g: 0, b: -0.08, a: 0}
   m_BuildTextureStacks: []

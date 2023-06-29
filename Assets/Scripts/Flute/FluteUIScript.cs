@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class FluteUIScript : MonoBehaviour
 {
     private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
-    private int currentArrowIndex, lastWeaponIndex;
+    [SerializeField] private int currentArrowIndex, lastWeaponIndex;
     [Header("References")]
     [SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private Transform ArrowsUIParent,ArrowsPrefab;
@@ -20,8 +20,6 @@ public class FluteUIScript : MonoBehaviour
 
     void Awake()
     {
-        GenerateArrows();
-
         OnStart.AddListener(StartMinigame);
         OnStart.AddListener(PlayerManager.DisablePlayerMovement);
 
@@ -55,7 +53,6 @@ public class FluteUIScript : MonoBehaviour
         if(lastArrowsToGenerate != arrowsToGenerate)
         {
             GenerateArrows();
-            SetRandomArrows();
         }
 
         lastWeaponIndex = weaponsManager.CurrentSlotIndex;
@@ -63,12 +60,10 @@ public class FluteUIScript : MonoBehaviour
         OnStart.Invoke();        
     }
 
-    [ContextMenu("StartMinigame")]
     void StartMinigame()
     {
         currentArrowIndex = 0;
         SetRandomArrows();
-
     }
 
     public void FluteKeysPressCheck(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -140,9 +135,9 @@ public class FluteUIScript : MonoBehaviour
 
             Vector3 rotation = new Vector3(0, 0, ((int)index) * 90);
 
-            ArrowsUIParent.GetChild(i).eulerAngles = rotation;
+            ArrowsUIParent.GetChild(i).localEulerAngles = rotation;
 
-            //Debug.Log(rotation + "==" + ArrowsUIParent.GetChild(i).localEulerAngles);
+            Debug.Log(rotation + "==" + ArrowsUIParent.GetChild(i).localEulerAngles);
 
             ArrowsUIParent.GetChild(i).gameObject.SetActive(true);
             fluteArrows[i] = new System.Tuple<int, FluteArrow, Vector2>(i,index,direction);
