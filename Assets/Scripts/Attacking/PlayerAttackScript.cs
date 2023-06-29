@@ -10,6 +10,8 @@ public class PlayerAttackScript : MonoBehaviour
     public UnityEvent OnStartAttack, OnEndAttack;
     public VisualEffect[] swordSlash;
     public WeaponsManager weaponsManager;
+    [Range(0f,2f)]
+    public float slashPlayRate;
 
 
     public void CallOnStartHit()
@@ -17,7 +19,7 @@ public class PlayerAttackScript : MonoBehaviour
             weaponsManager.SetObjectsColliders(true);
             OnStartAttack.Invoke();
 
-            swordSlash[weaponsManager.CurrentSlotIndex].playRate = 0.80f;
+            swordSlash[weaponsManager.CurrentSlotIndex].playRate = slashPlayRate;
             swordSlash[weaponsManager.CurrentSlotIndex].Play();
     }
 
