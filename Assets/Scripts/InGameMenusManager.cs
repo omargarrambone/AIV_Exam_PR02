@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InGameMenusManager : MonoBehaviour
 {
@@ -63,15 +64,10 @@ public class InGameMenusManager : MonoBehaviour
         {
             staticEventSystemManger.SwitchCurrentButton(SaveMenu.transform.GetChild(0).GetChild(1).GetChild(0).gameObject);
             staticCameraFollow.SetCameraTarget(type:CameraType.SavingCamera);
-            PlayerManager.PlayerGameObject.GetComponent<Animator>().SetTrigger("IsResting");
-            PlayerManager.EnableDisablePlayerMovement(false);
         }
         else
         {
-            PlayerManager.PlayerGameObject.GetComponent<Animator>().SetTrigger("IsNotResting");
-            PlayerManager.EnableDisablePlayerMovement(true);
             staticCameraFollow.ResetCameraTarget();
-
         }
 
         CursorLocker(value);
@@ -81,11 +77,17 @@ public class InGameMenusManager : MonoBehaviour
     {
         if (value)
         {
+            PlayerManager.PlayerGameObject.GetComponent<Animator>().SetTrigger("IsResting");
+            PlayerManager.EnableDisablePlayerMovement(false);
+            GameManager.GameState = GameState.Paused;
             Cursor.lockState = CursorLockMode.Confined;
             hasOpenedMenu = true;
         }
         else
         {
+            PlayerManager.PlayerGameObject.GetComponent<Animator>().SetTrigger("IsNotResting");
+            PlayerManager.EnableDisablePlayerMovement(true);
+            GameManager.GameState = GameState.Playing;
             Cursor.lockState = CursorLockMode.Locked;
             hasOpenedMenu = false;
         }

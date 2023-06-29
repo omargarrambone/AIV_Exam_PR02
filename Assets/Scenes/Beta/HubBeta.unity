@@ -5647,17 +5647,17 @@ PrefabInstance:
     - target: {fileID: 7714356754735876665, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.63
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: 7714356754735876665, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7714356754735876665, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.56
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7954233947506911987, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
@@ -38860,13 +38860,13 @@ PrefabInstance:
     - target: {fileID: 3679559599194249841, guid: 8a736ea60904e4a4f955c65184dc4bbe,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679559599194249841, guid: 8a736ea60904e4a4f955c65184dc4bbe,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1046051924440373155}
     - target: {fileID: 3679559599194249841, guid: 8a736ea60904e4a4f955c65184dc4bbe,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -38875,17 +38875,17 @@ PrefabInstance:
     - target: {fileID: 3679559599194249841, guid: 8a736ea60904e4a4f955c65184dc4bbe,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SwitchCurrentButton
+      value: ShowHideSaveMenu
       objectReference: {fileID: 0}
     - target: {fileID: 3679559599194249841, guid: 8a736ea60904e4a4f955c65184dc4bbe,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: EventSystemManger, Assembly-CSharp
+      value: CampFire, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3679559599194249841, guid: 8a736ea60904e4a4f955c65184dc4bbe,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3979221127380461262, guid: 8a736ea60904e4a4f955c65184dc4bbe,
         type: 3}
@@ -38996,3 +38996,15 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1046051924440373155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7015726857929243711, guid: 8a736ea60904e4a4f955c65184dc4bbe,
+    type: 3}
+  m_PrefabInstance: {fileID: 1046051924440373151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae24d2487b4e46e46a40490665a3f7b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
