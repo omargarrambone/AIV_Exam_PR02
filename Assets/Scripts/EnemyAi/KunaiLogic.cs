@@ -21,12 +21,12 @@ public class KunaiLogic : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
             Destroy(this.gameObject);
-            Debug.Log("Did Hit");
+            //Debug.Log("Did Hit");
         }
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hitDistance, Color.red);
-            Debug.Log("Did not Hit");
+            //Debug.Log("Did not Hit");
         }
     }
 
