@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6628592695055280326}
   - component: {fileID: 6097843952694583713}
   - component: {fileID: 5744746659831421947}
-  - component: {fileID: 6532415318644380005}
   m_Layer: 0
   m_Name: Kunai
   m_TagString: EnemyWeapon
@@ -99,24 +98,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
-  hitDistance: 0.8
---- !u!114 &6532415318644380005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4643519359033591776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentHealth: 0
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  HealthBar: {fileID: 0}
+  hitDistance: 0.3
 --- !u!1 &8074685284847609176
 GameObject:
   m_ObjectHideFlags: 0

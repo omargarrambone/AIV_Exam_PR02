@@ -22,7 +22,7 @@ public class PlayerTakeDamage : MonoBehaviour
             bloodFx.gameObject.SetActive(true);
             bloodFx.playRate = 1f;
             bloodFx.Play();
-            HealthManager.TakeDamage(1);
+            HealthManager.TakeDamage(5);
         }
     }
 

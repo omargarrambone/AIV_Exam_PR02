@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &536084569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,6 +905,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8066700044974064409, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8186503823900377269, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_IsActive
@@ -1543,7 +1548,7 @@ MonoBehaviour:
   currentState: 0
   chaseSpeed: 0
   patrolSpeed: 0
-  timeParry: 0.3
+  parryChance: 0.3
   attackDistance: 0
   agent: {fileID: 0}
   weapon: {fileID: 0}
@@ -1551,7 +1556,6 @@ MonoBehaviour:
   healthManager: {fileID: 0}
   anim: {fileID: 0}
   arancini: {fileID: 0}
-  heavyHealth: {fileID: 0}
   enemyDamageManager: {fileID: 0}
   fov: {fileID: 0}
   patrolWaypoints: []
@@ -9100,10 +9104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a098fe46146af740a5338a09c655759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentStunn: 0
   IsStunned: 0
   StunnDecreaseVelocity: 20
-  timer: 3
+  Timer: 3
   counter: 0
   StunnBar: {fileID: 6121127983501591956}
   EnemyDamageManager: {fileID: 3907064156902540771}
@@ -12416,10 +12419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a098fe46146af740a5338a09c655759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentStunn: 0
   IsStunned: 0
   StunnDecreaseVelocity: 20
-  timer: 3
+  Timer: 3
   counter: 0
   StunnBar: {fileID: 2707272716534135170}
   EnemyDamageManager: {fileID: 5970470090957112148}
@@ -21810,7 +21812,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3091574528239839502}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.46
   m_Speed: 2
@@ -21840,7 +21842,7 @@ MonoBehaviour:
   currentState: 0
   chaseSpeed: 4
   patrolSpeed: 2
-  timeParry: 0.3
+  parryChance: 0.3
   attackDistance: 10
   agent: {fileID: 8733403008232388318}
   weapon: {fileID: 4643519359033591776, guid: 33894dfc1e9e14c489e0670480c36bbf, type: 3}
@@ -21848,8 +21850,6 @@ MonoBehaviour:
   healthManager: {fileID: 7483827194295643062}
   anim: {fileID: 8000756208314377193}
   arancini: {fileID: 7453987875932123583}
-  heavyHealth: {fileID: 5330846943788339623, guid: 80ecebc23a35916499eb6b787e3723d3,
-    type: 3}
   enemyDamageManager: {fileID: 5970470090957112148}
   fov: {fileID: 2455189634188089591}
   patrolWaypoints:

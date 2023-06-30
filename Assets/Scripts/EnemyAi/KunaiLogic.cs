@@ -14,28 +14,28 @@ public class KunaiLogic : MonoBehaviour
     }
 
 
-    //private void FixedUpdate()
-    //{
-    //    RaycastHit hit;
-    //    // Does the ray intersect any objects excluding the player layer
-    //    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, hitDistance, mask))
-    //    {
-    //        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);            
-    //        Destroy(this.gameObject);
-    //        Debug.Log("Did Hit");
-    //    }
-    //    else
-    //    {
-    //        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hitDistance, Color.red);
-    //        Debug.Log("Did not Hit");
-    //    }
-    //}
-
-    private void OnTriggerEnter(Collider other)
+    private void FixedUpdate()
     {
-        if (other.CompareTag("Player"))
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, hitDistance, mask))
         {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
             Destroy(this.gameObject);
+            Debug.Log("Did Hit");
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hitDistance, Color.red);
+            Debug.Log("Did not Hit");
         }
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 }
