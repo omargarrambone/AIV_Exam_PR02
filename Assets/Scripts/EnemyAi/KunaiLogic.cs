@@ -5,8 +5,7 @@ using UnityEngine;
 public class KunaiLogic : MonoBehaviour
 {
     [SerializeField] private LayerMask mask;
-    [SerializeField] private float hitDistance;
-    //[SerializeField] HealthManager healthManager;
+    [SerializeField] private float hitDistance;  
     // Start is called before the first frame update
     void Start()
     {

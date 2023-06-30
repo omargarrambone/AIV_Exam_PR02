@@ -6,10 +6,10 @@ public class KunaiEnemy : BasicEnemyAgentAi
 {
     [SerializeField] protected float kunaiSpeed;
     [SerializeField] protected bool isMoving;
-    private float yOffsetKunaiTransform = 1.2f;
     [SerializeField] protected Transform kunaiTransform;
 
-    //protected float kunaiTimer = 0;
+    private float yOffsetKunaiTransform = 1.2f;
+
     // Start is called before the first frame update
 
     protected override void Start()
