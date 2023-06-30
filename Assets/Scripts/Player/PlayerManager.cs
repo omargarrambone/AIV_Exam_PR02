@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
     public static GameObject PlayerGameObject { get; private set; }
     public static CharacterController PlayerCharactercontroller;
     public static PlayerInput PlayerInput;
+    public static CameraFollow CameraFollow;
+    public static SceneMngr sceneMngr;
     public float minY;
 
     //[SerializeField] private Material invisibleWall;
@@ -16,6 +18,7 @@ public class PlayerManager : MonoBehaviour
        if(PlayerGameObject == null) PlayerGameObject = GameObject.FindGameObjectWithTag("Player");
        if (PlayerCharactercontroller == null) PlayerCharactercontroller = PlayerGameObject.GetComponent<CharacterController>();
        if (PlayerInput == null) PlayerInput = PlayerGameObject.GetComponent<PlayerInput>();
+       if (CameraFollow == null) CameraFollow = Camera.main.gameObject.GetComponent<CameraFollow>();
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -51,15 +54,16 @@ public class PlayerManager : MonoBehaviour
     public void Death()
     {
         StartCoroutine(WaitForDeathAnimation());
-
         DisablePlayerMovement();
+        GameManager.GameState = GameState.Paused;
     }
 
     IEnumerator WaitForDeathAnimation()
     {
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("GameOverScene");
-        SetPosition(Vector3.zero);
+        SetPosition(new Vector3(41.6f, 19.8f, 11.9f));
+        CameraFollow.ResetCameraTarget();
         yield return new WaitForSeconds(0.1f);
         PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
     }

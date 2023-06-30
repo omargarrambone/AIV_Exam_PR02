@@ -13,12 +13,14 @@ GameObject:
   - component: {fileID: 2351280}
   - component: {fileID: 4324624273643140316}
   - component: {fileID: 5929148478953444278}
-  m_Layer: 0
+  - component: {fileID: 8925827259713103947}
+  - component: {fileID: 628533116038691639}
+  m_Layer: 6
   m_Name: SM_Bld_Well_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &402088
 Transform:
@@ -129,6 +131,43 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.086773, y: 0.31812495, z: 3.0867653}
   m_Center: {x: 0.008817673, y: 0.000000029802322, z: -0.011991501}
+--- !u!65 &8925827259713103947
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117314}
+  m_Material: {fileID: 13400000, guid: 93ff06603b0af5742a0ede6b7dfcf0d3, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &628533116038691639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cd492dfc809204a82056f6f01c06e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  ItemName: Underground
 --- !u!1 &3584507102033451464
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2974309294912840950}
   - component: {fileID: 5424401234946410327}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Roofleft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8706725747330638301}
   - component: {fileID: 1033446759169921434}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Roofright
   m_TagString: Untagged
   m_Icon: {fileID: 0}

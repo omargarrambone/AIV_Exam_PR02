@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TeleportPortal : MonoBehaviour
 {
-    public string  NextScene;
+    public string NextScene;
     public Vector3 PlayerNextPosition;
 
     public Vector3 CameraNextPosition;

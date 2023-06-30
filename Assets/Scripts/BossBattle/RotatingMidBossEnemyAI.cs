@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
 {
-    [SerializeField] private float dizzinessCounter, dizzinessTimer;
+    [SerializeField] private float dizzinessCounter, dizzinessTimer, minDizzinessTimer,maxDizzinessTimer;
 
     protected override void Start()
     {
         base.Start();
         weapon.GetComponent<BoxCollider>().enabled = true;
-        //dizzinessTimer = 4f; // random float 4 - 7
 
         stunnManager.StunnDecreaseVelocity = 50.0f;
         stunnManager.Timer = 2f;
 
+    }
+
+    private void SetRandomDizziness()
+    {
+        dizzinessCounter = Random.Range(minDizzinessTimer, maxDizzinessTimer);
     }
 
     protected override void Update()
@@ -23,13 +27,12 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
         {
             case EnemyState.Patrol:
 
-                dizzinessCounter += Time.deltaTime;
+                dizzinessCounter -= Time.deltaTime;
 
-                if (dizzinessCounter > dizzinessTimer)
+                if (dizzinessCounter < 0)
                 {
-                    stunnManager.TakeStunn(100);
-                    dizzinessCounter = 0;
-                    currentState = EnemyState.Stun;
+                    SetRandomDizziness();
+                    currentState = EnemyState.Dizzy;
                     break;
                 }
 
@@ -37,6 +40,19 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
                 {
                     SetNewWaypoint();
                     agent.speed = patrolSpeed;
+                }
+
+                break;
+
+            case EnemyState.Dizzy:
+
+                dizzinessCounter -= Time.deltaTime;
+
+                if (dizzinessCounter < 0)
+                {
+                    SetRandomDizziness();
+                    currentState = EnemyState.Patrol;
+                    break;
                 }
 
                 break;
