@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.028631816, g: 0.2966058, b: 0.4896375, a: 1}
+  m_IndirectSpecularColor: {r: 0.028648408, g: 0.2966174, b: 0.4896484, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5671,12 +5671,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8544ee09dac524d4788f7f3758b11982, type: 3}
---- !u!65 &365021269 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 7153869964252774398, guid: 8544ee09dac524d4788f7f3758b11982,
-    type: 3}
-  m_PrefabInstance: {fileID: 365021268}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &366373343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6574,7 +6568,7 @@ PrefabInstance:
     - target: {fileID: 628533116038691639, guid: c3cca5509b7c2c34fa8af39b8533c9bb,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TeleportPortal, Assembly-CSharp
+      value: InteractTeleportPortal, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 628533116038691639, guid: c3cca5509b7c2c34fa8af39b8533c9bb,
         type: 3}
@@ -6608,7 +6602,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 402088, guid: c3cca5509b7c2c34fa8af39b8533c9bb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1226918675}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 117314, guid: c3cca5509b7c2c34fa8af39b8533c9bb,
         type: 3}
@@ -6636,14 +6634,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 410755378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b219016306abb8499ab3ffd37d84097, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ccf6bd45191cb64196c2acdd0de1783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NextScene: Slums Map
   PlayerNextPosition: {x: 4.87, y: 11.38, z: 7.87}
-  CameraNextPosition: {x: 3.4242542, y: 8.486537, z: 0.60652345}
+  CameraNextPosition: {x: 3.424254, y: 8.486537, z: 0.6065235}
   CameraNextRotation: {x: 0, y: 0, z: 0}
-  CameraLockWallCollider: {fileID: 365021269}
+  CameraLockWallCollider: {fileID: 1226918676}
 --- !u!1001 &414523482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22403,6 +22401,121 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 470028, guid: 744bd8f214e14224db7d621250dd64be,
     type: 3}
   m_PrefabInstance: {fileID: 1223816356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1226918674
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 410755377}
+    m_Modifications:
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695245082364460366, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695245082364460366, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695245082364460366, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5256222436855883057, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_Name
+      value: CameraLockWall
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2f50e619135cdc94a8b37c7468873eec, type: 3}
+--- !u!4 &1226918675 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+    type: 3}
+  m_PrefabInstance: {fileID: 1226918674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1226918676 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5287679830308817033, guid: 2f50e619135cdc94a8b37c7468873eec,
+    type: 3}
+  m_PrefabInstance: {fileID: 1226918674}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1246401088
 PrefabInstance:

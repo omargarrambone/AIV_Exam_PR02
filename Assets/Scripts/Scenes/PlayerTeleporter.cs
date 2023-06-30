@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerTeleporter : MonoBehaviour
 {
-    public static SceneMngr sceneMngr;
+    public static SceneMngr SceneMngr { get; private set; }
 
-    [SerializeField] private SceneMngr _sceneMngr;
+    [SerializeField] private SceneMngr sceneMngr;
 
     static private CameraFollow cameraFollow;
     private void Start()
@@ -15,7 +15,7 @@ public class PlayerTeleporter : MonoBehaviour
         {
             cameraFollow = Camera.main.GetComponent<CameraFollow>();
         }
-        sceneMngr = _sceneMngr;
+        SceneMngr = sceneMngr;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +25,6 @@ public class PlayerTeleporter : MonoBehaviour
             TeleportPortal portal = other.GetComponent<TeleportPortal>();
             sceneMngr.PlayerPositionInNextScene = portal.PlayerNextPosition;
             sceneMngr.PlayerRotationInNextScene = PlayerManager.PlayerGameObject.transform.rotation;
-
             sceneMngr.ChangeScene(portal.NextScene);
 
             CameraFollow.CameraPositionOnChangeScene = portal.CameraNextPosition;

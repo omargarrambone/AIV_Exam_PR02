@@ -16,6 +16,14 @@ public class SceneMngr : MonoBehaviour
 
     void Start()
     {
+        if (!SaveDataJSON.DoesSavedDataExist())
+        {
+            SetPlayerPosition();
+
+            if (OverrideStartScene != "") NextScene = OverrideStartScene;
+            ChangeScene(NextScene);
+        }
+
         if (changeOnStart)
         {
             SetPlayerPosition();
