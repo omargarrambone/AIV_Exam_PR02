@@ -28,14 +28,14 @@ public class FluteScript : MonoBehaviour
     {
         if(context.performed)
         {
-            RaycastHit[] hittedEnemies = GetHittedEnemies();
+            Collider[] hittedEnemies = GetHittedEnemies();
             bool atLeastOneEnemyStunned = false;
 
             if (hittedEnemies.Length > 0)
             {
-                foreach (RaycastHit enemy in hittedEnemies)
+                foreach (Collider enemy in hittedEnemies)
                 {
-                    GameObject enemyObj = enemy.collider.gameObject;
+                    GameObject enemyObj = enemy.gameObject;
                     StunnManager stunnMngr = enemyObj.GetComponent<StunnManager>();
 
                     if (stunnMngr.IsStunned)
@@ -52,15 +52,15 @@ public class FluteScript : MonoBehaviour
         }
     }
 
-    public RaycastHit[] GetHittedEnemies()
+    public Collider[] GetHittedEnemies()
     {
-        return Physics.SphereCastAll(transform.position, radius, transform.forward, maxDistance, enemiesLayer);
+        return Physics.OverlapSphere(transform.position, radius, enemiesLayer);
     }
 
     [ContextMenu("PlaySound")]
     public void PlaySound()
     {
-        RaycastHit[] hittedEnemies = GetHittedEnemies();
+        Collider[] hittedEnemies = GetHittedEnemies();
 
         audioSource.Stop();
         audioSource.Play();
@@ -68,9 +68,9 @@ public class FluteScript : MonoBehaviour
         if (hittedEnemies.Length > 0)
         {
             //purify attack
-            foreach (RaycastHit enemy in hittedEnemies)
+            foreach (Collider enemy in hittedEnemies)
             {
-                GameObject enemyObj = enemy.collider.gameObject;
+                GameObject enemyObj = enemy.gameObject;
                 StunnManager stunnMngr = enemyObj.GetComponent<StunnManager>();
 
                 if (stunnMngr.IsStunned)
@@ -78,6 +78,7 @@ public class FluteScript : MonoBehaviour
                     ParticleSystem dis = Instantiate(Dissolve, enemyObj.transform.position, Dissolve.transform.rotation);                    
                     Destroy(enemyObj, 0.2f);
                     Destroy(dis.gameObject, 1);
+                    PowerUpManager.SpawnPowerUpRandom(enemyObj.transform.position);
                     NPCCounter.AddPurifiedNPCToCounter();
                 }
             }
@@ -106,12 +107,12 @@ public class FluteScript : MonoBehaviour
         {
             if (audioSource.isPlaying)
             {
-                RaycastHit[] hittedEnemies = GetHittedEnemies();
+                Collider[] hittedEnemies = GetHittedEnemies();
 
-                foreach (RaycastHit enemy in hittedEnemies)
+                foreach (Collider enemy in hittedEnemies)
                 {
-                    enemy.collider.GetComponent<HealthManager>().AddHealth(-attackDmg*Time.deltaTime);
-                    enemy.collider.gameObject.SetActive(false);
+                    enemy.GetComponent<HealthManager>().AddHealth(-attackDmg*Time.deltaTime);
+                    enemy.gameObject.SetActive(false);
                 }
             }
             else

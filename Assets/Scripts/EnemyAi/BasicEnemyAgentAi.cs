@@ -9,7 +9,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected EnemyState currentState;
     [SerializeField] protected float chaseSpeed;
     [SerializeField] protected float patrolSpeed;
-    [SerializeField] protected float timeParry = 0.3f;
+    [SerializeField] [Range(0f,1f)] protected float parryChance = 0.3f;
     [SerializeField] protected float attackDistance;
 
     [Header("References")]
@@ -19,7 +19,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected HealthManager healthManager;
     [SerializeField] protected Animator anim;
     [SerializeField] protected ParticleSystem arancini;
-    [SerializeField] protected PowerUp heavyHealth;
     [SerializeField] protected EnemyDamageManager enemyDamageManager;
     [SerializeField] protected FieldOfView fov;
     [SerializeField] protected List<Transform> patrolWaypoints;    
@@ -105,13 +104,13 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 if (enemyDamageManager.IsParrying)
                 {
                     anim.SetBool("IsParrying", true);
-                    timeParry -= Time.deltaTime;
+                    parryChance -= Time.deltaTime;
                  
-                    if (timeParry <= 0)
+                    if (parryChance <= 0)
                     {
                         enemyDamageManager.IsParrying = false;
                         anim.SetBool("IsParrying", false);
-                        timeParry = 0.3f;
+                        parryChance = 0.3f;
                     }
                     break;
                 }
@@ -150,7 +149,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
                 gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
                 arancini.gameObject.SetActive(false);
-                SpawnPowerUp(heavyHealth);
+                PowerUpManager.SpawnPowerUpRandom(transform.position);
                 Destroy(this.gameObject, 5f);
                 break;
 
@@ -172,11 +171,9 @@ public class BasicEnemyAgentAi : MonoBehaviour
                     currentState = EnemyState.Patrol;                 
                     arancini.gameObject.SetActive(false);
                     stunnManager.IsStunned = false;
+                    agent.isStopped = false;
                 }
 
-                break;
-
-            default:
                 break;
         }
 
@@ -192,12 +189,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
     {
         currentWaypoint = Random.Range(0, patrolWaypoints.Count);
         agent.SetDestination(patrolWaypoints[currentWaypoint].position);
-    }
-
-
-    public void SpawnPowerUp(PowerUp lightHealth)
-    {
-        Instantiate(lightHealth, transform.position + new Vector3(0, 1f, 1f), lightHealth.transform.rotation);
     }
 
     public void StartAttack()

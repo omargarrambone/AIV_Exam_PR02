@@ -2175,14 +2175,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3858968903812287310}
-  m_LocalRotation: {x: -0.00000023841855, y: -0.70710653, z: -0.000000104308114, w: 0.70710707}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 65.00002, y: 65, z: 65}
+  m_LocalRotation: {x: 0.36699748, y: 0.39926276, z: 0.57439744, w: -0.61316377}
+  m_LocalPosition: {x: -53.6, y: -5.3, z: -0.3}
+  m_LocalScale: {x: 65.000015, y: 65, z: 65}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4408010900263728803}
+  m_Father: {fileID: 5977511323210811137}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: -65.33, y: -9.379, z: -80.239}
 --- !u!33 &7763031232571524399
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2252,8 +2252,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7, y: 1.8, z: 0.1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 0.28817952, y: 1.4020103, z: 0.20362177}
+  m_Center: {x: -0.032706536, y: 0.8010092, z: 0.0554153}
 --- !u!1 &3871747574443445116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,6 +2286,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2095097587888141128}
+  - {fileID: 1372261108139875489}
   m_Father: {fileID: 3609516117313415020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5101,23 +5102,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce81ff758858a34ca0c86bc8ed470c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 2627876041869194610}
   currentState: 0
-  playerTarget: {fileID: 0}
+  chaseSpeed: 1
+  patrolSpeed: 10
+  timeParry: 0
+  attackDistance: 2
+  agent: {fileID: 2627876041869194610}
   weapon: {fileID: 3858968903812287310}
   stunnManager: {fileID: 7099051901857183523}
   healthManager: {fileID: 8927651966519115845}
   anim: {fileID: 3153458516362878516}
-  patrolSpeed: 2
   arancini: {fileID: 1377530750148184685}
-  heavyHealth: {fileID: 5330846943788339623, guid: 80ecebc23a35916499eb6b787e3723d3,
-    type: 3}
   enemyDamageManager: {fileID: 5053846933391460361}
   fov: {fileID: 9214509987150865373}
-  chaseSpeed: 2
-  attackDistance: 2
-  patrolWaypoints: []
-  timeParry: 0.3
+  patrolWaypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  dizzinessCounter: 0
+  dizzinessTimer: 5000000
 --- !u!195 &2627876041869194610
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5128,11 +5130,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.36
-  m_Speed: 2
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 720
-  m_StoppingDistance: 0
+  m_AngularSpeed: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -5174,7 +5176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a098fe46146af740a5338a09c655759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentStunn: 0
   IsStunned: 0
   StunnDecreaseVelocity: 20
   timer: 3
@@ -5244,7 +5245,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8194704234999075467}
-  m_Material: {fileID: 13400000, guid: 93ff06603b0af5742a0ede6b7dfcf0d3, type: 2}
+  m_Material: {fileID: 13400000, guid: 244b4a7544d56814795fc14cde26a17c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5461,7 +5462,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8349714580128980598}
-  - {fileID: 1372261108139875489}
   m_Father: {fileID: 6128445268057084726}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

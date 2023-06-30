@@ -23,7 +23,7 @@ Material:
   m_Name: PortalMaterial
   m_Shader: {fileID: -6465566751694194690, guid: c706ffdec2aa9c04b84df9d20ce05728,
     type: 3}
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 2100000, guid: 3dfcea32da5463444ad99a6e93c27abc, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -36,31 +36,9 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _Mask:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
-    m_Floats:
-    - _DissolveAmount: 4
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _Scale: 7.48
-    - _Speed: 0.1
-    - _TwirlStrenght: 20
+    m_Floats: []
     m_Colors:
-    - _Color: {r: 86.52219, g: 90.50965, b: 0, a: 1}
+    - _Color: {r: 18.109232, g: 0, b: 95.87451, a: 1}
   m_BuildTextureStacks: []

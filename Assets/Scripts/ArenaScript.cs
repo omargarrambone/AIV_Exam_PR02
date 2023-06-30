@@ -19,9 +19,11 @@ public class ArenaScript : MonoBehaviour
         if (CompletedArenas[ArenaIndex] == true) OnFinish();
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
         if (isStarted) return;
+
+        if (!other.CompareTag("Player")) return;
 
         for (int i = 0; i < fogWalls.Length; i++)
         {

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerTeleporter : MonoBehaviour
 {
-    [SerializeField] private SceneMngr sceneMngr;
+    public static SceneMngr sceneMngr;
+
+    [SerializeField] private SceneMngr _sceneMngr;
 
     static private CameraFollow cameraFollow;
     private void Start()
@@ -13,6 +15,7 @@ public class PlayerTeleporter : MonoBehaviour
         {
             cameraFollow = Camera.main.GetComponent<CameraFollow>();
         }
+        sceneMngr = _sceneMngr;
     }
 
     private void OnTriggerEnter(Collider other)
