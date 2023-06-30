@@ -1026,6 +1026,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  IsImmune: 0
   HealthBar: {fileID: 389252774}
 --- !u!43 &413582028
 Mesh:
@@ -1245,18 +1246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1c94b3e7dd3fc4195a4a432eba09dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &636207343 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5579526798727047458, guid: 51b45a22c61148c449ec5f1686bce237,
-    type: 3}
-  m_PrefabInstance: {fileID: 5050835469238707117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f22ac32de522394b886ef88e4c0f699, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &685765286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,7 +1440,7 @@ PrefabInstance:
     - target: {fileID: 1359904180259677389, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: maxArrows
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1359904180259677389, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
@@ -1705,6 +1694,11 @@ PrefabInstance:
       propertyPath: patrolWaypoints.Array.data[1]
       value: 
       objectReference: {fileID: 1394633955}
+    - target: {fileID: 5053846933391460361, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: ParryChance
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 5208131769330494903, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}
       propertyPath: m_RootOrder
@@ -1778,7 +1772,7 @@ PrefabInstance:
     - target: {fileID: 8194704234999075467, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}
       propertyPath: m_TagString
-      value: EnemyWeapon
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2043,18 +2037,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36ca1ebd7fee4f148830c5964f6155da, type: 3}
---- !u!114 &1197385775 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
-    type: 3}
-  m_PrefabInstance: {fileID: 5050835469238707117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ce81ff758858a34ca0c86bc8ed470c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1231072681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,7 +2323,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-128652
+  m_Name: pb_Mesh-3420
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4800,6 +4782,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  IsImmune: 0
   HealthBar: {fileID: 389252774}
 --- !u!1 &2092313888
 GameObject:
@@ -4916,16 +4899,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}
-      propertyPath: parryChance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: dizzinessTimer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
       propertyPath: patrolWaypoints.Array.data[0]
       value: 
       objectReference: {fileID: 1394633955}
@@ -4934,6 +4907,11 @@ PrefabInstance:
       propertyPath: patrolWaypoints.Array.data[1]
       value: 
       objectReference: {fileID: 818794747}
+    - target: {fileID: 5053846933391460361, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: ParryChance
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 5208131769330494903, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}
       propertyPath: m_RootOrder
@@ -4993,56 +4971,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rotating Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 636207343}
-    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1197385775}
-    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetRagdollColliders
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetState
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RagdollManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: BasicEnemyAgentAi, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
