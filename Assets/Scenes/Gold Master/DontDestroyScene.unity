@@ -357,6 +357,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &2084450825 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5337394144554412462, guid: e375b58688cc98343962035d2c587cae,
+    type: 3}
+  m_PrefabInstance: {fileID: 9093984855814243739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9093984855814243739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,6 +381,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 322434970050091763, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: meshRenderer
+      value: 
+      objectReference: {fileID: 2084450825}
+    - target: {fileID: 322434970050091763, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: defaultMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d0613f500c022f48ae1dde75d4fc3c2, type: 2}
+    - target: {fileID: 322434970050091763, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: invincibleMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 37424cc23d9c58d4bbb035e5e88f1416, type: 2}
     - target: {fileID: 591661635958209730, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_RootOrder

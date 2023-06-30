@@ -8,10 +8,16 @@ public class PlayerTakeDamage : MonoBehaviour
 {
     public HealthManager HealthManager;
     public VisualEffect bloodFx;
+    public Material invincibleMaterial, defaultMaterial;
+    public SkinnedMeshRenderer meshRenderer;
 
     private float delay = 0.61f;
     private float timer = 0;
     private bool enemyIsAttacking = false;
+
+   [SerializeField] private float invincibilityTimer = 1f;
+   [SerializeField] private float invincibilityCounter;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,6 +29,11 @@ public class PlayerTakeDamage : MonoBehaviour
             bloodFx.playRate = 1f;
             bloodFx.Play();
             HealthManager.TakeDamage(5);
+
+            invincibilityCounter = invincibilityTimer;
+            HealthManager.IsImmune = true;
+
+            meshRenderer.material = invincibleMaterial;
         }
     }
 
@@ -43,6 +54,17 @@ public class PlayerTakeDamage : MonoBehaviour
             {
                 bloodFx.gameObject.SetActive(false);
                 timer = 0;
+            }
+        }
+
+        if (HealthManager.IsImmune)
+        {
+            invincibilityCounter -= Time.deltaTime;
+
+            if (invincibilityCounter < 0)
+            {
+                meshRenderer.material = defaultMaterial;
+                HealthManager.IsImmune = false;
             }
         }
     }
