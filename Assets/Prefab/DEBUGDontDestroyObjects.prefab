@@ -856,7 +856,7 @@ Transform:
   - {fileID: 7346848436888583763}
   - {fileID: 6703003382857985992}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7254098985651995250
 MonoBehaviour:
@@ -4102,6 +4102,16 @@ PrefabInstance:
       propertyPath: bloodFx
       value: 
       objectReference: {fileID: 1501535457750444172}
+    - target: {fileID: 8832386335627109767, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9039428885714214754, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
