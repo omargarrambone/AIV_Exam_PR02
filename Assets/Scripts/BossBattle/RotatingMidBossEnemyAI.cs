@@ -19,7 +19,6 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
         SetRandomDizziness();
 
         parryChance = 0;
-
     }
 
     void SetWeaponsCollider(bool value)
@@ -70,7 +69,12 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
                 {
                     stunnManager.IsImmune = false;
                     stunnManager.SetStun(100);
+                    stunnManager.IsStunned = true;
+                    anim.SetBool("Stunned", true);
                     anim.SetBool("IsDizzy", false);
+                    agent.isStopped = true;
+                    arancini.gameObject.SetActive(true);
+                    weapon.GetComponent<BoxCollider>().enabled = false;
                     break;
                 }
 
@@ -114,12 +118,6 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
                     currentState = EnemyState.Dead;
                     break;
                 }
-
-                anim.SetBool("Stunned", true);
-                arancini.gameObject.SetActive(true);
-                weapon.GetComponent<BoxCollider>().enabled = false;
-                anim.SetBool("Attack", false);
-                agent.isStopped = true;
 
                 if (stunnManager.CurrentStunn < 1)
                 {
