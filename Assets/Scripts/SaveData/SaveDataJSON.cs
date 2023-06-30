@@ -28,11 +28,6 @@ public class SaveDataJSON : MonoBehaviour
 
     }
 
-    static void DeleteSave()
-    {
-        //SavedData = null;
-    }
-
     [ContextMenu("SetPaths")]
     private void SetPaths()
     {
