@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class WeaponsManager : MonoBehaviour
 {
     [SerializeField] private Weapon[] Weapons;
+    [SerializeField] private UnityEvent[] Events;
     public bool[] TakenWeapons { get; private set; }
     public int CurrentSlotIndex { get; private set; }
 
