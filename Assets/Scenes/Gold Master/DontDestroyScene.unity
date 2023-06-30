@@ -228,6 +228,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &886715911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 519915119367509874, guid: e375b58688cc98343962035d2c587cae,
+    type: 3}
+  m_PrefabInstance: {fileID: 9093984855814243739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d279f40117865d04aae6f45eca3a8bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1653423711 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6657907029336734532, guid: e375b58688cc98343962035d2c587cae,
+    type: 3}
+  m_PrefabInstance: {fileID: 9093984855814243739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5610d1e83b61b4a9de2eb31485f48a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1803856462
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +434,61 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DontDestroyObjects
+      objectReference: {fileID: 0}
+    - target: {fileID: 2249420776414779013, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: weaponsManager
+      value: 
+      objectReference: {fileID: 1653423711}
+    - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657907029336734532, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: Events.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657907029336734532, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: FluteAttack.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657907029336734532, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: FluteAttack.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657907029336734532, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: FluteAttack.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 886715911}
+    - target: {fileID: 6657907029336734532, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: FluteAttack.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657907029336734532, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: FluteAttack.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActivateMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657907029336734532, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: FluteAttack.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FluteScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657907029336734532, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: FluteAttack.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657907029336734532, guid: e375b58688cc98343962035d2c587cae,
+        type: 3}
+      propertyPath: FluteAttack.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7752182401103372101, guid: e375b58688cc98343962035d2c587cae,
         type: 3}

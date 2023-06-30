@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class WeaponsManager : MonoBehaviour
 {
     [SerializeField] private Weapon[] Weapons;
-    [SerializeField] private UnityEvent[] Events;
+    [SerializeField] private UnityEvent<UnityEngine.InputSystem.InputAction.CallbackContext> FluteAttack;
     public bool[] TakenWeapons { get; private set; }
     public int CurrentSlotIndex { get; private set; }
 
@@ -56,6 +56,14 @@ public class WeaponsManager : MonoBehaviour
         }
 
         SetActualItem(CurrentSlotIndex);
+    }
+
+    public void OnAttack(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if(CurrentSlotIndex == ((int)ItemType.Flute))
+        {
+            FluteAttack.Invoke(context);
+        }
     }
 
     public void AddItem(ItemType item)

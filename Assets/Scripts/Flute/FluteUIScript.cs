@@ -9,7 +9,7 @@ public class FluteUIScript : MonoBehaviour
     private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
     [SerializeField] private int currentArrowIndex, lastWeaponIndex;
     [Header("References")]
-    [SerializeField] private WeaponsManager weaponsManager;
+    //[SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private Transform ArrowsUIParent,ArrowsPrefab;
     [SerializeField] private PlayerInput playerInputScript;
     [SerializeField] private Image musicSheet;
@@ -54,7 +54,7 @@ public class FluteUIScript : MonoBehaviour
     {
         if (arrowsToGenerate > maxArrows) arrowsToGenerate = maxArrows;
 
-        lastWeaponIndex = weaponsManager.CurrentSlotIndex;
+        //lastWeaponIndex = weaponsManager.CurrentSlotIndex;
 
         OnStart.Invoke();        
     }
@@ -100,7 +100,7 @@ public class FluteUIScript : MonoBehaviour
 
     void OnFinished()
     {
-        weaponsManager.SetActualItem(lastWeaponIndex);
+        //weaponsManager.SetActualItem(lastWeaponIndex);
         PlayerManager.EnablePlayerMovement();
 
         for (int i = 0; i < ArrowsUIParent.childCount; i++)

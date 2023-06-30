@@ -40,6 +40,9 @@ public class PlayerInput : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject Panel;
 
+    [Header("Weapons")]
+    [SerializeField] private WeaponsManager weaponsManager;
+
 
     private void Awake()
     {
@@ -63,6 +66,7 @@ public class PlayerInput : MonoBehaviour
             if (GameManager.GameState == GameState.Paused) return;
 
             _anim.SetTrigger("IsAttacking");
+            weaponsManager.OnAttack(context);
         }
 
     }
