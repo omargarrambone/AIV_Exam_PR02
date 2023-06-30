@@ -5067,7 +5067,7 @@ Transform:
   - {fileID: 4516636779410185077}
   - {fileID: 4494512853427322876}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &9214509987150865373
 MonoBehaviour:
@@ -5105,7 +5105,7 @@ MonoBehaviour:
   currentState: 0
   chaseSpeed: 1
   patrolSpeed: 10
-  timeParry: 0
+  parryTimer: 0.3
   attackDistance: 2
   agent: {fileID: 2627876041869194610}
   weapon: {fileID: 3858968903812287310}
@@ -5119,7 +5119,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   dizzinessCounter: 0
-  dizzinessTimer: 5000000
+  dizzinessTimer: 5
+  minDizzinessTimer: 4
+  maxDizzinessTimer: 8
+  weapons:
+  - {fileID: 6934459084341068771}
+  - {fileID: 6805512710580925613}
 --- !u!195 &2627876041869194610
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5161,7 +5166,7 @@ MonoBehaviour:
   ParryTimeIndex: 0
   IsParrying: 0
   IsHitting: 0
-  ParryChance: 0.4
+  ParryChance: -1
   timer: 0
   counter: 0
 --- !u!114 &7099051901857183523
@@ -5177,8 +5182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsStunned: 0
+  IsImmune: 0
   StunnDecreaseVelocity: 20
-  timer: 3
+  Timer: 3
   counter: 0
   StunnBar: {fileID: 5080394394200240552}
   EnemyDamageManager: {fileID: 5053846933391460361}
@@ -5237,6 +5243,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  IsImmune: 0
   HealthBar: {fileID: 7999004757837001771}
 --- !u!136 &9044054774138744277
 CapsuleCollider:
@@ -5303,9 +5310,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4516636779410185077}
+  - component: {fileID: 6934459084341068771}
   m_Layer: 0
   m_Name: Character_Samurai_Grunt_Black
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5333,6 +5341,29 @@ Transform:
   m_Father: {fileID: 5208131769330494903}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6934459084341068771
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197945996905278544}
+  m_Material: {fileID: 13400000, guid: 93ff06603b0af5742a0ede6b7dfcf0d3, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!1 &8269851504649057571
 GameObject:
   m_ObjectHideFlags: 0
