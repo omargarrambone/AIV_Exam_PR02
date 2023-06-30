@@ -63,9 +63,28 @@ public class SaveDataJSON : MonoBehaviour
         Debug.Log("Saved Game!");
     }
 
-    public bool DoesSavedDataExist()
+    public static bool DoesSavedDataExist()
     {
-       return File.Exists(persistentPath);
+        string json;
+
+        try
+        {
+            using (StreamReader reader = new StreamReader(persistentPath))
+            {
+                json = reader.ReadToEnd();
+            }
+        }
+        catch
+        {
+            return false;
+        }
+
+        if (json == null || json == "")
+        {
+            return false;
+        }
+
+        return true;
     }
 
     [ContextMenu("Load Game")]

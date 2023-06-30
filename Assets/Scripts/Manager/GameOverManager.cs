@@ -23,7 +23,7 @@ public class GameOverManager : MonoBehaviour
 
     public void LoadLastSave()
     {
-        if (DataSaver.DoesSavedDataExist())
+        if (SaveDataJSON.DoesSavedDataExist())
         {
             DataSaver.LoadData();
             Cursor.lockState = CursorLockMode.Locked;

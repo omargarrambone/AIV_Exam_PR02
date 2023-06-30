@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneMngr : MonoBehaviour
 {
-    [SerializeField] bool changeOnStart;
+    [SerializeField] bool changeOnStart, debugDontChangeScene;
     [SerializeField] GameObject loadingCanvas;
     [SerializeField] LoadingScreen loadingScript;
     public string OverrideStartScene;
@@ -16,6 +16,19 @@ public class SceneMngr : MonoBehaviour
 
     void Start()
     {
+
+#if UNITY_EDITOR
+        if (debugDontChangeScene) return;
+#endif
+
+        if (!SaveDataJSON.DoesSavedDataExist())
+        {
+            SetPlayerPosition();
+
+            if (OverrideStartScene != "") NextScene = OverrideStartScene;
+            ChangeScene(NextScene);
+        }
+
         if (changeOnStart)
         {
             SetPlayerPosition();
