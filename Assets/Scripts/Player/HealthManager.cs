@@ -14,7 +14,8 @@ public class HealthManager : MonoBehaviour
     public float MaxHealth {get; private set;}
     public float CurrentHealth;
     public UnityEvent OnDeath;
-    private Animator anim;
+    private Animator anim; 
+    public bool IsImmune;
     public bool IsDead { get { return CurrentHealth <= 0; } }
     public BarScript HealthBar;
     void Start()
@@ -35,10 +36,8 @@ public class HealthManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (IsDead)
-        {
-            return;
-        }
+        if (IsDead) return;
+        if (IsImmune) return;
 
         CurrentHealth -= damage;
 

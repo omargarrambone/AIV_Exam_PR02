@@ -5,15 +5,28 @@ using UnityEngine;
 public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
 {
     [SerializeField] private float dizzinessCounter, dizzinessTimer, minDizzinessTimer,maxDizzinessTimer;
+    [SerializeField] private Collider[] weapons;
 
     protected override void Start()
     {
         base.Start();
-        weapon.GetComponent<BoxCollider>().enabled = true;
+        SetWeaponsCollider(true);
 
         stunnManager.StunnDecreaseVelocity = 50.0f;
         stunnManager.Timer = 2f;
+        stunnManager.IsImmune = true;
+        healthManager.IsImmune = true;
+        SetRandomDizziness();
 
+        parryChance = 0;
+    }
+
+    void SetWeaponsCollider(bool value)
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i].enabled = value;
+        }
     }
 
     private void SetRandomDizziness()
@@ -32,7 +45,13 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
                 if (dizzinessCounter < 0)
                 {
                     SetRandomDizziness();
+                    anim.SetBool("IsDizzy", true);
                     currentState = EnemyState.Dizzy;
+                    agent.isStopped = true;
+                    weapon.gameObject.SetActive(false);
+                    healthManager.IsImmune = false;
+                    SetWeaponsCollider(false);
+
                     break;
                 }
 
@@ -46,12 +65,33 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
 
             case EnemyState.Dizzy:
 
+                if(healthManager.CurrentHealth < 30)
+                {
+                    stunnManager.IsImmune = false;
+                    stunnManager.SetStun(100);
+                    stunnManager.IsStunned = true;
+                    anim.SetBool("Stunned", true);
+                    anim.SetBool("IsDizzy", false);
+                    agent.isStopped = true;
+                    arancini.gameObject.SetActive(true);
+                    weapon.GetComponent<BoxCollider>().enabled = false;
+                    break;
+                }
+
                 dizzinessCounter -= Time.deltaTime;
 
                 if (dizzinessCounter < 0)
                 {
                     SetRandomDizziness();
+                    anim.SetBool("IsDizzy", false);
                     currentState = EnemyState.Patrol;
+                    agent.isStopped = false;
+                    weapon.gameObject.SetActive(true);
+                    healthManager.IsImmune = true;
+                    SetWeaponsCollider(true);
+
+                    stunnManager.IsImmune = true;
+                    stunnManager.SetStun(0);
                     break;
                 }
 
@@ -78,12 +118,6 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
                     currentState = EnemyState.Dead;
                     break;
                 }
-
-                anim.SetBool("Stunned", true);
-                arancini.gameObject.SetActive(true);
-                weapon.GetComponent<BoxCollider>().enabled = false;
-                anim.SetBool("Attack", false);
-                agent.isStopped = true;
 
                 if (stunnManager.CurrentStunn < 1)
                 {

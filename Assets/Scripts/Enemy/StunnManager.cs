@@ -9,6 +9,7 @@ public class StunnManager : MonoBehaviour
     float MinStunnValue = 0;
     public float CurrentStunn { get; private set; }
     public bool IsStunned;
+    public bool IsImmune;
 
     public float StunnDecreaseVelocity = 20.0f;
     public float Timer = 3.0f;
@@ -29,6 +30,7 @@ public class StunnManager : MonoBehaviour
     public void TakeStunn(float stunnDamage)
     {
         if (IsStunned) return;
+        if (IsImmune) return;
 
         CurrentStunn += stunnDamage;
 
@@ -39,6 +41,12 @@ public class StunnManager : MonoBehaviour
             OnStun.Invoke();
             IsStunned = true;
         }
+        else IsStunned = false;
+    }
+
+    public void SetStun(float newStunValue)
+    {
+        TakeStunn( - CurrentStunn + newStunValue);
     }
 
     private void Update()
