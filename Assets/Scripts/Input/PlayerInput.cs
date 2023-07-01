@@ -1,6 +1,9 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.Shapes;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInput : MonoBehaviour
@@ -42,6 +45,9 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Weapons")]
     [SerializeField] private WeaponsManager weaponsManager;
+
+    [Header("Footsteps")]
+    public FootSteps _footSteps;
 
 
     private void Awake()
@@ -164,7 +170,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-            
+
 
             if (Panel.gameObject.activeSelf == false)
             {
@@ -201,5 +207,13 @@ public class PlayerInput : MonoBehaviour
 
     }
     private bool IsGrounded() => _characterController.isGrounded;
+
+    public void OnFootStep(AnimationEvent animationEvent)
+    {
+        if (animationEvent.animatorClipInfo.weight > 0.5f)
+        {
+            _footSteps.PlayFootstep();
+        }
+    }
 
 }

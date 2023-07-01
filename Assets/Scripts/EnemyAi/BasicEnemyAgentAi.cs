@@ -21,7 +21,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected ParticleSystem arancini;
     [SerializeField] protected EnemyDamageManager enemyDamageManager;
     [SerializeField] protected FieldOfView fov;
-    [SerializeField] protected List<Transform> patrolWaypoints;
+    [SerializeField] protected List<Transform> patrolWaypoints;    
     protected Transform playerTarget;
     protected int currentWaypoint;
 
@@ -62,18 +62,17 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }
                 if (enemyDamageManager.PlayerIsAttacking || enemyDamageManager.IsHitting)              
                 {
-                    currentState = EnemyState.Chase;                    
+                    currentState = EnemyState.Chase;
+                    
                     break;
                 }
                
                 break;
 
 
-            case EnemyState.Chase:
-               
+            case EnemyState.Chase:               
 
-                fov.Angle = 360;
-             
+                fov.Angle = 360;             
 
                 if (fov.targetCheck() == true && distanceFromTarget.magnitude <= attackDistance)
                 {
