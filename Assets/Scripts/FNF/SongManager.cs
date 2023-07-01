@@ -12,13 +12,11 @@ public class SongManager : MonoBehaviour
     {
         song = Resources.Load<AudioClip>("song");
 
-
+        PlaySong();
     }
 
     void Update()
     {
-        print(song.loadState);
-
         audiotext.text = song.loadState.ToString();
     }
 

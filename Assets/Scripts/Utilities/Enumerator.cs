@@ -4,3 +4,4 @@ public enum FinalBossStates { Patrol, Chase, Attack, Stun, Dead, Dizzy, Spawning
 public enum ItemType { Fists, SmallKatana, LongKatana, Rod, Flute, LAST }
 public enum CameraType { FollowPlayer, LookAtPlayer, DiabloCamera, MazeCamera, SavingCamera, LAST}
 public enum GameState { Playing, Paused, LAST}
+public enum RythmResult { Perfect, Good, Bad, Missed, LAST}
