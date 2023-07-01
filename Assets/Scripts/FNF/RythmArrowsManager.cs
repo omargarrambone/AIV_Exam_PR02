@@ -9,29 +9,91 @@ public class RythmArrowsManager : MonoBehaviour
     // da 0,5 a 1f = male 0
     // mancato = mancato -2
 
+   
+    public float PlayerPoints
+    { 
+        get { 
+            return actualPlayerPoints; 
+        }
+        set { 
+          
+            actualPlayerPoints = ClampPointsValue(value);
+            UpdateSliderPlayer();
+        }
+    }
+    public float EnemyPoints
+    {
+        get {
+            return actualEnemyPoints; 
+        }
+        set {
+            actualEnemyPoints = ClampPointsValue(value);
+            UpdateSliderEnemy();
+        }
+    }
+    [Header("Points Setup")]
+    [SerializeField] float maxPoints;
+    [SerializeField] float perfectPoint, goodPoint, badPoint, missedPoint, enemyGainPoint, stolenPointsFromEnemyByPlayer, stolenPointsFromPlayerByEnemy;
+
+    [Header("References")]
+    [SerializeField] bool shouldRemoveText;
+    [SerializeField] private float actualPlayerPoints, actualEnemyPoints;
+    [SerializeField] float textTimer, textCounter;
+    [SerializeField] UnityEngine.UI.Slider playerSlider, enemySlider;
     [SerializeField] TMPro.TMP_Text pointText, accuracyText;
-    [SerializeField] int playerPoints, enemyPoints;
 
     void Start()
     {
         ArrowsCheckHit.OnMissedNote.AddListener(MissNote);
-        ArrowsCheckHit.OnHittedNote.AddListener(HittedNote);
+        ArrowsCheckHit.OnPlayerHittedNote.AddListener(HittedNote);
+        BossArrowsManager.OnBossHittedNote.AddListener(BossHittedNote);
+
     }
 
     void Update()
     {
-        
+        if (shouldRemoveText)
+        {
+            textCounter -= Time.deltaTime;
+
+            if (textCounter < 0){
+                shouldRemoveText = false;
+                accuracyText.SetText("");
+            }
+        }
+    }
+
+    float ClampPointsValue(float value)
+    {
+        return Mathf.Clamp(value, 0, maxPoints);
+    }
+
+    void UpdateSliderPlayer()
+    {
+        playerSlider.value = actualPlayerPoints / maxPoints;
+    }
+
+    void UpdateSliderEnemy()
+    {
+        enemySlider.value = actualEnemyPoints / maxPoints;
+    }
+
+    void BossHittedNote()
+    {
+        EnemyPoints+= enemyGainPoint;
+        UpdateSliderEnemy();
+        PlayerPoints -= stolenPointsFromPlayerByEnemy;
     }
 
     void MissNote()
     {
-        accuracyText.SetText("Che medda");
-        playerPoints -= 2;
+        accuracyText.SetText("Che piritu!");
+        PlayerPoints -= missedPoint;
 
-        pointText.SetText(playerPoints.ToString());
+        pointText.SetText(actualPlayerPoints.ToString());
     }
 
-    void HittedNote(float distanceFromNote)
+    public void HittedNote(float distanceFromNote)
     {
         RythmResult result = AccuracyTest(distanceFromNote);
 
@@ -40,22 +102,31 @@ public class RythmArrowsManager : MonoBehaviour
         switch (result)
         {
             case RythmResult.Perfect:
-                resultText = "Arancino";
-                playerPoints += 5;
+                resultText = "Arancin*";
+                PlayerPoints += perfectPoint;
                 break;
             case RythmResult.Good:
-                resultText = "Arancina";
-                playerPoints += 3;
+                resultText = "Cassata";
+                PlayerPoints += goodPoint;
                 break;
             case RythmResult.Bad:
-                resultText = "Cannolo";
-                playerPoints += 0;
+                resultText = "Coppola";
+                PlayerPoints += badPoint;
                 break;
         }
 
-        accuracyText.SetText(resultText);
-        pointText.SetText(playerPoints.ToString());
+        SetAccuracyText(resultText);
+        pointText.SetText(actualPlayerPoints.ToString());
+        EnemyPoints -= stolenPointsFromEnemyByPlayer;
     }
+
+    void SetAccuracyText(string text)
+    {
+        textCounter = textTimer;
+        accuracyText.SetText(text);
+        shouldRemoveText = true;
+    }
+
 
     RythmResult AccuracyTest(float myAccuracy)
     {

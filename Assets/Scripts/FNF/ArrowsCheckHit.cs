@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-
 public class ArrowsCheckHit : MonoBehaviour
 {
     [SerializeField] GameObject actualArrow;
     [SerializeField] FluteArrow myDirection;
     [SerializeField] Vector2 myVectorDirection;
-    static public UnityEvent<float> OnHittedNote;
-    static public UnityEvent OnMissedNote;
+    static public UnityEvent<float> OnPlayerHittedNote;
+    static public UnityEvent OnMissedNote, OnHitAndMissNote;
+
+    private bool hasBeenHitted;
 
     void Awake()
     {
@@ -31,7 +31,7 @@ public class ArrowsCheckHit : MonoBehaviour
                 break;
         }
 
-        OnHittedNote = new UnityEvent<float>();
+        OnPlayerHittedNote = new UnityEvent<float>();
         OnMissedNote = new UnityEvent();
     }
 
@@ -47,8 +47,9 @@ public class ArrowsCheckHit : MonoBehaviour
             {
                 float distance = Vector2.Distance(transform.position, actualArrow.transform.position);
 
+                hasBeenHitted = true;
                 Destroy(actualArrow);
-                OnHittedNote.Invoke(distance);
+                OnPlayerHittedNote.Invoke(distance);
             }
 
         }
@@ -61,14 +62,20 @@ public class ArrowsCheckHit : MonoBehaviour
         if (other.CompareTag("RythmArrow"))
         {
             actualArrow = other.gameObject;
+            hasBeenHitted = false;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        OnMissedNote.Invoke();
-        Destroy(actualArrow, 2f);
-        actualArrow = null;
+        if (hasBeenHitted) return;
+
+        if (other.CompareTag("RythmArrow"))
+        {
+            OnMissedNote.Invoke();
+            Destroy(actualArrow, 2f);
+            actualArrow = null;
+        }
     }
 
 }
