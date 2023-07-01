@@ -1033,7 +1033,7 @@ Transform:
   - {fileID: 7346848436888583763}
   - {fileID: 6703003382857985992}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7254098985651995250
 MonoBehaviour:
@@ -5099,6 +5099,21 @@ PrefabInstance:
       propertyPath: bloodFx
       value: 
       objectReference: {fileID: 1501535457750444172}
+    - target: {fileID: 8637714746155713719, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: meshRenderer
+      value: 
+      objectReference: {fileID: 5337394144554412462}
+    - target: {fileID: 8637714746155713719, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: defaultMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d0613f500c022f48ae1dde75d4fc3c2, type: 2}
+    - target: {fileID: 8637714746155713719, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: invincibleMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: dbf14c8aeac2c594aa17543afdf976a6, type: 2}
     - target: {fileID: 8832386335627109767, guid: b4d505da6851e2848ab8f21d473442e0,
         type: 3}
       propertyPath: m_IsActive
@@ -5234,6 +5249,12 @@ Transform:
 --- !u!2083052967 &4478004235578531325 stripped
 VisualEffect:
   m_CorrespondingSourceObject: {fileID: 5585525708641682361, guid: b4d505da6851e2848ab8f21d473442e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8333584734126612036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5337394144554412462 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4158208508771596266, guid: b4d505da6851e2848ab8f21d473442e0,
     type: 3}
   m_PrefabInstance: {fileID: 8333584734126612036}
   m_PrefabAsset: {fileID: 0}
