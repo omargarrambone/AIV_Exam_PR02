@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SceneMngr : MonoBehaviour
 {
@@ -13,9 +14,14 @@ public class SceneMngr : MonoBehaviour
     public Vector3 PlayerPositionInNextScene;
     public Quaternion PlayerRotationInNextScene;
     [SerializeField] CameraFollow cameraFollow;
+    [SerializeField] TMP_Text sceneNameText;
+    private float startSpawnTimeSceneName = 1f;
+    private float endSpawnTimeSceneName = 4f;
+
 
     void Start()
     {
+        sceneNameText.gameObject.SetActive(false);
 
 #if UNITY_EDITOR
         if (debugDontChangeScene) return;
@@ -36,6 +42,7 @@ public class SceneMngr : MonoBehaviour
             if (OverrideStartScene != "") NextScene = OverrideStartScene;
             ChangeScene(NextScene);
         }
+
     }
 
     public void ChangeScene(string sceneName)
@@ -44,6 +51,7 @@ public class SceneMngr : MonoBehaviour
         SetPlayerPosition();
         loadingCanvas.SetActive(true);
         StartCoroutine(LoadSceneAsync(sceneName));
+        StartCoroutine(SpawnSceneName(sceneName));
     }
     public void ChangeScene(int sceneIndex)
     {
@@ -90,5 +98,16 @@ public class SceneMngr : MonoBehaviour
         PlayerManager.PlayerCharactercontroller.enabled = false;
         PlayerManager.PlayerGameObject.transform.SetPositionAndRotation(PlayerPositionInNextScene, PlayerRotationInNextScene);
         PlayerManager.PlayerCharactercontroller.enabled = true;
+    }
+
+
+    private IEnumerator SpawnSceneName(string nameScene)
+    {
+        yield return new WaitForSeconds(startSpawnTimeSceneName);
+        sceneNameText.text = nameScene;
+        sceneNameText.gameObject.SetActive(true);        ;
+        yield return new WaitForSeconds(endSpawnTimeSceneName);
+        sceneNameText.text = nameScene;
+        sceneNameText.gameObject.SetActive(false);
     }
 }
