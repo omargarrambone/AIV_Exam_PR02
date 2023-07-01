@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class FootSteps : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class FootSteps : MonoBehaviour
     [Range(0, 0.3f)] public float RandomPitchRange;
 
     private List<AudioSource> sources;
+
+    public AudioMixerGroup AudioMixerGroup;
 
 
     // Start is called before the first frame update
@@ -34,6 +37,7 @@ public class FootSteps : MonoBehaviour
         source.playOnAwake = false;
         source.spatialBlend = 1;
         source.dopplerLevel = 0;
+        source.outputAudioMixerGroup = AudioMixerGroup;
 
         return source;
     }
