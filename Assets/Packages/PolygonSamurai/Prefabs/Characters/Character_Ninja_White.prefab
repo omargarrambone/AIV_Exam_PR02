@@ -696,7 +696,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 472772}
-  - component: {fileID: 9562990}
   m_Layer: 0
   m_Name: Character_Ninja_White
   m_TagString: Untagged
@@ -727,27 +726,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9562990
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117284}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2ba66718d3169ae42a05d8facf302228, type: 3}
-  m_Controller: {fileID: 9100000, guid: d62af11c372059a4d9c2feacf46a754a, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &117574
 GameObject:
   m_ObjectHideFlags: 0
