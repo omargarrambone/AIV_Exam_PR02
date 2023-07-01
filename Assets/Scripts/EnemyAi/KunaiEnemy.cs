@@ -14,9 +14,7 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
     protected override void Start()
     {
-        //fov = GetComponent<FieldOfView>();
-        //anim = GetComponent<Animator>();
-        //currentState = EnemyState.Patrol;
+        isMoving = false;       
         weapon.GetComponent<BoxCollider>().enabled = true;
         playerTarget = PlayerManager.PlayerGameObject.transform;
     }
@@ -109,12 +107,7 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
                 anim.SetBool("Attack", true);
                 agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0, distanceFromTarget.normalized.z);
-                //if (enemyDamageManager.PlayerIsAttacking)
-                //{
-                //    currentState = EnemyState.Chase;
-                //    anim.Play("Knockback");
-                //    break;
-                //}
+               
                 if (enemyDamageManager.IsHitting && stunnManager.IsStunned == false)
                 {
                     enemyDamageManager.IsHitting = false;
@@ -144,10 +137,7 @@ public class KunaiEnemy : BasicEnemyAgentAi
             case EnemyState.Dead:
                 agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
                 agent.GetComponent<CapsuleCollider>().enabled = false;
-                //weapon.GetComponent<BoxCollider>().enabled = false;
-                agent.GetComponent<Animator>().enabled = false;
-                //gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
-                //gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
+                agent.GetComponent<Animator>().enabled = false;             
                 arancini.gameObject.SetActive(false);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
                 Destroy(this.gameObject, 5f);
@@ -212,12 +202,7 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
                 anim.SetBool("Attack", true);
                 agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0, distanceFromTarget.normalized.z);
-                //if (enemyDamageManager.PlayerIsAttacking)
-                //{
-                //    currentState = EnemyState.Chase;
-                //    anim.Play("Knockback");
-                //    break;
-                //}
+              
                 if (enemyDamageManager.IsHitting && stunnManager.IsStunned == false)
                 {
                     enemyDamageManager.IsHitting = false;
@@ -239,10 +224,7 @@ public class KunaiEnemy : BasicEnemyAgentAi
             case EnemyState.Dead:
                 agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
                 agent.GetComponent<CapsuleCollider>().enabled = false;
-                //weapon.GetComponent<BoxCollider>().enabled = false;
-                agent.GetComponent<Animator>().enabled = false;
-                //gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
-                //gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
+                agent.GetComponent<Animator>().enabled = false;              
                 arancini.gameObject.SetActive(false);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
                 Destroy(this.gameObject, 5f);
