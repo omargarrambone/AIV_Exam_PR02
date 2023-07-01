@@ -1692,6 +1692,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  IsImmune: 0
   HealthBar: {fileID: 9172953740019172183}
 --- !u!114 &241000810616383031
 MonoBehaviour:
@@ -9110,6 +9111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsStunned: 0
+  IsImmune: 0
   StunnDecreaseVelocity: 20
   Timer: 3
   counter: 0
@@ -12425,6 +12427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsStunned: 0
+  IsImmune: 0
   StunnDecreaseVelocity: 20
   Timer: 3
   counter: 0
@@ -20452,6 +20455,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  IsImmune: 0
   HealthBar: {fileID: 5459634853086793029}
 --- !u!4 &7486719258256608888
 Transform:
@@ -21862,7 +21866,7 @@ MonoBehaviour:
   - {fileID: 1813311973}
   - {fileID: 1609482859}
   - {fileID: 1536137684}
-  kunaiSpeed: 10
+  kunaiSpeed: 20
   isMoving: 0
   kunaiTransform: {fileID: 832671486}
 --- !u!4 &8736636280823344697
