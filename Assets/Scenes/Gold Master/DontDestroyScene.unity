@@ -123,61 +123,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &487317933
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 487317935}
-  - component: {fileID: 487317934}
-  m_Layer: 8
-  m_Name: FootSteps
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &487317934
+--- !u!114 &487317935 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6590432554015183913, guid: e375b58688cc98343962035d2c587cae,
+    type: 3}
+  m_PrefabInstance: {fileID: 9093984855814243739}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487317933}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db14295845e0de74982f752906e1fbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GrassFootsteps:
-  - {fileID: 8300000, guid: 9dec6432bcc3eb245b7986a5fcd678c6, type: 3}
-  - {fileID: 8300000, guid: 93c2df29c1182504fb2d0d8fcd81c87b, type: 3}
-  - {fileID: 8300000, guid: 692278556ca17e344947e5c01b0371d0, type: 3}
-  - {fileID: 8300000, guid: 5813081b762780740b8e5ab8d16671bb, type: 3}
-  InitialSourceCount: 1
-  FootstepsVolume: 1
-  RandomVolumeRange: 0
-  RandomPitchRange: 0
-  AudioMixerGroup: {fileID: -1219908943939339802, guid: 08d1e5887ce1cf04d9388a58e636e918,
-    type: 2}
---- !u!4 &487317935
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487317933}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9093984855814243740}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &572620172
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +472,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _footSteps
       value: 
-      objectReference: {fileID: 487317934}
+      objectReference: {fileID: 487317935}
     - target: {fileID: 2249420776414779013, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: weaponsManager
@@ -540,7 +497,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 487317934}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981149014632500070, guid: e375b58688cc98343962035d2c587cae,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -623,16 +580,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3417049810263262905, guid: e375b58688cc98343962035d2c587cae,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 487317935}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e375b58688cc98343962035d2c587cae, type: 3}
---- !u!4 &9093984855814243740 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3417049810263262905, guid: e375b58688cc98343962035d2c587cae,
-    type: 3}
-  m_PrefabInstance: {fileID: 9093984855814243739}
-  m_PrefabAsset: {fileID: 0}

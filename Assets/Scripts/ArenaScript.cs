@@ -62,7 +62,7 @@ public class ArenaScript : MonoBehaviour
         }
 
         enabled = false;
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 }
