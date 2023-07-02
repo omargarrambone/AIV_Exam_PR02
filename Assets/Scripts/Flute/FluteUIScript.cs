@@ -14,9 +14,10 @@ public class FluteUIScript : MonoBehaviour
     [SerializeField] private PlayerInput playerInputScript;
     [SerializeField] private Image musicSheet;
     [SerializeField] private int arrowsToGenerate, maxArrows;
+
     [Header("Events")]
-    [SerializeField] private UnityEvent<FluteArrow> OnCorrectArrow;
-    [SerializeField] private UnityEvent OnStart,OnCompleted, OnFail;
+    public UnityEvent<FluteArrow> OnCorrectArrow;
+    public UnityEvent OnStart,OnCompleted, OnFail;
 
     void Awake()
     {
@@ -24,6 +25,7 @@ public class FluteUIScript : MonoBehaviour
 
         OnStart.AddListener(StartMinigame);
         OnStart.AddListener(PlayerManager.DisablePlayerMovement);
+        OnCompleted.AddListener(PlayerManager.EnablePlayerMovement);
 
         musicSheet.color = Color.red;
 

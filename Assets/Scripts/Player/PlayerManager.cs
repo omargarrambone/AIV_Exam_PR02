@@ -103,15 +103,18 @@ public class PlayerManager : MonoBehaviour
     static public void DisablePlayerMovement()
     {
         PlayerInput.enabled = false;
+        PlayerInput.ShouldNotMove = true;
     }
 
     static public void EnablePlayerMovement()
     {
         PlayerInput.enabled = true;
+        PlayerInput.ShouldNotMove = false;
     }
 
     static public void EnableDisablePlayerMovement(bool value)
     {
-        PlayerInput.enabled = value;
+        if (value) EnablePlayerMovement();
+        else DisablePlayerMovement();
     }
 }

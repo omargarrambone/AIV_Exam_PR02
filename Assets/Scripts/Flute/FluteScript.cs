@@ -122,6 +122,7 @@ public class FluteScript : MonoBehaviour
                 isAttacking = false;
             }
         }
+
     }
 
     private void OnDrawGizmos()
