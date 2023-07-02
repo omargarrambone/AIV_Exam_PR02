@@ -81,6 +81,8 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed && IsGrounded())
         {
+            if (GameManager.GameState == GameState.Paused) return;
+
             _anim.SetTrigger("IsKicking");
 
             PlayerManager.DisablePlayerMovement();

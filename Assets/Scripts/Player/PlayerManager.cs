@@ -68,7 +68,12 @@ public class PlayerManager : MonoBehaviour
         DisablePlayerMovement();
         GameManager.GameState = GameState.Paused;
 
-        playerAnimator.SetTrigger("Death");
+        SetTriggerAnimation("Death");
+    }
+
+    public static void SetTriggerAnimation(string triggerName)
+    {
+        playerAnimator.SetTrigger(triggerName);
     }
 
     private void Update()
