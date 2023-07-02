@@ -273,7 +273,7 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 }
                 anim.SetBool("Stunned", true);
                 arancini.gameObject.SetActive(true);
-                weapon.GetComponent<BoxCollider>().enabled = false;
+                //weapon.GetComponent<BoxCollider>().enabled = false;
                 anim.SetBool("Attack", false);
                 //agent.isStopped = true;
 
