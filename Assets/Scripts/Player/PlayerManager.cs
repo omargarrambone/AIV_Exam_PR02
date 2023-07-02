@@ -6,10 +6,15 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
     public static GameObject PlayerGameObject { get; private set; }
+    private static Animator playerAnimator { get; set; }
     public static CharacterController PlayerCharactercontroller;
     public static PlayerInput PlayerInput;
     public static CameraFollow CameraFollow;
     public static SceneMngr sceneMngr;
+
+    static private float deathTimer, deathCounter;
+    static private bool isDying;
+
     public float minY;
 
     //[SerializeField] private Material invisibleWall;
@@ -19,8 +24,11 @@ public class PlayerManager : MonoBehaviour
        if (PlayerCharactercontroller == null) PlayerCharactercontroller = PlayerGameObject.GetComponent<CharacterController>();
        if (PlayerInput == null) PlayerInput = PlayerGameObject.GetComponent<PlayerInput>();
        if (CameraFollow == null) CameraFollow = Camera.main.gameObject.GetComponent<CameraFollow>();
+       if (playerAnimator == null) playerAnimator = PlayerGameObject.GetComponent<Animator>();
 
         Cursor.lockState = CursorLockMode.Locked;
+
+        deathTimer = 3f;
     }
 
     static public void SetPosition(Vector3 newPosition)
@@ -51,21 +59,16 @@ public class PlayerManager : MonoBehaviour
         PlayerCharactercontroller.enabled = true;
     }
 
-    public void Death()
+    public static void Death()
     {
-        StartCoroutine(WaitForDeathAnimation());
+        if (isDying) return;
+
+        deathCounter = deathTimer;
+        isDying = true;
         DisablePlayerMovement();
         GameManager.GameState = GameState.Paused;
-    }
 
-    IEnumerator WaitForDeathAnimation()
-    {
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("GameOverScene");
-        SetPosition(new Vector3(41.6f, 19.8f, 11.9f));
-        CameraFollow.ResetCameraTarget();
-        yield return new WaitForSeconds(0.1f);
-        PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
+        playerAnimator.SetTrigger("Death");
     }
 
     private void Update()
@@ -77,8 +80,19 @@ public class PlayerManager : MonoBehaviour
             PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
         }
 
-        //invisibleWall.SetVector("_PlayerPosition", PlayerGameObject.transform.position);
-        //Debug.Log(invisibleWall.GetVector("_PlayerPosition"));
+        if (isDying)
+        {
+            deathCounter -= Time.deltaTime;
+
+            if (deathCounter < 0)
+            {
+                SceneManager.LoadScene("GameOverScene");
+                SetPosition(new Vector3(41.6f, 19.8f, 11.9f));
+                CameraFollow.ResetCameraTarget();
+                PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
+                isDying = false;
+            }
+        }
     }
 
     static public void DisablePlayerMovement()

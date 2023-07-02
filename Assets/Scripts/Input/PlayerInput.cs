@@ -10,6 +10,7 @@ public class PlayerInput : MonoBehaviour
 {
 
     [Header("Movement")]
+    [SerializeField] private float speed;
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
@@ -17,7 +18,6 @@ public class PlayerInput : MonoBehaviour
     [Header("Rotation")]
     [SerializeField] private float smoothTime = 0.05f;
     private float _currentVelocity;
-    [SerializeField] private float speed;
 
     [Header("Gravity")]
     private float _gravity = -9.81f;
