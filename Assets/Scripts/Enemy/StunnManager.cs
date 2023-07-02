@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +9,7 @@ public class StunnManager : MonoBehaviour
     public float CurrentStunn { get; private set; }
     public bool IsStunned;
     public bool IsImmune;
+    public bool NotCountsForStunCount;
 
     public float StunnDecreaseVelocity = 20.0f;
     public float Timer = 3.0f;

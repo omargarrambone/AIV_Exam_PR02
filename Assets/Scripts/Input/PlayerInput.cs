@@ -2,8 +2,6 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.ProBuilder.Shapes;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInput : MonoBehaviour
