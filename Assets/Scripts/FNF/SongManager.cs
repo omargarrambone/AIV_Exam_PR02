@@ -38,10 +38,11 @@ public class SongManager : MonoBehaviour
             lastState = GameState.Playing;
         }
 
-        if(!audioSource.isPlaying)
+        if(!audioSource.isPlaying && audioSource.time/audioSource.clip.length > 0.99f)
         {
             isPlaying = false;
-            if (rythmArrowsManager.PlayerPoints >= rythmArrowsManager.EnemyPoints)
+            PlayerManager.SetTriggerAnimation("IsNotDancing");
+            if (rythmArrowsManager.PlayerPoints <= rythmArrowsManager.EnemyPoints)
             {
                gameObject.SetActive(false);
                PlayerManager.EnableDisablePlayerMovement(true);
@@ -64,6 +65,7 @@ public class SongManager : MonoBehaviour
 
         PlayerManager.SetPosition(playerPosOnStartSong);
         PlayerManager.SetRotation(playerRotOnStartSong);
+        PlayerManager.SetTriggerAnimation("IsDancing");
 
         OnSongStart.Invoke();
 

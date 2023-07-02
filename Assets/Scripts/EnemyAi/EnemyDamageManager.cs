@@ -32,7 +32,6 @@ public class EnemyDamageManager : MonoBehaviour
                 PlayerIsAttacking = false;
             }
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,8 +60,7 @@ public class EnemyDamageManager : MonoBehaviour
         {
             IsHitting = true;        
             GetComponent<Animator>().Play("Knockback");
-            //HealthManager.TakeDamage(0f);
-            //StunnManager.TakeStunn(0f);
+            StunnManager.TakeStunn(10f);
         }
      
     }

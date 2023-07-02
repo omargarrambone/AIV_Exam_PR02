@@ -110,7 +110,7 @@ public class RythmArrowsManager : MonoBehaviour
                 PlayerPoints += goodPoint;
                 break;
             case RythmResult.Bad:
-                resultText = "Asso di coppe";
+                resultText = "2 di bastoni";
                 PlayerPoints += badPoint;
                 break;
         }

@@ -14,7 +14,6 @@ public class FluteScript : MonoBehaviour
     [SerializeField] FluteUIScript fluteUIScript;
     public ParticleSystem Dissolve;
 
-
     private void Start()
     {
         audioClips = new AudioClip[((int)FluteArrow.LAST)];
@@ -78,8 +77,11 @@ public class FluteScript : MonoBehaviour
                     ParticleSystem dis = Instantiate(Dissolve, enemyObj.transform.position, Dissolve.transform.rotation);                    
                     Destroy(enemyObj, 0.2f);
                     Destroy(dis.gameObject, 1);
-                    PowerUpManager.SpawnPowerUpRandom(enemyObj.transform.position);
-                    NPCCounter.AddPurifiedNPCToCounter();
+                    if (!stunnMngr.NotCountsForStunCount)
+                    {
+                        PowerUpManager.SpawnPowerUpRandom(enemyObj.transform.position);
+                        NPCCounter.AddPurifiedNPCToCounter();
+                    }
                 }
             }
 
@@ -120,8 +122,8 @@ public class FluteScript : MonoBehaviour
                 isAttacking = false;
             }
         }
-    }
 
+    }
 
     private void OnDrawGizmos()
     {

@@ -2,8 +2,6 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.ProBuilder.Shapes;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInput : MonoBehaviour
@@ -14,6 +12,7 @@ public class PlayerInput : MonoBehaviour
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
+    public bool ShouldNotMove;
 
     [Header("Rotation")]
     [SerializeField] private float smoothTime = 0.05f;
@@ -69,7 +68,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-            if (GameManager.GameState == GameState.Paused) return;
+            if (ShouldNotMove) return;
 
             _anim.SetTrigger("IsAttacking");
             weaponsManager.OnAttack(context);
@@ -81,6 +80,8 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed && IsGrounded())
         {
+            if (ShouldNotMove) return;
+
             _anim.SetTrigger("IsKicking");
 
             PlayerManager.DisablePlayerMovement();
@@ -154,6 +155,8 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
+            if (ShouldNotMove) return;
+
             float interactRange = 2f;
             Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
             foreach (Collider collider in colliderArray)
@@ -170,8 +173,6 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-
-
             if (Panel.gameObject.activeSelf == false)
             {
                 InGameMenusManager.ShowHidePauseMenu(true);
@@ -187,7 +188,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed && canDash)
         {
-            if (GameManager.GameState == GameState.Paused) return;
+            if (ShouldNotMove) return;
             StartCoroutine(Dash());
         }
     }

@@ -14,7 +14,7 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
     protected override void Start()
     {
-        isMoving = false;       
+        //isMoving = false;       
         weapon.GetComponent<BoxCollider>().enabled = true;
         playerTarget = PlayerManager.PlayerGameObject.transform;
     }
