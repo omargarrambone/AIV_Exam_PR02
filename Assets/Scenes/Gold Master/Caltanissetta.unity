@@ -5509,7 +5509,7 @@ PrefabInstance:
     - target: {fileID: 2615290749741065979, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
       propertyPath: NextScene
-      value: Etna Map
+      value: Mount Etna Valley
       objectReference: {fileID: 0}
     - target: {fileID: 2615290749741065979, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
@@ -5559,17 +5559,17 @@ PrefabInstance:
     - target: {fileID: 2615290749741065979, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
       propertyPath: PlayerNextPosition.x
-      value: 4.87
+      value: 54.3
       objectReference: {fileID: 0}
     - target: {fileID: 2615290749741065979, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
       propertyPath: PlayerNextPosition.y
-      value: 11.38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2615290749741065979, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
       propertyPath: PlayerNextPosition.z
-      value: 7.87
+      value: 13.9
       objectReference: {fileID: 0}
     - target: {fileID: 2845427124815842804, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
@@ -6637,7 +6637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ccf6bd45191cb64196c2acdd0de1783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: Slums Map
+  NextScene: Caltanissetta's Slums
   PlayerNextPosition: {x: 4.87, y: 11.38, z: 7.87}
   CameraNextPosition: {x: 3.424254, y: 8.486537, z: 0.6065235}
   CameraNextRotation: {x: 0, y: 0, z: 0}
@@ -10230,6 +10230,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2615290749741065979, guid: 8544ee09dac524d4788f7f3758b11982,
+        type: 3}
+      propertyPath: NextScene
+      value: Carusi's Mansion
+      objectReference: {fileID: 0}
     - target: {fileID: 2615290749741065979, guid: 8544ee09dac524d4788f7f3758b11982,
         type: 3}
       propertyPath: CameraNextPosition.x

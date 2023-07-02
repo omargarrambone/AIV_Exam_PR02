@@ -134,7 +134,7 @@ public class SaveDataJSON : MonoBehaviour
             savedData.playerData.currentHealth = 100;
             savedData.playerData.playerPos = new Vector3(-64f, 2.272f, -30f);
             savedData.playerData.playerRot = Quaternion.identity;
-            savedData.playerData.currentScene = "HubBeta";
+            savedData.playerData.currentScene = "Caltanissetta";
             savedData.playerData.takenItems = weaponsManager.TakenWeapons;
             savedData.playerData.currentWeapon = 0;
             savedData.worldData.enemiesPurified = 0;

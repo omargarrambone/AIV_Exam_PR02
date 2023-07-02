@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SceneMngr : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class SceneMngr : MonoBehaviour
     public Vector3 PlayerPositionInNextScene;
     public Quaternion PlayerRotationInNextScene;
     [SerializeField] CameraFollow cameraFollow;
+    [SerializeField] TMP_Text sceneNameText;    
+    [SerializeField] Animator sceneNameAnimator;
 
     void Start()
     {
@@ -36,6 +39,7 @@ public class SceneMngr : MonoBehaviour
             if (OverrideStartScene != "") NextScene = OverrideStartScene;
             ChangeScene(NextScene);
         }
+
     }
 
     public void ChangeScene(string sceneName)
@@ -43,7 +47,8 @@ public class SceneMngr : MonoBehaviour
         Time.timeScale = 1;
         SetPlayerPosition();
         loadingCanvas.SetActive(true);
-        StartCoroutine(LoadSceneAsync(sceneName));
+        StartCoroutine(LoadSceneAsync(sceneName));       
+        StartCoroutine(FadeSceneName(sceneName));
     }
     public void ChangeScene(int sceneIndex)
     {
@@ -90,5 +95,21 @@ public class SceneMngr : MonoBehaviour
         PlayerManager.PlayerCharactercontroller.enabled = false;
         PlayerManager.PlayerGameObject.transform.SetPositionAndRotation(PlayerPositionInNextScene, PlayerRotationInNextScene);
         PlayerManager.PlayerCharactercontroller.enabled = true;
+    }
+
+    private IEnumerator FadeSceneName(string nameScene)
+    {
+        sceneNameText.text = nameScene;
+        sceneNameText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1);
+        sceneNameAnimator.SetBool("TextFadeIn", true);
+        
+        yield return new WaitForSeconds(2);
+        sceneNameAnimator.SetBool("TextFadeIn", false);
+
+        yield return new WaitForSeconds(2);
+        sceneNameText.gameObject.SetActive(false);
+
     }
 }
