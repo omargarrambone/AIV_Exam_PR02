@@ -41,4 +41,9 @@ public class BossArrowsManager : MonoBehaviour
             OnBossHittedNote.Invoke();
         }
     }
+
+    private void OnDestroy()
+    {
+        OnBossHittedNote = null;
+    }
 }

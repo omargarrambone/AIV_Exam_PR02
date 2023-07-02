@@ -9,7 +9,7 @@ public class ArrowsCheckHit : MonoBehaviour
     [SerializeField] FluteArrow myDirection;
     [SerializeField] Vector2 myVectorDirection;
     static public UnityEvent<float> OnPlayerHittedNote;
-    static public UnityEvent OnMissedNote, OnHitAndMissNote;
+    static public UnityEvent OnMissedNote;
 
     private bool hasBeenHitted;
 
@@ -78,4 +78,10 @@ public class ArrowsCheckHit : MonoBehaviour
         }
     }
 
+
+    private void OnDestroy()
+    {
+        OnPlayerHittedNote = null;
+        OnMissedNote = null;
+    }
 }

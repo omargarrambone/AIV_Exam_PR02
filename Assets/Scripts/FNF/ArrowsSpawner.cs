@@ -12,7 +12,9 @@ public class ArrowsSpawner : MonoBehaviour
     [SerializeField] private float noteSpawnOffset;
     [SerializeField] private BossArrowsManager bossArrowsManager;
 
-    void Start()
+    bool isStarted = false;
+
+    public void OnStart()
     {
         spawnedArrows = new GameObject[arrowsToSpawn];
 
@@ -49,10 +51,14 @@ public class ArrowsSpawner : MonoBehaviour
 
             bossArrowsManager.SpawnArrow(i,spawnedArrows[i].transform.localPosition, spawnedArrows[i].transform.localRotation);
         }
+
+        isStarted = true;
     }
 
     void Update()
     {
+        if (!isStarted) return;
+
         arrowsParent.Translate(Vector3.up * Time.deltaTime * arrowsMovementSpeed);
         bossArrowsManager.TraslateArrows(Vector3.up * Time.deltaTime * arrowsMovementSpeed);
     }

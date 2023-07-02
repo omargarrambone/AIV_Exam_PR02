@@ -2,21 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 
 public class SongManager : MonoBehaviour
 {
     [SerializeField] AudioSource audioSource;
     [SerializeField] TMPro.TMP_Text audiotext;
     [SerializeField] GameState lastState;
-    [SerializeField] UnityEvent OnSongEnded;
+    [SerializeField] UnityEvent OnSongStart,OnSongEnded;
+    [SerializeField] Camera songCamera;
+    UniversalAdditionalCameraData universalAdditionalCameraData;
+    [SerializeField] Vector3 playerPosOnStartSong;
+    [SerializeField] Vector3 playerRotOnStartSong;
+    [SerializeField] RythmArrowsManager rythmArrowsManager;
 
-    void Start()
+    bool isPlaying;
+
+    private void Start()
     {
-        PlaySong();
+        universalAdditionalCameraData = Camera.main.GetComponent<UniversalAdditionalCameraData>();
     }
 
     void Update()
     {
+        if (!isPlaying) return;
 
         if(lastState != GameState.Paused && GameManager.GameState == GameState.Paused)
         {
@@ -29,11 +38,20 @@ public class SongManager : MonoBehaviour
             lastState = GameState.Playing;
         }
 
-        if((audioSource.time / audioSource.clip.length) > 0.95f)
+        if(!audioSource.isPlaying)
         {
-            OnSongEnded.Invoke();
-            audioSource.Stop();
-            gameObject.SetActive(false);
+            isPlaying = false;
+            if (rythmArrowsManager.PlayerPoints >= rythmArrowsManager.EnemyPoints)
+            {
+               gameObject.SetActive(false);
+               PlayerManager.EnableDisablePlayerMovement(true);
+               OnSongEnded.Invoke();
+               universalAdditionalCameraData.cameraStack.Remove(songCamera);
+            }
+            else
+            {
+                PlayerManager.Death();
+            }
         }
     }
 
@@ -41,5 +59,14 @@ public class SongManager : MonoBehaviour
     public void PlaySong()
     {
         audioSource.Play();
+        isPlaying = true;
+        PlayerManager.EnableDisablePlayerMovement(false);
+
+        PlayerManager.SetPosition(playerPosOnStartSong);
+        PlayerManager.SetRotation(playerRotOnStartSong);
+
+        OnSongStart.Invoke();
+
+        universalAdditionalCameraData.cameraStack.Add(songCamera);
     }
 }

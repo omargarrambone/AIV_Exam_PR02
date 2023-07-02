@@ -44,7 +44,7 @@ public class HealthManager : MonoBehaviour
         if (IsDead)
         {
             //GetComponent<CapsuleCollider>().enabled = false;
-            anim.SetTrigger("Death");
+            //anim.SetTrigger("Death");
         }
 
         HealthBar.SetHealth(CurrentHealth);

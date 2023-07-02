@@ -102,15 +102,15 @@ public class RythmArrowsManager : MonoBehaviour
         switch (result)
         {
             case RythmResult.Perfect:
-                resultText = "Arancin*";
+                resultText = "Scopa!";
                 PlayerPoints += perfectPoint;
                 break;
             case RythmResult.Good:
-                resultText = "Cassata";
+                resultText = "7 bello!";
                 PlayerPoints += goodPoint;
                 break;
             case RythmResult.Bad:
-                resultText = "Coppola";
+                resultText = "Asso di coppe";
                 PlayerPoints += badPoint;
                 break;
         }
