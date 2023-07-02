@@ -6,10 +6,12 @@ using UnityEngine.InputSystem;
 public class InGameMenusManager : MonoBehaviour
 {
     public static GameObject PauseMenu, SaveMenu;
+    public static GameObject CommandUiPanel;
     private static CameraFollow staticCameraFollow;
     private static EventSystemManger staticEventSystemManger;
 
     [SerializeField] private GameObject pauseMenu, saveMenu;
+    [SerializeField] private GameObject commandUiPanel;
     [SerializeField] private CameraFollow cameraFollow;
     [SerializeField] private EventSystemManger eventSystemManger;
 
@@ -19,6 +21,7 @@ public class InGameMenusManager : MonoBehaviour
     {
         PauseMenu = pauseMenu;
         SaveMenu = saveMenu;
+        CommandUiPanel = commandUiPanel;
         staticCameraFollow = cameraFollow;
         staticEventSystemManger = eventSystemManger;
     }
@@ -30,6 +33,9 @@ public class InGameMenusManager : MonoBehaviour
         Time.timeScale = value  ? 0 : 1;
 
         PauseMenu.SetActive(value);
+       
+        CommandUiPanel.SetActive(false);        
+        
         CursorLocker(value);
     }
 
