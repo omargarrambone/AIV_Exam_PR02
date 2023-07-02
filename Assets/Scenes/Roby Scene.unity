@@ -134,13 +134,14 @@ GameObject:
   - component: {fileID: 374846758}
   - component: {fileID: 374846761}
   - component: {fileID: 374846760}
+  - component: {fileID: 374846762}
   m_Layer: 5
   m_Name: SceneNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &374846758
 RectTransform:
   m_ObjectHideFlags: 0
@@ -259,6 +260,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374846757}
   m_CullTransparentMesh: 1
+--- !u!95 &374846762
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374846757}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2f1f65d83532f740b3eba115bf0ea72, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &635805445
 GameObject:
   m_ObjectHideFlags: 0
@@ -25544,6 +25566,7 @@ MonoBehaviour:
   PlayerRotationInNextScene: {x: 0, y: 0, z: 0, w: 0}
   cameraFollow: {fileID: 1964332382539510824}
   sceneNameText: {fileID: 374846760}
+  sceneNameAnimator: {fileID: 374846762}
 --- !u!114 &8856975259025441927
 MonoBehaviour:
   m_ObjectHideFlags: 0
