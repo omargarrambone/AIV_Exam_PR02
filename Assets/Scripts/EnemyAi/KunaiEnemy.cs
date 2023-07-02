@@ -7,6 +7,7 @@ public class KunaiEnemy : BasicEnemyAgentAi
     [SerializeField] protected float kunaiSpeed;
     [SerializeField] protected bool isMoving;
     [SerializeField] protected Transform kunaiTransform;
+    [SerializeField] protected GameObject handWeapon;
 
     private float yOffsetKunaiTransform = 1.2f;
 
@@ -14,7 +15,9 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
     protected override void Start()
     {
-        //isMoving = false;       
+        fov = GetComponent<FieldOfView>();
+        anim = GetComponent<Animator>();
+        currentState = EnemyState.Patrol;
         weapon.GetComponent<BoxCollider>().enabled = true;
         playerTarget = PlayerManager.PlayerGameObject.transform;
     }
@@ -35,8 +38,9 @@ public class KunaiEnemy : BasicEnemyAgentAi
     public void ThrowKunai()
     {
         GameObject kunai = Instantiate(weapon, kunaiTransform.position, kunaiTransform.rotation);
-        Vector3 distanceFromTarget = playerTarget.position - kunaiTransform.transform.position;       
-        kunai.GetComponent<Rigidbody>().velocity = new Vector3(distanceFromTarget.x, distanceFromTarget.y + yOffsetKunaiTransform, distanceFromTarget.z).normalized * kunaiSpeed;
+        Vector3 distanceFromTarget = playerTarget.position - kunaiTransform.transform.position;
+        kunai.transform.forward = new Vector3(distanceFromTarget.x, distanceFromTarget.y + yOffsetKunaiTransform, distanceFromTarget.z).normalized;
+        kunai.GetComponent<Rigidbody>().velocity = kunai.transform.forward * kunaiSpeed;
     }
 
 
@@ -73,7 +77,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 if (enemyDamageManager.PlayerIsAttacking || enemyDamageManager.IsHitting)
                 {
                     currentState = EnemyState.Chase;
-                    //GetComponent<Animator>().Play("Knockback");
                     break;
                 }
                 break;
@@ -107,7 +110,23 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
                 anim.SetBool("Attack", true);
                 agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0, distanceFromTarget.normalized.z);
-               
+
+                if (enemyDamageManager.IsParrying)
+                {
+                    anim.SetBool("IsParrying", true);
+                    handWeapon.SetActive(true);
+                    parryChance -= Time.deltaTime;
+
+                    if (parryChance <= 0)
+                    {
+                        enemyDamageManager.IsParrying = false;
+                        anim.SetBool("IsParrying", false);
+                        handWeapon.SetActive(false);
+                        parryChance = 0.3f;
+                    }
+                    break;
+                }
+
                 if (enemyDamageManager.IsHitting && stunnManager.IsStunned == false)
                 {
                     enemyDamageManager.IsHitting = false;
@@ -151,7 +170,7 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 }
                 anim.SetBool("Stunned", true);
                 arancini.gameObject.SetActive(true);
-                weapon.GetComponent<BoxCollider>().enabled = false;
+                //weapon.GetComponent<BoxCollider>().enabled = false;
                 anim.SetBool("Attack", false);
                 agent.isStopped = true;
 
@@ -202,7 +221,23 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
                 anim.SetBool("Attack", true);
                 agent.transform.forward = new Vector3(distanceFromTarget.normalized.x, 0, distanceFromTarget.normalized.z);
-              
+
+                if (enemyDamageManager.IsParrying)
+                {
+                    anim.SetBool("IsParrying", true);
+                    handWeapon.SetActive(true);
+                    parryChance -= Time.deltaTime;
+
+                    if (parryChance <= 0)
+                    {
+                        enemyDamageManager.IsParrying = false;
+                        handWeapon.SetActive(false);
+                        anim.SetBool("IsParrying", false);
+                        parryChance = 0.3f;
+                    }
+                    break;
+                }
+
                 if (enemyDamageManager.IsHitting && stunnManager.IsStunned == false)
                 {
                     enemyDamageManager.IsHitting = false;
