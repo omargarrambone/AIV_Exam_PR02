@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class HealthManager : MonoBehaviour
 {
     public float MaxHealth {get; private set;}
+    [SerializeField] private float setMaxHealth=100;
     public float CurrentHealth;
     public UnityEvent OnDeath;
     private Animator anim; 
@@ -12,7 +13,7 @@ public class HealthManager : MonoBehaviour
     public BarScript HealthBar;
     void Start()
     {
-        MaxHealth = 100;
+        MaxHealth = setMaxHealth;
 
         CurrentHealth = MaxHealth;
         HealthBar.SetMaxHealth(MaxHealth);
