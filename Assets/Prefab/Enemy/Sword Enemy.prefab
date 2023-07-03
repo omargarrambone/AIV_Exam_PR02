@@ -1084,7 +1084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2010131571713950844
 Transform:
   m_ObjectHideFlags: 0
@@ -1894,7 +1894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5394729172129908897
 Transform:
   m_ObjectHideFlags: 0
@@ -3087,7 +3087,7 @@ Transform:
   - {fileID: 2510043266931798365}
   - {fileID: 7488007240717037495}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &5111978356073771471
 MonoBehaviour:
@@ -3125,7 +3125,7 @@ MonoBehaviour:
   currentState: 0
   chaseSpeed: 4
   patrolSpeed: 2
-  timeParry: 0.3
+  parryChance: 0.3
   attackDistance: 2.5
   agent: {fileID: 2148418299946819558}
   weapon: {fileID: 4134698194711179341}
@@ -3133,8 +3133,6 @@ MonoBehaviour:
   healthManager: {fileID: 231959443550880398}
   anim: {fileID: 858944726829091537}
   arancini: {fileID: 257288705335826567}
-  heavyHealth: {fileID: 5330846943788339623, guid: 80ecebc23a35916499eb6b787e3723d3,
-    type: 3}
   enemyDamageManager: {fileID: 3907064155493132908}
   fov: {fileID: 5111978356073771471}
   patrolWaypoints: []
@@ -3194,10 +3192,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a098fe46146af740a5338a09c655759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentStunn: 0
   IsStunned: 0
+  IsImmune: 0
+  NotCountsForStunCount: 0
   StunnDecreaseVelocity: 20
-  timer: 3
+  Timer: 3
   counter: 0
   StunnBar: {fileID: 4715791065202561210}
   EnemyDamageManager: {fileID: 3907064155493132908}
@@ -3256,6 +3255,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  IsImmune: 0
   HealthBar: {fileID: 3397812214232982653}
 --- !u!136 &4707804355045447749
 CapsuleCollider:

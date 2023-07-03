@@ -15,11 +15,9 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
     protected override void Start()
     {
-        fov = GetComponent<FieldOfView>();
-        anim = GetComponent<Animator>();
-        currentState = EnemyState.Patrol;
+        base.Start();
+        
         weapon.GetComponent<BoxCollider>().enabled = true;
-        playerTarget = PlayerManager.PlayerGameObject.transform;
     }
 
     // Update is called once per frame
@@ -154,9 +152,12 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 break;
 
             case EnemyState.Dead:
-                agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
-                agent.GetComponent<CapsuleCollider>().enabled = false;
-                agent.GetComponent<Animator>().enabled = false;             
+                
+                this.enabled = false;
+                anim.enabled = false;
+                enemyCollider.enabled = false;
+                gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+                gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
                 arancini.gameObject.SetActive(false);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
                 Destroy(this.gameObject, 5f);
@@ -170,7 +171,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 }
                 anim.SetBool("Stunned", true);
                 arancini.gameObject.SetActive(true);
-                //weapon.GetComponent<BoxCollider>().enabled = false;
                 anim.SetBool("Attack", false);
                 agent.isStopped = true;
 
@@ -180,6 +180,7 @@ public class KunaiEnemy : BasicEnemyAgentAi
                     currentState = EnemyState.Patrol;
                     arancini.gameObject.SetActive(false);
                     stunnManager.IsStunned = false;
+                    agent.isStopped = false;
                 }
 
                 break;
@@ -257,9 +258,12 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 break;
 
             case EnemyState.Dead:
-                agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
-                agent.GetComponent<CapsuleCollider>().enabled = false;
-                agent.GetComponent<Animator>().enabled = false;              
+               
+                this.enabled = false;
+                anim.enabled = false;
+                enemyCollider.enabled = false;
+                gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+                gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
                 arancini.gameObject.SetActive(false);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
                 Destroy(this.gameObject, 5f);
@@ -273,7 +277,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 }
                 anim.SetBool("Stunned", true);
                 arancini.gameObject.SetActive(true);
-                //weapon.GetComponent<BoxCollider>().enabled = false;
                 anim.SetBool("Attack", false);
                 //agent.isStopped = true;
 
