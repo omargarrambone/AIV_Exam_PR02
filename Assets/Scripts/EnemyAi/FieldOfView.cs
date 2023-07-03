@@ -43,13 +43,11 @@ public class FieldOfView : MonoBehaviour
 
             if (Vector3.Angle(transform.forward, directionToTarget) < Angle * 0.5f)
             {
-                //Debug.Log(Time.deltaTime);
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, ObstacleMask))
                 {
                     CanSeePlayer = true;
-                    //Debug.Log("I see You!");
                     return CanSeePlayer;
                 }
                 else
@@ -69,14 +67,4 @@ public class FieldOfView : MonoBehaviour
         return CanSeePlayer;
 
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawWireSphere(transform.position, radius);
-        
-
-    //}
-
-
-
 }

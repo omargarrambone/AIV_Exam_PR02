@@ -1261,6 +1261,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6640384952731479171}
     m_Modifications:
+    - target: {fileID: 210623201191988985, guid: 71a11c15c58e0b7439397e1ec2241431,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1881350421953397031, guid: 71a11c15c58e0b7439397e1ec2241431,
         type: 3}
       propertyPath: m_Sprite
@@ -1385,7 +1390,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 642f8c69906afb348a64ff06771ec0af,
+        type: 3}
     - target: {fileID: 6458045376968282529, guid: 71a11c15c58e0b7439397e1ec2241431,
         type: 3}
       propertyPath: m_Sprite
@@ -1399,7 +1405,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2584301835758626179, guid: 71a11c15c58e0b7439397e1ec2241431,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1557807204929527002}
   m_SourcePrefab: {fileID: 100100000, guid: 71a11c15c58e0b7439397e1ec2241431, type: 3}
 --- !u!224 &8435749620152275263 stripped
 RectTransform:
@@ -1407,3 +1417,39 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6721237517983121307}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9123141908282022424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2584301835758626179, guid: 71a11c15c58e0b7439397e1ec2241431,
+    type: 3}
+  m_PrefabInstance: {fileID: 6721237517983121307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1557807204929527002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123141908282022424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ae317382ed6f1af42b8fe72873c248d1, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 0.4
