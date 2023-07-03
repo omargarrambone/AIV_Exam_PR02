@@ -59,6 +59,8 @@ public class SongManager : MonoBehaviour
     [ContextMenu("Play song")]
     public void PlaySong()
     {
+        if (isPlaying) return;
+
         audioSource.Play();
         isPlaying = true;
         PlayerManager.EnableDisablePlayerMovement(false);
