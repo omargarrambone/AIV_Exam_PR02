@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class FinalBossEnemyAI : BasicEnemyAgentAi
 {
-    [SerializeField] private float dizzinessCounter, dizzinessTimer, minDizzinessTimer,maxDizzinessTimer;
+    [SerializeField] FinalBossPhase currentPhase;
     [SerializeField] private Collider[] weapons;
+
+    [Header("PhaseAttack Variables")]
+    [SerializeField] int maxAttack;
+    [Header("PhaseMinions Variables")]
+    [SerializeField] int test1;
+    [Header("PhaseRythm Variables")]
+    [SerializeField] int test2;
 
     protected override void Start()
     {
         base.Start();
         SetWeaponsCollider(true);
 
+        fov.Angle = 360;
+
         stunnManager.StunnDecreaseVelocity = 50.0f;
         stunnManager.Timer = 2f;
         stunnManager.IsImmune = true;
         healthManager.IsImmune = true;
-        SetRandomDizziness();
+        //SetRandomDizziness();
 
-        parryChance = 0;
+        parryChance = 0f;
+
+        currentState = EnemyState.Chase;
+        agent.speed = chaseSpeed;
     }
 
     void SetWeaponsCollider(bool value)
@@ -29,43 +41,62 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
         }
     }
 
-    private void SetRandomDizziness()
-    {
-        dizzinessCounter = Random.Range(minDizzinessTimer, maxDizzinessTimer);
-    }
 
     protected override void Update()
     {
+        switch (currentPhase)
+        {
+            case FinalBossPhase.PhaseAttack:
+                PhaseAttack();
+                break;
+            case FinalBossPhase.PhaseMinions:
+                PhaseMinions();
+                break;
+            case FinalBossPhase.PhaseRythm:
+                PhaseRythm();
+                break;
+        }       
+    }
+
+    private void PhaseAttack()
+    {
+        Vector3 distanceFromTarget = playerTarget.position - agent.transform.position;
+
         switch (currentState)
         {
-            case EnemyState.Patrol:
+            case EnemyState.Chase:
+                agent.transform.forward = new Vector3(distanceFromTarget.x, 0, distanceFromTarget.z);
 
-                dizzinessCounter -= Time.deltaTime;
-
-                if (dizzinessCounter < 0)
+                if (distanceFromTarget.magnitude < attackDistance)
                 {
-                    SetRandomDizziness();
-                    anim.SetBool("IsDizzy", true);
-                    currentState = EnemyState.Dizzy;
+                    agent.speed = 0;
                     agent.isStopped = true;
-                    weapon.gameObject.SetActive(false);
-                    healthManager.IsImmune = false;
-                    SetWeaponsCollider(false);
+                    currentState = EnemyState.Attack;
 
+                    anim.SetBool("Attack", true);
                     break;
                 }
 
-                if (agent.remainingDistance < 2f)
+                agent.SetDestination(playerTarget.position);
+                break;
+
+            case EnemyState.Attack:
+
+                agent.transform.forward = new Vector3(distanceFromTarget.x, 0, distanceFromTarget.z);
+
+                if (distanceFromTarget.magnitude > attackDistance)
                 {
-                    SetNewWaypoint();
-                    agent.speed = patrolSpeed;
+                    agent.speed = chaseSpeed;
+                    agent.isStopped = false;
+                    currentState = EnemyState.Chase;
+                    break;
                 }
 
                 break;
 
             case EnemyState.Dizzy:
 
-                if(healthManager.CurrentHealth < 30)
+                if (healthManager.CurrentHealth < 30)
                 {
                     stunnManager.IsImmune = false;
                     stunnManager.SetStun(100);
@@ -78,22 +109,22 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                     break;
                 }
 
-                dizzinessCounter -= Time.deltaTime;
+                //dizzinessCounter -= Time.deltaTime;
 
-                if (dizzinessCounter < 0)
-                {
-                    SetRandomDizziness();
-                    anim.SetBool("IsDizzy", false);
-                    currentState = EnemyState.Patrol;
-                    agent.isStopped = false;
-                    weapon.gameObject.SetActive(true);
-                    healthManager.IsImmune = true;
-                    SetWeaponsCollider(true);
+                //if (dizzinessCounter < 0)
+                //{
+                //    SetRandomDizziness();
+                //    anim.SetBool("IsDizzy", false);
+                //    currentState = EnemyState.Patrol;
+                //    agent.isStopped = false;
+                //    weapon.gameObject.SetActive(true);
+                //    healthManager.IsImmune = true;
+                //    SetWeaponsCollider(true);
 
-                    stunnManager.IsImmune = true;
-                    stunnManager.SetStun(0);
-                    break;
-                }
+                //    stunnManager.IsImmune = true;
+                //    stunnManager.SetStun(0);
+                //    break;
+                //}
 
                 break;
 
@@ -130,6 +161,16 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
                 break;
         }
+    }
+
+    private void PhaseMinions()
+    {
+
+    }
+
+    private void PhaseRythm()
+    {
+
     }
 }
 
