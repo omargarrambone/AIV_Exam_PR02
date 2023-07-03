@@ -2243,7 +2243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4383051384967581688
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2377,7 +2377,6 @@ Transform:
   - {fileID: 3985370536275239736}
   - {fileID: 8203749888213659005}
   - {fileID: 938283748457625051}
-  - {fileID: 1912595573903655824}
   m_Father: {fileID: 3324555788518951401}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2503,12 +2502,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5121658103163138791}
-  m_LocalRotation: {x: 0.70710737, y: 0.00000021606677, z: 0.00000012107189, w: 0.7071063}
-  m_LocalPosition: {x: -8, y: -5.1, z: -24.5}
-  m_LocalScale: {x: 65, y: 65, z: 64.999985}
+  m_LocalRotation: {x: 0.70710623, y: -0.00000018253914, z: 0.00000021792938, w: -0.7071073}
+  m_LocalPosition: {x: 11.7, y: 5.1, z: 25.4}
+  m_LocalScale: {x: 65, y: 65.00003, z: 65}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7581640957488224840}
+  m_Father: {fileID: 2333117748102387041}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &5986594620364186771
@@ -3936,10 +3935,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 1
-  chaseSpeed: 2
+  chaseSpeed: 10
   patrolSpeed: 2
-  parryChance: 0.3
-  attackDistance: 2
+  parryChance: 0
+  attackDistance: 4
+  attackDamage: 5
   agent: {fileID: 268865109394438647}
   weapon: {fileID: 5121658103163138791}
   stunnManager: {fileID: 7965098285453751417}
@@ -3948,14 +3948,36 @@ MonoBehaviour:
   arancini: {fileID: 3866965739044536300}
   enemyDamageManager: {fileID: 8641065845039333880}
   fov: {fileID: 5664638594299172371}
-  patrolWaypoints: []
-  dizzinessCounter: 0
-  dizzinessTimer: 2
-  minDizzinessTimer: 0
-  maxDizzinessTimer: 2
+  patrolWaypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  healthBar: {fileID: 818850863881396907}
+  stunBar: {fileID: 4142684347394334850}
+  currentPhase: 0
   weapons:
   - {fileID: 5874296152483146333}
   - {fileID: 6674014279918162425}
+  baseMaterial: {fileID: 2100000, guid: 9bc501b055c1fa247ba4c5d1f89d1579, type: 2}
+  immortalMaterial: {fileID: 2100000, guid: dbf14c8aeac2c594aa17543afdf976a6, type: 2}
+  skinnedMeshRenderer: {fileID: 3270470802434299073}
+  isAttacking: 0
+  currentAttack: 0
+  maxAttack: 5
+  attackTimer: 1
+  attackCounter: 0
+  rotationSpeed: 4
+  dizzinessCounter: 0
+  dizzinessTimer: 3
+  minDizzinessTimer: 4
+  maxDizzinessTimer: 7
+  enemyGhostPrefabs: []
+  healthRechargeSpeed: 0
+  spawnTimer: 0
+  spawnCounter: 0
+  currentMinions: 0
+  maxMinions: 0
+  test2: 0
 --- !u!114 &5664638594299172371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3995,7 +4017,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.87
+  m_Height: 2
   m_BaseOffset: -0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -4034,7 +4056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsStunned: 0
-  IsImmune: 0
+  IsImmune: 1
   NotCountsForStunCount: 0
   StunnDecreaseVelocity: 20
   Timer: 3
@@ -4044,7 +4066,7 @@ MonoBehaviour:
   OnStun:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4677416567676217915}
         m_TargetAssemblyTypeName: BasicEnemyAgentAi, Assembly-CSharp
         m_MethodName: SetState
         m_Mode: 3
@@ -4068,6 +4090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setMaxHealth: 100
   CurrentHealth: 0
   OnDeath:
     m_PersistentCalls:
@@ -4096,7 +4119,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  IsImmune: 0
+      - m_Target: {fileID: 4677416567676217915}
+        m_TargetAssemblyTypeName: BasicEnemyAgentAi, Assembly-CSharp
+        m_MethodName: SetState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  IsImmune: 1
   HealthBar: {fileID: 3331821116739757678}
 --- !u!136 &1762294610081058649
 CapsuleCollider:
@@ -4131,10 +4166,10 @@ Animator:
   m_GameObject: {fileID: 6382896725814580766}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2ba66718d3169ae42a05d8facf302228, type: 3}
-  m_Controller: {fileID: 9100000, guid: b3d938de3d415274eba262200e0f59d3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 25b2159d4ca1372479a29af10ddffbed, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -4351,6 +4386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1370721206451693582}
   - component: {fileID: 6674014279918162425}
+  - component: {fileID: 4285318133942776045}
   m_Layer: 0
   m_Name: Character_Samurai_Grunt_Black
   m_TagString: EnemyWeapon
@@ -4404,6 +4440,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &4285318133942776045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072528514768707177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a066cce2ff3dce14a95d75692cc1554c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyWeaponDamage: 5
 --- !u!1 &7174096221262155587
 GameObject:
   m_ObjectHideFlags: 0
@@ -4601,6 +4650,7 @@ Transform:
   - {fileID: 264440142727105349}
   - {fileID: 1853242214368958936}
   - {fileID: 318355063036447301}
+  - {fileID: 1912595573903655824}
   m_Father: {fileID: 8415358887574918879}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
