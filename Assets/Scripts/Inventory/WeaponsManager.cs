@@ -21,6 +21,8 @@ public class WeaponsManager : MonoBehaviour
     [SerializeField] private AnimatorLayerLerper animatorLayerLerper2;
     [SerializeField] private AnimatorLayerLerper animatorLayerLerper3;
 
+    public AudioSource Sword_SFX;
+
     void Start()
     {
         TakenWeapons = new bool[5];
@@ -40,9 +42,9 @@ public class WeaponsManager : MonoBehaviour
         inventoryImages[CurrentSlotIndex].gameObject.SetActive(true);
         SetAnimatorLayers((ItemType)CurrentSlotIndex);
 
-        weaponsColliders = new Collider[inventoryGameObjects.Length-1]; // no flute
+        weaponsColliders = new Collider[inventoryGameObjects.Length - 1]; // no flute
 
-        int lastColliderIndex=0;
+        int lastColliderIndex = 0;
 
         for (int i = 0; i < inventoryGameObjects.Length; i++)
         {
@@ -60,7 +62,7 @@ public class WeaponsManager : MonoBehaviour
 
     public void OnAttack(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if(CurrentSlotIndex == ((int)ItemType.Flute))
+        if (CurrentSlotIndex == ((int)ItemType.Flute))
         {
             FluteAttack.Invoke(context);
         }
