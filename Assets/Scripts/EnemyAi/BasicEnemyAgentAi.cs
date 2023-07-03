@@ -22,6 +22,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected EnemyDamageManager enemyDamageManager;
     [SerializeField] protected FieldOfView fov;
     [SerializeField] protected List<Transform> patrolWaypoints;
+    [SerializeField] protected GameObject healthBar;
+    [SerializeField] protected GameObject stunBar;
     protected CapsuleCollider enemyCollider;
     protected Transform playerTarget;
     protected int currentWaypoint;
@@ -148,9 +150,9 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 this.enabled = false;
                 weapon.SetActive(false);
                 anim.enabled = false;
-                enemyCollider.enabled = false;
-                gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
-                gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
+                enemyCollider.enabled = false;                
+                healthBar.SetActive(false);
+                stunBar.SetActive(false);
                 arancini.gameObject.SetActive(false);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
                 Destroy(this.gameObject, 5f);

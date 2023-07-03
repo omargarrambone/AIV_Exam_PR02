@@ -133,6 +133,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
+      propertyPath: stunBar
+      value: 
+      objectReference: {fileID: 1902975016}
+    - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1708780039}
+    - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
       propertyPath: attackDistance
       value: 2.5
       objectReference: {fileID: 0}
@@ -144,7 +154,7 @@ PrefabInstance:
     - target: {fileID: 5621770429164290102, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9035985288689505002, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
@@ -547,6 +557,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1151586312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 589871708282462041, guid: 4372f2d704ba9e0479799337c9d58079,
+    type: 3}
+  m_PrefabInstance: {fileID: 1442439756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1314028657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801373267979344497, guid: 4372f2d704ba9e0479799337c9d58079,
+    type: 3}
+  m_PrefabInstance: {fileID: 1442439756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1442439756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -563,7 +585,7 @@ PrefabInstance:
     - target: {fileID: 1650208938979513574, guid: 4372f2d704ba9e0479799337c9d58079,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4560688306811244006, guid: 4372f2d704ba9e0479799337c9d58079,
         type: 3}
@@ -620,6 +642,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5839978592555352445, guid: 4372f2d704ba9e0479799337c9d58079,
+        type: 3}
+      propertyPath: stunBar
+      value: 
+      objectReference: {fileID: 1151586312}
+    - target: {fileID: 5839978592555352445, guid: 4372f2d704ba9e0479799337c9d58079,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1314028657}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -856,6 +888,12 @@ Transform:
   m_Father: {fileID: 635805446}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1708780039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3090421686184294371, guid: bbf33218603b8964083d320cbb6fbe04,
+    type: 3}
+  m_PrefabInstance: {fileID: 367963663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1813311972
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +925,12 @@ Transform:
   m_Father: {fileID: 635805446}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1902975016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8871887851752971793, guid: bbf33218603b8964083d320cbb6fbe04,
+    type: 3}
+  m_PrefabInstance: {fileID: 367963663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1957738259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1308,8 @@ MonoBehaviour:
   enemyDamageManager: {fileID: 0}
   fov: {fileID: 0}
   patrolWaypoints: []
+  healthBar: {fileID: 0}
+  stunBar: {fileID: 0}
 --- !u!95 &202512841924237810
 Animator:
   serializedVersion: 5

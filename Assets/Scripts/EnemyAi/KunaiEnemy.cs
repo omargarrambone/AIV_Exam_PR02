@@ -156,8 +156,8 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 this.enabled = false;
                 anim.enabled = false;
                 enemyCollider.enabled = false;
-                gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
-                gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
+                healthBar.SetActive(false);
+                stunBar.SetActive(false);
                 arancini.gameObject.SetActive(false);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
                 Destroy(this.gameObject, 5f);
@@ -262,8 +262,8 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 this.enabled = false;
                 anim.enabled = false;
                 enemyCollider.enabled = false;
-                gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
-                gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
+                healthBar.SetActive(false);
+                stunBar.SetActive(false);
                 arancini.gameObject.SetActive(false);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
                 Destroy(this.gameObject, 5f);
