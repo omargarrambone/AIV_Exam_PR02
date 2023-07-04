@@ -1960,111 +1960,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &3407276765690221292
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6687143328726295327}
-  - component: {fileID: 9110424065248002583}
-  - component: {fileID: 865778001155408507}
-  - component: {fileID: 4742686735744485704}
-  m_Layer: 9
-  m_Name: SM_Wep_JuMonjiYari_01
-  m_TagString: EnemyWeapon
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &6687143328726295327
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3407276765690221292}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 14.2, y: 3, z: -1.4}
-  m_LocalScale: {x: 97.95, y: 97.95, z: 97.95}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 2147999849911785225}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!33 &9110424065248002583
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3407276765690221292}
-  m_Mesh: {fileID: 4300000, guid: 4f2194cf11cf0744cae13eb755f7c3da, type: 3}
---- !u!23 &865778001155408507
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3407276765690221292}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 4eaaa3032586832468e97a6452e498a4, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4742686735744485704
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3407276765690221292}
-  m_Material: {fileID: 13400000, guid: 93ff06603b0af5742a0ede6b7dfcf0d3, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.3638274, y: 0.4211207, z: 0.026766574}
-  m_Center: {x: -0.0023368613, y: 1.1174132, z: 0.002846897}
 --- !u!1 &3500169839859282726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,6 +2176,7 @@ GameObject:
   - component: {fileID: 6552613597917543546}
   - component: {fileID: 2120101128715369859}
   - component: {fileID: 1470256232070601503}
+  - component: {fileID: 4130974470280399199}
   m_Layer: 0
   m_Name: Small Katana Enemy
   m_TagString: EnemyWeapon
@@ -2374,6 +2270,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.009960436, y: 0.8757334, z: 0.04749023}
   m_Center: {x: 0.0037231015, y: 0.6331632, z: -0.005563575}
+--- !u!114 &4130974470280399199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4134698194711179341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a066cce2ff3dce14a95d75692cc1554c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyWeaponDamage: 7
 --- !u!1 &4152348823347798324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,7 +2996,7 @@ Transform:
   - {fileID: 2510043266931798365}
   - {fileID: 7488007240717037495}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &5111978356073771471
 MonoBehaviour:
@@ -3125,8 +3034,8 @@ MonoBehaviour:
   currentState: 0
   chaseSpeed: 4
   patrolSpeed: 2
-  parryChance: 0.3
   attackDistance: 2.5
+  attackDamage: 5
   agent: {fileID: 2148418299946819558}
   weapon: {fileID: 4134698194711179341}
   stunnManager: {fileID: 2591736530132064491}
@@ -3229,6 +3138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setMaxHealth: 100
   CurrentHealth: 0
   OnDeath:
     m_PersistentCalls:
@@ -5387,7 +5297,6 @@ Transform:
   - {fileID: 2604631063731179521}
   - {fileID: 5808078968391237370}
   - {fileID: 5163269857929951094}
-  - {fileID: 6687143328726295327}
   - {fileID: 4153946852228242509}
   m_Father: {fileID: 7716865863003643374}
   m_RootOrder: 0

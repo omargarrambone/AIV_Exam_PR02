@@ -38,10 +38,8 @@ public class KunaiEnemy : BasicEnemyAgentAi
         GameObject kunai = Instantiate(weapon, kunaiTransform.position, kunaiTransform.rotation);
         Vector3 distanceFromTarget = playerTarget.position - kunaiTransform.transform.position;
         kunai.transform.forward = new Vector3(distanceFromTarget.x, distanceFromTarget.y + yOffsetKunaiTransform, distanceFromTarget.z).normalized;
-        kunai.GetComponent<Rigidbody>().velocity = kunai.transform.forward * kunaiSpeed;
+        kunai.transform.Translate(kunai.transform.forward * kunaiSpeed);
     }
-
-
 
     void MovingKunaiEnemy()
     {
@@ -147,10 +145,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
                 break;
 
-
-            case EnemyState.Healing:
-                break;
-
             case EnemyState.Dead:
                 
                 this.enabled = false;
@@ -183,9 +177,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
                     agent.isStopped = false;
                 }
 
-                break;
-
-            default:
                 break;
         }
     }

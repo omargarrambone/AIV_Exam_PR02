@@ -33,7 +33,6 @@ public class ArancinoScript : MonoBehaviour
             {
                 OnHitOwner.Invoke();
                 gameObject.SetActive(false);
-                enabled = false;
             }
         }
     }
