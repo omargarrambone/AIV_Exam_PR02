@@ -11,6 +11,7 @@ public class CameraLockWall : MonoBehaviour
     [SerializeField] private CameraType cameraType=CameraType.LookAtPlayer;
     static private CameraFollow cameraFollow;
 
+
     private void Start()
     {
         if (!cameraFollow)

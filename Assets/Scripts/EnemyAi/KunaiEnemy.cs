@@ -113,14 +113,14 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 {
                     anim.SetBool("IsParrying", true);
                     handWeapon.SetActive(true);
-                    parryChance -= Time.deltaTime;
+                    parryTimer -= Time.deltaTime;
 
-                    if (parryChance <= 0)
+                    if (parryTimer <= 0)
                     {
                         enemyDamageManager.IsParrying = false;
                         anim.SetBool("IsParrying", false);
                         handWeapon.SetActive(false);
-                        parryChance = 0.3f;
+                        parryTimer = 0.3f;
                     }
                     break;
                 }
@@ -227,14 +227,14 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 {
                     anim.SetBool("IsParrying", true);
                     handWeapon.SetActive(true);
-                    parryChance -= Time.deltaTime;
+                    parryTimer -= Time.deltaTime;
 
-                    if (parryChance <= 0)
+                    if (parryTimer <= 0)
                     {
                         enemyDamageManager.IsParrying = false;
                         handWeapon.SetActive(false);
                         anim.SetBool("IsParrying", false);
-                        parryChance = 0.3f;
+                        parryTimer = 0.3f;
                     }
                     break;
                 }

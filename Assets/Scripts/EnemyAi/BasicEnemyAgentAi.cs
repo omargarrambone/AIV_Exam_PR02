@@ -9,8 +9,9 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected EnemyState currentState;
     [SerializeField] protected float chaseSpeed;
     [SerializeField] protected float patrolSpeed;
-    [SerializeField] [Range(0f,1f)] protected float parryChance = 0.3f;
+    protected float parryTimer = 0.3f;
     [SerializeField] protected float attackDistance;
+    [SerializeField] protected float attackDamage=5;
 
     [Header("References")]
     [SerializeField] protected NavMeshAgent agent;
@@ -37,6 +38,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
         enemyCollider = GetComponent<CapsuleCollider>();
         currentState = EnemyState.Patrol;
         weapon.GetComponent<BoxCollider>().enabled = false;
+
+        EnemyWeapon myWeapon = weapon.AddComponent<EnemyWeapon>();
+        myWeapon.MyWeaponDamage = attackDamage;
+
         playerTarget = PlayerManager.PlayerGameObject.transform;
     }
 
@@ -108,13 +113,13 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 if (enemyDamageManager.IsParrying)
                 {
                     anim.SetBool("IsParrying", true);
-                    parryChance -= Time.deltaTime;
+                    parryTimer -= Time.deltaTime;
                  
-                    if (parryChance <= 0)
+                    if (parryTimer <= 0)
                     {
                         enemyDamageManager.IsParrying = false;
                         anim.SetBool("IsParrying", false);
-                        parryChance = 0.3f;
+                        parryTimer = 0.3f;
                     }
                     break;
                 }
@@ -193,6 +198,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
     {
         currentWaypoint = Random.Range(0, patrolWaypoints.Count);
         agent.SetDestination(patrolWaypoints[currentWaypoint].position);
+    }
+
+    public void SetWaypoints(List<Transform> waypoints)
+    {
+        patrolWaypoints = waypoints;
     }
 
     public void StartAttack()

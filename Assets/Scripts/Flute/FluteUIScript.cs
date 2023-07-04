@@ -12,7 +12,7 @@ public class FluteUIScript : MonoBehaviour
     //[SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private Transform ArrowsUIParent,ArrowsPrefab;
     [SerializeField] private PlayerInput playerInputScript;
-    [SerializeField] private Image musicSheet;
+    //[SerializeField] private Image musicSheet;
     [SerializeField] private int arrowsToGenerate, maxArrows;
 
     [Header("Events")]
@@ -27,7 +27,7 @@ public class FluteUIScript : MonoBehaviour
         OnStart.AddListener(PlayerManager.DisablePlayerMovement);
         OnCompleted.AddListener(PlayerManager.EnablePlayerMovement);
 
-        musicSheet.color = Color.red;
+        //musicSheet.color = Color.red;
 
         gameObject.SetActive(false);
     }
@@ -81,7 +81,7 @@ public class FluteUIScript : MonoBehaviour
             {
                 ArrowsUIParent.GetChild(currentArrowIndex).gameObject.SetActive(false);
                 OnCorrectArrow.Invoke(fluteArrows[currentArrowIndex].Item2);
-                musicSheet.color = currentArrowIndex % 2 != 0 ? Color.red : Color.blue;
+                //musicSheet.color = currentArrowIndex % 2 != 0 ? Color.red : Color.blue;
 
                 currentArrowIndex++;
 
