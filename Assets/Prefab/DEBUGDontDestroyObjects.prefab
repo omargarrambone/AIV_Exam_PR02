@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 6703003382857985992}
   - component: {fileID: 273721915702041228}
   m_Layer: 0
-  m_Name: PowerUp
+  m_Name: PowerUpManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2392,7 +2392,7 @@ Transform:
   - {fileID: 7346848436888583763}
   - {fileID: 6703003382857985992}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7254098985651995250
 MonoBehaviour:
@@ -2920,7 +2920,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2731688537396142355}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37751a611a4a676448e25d9142b5fa3f, type: 3}
   m_Name: 
@@ -3757,7 +3757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeOnStart: 0
-  debugDontChangeScene: 0
+  debugDontChangeScene: 1
   loadingCanvas: {fileID: 8066700044974064409}
   loadingScript: {fileID: 1171931456567044255}
   OverrideStartScene: 
@@ -5678,7 +5678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2747492804823516832
 RectTransform:
   m_ObjectHideFlags: 0
