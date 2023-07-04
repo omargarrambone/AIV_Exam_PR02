@@ -7,11 +7,16 @@ public class InGameMenusManager : MonoBehaviour
 {
     public static GameObject PauseMenu, SaveMenu;
     public static GameObject CommandUiPanel;
+    public static GameObject VolumeUIPanel;
+    public static GameObject SecondPauseMenu;
+
     private static CameraFollow staticCameraFollow;
     private static EventSystemManger staticEventSystemManger;
 
     [SerializeField] private GameObject pauseMenu, saveMenu;
     [SerializeField] private GameObject commandUiPanel;
+    [SerializeField] private GameObject volumeUIPanel;
+    [SerializeField] private GameObject secondPauseMenu;
     [SerializeField] private CameraFollow cameraFollow;
     [SerializeField] private EventSystemManger eventSystemManger;
 
@@ -20,8 +25,10 @@ public class InGameMenusManager : MonoBehaviour
     void Awake()
     {
         PauseMenu = pauseMenu;
+        SecondPauseMenu = secondPauseMenu;
         SaveMenu = saveMenu;
         CommandUiPanel = commandUiPanel;
+        VolumeUIPanel = volumeUIPanel;
         staticCameraFollow = cameraFollow;
         staticEventSystemManger = eventSystemManger;
     }
@@ -34,8 +41,12 @@ public class InGameMenusManager : MonoBehaviour
 
         PauseMenu.SetActive(value);
        
-        CommandUiPanel.SetActive(false);        
+        CommandUiPanel.SetActive(false);       
         
+        VolumeUIPanel.SetActive(false);
+        
+        SecondPauseMenu.SetActive(true);
+
         CursorLocker(value);
     }
 
