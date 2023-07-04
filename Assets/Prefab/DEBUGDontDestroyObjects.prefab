@@ -8158,6 +8158,11 @@ PrefabInstance:
       objectReference: {fileID: 7727343566181682134}
     - target: {fileID: 7823134558670948545, guid: b4d505da6851e2848ab8f21d473442e0,
         type: 3}
+      propertyPath: Dash_SFX
+      value: 
+      objectReference: {fileID: 852810952842119673}
+    - target: {fileID: 7823134558670948545, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -8171,6 +8176,21 @@ PrefabInstance:
       propertyPath: weaponsManager
       value: 
       objectReference: {fileID: 6657907029336734532}
+    - target: {fileID: 7823134558670948545, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: Jump_SFX.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823134558670948545, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: Jump_SFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 3601636646536961232}
+    - target: {fileID: 7823134558670948545, guid: b4d505da6851e2848ab8f21d473442e0,
+        type: 3}
+      propertyPath: Jump_SFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 5132144270394917577}
     - target: {fileID: 8399718128866380086, guid: b4d505da6851e2848ab8f21d473442e0,
         type: 3}
       propertyPath: fluteUIScript
