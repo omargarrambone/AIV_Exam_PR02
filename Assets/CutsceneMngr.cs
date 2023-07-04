@@ -8,6 +8,7 @@ using UnityEngine.Timeline;
 public class CutsceneMngr : MonoBehaviour
 {
     [SerializeField] public GameObject cutsceneDirector;
+    [SerializeField] private GameObject ninjaForCutscene;
     [SerializeField] private Camera CutsceneCamera;
     [SerializeField] float cutsceneDuration;
 
@@ -18,7 +19,6 @@ public class CutsceneMngr : MonoBehaviour
             cutsceneDirector.SetActive(true);
             PlayerManager.DisablePlayerMovement();
             PlayerManager.SetPosition(240,100,187);
-            this.gameObject.GetComponent<BoxCollider>().enabled = false;
             Camera.main.gameObject.SetActive(false);
             CutsceneCamera.gameObject.SetActive(true);
             StartCoroutine(FinishCutscene());
@@ -29,9 +29,11 @@ public class CutsceneMngr : MonoBehaviour
     IEnumerator FinishCutscene()
     {
         yield return new WaitForSeconds(cutsceneDuration);
-        Camera.main.gameObject.SetActive(true);
-        PlayerManager.SetPosition(229, 100, 200);
+        GetComponent<BoxCollider>().enabled = false;
+        ninjaForCutscene.SetActive(false);
         CutsceneCamera.gameObject.SetActive(false);
+       Camera.main.gameObject.SetActive(true);
+        PlayerManager.SetPosition(229, 100, 200);
         PlayerManager.EnablePlayerMovement();
 
     }
