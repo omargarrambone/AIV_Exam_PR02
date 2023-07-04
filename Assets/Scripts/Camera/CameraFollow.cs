@@ -25,6 +25,10 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Vector3 diabloCameraPositionOffset;
     [SerializeField] Vector3 diabloCameraRotationOffset;
 
+    [Header("Diablo Camera Slums Variables")]
+    [SerializeField] Vector3 diabloCameraSlumsPositionOffset;
+    [SerializeField] Vector3 diabloCameraSlumsRotationOffset;
+
     [Header("Maze Camera Variables")]
     [SerializeField] Vector3 mazeCameraPositionOffset;
     [SerializeField] Vector3 mazeCameraRotationOffset;
@@ -103,6 +107,10 @@ public class CameraFollow : MonoBehaviour
                 DiabloCamera(newCameraPosition);
                 break;
 
+            case CameraType.DiabloCameraSlums:
+                DiabloCameraSlums(newCameraPosition);
+                break;
+
             case CameraType.MazeCamera:
                 MazeCamera();
                 break;
@@ -124,6 +132,11 @@ public class CameraFollow : MonoBehaviour
     {
         NextRotation = Quaternion.Euler(diabloCameraRotationOffset);
         transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + diabloCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
+    }
+    private void DiabloCameraSlums(Vector3 newCameraPosition)
+    {
+        NextRotation = Quaternion.Euler(diabloCameraSlumsRotationOffset);
+        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + diabloCameraSlumsPositionOffset, ref smoothDampVelocity, smoothSpeed);
     }
     private void MazeCamera()
     {

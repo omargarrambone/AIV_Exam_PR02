@@ -11,6 +11,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected float patrolSpeed;
     [SerializeField] [Range(0f,1f)] protected float parryChance = 0.3f;
     [SerializeField] protected float attackDistance;
+    [SerializeField] protected float attackDamage=5;
 
     [Header("References")]
     [SerializeField] protected NavMeshAgent agent;
@@ -21,7 +22,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected ParticleSystem arancini;
     [SerializeField] protected EnemyDamageManager enemyDamageManager;
     [SerializeField] protected FieldOfView fov;
-    [SerializeField] protected List<Transform> patrolWaypoints;    
+    [SerializeField] protected List<Transform> patrolWaypoints;
+    [SerializeField] protected GameObject healthBar;
+    [SerializeField] protected GameObject stunBar;
+    protected CapsuleCollider enemyCollider;
     protected Transform playerTarget;
     protected int currentWaypoint;
 
@@ -31,8 +35,13 @@ public class BasicEnemyAgentAi : MonoBehaviour
     {
         fov = GetComponent<FieldOfView>();
         anim = GetComponent<Animator>();
+        enemyCollider = GetComponent<CapsuleCollider>();
         currentState = EnemyState.Patrol;
         weapon.GetComponent<BoxCollider>().enabled = false;
+
+        EnemyWeapon myWeapon = weapon.AddComponent<EnemyWeapon>();
+        myWeapon.MyWeaponDamage = attackDamage;
+
         playerTarget = PlayerManager.PlayerGameObject.transform;
     }
 
@@ -76,7 +85,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
                 if (fov.targetCheck() == true && distanceFromTarget.magnitude <= attackDistance)
                 {
-                    agent.speed = 0;
+                    agent.speed = 0;                    
                     currentState = EnemyState.Attack;
                     break;
                 }
@@ -142,12 +151,13 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 break;
 
             case EnemyState.Dead:
-                agent.GetComponent<BasicEnemyAgentAi>().enabled = false;
-                agent.GetComponent<CapsuleCollider>().enabled = false;
-                weapon.GetComponent<BoxCollider>().enabled = false;
-                agent.GetComponent<Animator>().enabled = false;
-                gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
-                gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
+               
+                this.enabled = false;
+                weapon.SetActive(false);
+                anim.enabled = false;
+                enemyCollider.enabled = false;                
+                healthBar.SetActive(false);
+                stunBar.SetActive(false);
                 arancini.gameObject.SetActive(false);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
                 Destroy(this.gameObject, 5f);
@@ -161,7 +171,6 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 }
                 anim.SetBool("Stunned", true);
                 arancini.gameObject.SetActive(true);
-                weapon.GetComponent<BoxCollider>().enabled = false;
                 anim.SetBool("Attack", false);
                 agent.isStopped = true;
 
@@ -189,6 +198,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
     {
         currentWaypoint = Random.Range(0, patrolWaypoints.Count);
         agent.SetDestination(patrolWaypoints[currentWaypoint].position);
+    }
+
+    public void SetWaypoints(List<Transform> waypoints)
+    {
+        patrolWaypoints = waypoints;
     }
 
     public void StartAttack()

@@ -5067,7 +5067,7 @@ Transform:
   - {fileID: 4516636779410185077}
   - {fileID: 4494512853427322876}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &9214509987150865373
 MonoBehaviour:
@@ -5105,8 +5105,9 @@ MonoBehaviour:
   currentState: 0
   chaseSpeed: 1
   patrolSpeed: 10
-  parryTimer: 0.3
+  parryChance: 0.3
   attackDistance: 2
+  attackDamage: 10
   agent: {fileID: 2627876041869194610}
   weapon: {fileID: 3858968903812287310}
   stunnManager: {fileID: 7099051901857183523}
@@ -5118,6 +5119,8 @@ MonoBehaviour:
   patrolWaypoints:
   - {fileID: 0}
   - {fileID: 0}
+  healthBar: {fileID: 0}
+  stunBar: {fileID: 0}
   dizzinessCounter: 0
   dizzinessTimer: 5
   minDizzinessTimer: 4
@@ -5183,6 +5186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsStunned: 0
   IsImmune: 0
+  NotCountsForStunCount: 0
   StunnDecreaseVelocity: 20
   Timer: 3
   counter: 0
@@ -5215,6 +5219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setMaxHealth: 100
   CurrentHealth: 0
   OnDeath:
     m_PersistentCalls:
@@ -5311,6 +5316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4516636779410185077}
   - component: {fileID: 6934459084341068771}
+  - component: {fileID: 8014788660914936535}
   m_Layer: 0
   m_Name: Character_Samurai_Grunt_Black
   m_TagString: EnemyWeapon
@@ -5356,7 +5362,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5364,6 +5370,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &8014788660914936535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197945996905278544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a066cce2ff3dce14a95d75692cc1554c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyWeaponDamage: 5
 --- !u!1 &8269851504649057571
 GameObject:
   m_ObjectHideFlags: 0
