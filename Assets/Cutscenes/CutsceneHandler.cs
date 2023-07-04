@@ -33,7 +33,7 @@ public class CutsceneHandler : MonoBehaviour
         FadeInAndOut();
     }
 
-    private void FadeInAndOut()
+    public void FadeInAndOut()
     {
         FadeInOut.FadeinOut = true;
         
