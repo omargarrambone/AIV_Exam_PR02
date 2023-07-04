@@ -1156,7 +1156,7 @@ Transform:
   - {fileID: 5213759825101916360}
   - {fileID: 298726727236088852}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1222371153796082431
 MonoBehaviour:
@@ -1270,6 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setMaxHealth: 100
   CurrentHealth: 0
   OnDeath:
     m_PersistentCalls:
@@ -1371,21 +1372,17 @@ MonoBehaviour:
   currentState: 0
   chaseSpeed: 4
   patrolSpeed: 2
-  parryChance: 0.3
   attackDistance: 10
+  attackDamage: 5
   agent: {fileID: 8231185110898032415}
-  weapon: {fileID: 4643519359033591776, guid: 33894dfc1e9e14c489e0670480c36bbf, type: 3}
+  weapon: {fileID: 8693467752678814421, guid: 327f4d109f368734ab79536f7200c8f6, type: 3}
   stunnManager: {fileID: 8675663854312429257}
   healthManager: {fileID: 8056925971522635024}
   anim: {fileID: 6105898070594296358}
   arancini: {fileID: 5860177834828424469}
   enemyDamageManager: {fileID: 6282916758059222178}
   fov: {fileID: 1222371153796082431}
-  patrolWaypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  patrolWaypoints: []
   healthBar: {fileID: 6801373267979344497}
   stunBar: {fileID: 589871708282462041}
   kunaiSpeed: 20

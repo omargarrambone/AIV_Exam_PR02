@@ -23,7 +23,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     [SerializeField] GameObject[] enemyGhostPrefabs;
     [SerializeField] ArancinoScript throwThingRef;
     [SerializeField] float healthRechargeSpeed, healthRechargeSpeedIncreaseSpeed,spawnTimer, spawnCounter, dissolveTimer, dissolveCounter,damageArancinoToMyself;
-    [SerializeField] int maxMinions,currentMinions;
+    [SerializeField] int maxMinions, currentMinions, leftMinions;
     [Header("PhaseRythm Variables")]
     [SerializeField] SongManager songManager;
 
@@ -46,9 +46,16 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
         currentState = EnemyState.Chase;
         agent.speed = chaseSpeed;
 
+
         throwThingRef.OnHitOwner.AddListener(ResetMinionsSpawn);
-        throwThingRef.OnHitOwner.AddListener(() => { healthManager.AddHealth(-damageArancinoToMyself); });
+        throwThingRef.OnHitOwner.AddListener(() => { healthManager.TakeDamage(damageArancinoToMyself); });
+        throwThingRef.OnHitOwner.AddListener(SetImmortal);
+
         throwThingRef.OnHitTarget.AddListener(ResetMinionsSpawn);
+        throwThingRef.OnHitTarget.AddListener(SetImmortal);
+
+
+        throwThingRef.ownerPositon = transform;
     }
 
     private void SetRandomDizziness()
@@ -167,6 +174,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 healthManager.IsImmune = true;
                 skinnedMeshRenderer.material = immortalMaterial;
                 anim.SetBool("Stunned", true);
+                anim.SetBool("IsDizzy", false);
                 ParticleSystem dis = Instantiate(dissolveEffect, transform.position, dissolveEffect.transform.rotation);
                 dis.transform.localScale = transform.localScale;
                 Destroy(dis.gameObject, 1);
@@ -174,6 +182,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 agent.isStopped = true;
                 agent.enabled = false;
                 gameObject.transform.SetPositionAndRotation(teleportTransform.position, teleportTransform.rotation);
+                leftMinions = maxMinions;
                 break;
         }
     }
@@ -184,11 +193,21 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
         currentMinions = 0;
         currentState = EnemyState.Attack;
-        healthManager.IsImmune = true;
-        skinnedMeshRenderer.material = immortalMaterial;
-
+        
         anim.SetBool("IsSpawning", true);
         anim.SetBool("IsThrowing", false);
+    }
+
+    private void SetImmortal()
+    {
+        healthManager.IsImmune = true;
+        skinnedMeshRenderer.material = immortalMaterial;
+    }
+
+    private void SetMortal()
+    {
+        healthManager.IsImmune = false;
+        skinnedMeshRenderer.material = baseMaterial;
     }
 
     private void PhaseMinions()
@@ -200,6 +219,8 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
             case EnemyState.Chase:
                 break;
             case EnemyState.Attack:
+                
+
                 if (currentMinions < maxMinions)
                 {
                     spawnCounter -= Time.deltaTime;
@@ -210,31 +231,41 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
                         GameObject enemy = Instantiate(enemyGhostPrefabs[Random.Range(0, enemyGhostPrefabs.Length)]);
 
-                        enemy.GetComponent<BasicEnemyAgentAi>().SetWaypoints(patrolWaypoints);
+                        BasicEnemyAgentAi ai = enemy.GetComponent<BasicEnemyAgentAi>();
+                        ai.SetWaypoints(patrolWaypoints);
+                        HealthManager hm = enemy.GetComponent<HealthManager>();
+                        hm.OnDeath.AddListener(() => { leftMinions--; });
 
                         currentMinions++;
 
                         if(currentMinions >= maxMinions)
                         {
                             anim.SetBool("IsSpawning", false);
-                            anim.SetBool("IsThrowing", true);
                         }
                     }
                 }
 
-                else if (isThrowing) {
 
-                    //Vector3 distanceFromTarget = (playerTarget.position + playerTargetOffset) - throwThingRef.transform.position;
-                    //throwThingRef.transform.position += distanceFromTarget.normalized * throwThingSpeedMovement * Time.deltaTime;
-
-                    /*if (Physics.CheckSphere(throwThingRef.transform.position, 0.4f, playerLayerMask))
-                    {
-                        isThrowing = false;
-                        anim.SetBool("IsThrowing", false);
-                        anim.SetBool("IsSpawning", true);
-                        currentMinions = 0;
-                    }*/
+                if (leftMinions <= 0 && !isThrowing)
+                {
+                    isThrowing = true;
+                    anim.SetBool("IsThrowing", true);
+                    leftMinions = maxMinions;
                 }
+
+                //else if (isThrowing) {
+
+                //Vector3 distanceFromTarget = (playerTarget.position + playerTargetOffset) - throwThingRef.transform.position;
+                //throwThingRef.transform.position += distanceFromTarget.normalized * throwThingSpeedMovement * Time.deltaTime;
+
+                /*if (Physics.CheckSphere(throwThingRef.transform.position, 0.4f, playerLayerMask))
+                {
+                    isThrowing = false;
+                    anim.SetBool("IsThrowing", false);
+                    anim.SetBool("IsSpawning", true);
+                    currentMinions = 0;
+                }*/
+                //}
 
                 break;
             case EnemyState.Stun:
@@ -263,6 +294,8 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 break;
             case EnemyState.Dead:
                 anim.SetBool("IsSpawning", false);
+                currentPhase = FinalBossPhase.PhaseRythm;
+                songManager.PlaySong();
                 break;
             case EnemyState.Dizzy:
                 break;
@@ -278,9 +311,8 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     public void ThrowKunai()
     {
         throwThingRef.gameObject.SetActive(true);
-        isThrowing = true;
+        //isThrowing = true;
         throwThingRef.gameObject.transform.position = throwThingTransform.position;
-        throwThingRef.ownerPositon = transform;
         throwThingRef.targetPosition = playerTarget;
         Vector3 distanceFromTarget = (playerTarget.position) - throwThingRef.transform.position;
         throwThingRef.transform.forward = distanceFromTarget;

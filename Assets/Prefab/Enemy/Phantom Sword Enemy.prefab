@@ -2281,6 +2281,7 @@ GameObject:
   - component: {fileID: 6552613597917543546}
   - component: {fileID: 2120101128715369859}
   - component: {fileID: 1470256232070601503}
+  - component: {fileID: 8626559565149349014}
   m_Layer: 0
   m_Name: Small Katana Enemy
   m_TagString: EnemyWeapon
@@ -2374,6 +2375,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.009960436, y: 0.8757334, z: 0.04749023}
   m_Center: {x: 0.0037231015, y: 0.6331632, z: -0.005563575}
+--- !u!114 &8626559565149349014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4134698194711179341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a066cce2ff3dce14a95d75692cc1554c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyWeaponDamage: 5
 --- !u!1 &4152348823347798324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3228,7 +3242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setMaxHealth: 100
+  setMaxHealth: 30
   CurrentHealth: 0
   OnDeath:
     m_PersistentCalls:
