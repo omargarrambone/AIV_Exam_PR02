@@ -7,10 +7,17 @@ using UnityEngine.Timeline;
 
 public class CutsceneMngr : MonoBehaviour
 {
-    [SerializeField] public GameObject cutsceneDirector;
+    public GameObject cutsceneDirector;
     [SerializeField] private GameObject ninjaForCutscene;
+    [SerializeField] private GameObject enemyForCutscene;
     [SerializeField] private Camera CutsceneCamera;
-    [SerializeField] float cutsceneDuration;
+    private Camera MainCamera;
+    [SerializeField] private float cutsceneDuration;
+
+    private void Start()
+    {
+            MainCamera = Camera.main;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +26,7 @@ public class CutsceneMngr : MonoBehaviour
             cutsceneDirector.SetActive(true);
             PlayerManager.DisablePlayerMovement();
             PlayerManager.SetPosition(240,100,187);
-            Camera.main.gameObject.SetActive(false);
+            MainCamera.gameObject.SetActive(false);
             CutsceneCamera.gameObject.SetActive(true);
             StartCoroutine(FinishCutscene());
         }
@@ -31,8 +38,9 @@ public class CutsceneMngr : MonoBehaviour
         yield return new WaitForSeconds(cutsceneDuration);
         GetComponent<BoxCollider>().enabled = false;
         ninjaForCutscene.SetActive(false);
+        enemyForCutscene.SetActive(false);
         CutsceneCamera.gameObject.SetActive(false);
-       Camera.main.gameObject.SetActive(true);
+        MainCamera.gameObject.SetActive(true);
         PlayerManager.SetPosition(229, 100, 200);
         PlayerManager.EnablePlayerMovement();
 
