@@ -18,8 +18,6 @@ public class PlayerTakeDamage : MonoBehaviour
    [SerializeField] private float invincibilityTimer = 1f;
    [SerializeField] private float invincibilityCounter;
 
-
-
     private void OnTriggerEnter(Collider other)
     {
         enemyIsAttacking = true;

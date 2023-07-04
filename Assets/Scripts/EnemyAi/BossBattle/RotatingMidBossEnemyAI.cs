@@ -18,7 +18,7 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
         healthManager.IsImmune = true;
         SetRandomDizziness();
 
-        parryChance = 0;
+        parryTimer = 0;
     }
 
     void SetWeaponsCollider(bool value)
