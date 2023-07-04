@@ -8,7 +8,7 @@ public class ArancinoScript : MonoBehaviour
     [SerializeField] bool isGoingToTarget;
     public Transform throwThingPosition,ownerPositon, targetPosition;
     [SerializeField] Vector3 playerTargetOffset;
-    [SerializeField] float distanceToHit,throwThingSpeedMovement, throwThingSpeedRotation;
+    [SerializeField] float distanceToHitTarget,distanceToHitOwner,throwThingSpeedMovement, throwThingSpeedRotation;
     public UnityEvent OnHitOwner, OnHitTarget;
 
     private void OnEnable()
@@ -23,13 +23,19 @@ public class ArancinoScript : MonoBehaviour
 
         transform.position += transform.forward * throwThingSpeedMovement * Time.deltaTime;
 
-        if(Vector3.Distance(transform.position, targetPosition.position) < distanceToHit)
+        if (isGoingToTarget)
         {
-            if (isGoingToTarget)
+            float distance = Vector3.Distance(transform.position, targetPosition.position);
+            Debug.Log(distance);
+            if (distance< distanceToHitTarget)
             {
                 OnHitTarget.Invoke();
+                gameObject.SetActive(false);
             }
-            else
+        }
+        else
+        {
+            if (Vector3.Distance(transform.position, ownerPositon.position) < distanceToHitOwner)
             {
                 OnHitOwner.Invoke();
                 gameObject.SetActive(false);

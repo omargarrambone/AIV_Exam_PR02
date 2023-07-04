@@ -42,7 +42,7 @@ public class SongManager : MonoBehaviour
         {
             isPlaying = false;
             PlayerManager.SetTriggerAnimation("IsNotDancing");
-            if (rythmArrowsManager.PlayerPoints <= rythmArrowsManager.EnemyPoints)
+            if (rythmArrowsManager.PlayerPoints >= rythmArrowsManager.EnemyPoints)
             {
                gameObject.SetActive(false);
                PlayerManager.EnableDisablePlayerMovement(true);

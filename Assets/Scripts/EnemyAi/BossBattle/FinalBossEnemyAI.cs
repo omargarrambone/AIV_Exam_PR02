@@ -22,7 +22,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     [SerializeField] Transform teleportTransform, throwThingTransform;
     [SerializeField] GameObject[] enemyGhostPrefabs;
     [SerializeField] ArancinoScript throwThingRef;
-    [SerializeField] float healthRechargeSpeed, healthRechargeSpeedIncreaseSpeed,spawnTimer, spawnCounter, dissolveTimer, dissolveCounter,damageArancinoToMyself;
+    [SerializeField] float healthRechargeSpeed, healthRechargeSpeedIncreaseSpeed, dissolveTimer, dissolveCounter,damageArancinoToMyself;
     [SerializeField] int maxMinions, currentMinions, leftMinions;
     [Header("PhaseRythm Variables")]
     [SerializeField] SongManager songManager;
@@ -175,6 +175,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 skinnedMeshRenderer.material = immortalMaterial;
                 anim.SetBool("Stunned", true);
                 anim.SetBool("IsDizzy", false);
+                isAttacking = false;
                 ParticleSystem dis = Instantiate(dissolveEffect, transform.position, dissolveEffect.transform.rotation);
                 dis.transform.localScale = transform.localScale;
                 Destroy(dis.gameObject, 1);
@@ -196,6 +197,8 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
         
         anim.SetBool("IsSpawning", true);
         anim.SetBool("IsThrowing", false);
+
+        isThrowing = false;
     }
 
     private void SetImmortal()
@@ -219,32 +222,6 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
             case EnemyState.Chase:
                 break;
             case EnemyState.Attack:
-                
-
-                if (currentMinions < maxMinions)
-                {
-                    spawnCounter -= Time.deltaTime;
-
-                    if(spawnCounter < 0)
-                    {
-                        spawnCounter = spawnTimer;
-
-                        GameObject enemy = Instantiate(enemyGhostPrefabs[Random.Range(0, enemyGhostPrefabs.Length)]);
-
-                        BasicEnemyAgentAi ai = enemy.GetComponent<BasicEnemyAgentAi>();
-                        ai.SetWaypoints(patrolWaypoints);
-                        HealthManager hm = enemy.GetComponent<HealthManager>();
-                        hm.OnDeath.AddListener(() => { leftMinions--; });
-
-                        currentMinions++;
-
-                        if(currentMinions >= maxMinions)
-                        {
-                            anim.SetBool("IsSpawning", false);
-                        }
-                    }
-                }
-
 
                 if (leftMinions <= 0 && !isThrowing)
                 {
@@ -252,20 +229,6 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                     anim.SetBool("IsThrowing", true);
                     leftMinions = maxMinions;
                 }
-
-                //else if (isThrowing) {
-
-                //Vector3 distanceFromTarget = (playerTarget.position + playerTargetOffset) - throwThingRef.transform.position;
-                //throwThingRef.transform.position += distanceFromTarget.normalized * throwThingSpeedMovement * Time.deltaTime;
-
-                /*if (Physics.CheckSphere(throwThingRef.transform.position, 0.4f, playerLayerMask))
-                {
-                    isThrowing = false;
-                    anim.SetBool("IsThrowing", false);
-                    anim.SetBool("IsSpawning", true);
-                    currentMinions = 0;
-                }*/
-                //}
 
                 break;
             case EnemyState.Stun:
@@ -287,7 +250,6 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                     {
                         currentState = EnemyState.Attack;
                         anim.SetBool("IsSpawning", true);
-                        spawnCounter = spawnTimer;
                     }
                 }
 
@@ -306,6 +268,25 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     private void PhaseRythm()
     {
 
+    }
+
+    public void SpawnEnemy()
+    {
+        if (currentMinions < maxMinions)
+        {
+                GameObject enemy = Instantiate(enemyGhostPrefabs[Random.Range(0, enemyGhostPrefabs.Length)]);
+                BasicEnemyAgentAi ai = enemy.GetComponent<BasicEnemyAgentAi>();
+                ai.SetWaypoints(patrolWaypoints);
+                HealthManager hm = enemy.GetComponent<HealthManager>();
+                hm.OnDeath.AddListener(() => { leftMinions--; });
+
+                currentMinions++;
+
+                if (currentMinions >= maxMinions)
+                {
+                    anim.SetBool("IsSpawning", false);
+                }
+        }
     }
 
     public void ThrowKunai()

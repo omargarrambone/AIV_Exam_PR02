@@ -1124,8 +1124,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4560688306811244006}
   - component: {fileID: 1222371153796082431}
+  - component: {fileID: 5791305017794054400}
   - component: {fileID: 8231185110898032415}
-  - component: {fileID: 5839978592555352445}
   - component: {fileID: 6282916758059222178}
   - component: {fileID: 8675663854312429257}
   - component: {fileID: 8056925971522635024}
@@ -1164,20 +1164,50 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650208938979513574}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 169c2304910fef84c8a5200410023208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 20
-  Angle: 150
+  Angle: 360
   TargetMask:
     serializedVersion: 2
     m_Bits: 256
   ObstacleMask:
     serializedVersion: 2
     m_Bits: 8
-  CanSeePlayer: 0
+  CanSeePlayer: 1
+--- !u!114 &5791305017794054400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650208938979513574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3826af252fa6846b61abbc74937635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 1
+  chaseSpeed: 4
+  patrolSpeed: 2
+  attackDistance: 10
+  attackDamage: 2
+  agent: {fileID: 8231185110898032415}
+  weapon: {fileID: 8693467752678814421, guid: df918cdc90cd15f428438c08dbe0edc9, type: 3}
+  stunnManager: {fileID: 8675663854312429257}
+  healthManager: {fileID: 8056925971522635024}
+  anim: {fileID: 6105898070594296358}
+  arancini: {fileID: 5860177834828424469}
+  enemyDamageManager: {fileID: 6282916758059222178}
+  fov: {fileID: 1222371153796082431}
+  patrolWaypoints: []
+  healthBar: {fileID: 6801373267979344497}
+  stunBar: {fileID: 589871708282462041}
+  isMoving: 0
+  kunaiTransform: {fileID: 298726727236088852}
 --- !u!195 &8231185110898032415
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1200,38 +1230,6 @@ NavMeshAgent:
   m_BaseOffset: -0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5839978592555352445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650208938979513574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a2401868650024baf32adf548355b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
-  chaseSpeed: 4
-  patrolSpeed: 2
-  attackDistance: 10
-  attackDamage: 2
-  agent: {fileID: 8231185110898032415}
-  weapon: {fileID: 8693467752678814421, guid: df918cdc90cd15f428438c08dbe0edc9, type: 3}
-  stunnManager: {fileID: 8675663854312429257}
-  healthManager: {fileID: 8056925971522635024}
-  anim: {fileID: 6105898070594296358}
-  arancini: {fileID: 5860177834828424469}
-  enemyDamageManager: {fileID: 6282916758059222178}
-  fov: {fileID: 1222371153796082431}
-  patrolWaypoints: []
-  healthBar: {fileID: 6801373267979344497}
-  stunBar: {fileID: 589871708282462041}
-  kunaiSpeed: 20
-  isMoving: 1
-  kunaiTransform: {fileID: 298726727236088852}
-  handWeapon: {fileID: 0}
 --- !u!114 &6282916758059222178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,7 +1275,7 @@ MonoBehaviour:
   OnStun:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5839978592555352445}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BasicEnemyAgentAi, Assembly-CSharp
         m_MethodName: SetState
         m_Mode: 3
@@ -1306,7 +1304,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5839978592555352445}
+      - m_Target: {fileID: 5791305017794054400}
         m_TargetAssemblyTypeName: BasicEnemyAgentAi, Assembly-CSharp
         m_MethodName: SetState
         m_Mode: 3

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8693467752678814421
+--- !u!1 &2244281043630820898
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2056359483741519562}
-  - component: {fileID: 2224752630790527653}
-  - component: {fileID: 8697901600181660437}
-  - component: {fileID: 6100413565505955208}
-  - component: {fileID: 3770367372376057741}
-  - component: {fileID: -1416435495760654615}
+  - component: {fileID: 3487124297624741829}
+  - component: {fileID: 203761986626737428}
+  - component: {fileID: 7595153251412182274}
   m_Layer: 0
   m_Name: NewKunai
   m_TagString: EnemyWeapon
@@ -21,36 +18,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2056359483741519562
+--- !u!4 &3487124297624741829
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8693467752678814421}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 2244281043630820898}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2224752630790527653
+  m_Father: {fileID: 2056359483741519562}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!33 &203761986626737428
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8693467752678814421}
+  m_GameObject: {fileID: 2244281043630820898}
   m_Mesh: {fileID: 4300000, guid: 0874e49ca958df4408653928f931e78c, type: 3}
---- !u!23 &8697901600181660437
+--- !u!23 &7595153251412182274
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8693467752678814421}
+  m_GameObject: {fileID: 2244281043630820898}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,6 +83,41 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8693467752678814421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2056359483741519562}
+  - component: {fileID: 6100413565505955208}
+  - component: {fileID: 5629935584749223873}
+  - component: {fileID: 7661549185153528828}
+  m_Layer: 0
+  m_Name: NewKunai
+  m_TagString: EnemyWeapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2056359483741519562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8693467752678814421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3487124297624741829}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6100413565505955208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,20 +134,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   hitDistance: 0.3
---- !u!114 &3770367372376057741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8693467752678814421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a066cce2ff3dce14a95d75692cc1554c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyWeaponDamage: 5
---- !u!65 &-1416435495760654615
+--- !u!65 &5629935584749223873
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,5 +153,18 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.7, z: 0.2}
+  m_Size: {x: 0.1, y: 0.2, z: 0.7}
   m_Center: {x: 0, y: 0.15, z: 0}
+--- !u!114 &7661549185153528828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8693467752678814421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a066cce2ff3dce14a95d75692cc1554c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyWeaponDamage: 5
