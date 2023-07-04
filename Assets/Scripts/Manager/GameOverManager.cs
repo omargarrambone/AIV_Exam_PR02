@@ -2,38 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Xml.Serialization;
 
 public class GameOverManager : MonoBehaviour
 {
-    public SceneSelector SceneSelector;
-    public SaveDataJSON DataSaver;
-    public EventSystemManger EventSystemManger;
-    public GameObject FirstSelectedButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        DataSaver = FindObjectOfType<SaveDataJSON>();
-        EventSystemManger = FindObjectOfType<EventSystemManger>();
-
-        EventSystemManger.SwitchCurrentButton(FirstSelectedButton);
-
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
     }
 
-    public void LoadLastSave()
+    public void DontDestroyScene()
     {
-        if (SaveDataJSON.DoesSavedDataExist())
-        {
-            DataSaver.LoadData();
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            SceneSelector.HubScene();
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
-        PlayerManager.EnablePlayerMovement();
+        SceneManager.LoadScene("DontDestroyScene");
     }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main Menu Scene");
+    }
+
 }
