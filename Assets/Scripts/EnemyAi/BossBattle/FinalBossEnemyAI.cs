@@ -21,10 +21,8 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     [SerializeField] ParticleSystem dissolveEffect;
     [SerializeField] Transform teleportTransform, throwThingTransform;
     [SerializeField] GameObject[] enemyGhostPrefabs;
-    [SerializeField] GameObject throwThingPrefab;
-    GameObject throwThingRef;
-    [SerializeField] LayerMask playerLayerMask;
-    [SerializeField] float throwThingSpeedMovement,healthRechargeSpeed, healthRechargeSpeedIncreaseSpeed,spawnTimer, spawnCounter, dissolveTimer, dissolveCounter;
+    [SerializeField] ArancinoScript throwThingRef;
+    [SerializeField] float healthRechargeSpeed, healthRechargeSpeedIncreaseSpeed,spawnTimer, spawnCounter, dissolveTimer, dissolveCounter,damageArancinoToMyself;
     [SerializeField] int maxMinions,currentMinions;
     [Header("PhaseRythm Variables")]
     [SerializeField] SongManager songManager;
@@ -47,6 +45,10 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
         currentState = EnemyState.Chase;
         agent.speed = chaseSpeed;
+
+        throwThingRef.OnHitOwner.AddListener(ResetMinionsSpawn);
+        throwThingRef.OnHitOwner.AddListener(() => { healthManager.AddHealth(-damageArancinoToMyself); });
+        throwThingRef.OnHitTarget.AddListener(ResetMinionsSpawn);
     }
 
     private void SetRandomDizziness()
@@ -116,7 +118,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
                     currentAttack--;
 
-                    if(currentAttack < 1)
+                    if(currentAttack < 0)
                     {
                         isAttacking = false;
                         anim.SetBool("IsAttacking", false);
@@ -165,8 +167,28 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 healthManager.IsImmune = true;
                 skinnedMeshRenderer.material = immortalMaterial;
                 anim.SetBool("Stunned", true);
+                ParticleSystem dis = Instantiate(dissolveEffect, transform.position, dissolveEffect.transform.rotation);
+                dis.transform.localScale = transform.localScale;
+                Destroy(dis.gameObject, 1);
+                PowerUpManager.SpawnPowerUpRandom(transform.position);
+                agent.isStopped = true;
+                agent.enabled = false;
+                gameObject.transform.SetPositionAndRotation(teleportTransform.position, teleportTransform.rotation);
                 break;
         }
+    }
+
+    private void ResetMinionsSpawn()
+    {
+        if (healthManager.IsImmune) return;
+
+        currentMinions = 0;
+        currentState = EnemyState.Attack;
+        healthManager.IsImmune = true;
+        skinnedMeshRenderer.material = immortalMaterial;
+
+        anim.SetBool("IsSpawning", true);
+        anim.SetBool("IsThrowing", false);
     }
 
     private void PhaseMinions()
@@ -201,16 +223,17 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 }
 
                 else if (isThrowing) {
-                    Vector3 distanceFromTarget = playerTarget.position - agent.transform.position;
-                    throwThingRef.transform.position += distanceFromTarget * throwThingSpeedMovement * Time.deltaTime;
 
-                    if (Physics.CheckSphere(throwThingRef.transform.position, 0.4f, playerLayerMask))
+                    //Vector3 distanceFromTarget = (playerTarget.position + playerTargetOffset) - throwThingRef.transform.position;
+                    //throwThingRef.transform.position += distanceFromTarget.normalized * throwThingSpeedMovement * Time.deltaTime;
+
+                    /*if (Physics.CheckSphere(throwThingRef.transform.position, 0.4f, playerLayerMask))
                     {
                         isThrowing = false;
                         anim.SetBool("IsThrowing", false);
                         anim.SetBool("IsSpawning", true);
                         currentMinions = 0;
-                    }
+                    }*/
                 }
 
                 break;
@@ -227,22 +250,13 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                     healthManager.CurrentHealth = healthManager.MaxHealth;
                     anim.SetBool("Stunned", false);
 
-                    ParticleSystem dis = Instantiate(dissolveEffect, transform.position, dissolveEffect.transform.rotation);
-                    dis.transform.localScale = transform.localScale;
-
                     dissolveCounter += Time.deltaTime;
 
-                    Destroy(dis.gameObject, 1);
-
-                    if(dissolveCounter > dissolveTimer)
+                    if (dissolveCounter > dissolveTimer)
                     {
-                        PowerUpManager.SpawnPowerUpRandom(transform.position);
-
-                        agent.isStopped = true;
-                        agent.enabled = false;
-                        gameObject.transform.SetPositionAndRotation(teleportTransform.position, teleportTransform.rotation);
                         currentState = EnemyState.Attack;
                         anim.SetBool("IsSpawning", true);
+                        spawnCounter = spawnTimer;
                     }
                 }
 
@@ -263,9 +277,15 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
     public void ThrowKunai()
     {
-        Vector3 distanceFromTarget = playerTarget.position - agent.transform.position;
-        throwThingRef = Instantiate(throwThingPrefab, throwThingTransform.position, Quaternion.Euler(distanceFromTarget));
+        throwThingRef.gameObject.SetActive(true);
         isThrowing = true;
+        throwThingRef.gameObject.transform.position = throwThingTransform.position;
+        throwThingRef.ownerPositon = transform;
+        throwThingRef.targetPosition = playerTarget;
+        Vector3 distanceFromTarget = (playerTarget.position) - throwThingRef.transform.position;
+        throwThingRef.transform.forward = distanceFromTarget;
+        healthManager.IsImmune = false;
+        skinnedMeshRenderer.material = baseMaterial;
     }
 }
 

@@ -1216,7 +1216,7 @@ MonoBehaviour:
   chaseSpeed: 4
   patrolSpeed: 2
   attackDistance: 10
-  attackDamage: 1
+  attackDamage: 2
   agent: {fileID: 8231185110898032415}
   weapon: {fileID: 4643519359033591776, guid: 33894dfc1e9e14c489e0670480c36bbf, type: 3}
   stunnManager: {fileID: 8675663854312429257}
@@ -1271,8 +1271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsStunned: 0
-  IsImmune: 0
-  NotCountsForStunCount: 0
+  IsImmune: 1
+  NotCountsForStunCount: 1
   StunnDecreaseVelocity: 20
   Timer: 3
   counter: 0
