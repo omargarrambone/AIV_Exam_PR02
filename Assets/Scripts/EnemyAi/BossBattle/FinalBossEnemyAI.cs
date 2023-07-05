@@ -31,6 +31,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     [SerializeField] Camera rythmCamera;
     [SerializeField] SongManager songManager;
     [SerializeField] Transform rythmTransform;
+    [SerializeField] float cameraLerpTimer, cameraLerpCounter;
 
     protected override void Start()
     {
@@ -274,12 +275,10 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 anim.SetTrigger("Dance");
                 songManager.PlaySong();
                 SetMortal();
-                currentState = EnemyState.Attack;
+                currentState = EnemyState.Patrol;
                 GoToRythmTransform();
                 rythmCamera.transform.position = Camera.main.transform.position;
                 rythmCamera.transform.rotation = Camera.main.transform.rotation;
-                Camera.main.gameObject.SetActive(false);
-                rythmCamera.gameObject.SetActive(true);
                 PlayerManager.HidePlayerCanvas();
                 break;
         }
@@ -294,7 +293,36 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
     private void PhaseRythm()
     {
+        switch (currentState)
+        {
+            case EnemyState.Patrol:
+                cameraLerpCounter += Time.deltaTime;
 
+                if (cameraLerpCounter > cameraLerpTimer)
+                {
+                    Camera.main.gameObject.SetActive(false);
+                    rythmCamera.gameObject.SetActive(true);
+
+                    currentState = EnemyState.Attack;
+                }
+                break;
+            case EnemyState.Chase:
+                break;
+            case EnemyState.Attack:
+                break;
+            case EnemyState.Stun:
+                break;
+            case EnemyState.Healing:
+                break;
+            case EnemyState.Dead:
+                break;
+            case EnemyState.Dizzy:
+                break;
+            case EnemyState.LAST:
+                break;
+            default:
+                break;
+        }
     }
 
     public void SpawnEnemy()

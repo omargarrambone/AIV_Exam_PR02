@@ -26,6 +26,7 @@ public struct WorldData
     //Enemies Data
     public int enemiesKilled;
     public int enemiesPurified;
+    public float masterVolume, musicVolume, sfxVolume;
 
     //Arenas Data
     public bool[] arenasCompleted;

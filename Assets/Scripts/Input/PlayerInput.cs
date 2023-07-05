@@ -127,7 +127,6 @@ public class PlayerInput : MonoBehaviour
 
     private void CheckIsGrounded()
     {
-
         _anim.SetBool("IsGrounded", IsGrounded());
     }
 

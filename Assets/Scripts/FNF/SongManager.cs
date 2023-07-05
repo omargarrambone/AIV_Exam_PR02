@@ -6,21 +6,15 @@ using UnityEngine.Rendering.Universal;
 
 public class SongManager : MonoBehaviour
 {
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource audioSource, bossBattleAudioSource;
     [SerializeField] TMPro.TMP_Text audiotext;
     [SerializeField] GameState lastState;
     [SerializeField] UnityEvent OnSongStart,OnSongEnded;
     [SerializeField] Camera songCamera;
-    //UniversalAdditionalCameraData universalAdditionalCameraData;
-    [SerializeField] Transform playerRythmTransform;
+    [SerializeField] Transform playerRythmTransform,endPlayerTransform;
     [SerializeField] RythmArrowsManager rythmArrowsManager;
 
     bool isPlaying;
-
-    private void Start()
-    {
-        //universalAdditionalCameraData = Camera.main.GetComponent<UniversalAdditionalCameraData>();
-    }
 
     void Update()
     {
@@ -37,7 +31,10 @@ public class SongManager : MonoBehaviour
             lastState = GameState.Playing;
         }
 
-        if(!audioSource.isPlaying && audioSource.time/audioSource.clip.length > 0.99f)
+        Debug.Log(audioSource.time);
+        if (GameManager.GameState == GameState.Paused) return;
+
+        if(!audioSource.isPlaying && audioSource.time == 0)
         {
             isPlaying = false;
             PlayerManager.SetTriggerAnimation("IsNotDancing");
@@ -45,14 +42,15 @@ public class SongManager : MonoBehaviour
             {
                gameObject.SetActive(false);
                PlayerManager.EnableDisablePlayerMovement(true);
+               PlayerManager.SetPosition(endPlayerTransform.position);
                OnSongEnded.Invoke();
-               //universalAdditionalCameraData.cameraStack.Remove(songCamera);
             }
             else
             {
                 PlayerManager.Death();
             }
         }
+
     }
 
     [ContextMenu("Play song")]
@@ -60,6 +58,7 @@ public class SongManager : MonoBehaviour
     {
         if (isPlaying) return;
 
+        bossBattleAudioSource.Stop();
         audioSource.Play();
         isPlaying = true;
         PlayerManager.EnableDisablePlayerMovement(false);
@@ -67,9 +66,6 @@ public class SongManager : MonoBehaviour
         PlayerManager.SetPosition(playerRythmTransform.position);
         PlayerManager.SetRotation(playerRythmTransform.rotation);
         PlayerManager.SetTriggerAnimation("IsDancing");
-
         OnSongStart.Invoke();
-
-        //universalAdditionalCameraData.cameraStack.Add(songCamera);
     }
 }

@@ -13,7 +13,7 @@ public class CutsceneMngr : MonoBehaviour
     [SerializeField] private Camera CutsceneCamera;
     private Camera MainCamera;
     [SerializeField] private float cutsceneDuration;
-    [SerializeField] private AudioSource backgroundMusicFight, ambientAudioSourc;
+    [SerializeField] private AudioSource backgroundMusicFight, ambientAudioSource;
     [SerializeField] private UnityEngine.Audio.AudioMixer mixer;
 
     float oldVolumeValue;
