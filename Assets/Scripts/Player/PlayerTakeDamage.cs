@@ -20,6 +20,8 @@ public class PlayerTakeDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (HealthManager.IsImmune) return;
+
         enemyIsAttacking = true;
 
         if (other.gameObject.tag == "EnemyWeapon")

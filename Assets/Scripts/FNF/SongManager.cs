@@ -12,8 +12,7 @@ public class SongManager : MonoBehaviour
     [SerializeField] UnityEvent OnSongStart,OnSongEnded;
     [SerializeField] Camera songCamera;
     UniversalAdditionalCameraData universalAdditionalCameraData;
-    [SerializeField] Vector3 playerPosOnStartSong;
-    [SerializeField] Vector3 playerRotOnStartSong;
+    [SerializeField] Transform playerRythmTransform;
     [SerializeField] RythmArrowsManager rythmArrowsManager;
 
     bool isPlaying;
@@ -65,8 +64,8 @@ public class SongManager : MonoBehaviour
         isPlaying = true;
         PlayerManager.EnableDisablePlayerMovement(false);
 
-        PlayerManager.SetPosition(playerPosOnStartSong);
-        PlayerManager.SetRotation(playerRotOnStartSong);
+        PlayerManager.SetPosition(playerRythmTransform.position);
+        PlayerManager.SetRotation(playerRythmTransform.rotation);
         PlayerManager.SetTriggerAnimation("IsDancing");
 
         OnSongStart.Invoke();

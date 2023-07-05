@@ -17,15 +17,18 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     [SerializeField] float attackTimer, attackCounter, rotationSpeed;
     [SerializeField] private float dizzinessCounter, dizzinessTimer, minDizzinessTimer, maxDizzinessTimer;
     [Header("PhaseMinions Variables")]
+    [SerializeField] CameraFollow minionCamera;
     [SerializeField] bool isThrowing;
     [SerializeField] ParticleSystem dissolveEffect;
     [SerializeField] Transform teleportTransform, throwThingTransform;
     [SerializeField] GameObject[] enemyGhostPrefabs;
+    [SerializeField] Transform[] spawnPosition;
     [SerializeField] ArancinoScript throwThingRef;
     [SerializeField] float healthRechargeSpeed, healthRechargeSpeedIncreaseSpeed, dissolveTimer, dissolveCounter,damageArancinoToMyself;
     [SerializeField] int maxMinions, currentMinions, leftMinions;
     [Header("PhaseRythm Variables")]
     [SerializeField] SongManager songManager;
+    [SerializeField] Transform rythmTransform;
 
     protected override void Start()
     {
@@ -37,9 +40,8 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
         stunnManager.StunnDecreaseVelocity = 50.0f;
         stunnManager.Timer = 2f;
         stunnManager.IsImmune = true;
-        healthManager.IsImmune = true;
 
-        skinnedMeshRenderer.material = immortalMaterial;
+        SetImmortal();
 
         parryTimer = 0f;
 
@@ -133,10 +135,9 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                         if (!isAttacking)
                         {
                             SetWeaponsCollider(false);
-                            agent.isStopped = true;
+                            PauseMovement();
                             currentState = EnemyState.Dizzy;
-                            healthManager.IsImmune = false;
-                            skinnedMeshRenderer.material = baseMaterial;
+                            SetMortal();
                             anim.SetBool("IsDizzy",true);
                             SetRandomDizziness();
                             break;
@@ -155,24 +156,23 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                     SetRandomDizziness();
                     anim.SetBool("IsDizzy", false);
                     currentState = EnemyState.Chase;
-                    agent.isStopped = false;
+                    ResumeMovement();
                     weapon.gameObject.SetActive(true);
-                    healthManager.IsImmune = true;
                     SetWeaponsCollider(true);
 
                     stunnManager.IsImmune = true;
                     stunnManager.SetStun(0);
-                    skinnedMeshRenderer.material = immortalMaterial;
+                    SetImmortal();
                     break;
                 }
 
                 break;
 
             case EnemyState.Dead:
+                anim.SetBool("IsAttacking", false);
                 currentPhase = FinalBossPhase.PhaseMinions;
                 currentState = EnemyState.Healing;
-                healthManager.IsImmune = true;
-                skinnedMeshRenderer.material = immortalMaterial;
+                SetImmortal();
                 anim.SetBool("Stunned", true);
                 anim.SetBool("IsDizzy", false);
                 isAttacking = false;
@@ -180,8 +180,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 dis.transform.localScale = transform.localScale;
                 Destroy(dis.gameObject, 1);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
-                agent.isStopped = true;
-                agent.enabled = false;
+                PauseMovement();
                 gameObject.transform.SetPositionAndRotation(teleportTransform.position, teleportTransform.rotation);
                 leftMinions = maxMinions;
                 break;
@@ -199,6 +198,18 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
         anim.SetBool("IsThrowing", false);
 
         isThrowing = false;
+    }
+
+    private void PauseMovement()
+    {
+        agent.isStopped = true;
+        agent.enabled = false;
+    }
+
+    private void ResumeMovement()
+    {
+        agent.isStopped = false;
+        agent.enabled = true;
     }
 
     private void SetImmortal()
@@ -257,7 +268,11 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
             case EnemyState.Dead:
                 anim.SetBool("IsSpawning", false);
                 currentPhase = FinalBossPhase.PhaseRythm;
+                anim.SetTrigger("Dance");
                 songManager.PlaySong();
+                SetMortal();
+                currentState = EnemyState.Attack;
+                GoToRythmTransform();
                 break;
             case EnemyState.Dizzy:
                 break;
@@ -265,16 +280,38 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
     }
 
+    public void GoToRythmTransform()
+    {
+        transform.position = rythmTransform.position;
+        transform.rotation = rythmTransform.rotation;
+    }
+
     private void PhaseRythm()
     {
-
+        //switch (currentState)
+        //{
+        //    case EnemyState.Patrol:
+        //        break;
+        //    case EnemyState.Chase:
+        //        break;
+        //    case EnemyState.Attack:
+        //        break;
+        //    case EnemyState.Stun:
+        //        break;
+        //    case EnemyState.Healing:
+        //        break;
+        //    case EnemyState.Dead:
+        //        break;
+        //    case EnemyState.Dizzy:
+        //        break;
+        //}
     }
 
     public void SpawnEnemy()
     {
         if (currentMinions < maxMinions)
         {
-                GameObject enemy = Instantiate(enemyGhostPrefabs[Random.Range(0, enemyGhostPrefabs.Length)]);
+                GameObject enemy = Instantiate(enemyGhostPrefabs[Random.Range(0, enemyGhostPrefabs.Length)], spawnPosition[Random.Range(0, spawnPosition.Length)].position, Quaternion.Euler(0,180,0));
                 BasicEnemyAgentAi ai = enemy.GetComponent<BasicEnemyAgentAi>();
                 ai.SetWaypoints(patrolWaypoints);
                 HealthManager hm = enemy.GetComponent<HealthManager>();
@@ -292,13 +329,11 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     public void ThrowKunai()
     {
         throwThingRef.gameObject.SetActive(true);
-        //isThrowing = true;
         throwThingRef.gameObject.transform.position = throwThingTransform.position;
         throwThingRef.targetPosition = playerTarget;
         Vector3 distanceFromTarget = (playerTarget.position) - throwThingRef.transform.position;
         throwThingRef.transform.forward = distanceFromTarget;
-        healthManager.IsImmune = false;
-        skinnedMeshRenderer.material = baseMaterial;
+        SetMortal();
     }
 }
 
