@@ -109,7 +109,7 @@ public class CameraFollow : MonoBehaviour
                 break;
 
             case CameraType.DiabloCameraSlums:
-                SimpleCameraWithOffset(diabloCameraSlumsRotationOffset, diabloCameraPositionOffset,newCameraPosition);
+                SimpleCameraWithOffset(diabloCameraSlumsRotationOffset, diabloCameraSlumsPositionOffset,newCameraPosition);
                 break;
 
             case CameraType.MazeCamera:
