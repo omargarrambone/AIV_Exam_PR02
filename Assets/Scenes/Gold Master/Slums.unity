@@ -8479,7 +8479,7 @@ PrefabInstance:
     - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
       propertyPath: patrolWaypoints.Array.size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
@@ -10797,6 +10797,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
+      propertyPath: patrolWaypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
+      propertyPath: patrolWaypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 470711412}
+    - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
+      propertyPath: patrolWaypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 689451549}
+    - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
+        type: 3}
+      propertyPath: patrolWaypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 619596097}
     - target: {fileID: 5621770429164290102, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
       propertyPath: m_Name
@@ -11227,7 +11247,7 @@ PrefabInstance:
     - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
       propertyPath: patrolWaypoints.Array.size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 194460437504467345, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
@@ -12680,12 +12700,12 @@ PrefabInstance:
     - target: {fileID: 5287679830308817033, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
       propertyPath: m_Size.x
-      value: 1.5415356
+      value: 1.474536
       objectReference: {fileID: 0}
     - target: {fileID: 5287679830308817033, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
       propertyPath: m_Size.z
-      value: 0.81590235
+      value: 0.7154285
       objectReference: {fileID: 0}
     - target: {fileID: 5287679830308817033, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
@@ -12695,12 +12715,12 @@ PrefabInstance:
     - target: {fileID: 5287679830308817033, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
       propertyPath: m_Center.x
-      value: -0.19884185
+      value: -0.23234168
       objectReference: {fileID: 0}
     - target: {fileID: 5287679830308817033, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.33635324
+      value: 0.38659275
       objectReference: {fileID: 0}
     - target: {fileID: 7240732938353970761, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}

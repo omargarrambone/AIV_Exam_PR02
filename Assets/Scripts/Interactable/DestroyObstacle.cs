@@ -8,7 +8,7 @@ public class DestroyObstacle : MonoBehaviour
     public GameObject BrokenObstacle;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Sword")
+        if (other.gameObject.tag == "Rod")
         {
             Obstacle.SetActive(false);
             BrokenObstacle.SetActive(true);

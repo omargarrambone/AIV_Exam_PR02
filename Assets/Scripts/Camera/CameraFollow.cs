@@ -37,6 +37,10 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Vector3 savingCameraPositionOffset;
     [SerializeField] Vector3 savingCameraRotationOffset;
 
+    [Header("MinionsPhaseBossBattleCamera Camera Variables")]
+    [SerializeField] Vector3 minionsPhaseBossBattleCameraPositionOffset;
+    [SerializeField] Vector3 minionsPhaseBossBattleCameraRotationOffset;
+
     [Header("Lerp Variables")]
     [SerializeField] bool hasStartedLerping;
     [SerializeField] float lerpTimer, lerpCounter;
@@ -101,45 +105,44 @@ public class CameraFollow : MonoBehaviour
                 break;
 
             case CameraType.DiabloCamera:
-                DiabloCamera(newCameraPosition);
+                SimpleCameraWithOffset(diabloCameraRotationOffset, diabloCameraPositionOffset,newCameraPosition);
                 break;
 
             case CameraType.DiabloCameraSlums:
-                DiabloCameraSlums(newCameraPosition);
+                SimpleCameraWithOffset(diabloCameraSlumsRotationOffset, diabloCameraPositionOffset,newCameraPosition);
                 break;
 
             case CameraType.MazeCamera:
-                MazeCamera();
+                SimpleCameraWithOffset(mazeCameraRotationOffset, mazeCameraPositionOffset, actualCameraTarget.position);
                 break;
 
             case CameraType.SavingCamera:
-                SavingCamera(newCameraPosition);
+                SimpleCameraWithOffset(savingCameraRotationOffset, savingCameraPositionOffset,newCameraPosition);
+                break;
+
+            case CameraType.MinionsPhaseBossBattleCamera:
+                SimpleCameraWithOffset(minionsPhaseBossBattleCameraRotationOffset,minionsPhaseBossBattleCameraPositionOffset,newCameraPosition);
                 break;
 
         }
     }
 
-    private void SavingCamera(Vector3 newCameraPosition)
+    private void SimpleCameraWithOffset(Vector3 rotation, Vector3 offset,Vector3 newCameraPosition)
     {
-        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + savingCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
-        NextRotation =  Quaternion.Euler(savingCameraRotationOffset);
+        NextRotation = Quaternion.Euler(rotation);
+        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + offset, ref smoothDampVelocity, smoothSpeed);
     }
 
-    private void DiabloCamera(Vector3 newCameraPosition)
-    {
-        NextRotation = Quaternion.Euler(diabloCameraRotationOffset);
-        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + diabloCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
-    }
-    private void DiabloCameraSlums(Vector3 newCameraPosition)
-    {
-        NextRotation = Quaternion.Euler(diabloCameraSlumsRotationOffset);
-        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + diabloCameraSlumsPositionOffset, ref smoothDampVelocity, smoothSpeed);
-    }
-    private void MazeCamera()
-    {
-        NextRotation = Quaternion.Euler(mazeCameraRotationOffset);
-        transform.position = Vector3.SmoothDamp(transform.position, actualCameraTarget.position + mazeCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
-    }
+    //private void MinionsPhaseBossBattleCamera(Vector3 newCameraPosition)
+    //{
+    //    Vector3 relativePos = defaultCameraTarget.position - transform.position;
+
+    //    NextRotation = Quaternion.LookRotation(relativePos);
+    //    NextRotation = Quaternion.Slerp(Camera.main.transform.rotation, NextRotation, Time.deltaTime * slerpSpeedRotation);
+    //    Camera.main.transform.rotation = NextRotation;
+
+    //    transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition, ref smoothDampVelocity, smoothSpeed);
+    //}
 
     private void FollowPlayer(Vector3 newCameraPosition)
     {
