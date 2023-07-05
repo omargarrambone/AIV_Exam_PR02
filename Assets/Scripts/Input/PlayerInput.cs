@@ -133,6 +133,8 @@ public class PlayerInput : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (ShouldNotMove) return;
+
         _input = context.ReadValue<Vector2>();
 
         Vector2 oldInput = _input;
@@ -226,7 +228,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed && canDash)
         {
-            if (ShouldNotMove) return;
+            if (GameManager.GameState == GameState.Paused) return;
             StartCoroutine(Dash());
             Dash_SFX.Play();
         }

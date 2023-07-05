@@ -67,7 +67,7 @@ public class FluteUIScript : MonoBehaviour
     {
         if (!gameObject.activeSelf) return;
 
-        if (context.canceled)
+        if (context.started)
         {
             Vector2 value = context.ReadValue<Vector2>();
 
