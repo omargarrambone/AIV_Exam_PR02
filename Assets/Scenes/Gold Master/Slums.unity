@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0034717766, g: 0.024900146, b: 0.15363325, a: 1}
+  m_IndirectSpecularColor: {r: 0.003473942, g: 0.024900863, b: 0.15363196, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3328,10 +3328,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextScene: Caltanissetta
   PlayerNextPosition: {x: -18, y: 0, z: -29}
-  CameraNextPosition: {x: -23.805002, y: -3.9000006, z: -43.409996}
+  CameraNextPosition: {x: -18.135004, y: 7.6199994, z: -33.27}
   CameraNextRotation: {x: 49.58364, y: 1.8108845, z: 0}
-  CameraLockWallCollider: {fileID: 5287679830308817033, guid: 2f50e619135cdc94a8b37c7468873eec,
-    type: 3}
+  CameraLockWallCollider: {fileID: 405210880}
 --- !u!1001 &393472874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3487,17 +3486,17 @@ PrefabInstance:
     - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.24
+      value: 4.24
       objectReference: {fileID: 0}
     - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.9
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.08
+      value: 3.48
       objectReference: {fileID: 0}
     - target: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
@@ -3539,10 +3538,20 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 4695245082364460366, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695245082364460366, guid: 2f50e619135cdc94a8b37c7468873eec,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5256222436855883057, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
       propertyPath: m_Name
-      value: CameraLockWall (1)
+      value: CameraLockWallENTER
       objectReference: {fileID: 0}
     - target: {fileID: 5256222436855883057, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
@@ -3587,6 +3596,12 @@ PrefabInstance:
 --- !u!4 &405210879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 962300250796178051, guid: 2f50e619135cdc94a8b37c7468873eec,
+    type: 3}
+  m_PrefabInstance: {fileID: 405210878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &405210880 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5287679830308817033, guid: 2f50e619135cdc94a8b37c7468873eec,
     type: 3}
   m_PrefabInstance: {fileID: 405210878}
   m_PrefabAsset: {fileID: 0}
@@ -4821,7 +4836,7 @@ PrefabInstance:
     - target: {fileID: 5256222436855883057, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
       propertyPath: m_Name
-      value: CameraLockWall
+      value: CameraLockWallMAZE
       objectReference: {fileID: 0}
     - target: {fileID: 5256222436855883057, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
@@ -6785,7 +6800,7 @@ PrefabInstance:
     - target: {fileID: 1965668056305609991, guid: 36ca1ebd7fee4f148830c5964f6155da,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1965668056305609991, guid: 36ca1ebd7fee4f148830c5964f6155da,
         type: 3}
@@ -8838,7 +8853,7 @@ PrefabInstance:
     - target: {fileID: 9035985288689505002, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 9035985288689505002, guid: bbf33218603b8964083d320cbb6fbe04,
         type: 3}
@@ -11912,7 +11927,7 @@ Transform:
   - {fileID: 689451549}
   - {fileID: 619596097}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1627511751
 PrefabInstance:
@@ -13176,7 +13191,7 @@ PrefabInstance:
     - target: {fileID: 5256222436855883057, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
       propertyPath: m_Name
-      value: CameraLockWall
+      value: CameraLockWallARENA
       objectReference: {fileID: 0}
     - target: {fileID: 5256222436855883057, guid: 2f50e619135cdc94a8b37c7468873eec,
         type: 3}
@@ -14755,7 +14770,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &2085937568
 Mesh:
