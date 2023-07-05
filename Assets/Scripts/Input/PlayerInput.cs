@@ -28,6 +28,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private int _numberOfJumps;
     [SerializeField] private int maxNumberOfJumps = 2;
+    [SerializeField] private WeaponsManager _weaponManager;
+    //[SerializeField] private bool _isRodPickedUp = false;
 
     [Header("Dash Variables")]
     private bool canDash = true;
@@ -139,12 +141,25 @@ public class PlayerInput : MonoBehaviour
     {
         if (!context.performed) return;
 
-        if (!IsGrounded() && _numberOfJumps >= maxNumberOfJumps) return;
-        if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
+        if (_weaponManager.TakenWeapons[(int)ItemType.LongKatana] == false)
+        {
+            if (!IsGrounded()) return;
+            if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
 
-        _numberOfJumps++;
-        _velocity = jumpPower;
-        _anim.SetInteger("JumpCount", _numberOfJumps);
+            _numberOfJumps++;
+            _velocity = jumpPower;
+            _anim.SetInteger("JumpCount", _numberOfJumps);
+        }
+        else
+        {
+            if (!IsGrounded() && _numberOfJumps >= maxNumberOfJumps) return;
+            if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
+
+            _numberOfJumps++;
+            _velocity = jumpPower;
+            _anim.SetInteger("JumpCount", _numberOfJumps);
+        }
+
         if (_numberOfJumps == 1)
         {
             Jump_SFX[0].Play();
