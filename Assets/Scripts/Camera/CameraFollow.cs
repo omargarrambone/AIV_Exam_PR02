@@ -47,9 +47,6 @@ public class CameraFollow : MonoBehaviour
     static public Vector3 CameraRotationOnChangeScene;
     static public CameraType ResetCameraType;
 
-    public Vector3 _CameraRotationOnChangeScene;
-    public Vector3 _CameraPositionOnChangeScene;
-
     private void Awake()
     {
         //get player as target

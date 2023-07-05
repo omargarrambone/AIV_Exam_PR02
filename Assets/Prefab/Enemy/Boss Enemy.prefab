@@ -3995,12 +3995,10 @@ MonoBehaviour:
   throwThingRef: {fileID: 0}
   healthRechargeSpeed: 2
   healthRechargeSpeedIncreaseSpeed: 2
-  spawnTimer: 1.8
-  spawnCounter: 0
   dissolveTimer: 0.2
   dissolveCounter: 0
   damageArancinoToMyself: 67
-  maxMinions: 10
+  maxMinions: 8
   currentMinions: 0
   leftMinions: 0
   songManager: {fileID: 0}
@@ -4116,7 +4114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setMaxHealth: 1
+  setMaxHealth: 200
   CurrentHealth: 0
   OnDeath:
     m_PersistentCalls:
