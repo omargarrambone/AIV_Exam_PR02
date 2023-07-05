@@ -14,7 +14,7 @@ public class DisableWithPlayerTouch : MonoBehaviour
         }
     }
 
-    private void OnColliderEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Player")
         {

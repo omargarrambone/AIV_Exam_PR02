@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -35,6 +36,11 @@ public class PlayerInput : MonoBehaviour
     private float dashingTime = 0.2f;
     private float dashingCooldown = 0.6f;
     [SerializeField] private TrailRenderer _trail;
+
+
+    [Header("Sounds")]
+    public AudioSource Dash_SFX;
+    public List<AudioSource> Jump_SFX;
 
     [Header("Animator and RigidBody")]
     private Animator _anim;
@@ -139,6 +145,14 @@ public class PlayerInput : MonoBehaviour
         _numberOfJumps++;
         _velocity = jumpPower;
         _anim.SetInteger("JumpCount", _numberOfJumps);
+        if (_numberOfJumps == 1)
+        {
+            Jump_SFX[0].Play();
+        }
+        else
+        {
+            Jump_SFX[1].Play();
+        }
     }
 
     private IEnumerator WaitForLanding()
@@ -190,6 +204,7 @@ public class PlayerInput : MonoBehaviour
         {
             if (ShouldNotMove) return;
             StartCoroutine(Dash());
+            Dash_SFX.Play();
         }
     }
 

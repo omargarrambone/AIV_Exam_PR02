@@ -1678,7 +1678,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9bc501b055c1fa247ba4c5d1f89d1579, type: 2}
+  - {fileID: 2100000, guid: 5f88d8208b0f48240bffdef89fcee3b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2488,6 +2488,7 @@ GameObject:
   - component: {fileID: 5986594620364186771}
   - component: {fileID: 3938150566976887526}
   - component: {fileID: 5874296152483146333}
+  - component: {fileID: 4713479716754787023}
   m_Layer: 0
   m_Name: AXE
   m_TagString: EnemyWeapon
@@ -2581,6 +2582,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.28817952, y: 1.4020103, z: 0.20362177}
   m_Center: {x: -0.032706536, y: 0.8010092, z: 0.0554153}
+--- !u!114 &4713479716754787023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5121658103163138791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a066cce2ff3dce14a95d75692cc1554c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyWeaponDamage: 20
 --- !u!1 &5192178465918610448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3920,7 +3934,7 @@ Transform:
   - {fileID: 1370721206451693582}
   - {fileID: 8394532030557703802}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4677416567676217915
 MonoBehaviour:
@@ -3937,9 +3951,8 @@ MonoBehaviour:
   currentState: 1
   chaseSpeed: 10
   patrolSpeed: 2
-  parryChance: 0
   attackDistance: 4
-  attackDamage: 5
+  attackDamage: 20
   agent: {fileID: 268865109394438647}
   weapon: {fileID: 5121658103163138791}
   stunnManager: {fileID: 7965098285453751417}
@@ -3969,15 +3982,26 @@ MonoBehaviour:
   rotationSpeed: 4
   dizzinessCounter: 0
   dizzinessTimer: 3
-  minDizzinessTimer: 4
-  maxDizzinessTimer: 7
-  enemyGhostPrefabs: []
-  healthRechargeSpeed: 0
-  spawnTimer: 0
-  spawnCounter: 0
+  minDizzinessTimer: 5
+  maxDizzinessTimer: 6
+  isThrowing: 0
+  dissolveEffect: {fileID: 2732767235089498024, guid: 36c9cae896a428b4bac6606b9b77aa00,
+    type: 3}
+  teleportTransform: {fileID: 0}
+  throwThingTransform: {fileID: 0}
+  enemyGhostPrefabs:
+  - {fileID: 1650208938979513574, guid: 32c1bcbc4b0f55046a99ec286ab63b84, type: 3}
+  - {fileID: 5621770429164290102, guid: 465392a964932184c87b9a0ad59e0068, type: 3}
+  throwThingRef: {fileID: 0}
+  healthRechargeSpeed: 2
+  healthRechargeSpeedIncreaseSpeed: 2
+  dissolveTimer: 0.2
+  dissolveCounter: 0
+  damageArancinoToMyself: 67
+  maxMinions: 8
   currentMinions: 0
-  maxMinions: 0
-  test2: 0
+  leftMinions: 0
+  songManager: {fileID: 0}
 --- !u!114 &5664638594299172371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4090,35 +4114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setMaxHealth: 100
+  setMaxHealth: 200
   CurrentHealth: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2163519439290360509}
-        m_TargetAssemblyTypeName: RagdollManager, Assembly-CSharp
-        m_MethodName: SetRagdollColliders
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2163519439290360509}
-        m_TargetAssemblyTypeName: RagdollManager, Assembly-CSharp
-        m_MethodName: SetRagdollColliders
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 4677416567676217915}
         m_TargetAssemblyTypeName: BasicEnemyAgentAi, Assembly-CSharp
         m_MethodName: SetState
@@ -4126,10 +4126,10 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   IsImmune: 1
   HealthBar: {fileID: 3331821116739757678}

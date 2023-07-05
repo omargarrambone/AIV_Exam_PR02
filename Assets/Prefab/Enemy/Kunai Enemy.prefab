@@ -1124,14 +1124,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4560688306811244006}
   - component: {fileID: 1222371153796082431}
-  - component: {fileID: 8231185110898032415}
+  - component: {fileID: 5839978592555352445}
   - component: {fileID: 6282916758059222178}
+  - component: {fileID: 8231185110898032415}
   - component: {fileID: 8675663854312429257}
   - component: {fileID: 8056925971522635024}
   - component: {fileID: 5712972631442316779}
   - component: {fileID: 6105898070594296358}
   - component: {fileID: 645711494071688321}
-  - component: {fileID: 5839978592555352445}
   m_Layer: 7
   m_Name: Kunai Enemy
   m_TagString: Untagged
@@ -1156,7 +1156,7 @@ Transform:
   - {fileID: 5213759825101916360}
   - {fileID: 298726727236088852}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1222371153796082431
 MonoBehaviour:
@@ -1179,28 +1179,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   CanSeePlayer: 0
---- !u!195 &8231185110898032415
-NavMeshAgent:
+--- !u!114 &5839978592555352445
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650208938979513574}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.46
-  m_Speed: 2
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 720
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.87
-  m_BaseOffset: -0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a2401868650024baf32adf548355b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  chaseSpeed: 4
+  patrolSpeed: 2
+  attackDistance: 10
+  attackDamage: 5
+  agent: {fileID: 8231185110898032415}
+  weapon: {fileID: 8693467752678814421, guid: 6d925c56b3889a44c981a3062bbbc6af, type: 3}
+  stunnManager: {fileID: 8675663854312429257}
+  healthManager: {fileID: 8056925971522635024}
+  anim: {fileID: 6105898070594296358}
+  arancini: {fileID: 5860177834828424469}
+  enemyDamageManager: {fileID: 6282916758059222178}
+  fov: {fileID: 1222371153796082431}
+  patrolWaypoints: []
+  healthBar: {fileID: 6801373267979344497}
+  stunBar: {fileID: 589871708282462041}
+  isMoving: 1
+  kunaiTransform: {fileID: 298726727236088852}
 --- !u!114 &6282916758059222178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1223,6 +1231,28 @@ MonoBehaviour:
   ParryChance: 0.4
   timer: 0
   counter: 0
+--- !u!195 &8231185110898032415
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650208938979513574}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.46
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 720
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.87
+  m_BaseOffset: -0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &8675663854312429257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,6 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setMaxHealth: 100
   CurrentHealth: 0
   OnDeath:
     m_PersistentCalls:
@@ -1356,42 +1387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca456d33980bea4b927da8e460526a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5839978592555352445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650208938979513574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a2401868650024baf32adf548355b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
-  chaseSpeed: 4
-  patrolSpeed: 2
-  parryChance: 0.3
-  attackDistance: 10
-  agent: {fileID: 8231185110898032415}
-  weapon: {fileID: 4643519359033591776, guid: 33894dfc1e9e14c489e0670480c36bbf, type: 3}
-  stunnManager: {fileID: 8675663854312429257}
-  healthManager: {fileID: 8056925971522635024}
-  anim: {fileID: 6105898070594296358}
-  arancini: {fileID: 5860177834828424469}
-  enemyDamageManager: {fileID: 6282916758059222178}
-  fov: {fileID: 1222371153796082431}
-  patrolWaypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  healthBar: {fileID: 6801373267979344497}
-  stunBar: {fileID: 589871708282462041}
-  kunaiSpeed: 20
-  isMoving: 1
-  kunaiTransform: {fileID: 298726727236088852}
-  handWeapon: {fileID: 6517958031537955353}
 --- !u!1 &1739777336005501351
 GameObject:
   m_ObjectHideFlags: 0
@@ -10636,61 +10631,59 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Wep_Kunai_01
       objectReference: {fileID: 0}
+    - target: {fileID: 109298, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
       propertyPath: m_RootOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.2
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.7
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.6
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 0.49999985
       objectReference: {fileID: 0}
     - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.4999998
       objectReference: {fileID: 0}
     - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: -0.50000054
       objectReference: {fileID: 0}
     - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0.49999994
       objectReference: {fileID: 0}
     - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8929d8c11f00b24d9d8e3bf32fedfb9, type: 3}
---- !u!1 &6517958031537955353 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 109298, guid: a8929d8c11f00b24d9d8e3bf32fedfb9,
-    type: 3}
-  m_PrefabInstance: {fileID: 6517958031537916139}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6517958031538267351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 453692, guid: a8929d8c11f00b24d9d8e3bf32fedfb9,

@@ -36,10 +36,10 @@ public class BasicEnemyAgentAi : MonoBehaviour
         fov = GetComponent<FieldOfView>();
         anim = GetComponent<Animator>();
         enemyCollider = GetComponent<CapsuleCollider>();
-        currentState = EnemyState.Patrol;
+        //currentState = EnemyState.Patrol;
         weapon.GetComponent<BoxCollider>().enabled = false;
 
-        EnemyWeapon myWeapon = weapon.AddComponent<EnemyWeapon>();
+        EnemyWeapon myWeapon = weapon.GetComponent<EnemyWeapon>();
         myWeapon.MyWeaponDamage = attackDamage;
 
         playerTarget = PlayerManager.PlayerGameObject.transform;

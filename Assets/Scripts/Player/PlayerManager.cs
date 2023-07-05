@@ -94,6 +94,7 @@ public class PlayerManager : MonoBehaviour
                 SceneManager.LoadScene("GameOverScene");
                 SetPosition(new Vector3(41.6f, 19.8f, 11.9f));
                 CameraFollow.ResetCameraTarget();
+                Destroy(transform.parent.gameObject);
                 PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
                 isDying = false;
             }

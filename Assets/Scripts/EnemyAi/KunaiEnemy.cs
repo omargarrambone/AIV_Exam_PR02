@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class KunaiEnemy : BasicEnemyAgentAi
 {
-    [SerializeField] protected float kunaiSpeed;
     [SerializeField] protected bool isMoving;
     [SerializeField] protected Transform kunaiTransform;
-    [SerializeField] protected GameObject handWeapon;
 
     private float yOffsetKunaiTransform = 1.2f;
 
@@ -36,14 +34,11 @@ public class KunaiEnemy : BasicEnemyAgentAi
     public void ThrowKunai()
     {
         GameObject kunai = Instantiate(weapon, kunaiTransform.position, kunaiTransform.rotation);
-        Vector3 distanceFromTarget = playerTarget.position - kunaiTransform.transform.position;
-        kunai.transform.forward = new Vector3(distanceFromTarget.x, distanceFromTarget.y + yOffsetKunaiTransform, distanceFromTarget.z).normalized;
-        kunai.GetComponent<Rigidbody>().velocity = kunai.transform.forward * kunaiSpeed;
+        Vector3 distanceFromTarget =   (playerTarget.position + new Vector3(0,yOffsetKunaiTransform,0) - kunai.transform.position).normalized;
+        kunai.transform.rotation = Quaternion.LookRotation(distanceFromTarget);
     }
 
-
-
-    void MovingKunaiEnemy()
+    protected virtual void MovingKunaiEnemy()
     {
         anim.SetFloat("Speed", agent.velocity.magnitude);
 
@@ -112,14 +107,12 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 if (enemyDamageManager.IsParrying)
                 {
                     anim.SetBool("IsParrying", true);
-                    handWeapon.SetActive(true);
                     parryTimer -= Time.deltaTime;
 
                     if (parryTimer <= 0)
                     {
                         enemyDamageManager.IsParrying = false;
                         anim.SetBool("IsParrying", false);
-                        handWeapon.SetActive(false);
                         parryTimer = 0.3f;
                     }
                     break;
@@ -145,10 +138,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
                     break;
                 }
 
-                break;
-
-
-            case EnemyState.Healing:
                 break;
 
             case EnemyState.Dead:
@@ -183,9 +172,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
                     agent.isStopped = false;
                 }
 
-                break;
-
-            default:
                 break;
         }
     }
@@ -226,13 +212,11 @@ public class KunaiEnemy : BasicEnemyAgentAi
                 if (enemyDamageManager.IsParrying)
                 {
                     anim.SetBool("IsParrying", true);
-                    handWeapon.SetActive(true);
                     parryTimer -= Time.deltaTime;
 
                     if (parryTimer <= 0)
                     {
                         enemyDamageManager.IsParrying = false;
-                        handWeapon.SetActive(false);
                         anim.SetBool("IsParrying", false);
                         parryTimer = 0.3f;
                     }
