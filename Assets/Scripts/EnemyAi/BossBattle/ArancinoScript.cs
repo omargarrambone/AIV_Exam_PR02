@@ -26,7 +26,6 @@ public class ArancinoScript : MonoBehaviour
         if (isGoingToTarget)
         {
             float distance = Vector3.Distance(transform.position, targetPosition.position);
-            Debug.Log(distance);
             if (distance< distanceToHitTarget)
             {
                 OnHitTarget.Invoke();
@@ -45,7 +44,7 @@ public class ArancinoScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "Kick")
+        if (/*other.gameObject.tag == "Sword" ||*/ other.gameObject.tag == "Kick")
         {
             isGoingToTarget = false;
             targetPosition = ownerPositon;

@@ -11,7 +11,7 @@ public class SongManager : MonoBehaviour
     [SerializeField] GameState lastState;
     [SerializeField] UnityEvent OnSongStart,OnSongEnded;
     [SerializeField] Camera songCamera;
-    UniversalAdditionalCameraData universalAdditionalCameraData;
+    //UniversalAdditionalCameraData universalAdditionalCameraData;
     [SerializeField] Transform playerRythmTransform;
     [SerializeField] RythmArrowsManager rythmArrowsManager;
 
@@ -19,7 +19,7 @@ public class SongManager : MonoBehaviour
 
     private void Start()
     {
-        universalAdditionalCameraData = Camera.main.GetComponent<UniversalAdditionalCameraData>();
+        //universalAdditionalCameraData = Camera.main.GetComponent<UniversalAdditionalCameraData>();
     }
 
     void Update()
@@ -46,7 +46,7 @@ public class SongManager : MonoBehaviour
                gameObject.SetActive(false);
                PlayerManager.EnableDisablePlayerMovement(true);
                OnSongEnded.Invoke();
-               universalAdditionalCameraData.cameraStack.Remove(songCamera);
+               //universalAdditionalCameraData.cameraStack.Remove(songCamera);
             }
             else
             {
@@ -70,6 +70,6 @@ public class SongManager : MonoBehaviour
 
         OnSongStart.Invoke();
 
-        universalAdditionalCameraData.cameraStack.Add(songCamera);
+        //universalAdditionalCameraData.cameraStack.Add(songCamera);
     }
 }

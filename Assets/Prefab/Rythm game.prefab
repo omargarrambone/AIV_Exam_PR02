@@ -581,7 +581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1210820211891545409
 RectTransform:
   m_ObjectHideFlags: 0
@@ -900,8 +900,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   songCamera: {fileID: 6872565663407656716}
-  playerPosOnStartSong: {x: 0, y: 0, z: 0}
-  playerRotOnStartSong: {x: 0, y: 180, z: 0}
+  playerRythmTransform: {fileID: 0}
   rythmArrowsManager: {fileID: 2759056955640278778}
 --- !u!82 &2227594072520201148
 AudioSource:
@@ -1233,7 +1232,7 @@ Transform:
   - {fileID: 5545986613099111829}
   - {fileID: 1832934433243082634}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4230048540330310227
 GameObject:
@@ -1919,7 +1918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3621038010744184685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2775,7 +2774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8741786518076298008
 RectTransform:
   m_ObjectHideFlags: 0

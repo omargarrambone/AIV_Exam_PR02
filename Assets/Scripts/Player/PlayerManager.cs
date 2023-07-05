@@ -10,14 +10,14 @@ public class PlayerManager : MonoBehaviour
     public static CharacterController PlayerCharactercontroller;
     public static PlayerInput PlayerInput;
     public static CameraFollow CameraFollow;
-    public static SceneMngr sceneMngr;
+    public static SceneMngr SceneMngr;
+    private static Canvas playerCanvas;
 
     static private float deathTimer, deathCounter;
     static private bool isDying;
 
     public float minY;
 
-    //[SerializeField] private Material invisibleWall;
     void Awake()
     {
        if(PlayerGameObject == null) PlayerGameObject = GameObject.FindGameObjectWithTag("Player");
@@ -25,10 +25,21 @@ public class PlayerManager : MonoBehaviour
        if (PlayerInput == null) PlayerInput = PlayerGameObject.GetComponent<PlayerInput>();
        if (CameraFollow == null) CameraFollow = Camera.main.gameObject.GetComponent<CameraFollow>();
        if (playerAnimator == null) playerAnimator = PlayerGameObject.GetComponent<Animator>();
+       if (playerCanvas == null) playerCanvas = PlayerGameObject.transform.parent.GetChild(2).GetComponent<Canvas>();
 
         Cursor.lockState = CursorLockMode.Locked;
 
         deathTimer = 3f;
+    }
+
+    static public void ShowPlayerCanvas()
+    {
+        playerCanvas.enabled = true;
+    }
+
+    static public void HidePlayerCanvas()
+    {
+        playerCanvas.enabled = false;
     }
 
     static public void SetPosition(Vector3 newPosition)

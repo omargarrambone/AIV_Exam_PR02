@@ -12,12 +12,13 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
 
     [Header("PhaseAttack Variables")]
+    [SerializeField] CameraLockWall attackCamera;
     [SerializeField] bool isAttacking;
     [SerializeField] int currentAttack, maxAttack;
     [SerializeField] float attackTimer, attackCounter, rotationSpeed;
     [SerializeField] private float dizzinessCounter, dizzinessTimer, minDizzinessTimer, maxDizzinessTimer;
     [Header("PhaseMinions Variables")]
-    [SerializeField] CameraFollow minionCamera;
+    [SerializeField] CameraLockWall minionCamera;
     [SerializeField] bool isThrowing;
     [SerializeField] ParticleSystem dissolveEffect;
     [SerializeField] Transform teleportTransform, throwThingTransform;
@@ -27,6 +28,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     [SerializeField] float healthRechargeSpeed, healthRechargeSpeedIncreaseSpeed, dissolveTimer, dissolveCounter,damageArancinoToMyself;
     [SerializeField] int maxMinions, currentMinions, leftMinions;
     [Header("PhaseRythm Variables")]
+    [SerializeField] Camera rythmCamera;
     [SerializeField] SongManager songManager;
     [SerializeField] Transform rythmTransform;
 
@@ -58,6 +60,8 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
 
         throwThingRef.ownerPositon = transform;
+
+        attackCamera.enabled = true;
     }
 
     private void SetRandomDizziness()
@@ -183,6 +187,8 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 PauseMovement();
                 gameObject.transform.SetPositionAndRotation(teleportTransform.position, teleportTransform.rotation);
                 leftMinions = maxMinions;
+                attackCamera.CallOnExit();
+                minionCamera.CallOnEnter();
                 break;
         }
     }
@@ -273,6 +279,11 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 SetMortal();
                 currentState = EnemyState.Attack;
                 GoToRythmTransform();
+                rythmCamera.transform.position = Camera.main.transform.position;
+                rythmCamera.transform.rotation = Camera.main.transform.rotation;
+                Camera.main.gameObject.SetActive(false);
+                rythmCamera.gameObject.SetActive(true);
+                PlayerManager.HidePlayerCanvas();
                 break;
             case EnemyState.Dizzy:
                 break;
