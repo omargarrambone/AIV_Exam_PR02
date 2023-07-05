@@ -13,16 +13,23 @@ public class CutsceneMngr : MonoBehaviour
     [SerializeField] private Camera CutsceneCamera;
     private Camera MainCamera;
     [SerializeField] private float cutsceneDuration;
+    [SerializeField] private FootSteps footSteps;
+    [SerializeField] private AudioSource backgroundMusicFight;
+
 
     private void Start()
     {
             MainCamera = Camera.main;
+            footSteps = PlayerManager.PlayerGameObject.GetComponentInChildren<FootSteps>();
+                
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
+            PlayerManager.HidePlayerCanvas();
+            footSteps.GetComponent<AudioSource>().volume = 0;
             cutsceneDirector.SetActive(true);
             PlayerManager.DisablePlayerMovement();
             PlayerManager.SetPosition(240,100,187);
@@ -36,6 +43,9 @@ public class CutsceneMngr : MonoBehaviour
     IEnumerator FinishCutscene()
     {
         yield return new WaitForSeconds(cutsceneDuration);
+        backgroundMusicFight.Play();
+        PlayerManager.ShowPlayerCanvas();
+        footSteps.GetComponent<AudioSource>().volume = 1f;
         GetComponent<BoxCollider>().enabled = false;
         ninjaForCutscene.SetActive(false);
         enemyForCutscene.SetActive(false);
