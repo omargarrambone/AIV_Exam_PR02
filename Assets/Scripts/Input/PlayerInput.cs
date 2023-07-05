@@ -133,17 +133,12 @@ public class PlayerInput : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (ShouldNotMove) return;
+        if (ShouldNotMove) { _input = Vector2.zero; _direction = Vector2.zero; return; }
 
         _input = context.ReadValue<Vector2>();
 
-        Vector2 oldInput = _input;
-
         if (Mathf.Abs(_input.x) > deadZone) _input.x = _input.x > 0 ? 1 : -1;
         if (Mathf.Abs(_input.y) > deadZone) _input.y = _input.y > 0 ? 1 : -1;
-
-        if (_input == Vector2.zero) 
-            print("Orcamadò " + oldInput);
 
         _direction = new Vector3(_input.x, 0.0f, _input.y);
     }
