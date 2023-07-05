@@ -208,14 +208,15 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
     private void PauseMovement()
     {
+        agent.enabled = true;
         agent.isStopped = true;
         agent.enabled = false;
     }
 
     private void ResumeMovement()
     {
-        agent.isStopped = false;
         agent.enabled = true;
+        agent.isStopped = false;
     }
 
     private void SetImmortal()
@@ -234,10 +235,6 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     {
         switch (currentState)
         {
-            case EnemyState.Patrol:
-                break;
-            case EnemyState.Chase:
-                break;
             case EnemyState.Attack:
 
                 if (leftMinions <= 0 && !isThrowing)
@@ -285,8 +282,6 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 rythmCamera.gameObject.SetActive(true);
                 PlayerManager.HidePlayerCanvas();
                 break;
-            case EnemyState.Dizzy:
-                break;
         }
 
     }
@@ -299,23 +294,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
     private void PhaseRythm()
     {
-        //switch (currentState)
-        //{
-        //    case EnemyState.Patrol:
-        //        break;
-        //    case EnemyState.Chase:
-        //        break;
-        //    case EnemyState.Attack:
-        //        break;
-        //    case EnemyState.Stun:
-        //        break;
-        //    case EnemyState.Healing:
-        //        break;
-        //    case EnemyState.Dead:
-        //        break;
-        //    case EnemyState.Dizzy:
-        //        break;
-        //}
+
     }
 
     public void SpawnEnemy()

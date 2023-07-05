@@ -28,7 +28,6 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private int _numberOfJumps;
     [SerializeField] private int maxNumberOfJumps = 2;
-    [SerializeField] private WeaponsManager _weaponManager;
     //[SerializeField] private bool _isRodPickedUp = false;
 
     [Header("Dash Variables")]
@@ -51,7 +50,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private GameObject Panel;
 
     [Header("Weapons")]
-    [SerializeField] private WeaponsManager weaponsManager;
+    [SerializeField] private WeaponsManager _weaponsManager;
 
     [Header("Footsteps")]
     public FootSteps _footSteps;
@@ -79,7 +78,7 @@ public class PlayerInput : MonoBehaviour
             if (ShouldNotMove) return;
 
             _anim.SetTrigger("IsAttacking");
-            weaponsManager.OnAttack(context);
+            _weaponsManager.OnAttack(context);
         }
 
     }
@@ -141,7 +140,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (!context.performed) return;
 
-        if (_weaponManager.TakenWeapons[(int)ItemType.LongKatana] == false)
+        if (_weaponsManager.TakenWeapons[(int)ItemType.LongKatana] == false)
         {
             if (!IsGrounded()) return;
             if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
