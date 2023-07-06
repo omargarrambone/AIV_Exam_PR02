@@ -114,7 +114,8 @@ GameObject:
   - component: {fileID: 44872252198382519}
   - component: {fileID: 3313183698174913231}
   - component: {fileID: 778444225004532110}
-  m_Layer: 0
+  - component: {fileID: 7535675250983917018}
+  m_Layer: 6
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,6 +181,34 @@ MonoBehaviour:
   - Si dice ARANCINO coglione!
   text: {fileID: 8570073410743586724}
   lastSentenceIndex: 0
+--- !u!114 &7535675250983917018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302076660729778731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cd492dfc809204a82056f6f01c06e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 778444225004532110}
+        m_TargetAssemblyTypeName: NPCInteractable, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ItemName: '[F] Talk'
 --- !u!1 &5354985185315589202
 GameObject:
   m_ObjectHideFlags: 0

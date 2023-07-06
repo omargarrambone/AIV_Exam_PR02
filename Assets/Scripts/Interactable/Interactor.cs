@@ -25,7 +25,7 @@ public class Interactor : MonoBehaviour
     {
         if (actualInteractable && actualInteractable.isActiveAndEnabled)
         {
-            guiText.SetText($"Take [{actualInteractable.ItemName}]");
+            guiText.SetText($"[{actualInteractable.ItemName}]");
         }
         else
         {
