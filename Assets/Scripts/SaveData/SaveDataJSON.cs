@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class SaveDataJSON : MonoBehaviour
 {
@@ -8,8 +9,10 @@ public class SaveDataJSON : MonoBehaviour
 
     private HealthManager healthManager;
     [SerializeField] private WeaponsManager weaponsManager;
+    [SerializeField] private VolumeManager volumeManager;
     [SerializeField] private SceneMngr sceneManager;
     [SerializeField] private FluteScript fluteScript;
+    [SerializeField] private Slider masterSlider, sfxSlider, musicSlider;
     [SerializeField] private SaveData savedData;
     [SerializeField] private UnityEvent OnSave, OnLoad;
     static public string persistentPath = "";
@@ -54,6 +57,10 @@ public class SaveDataJSON : MonoBehaviour
             savedData.worldData.enemiesPurified = NPCManager.PurifiedEnemies;
             savedData.worldData.enemiesKilled = NPCManager.KilledEnemies;
             savedData.worldData.arenasCompleted = ArenaScript.CompletedArenas;
+
+            savedData.worldData.masterVolume = volumeManager.MasterVolume;
+            savedData.worldData.musicVolume = volumeManager.MusicVolume;
+            savedData.worldData.sfxVolume = volumeManager.SFXvolume;
 
             // SAVE JSON
             string json = JsonUtility.ToJson(savedData);
@@ -116,6 +123,14 @@ public class SaveDataJSON : MonoBehaviour
                 NPCManager.KilledEnemies = savedData.worldData.enemiesKilled;
                 ArenaScript.CompletedArenas = savedData.worldData.arenasCompleted;
 
+                volumeManager.SetMasterAudio(savedData.worldData.masterVolume);
+                volumeManager.SetMusicAudio(savedData.worldData.musicVolume);
+                volumeManager.SetSFXAudio(savedData.worldData.sfxVolume);
+
+                masterSlider.value = volumeManager.MasterVolume;
+                musicSlider.value = volumeManager.MusicVolume;
+                sfxSlider.value = volumeManager.SFXvolume;
+
                 //Camera.main.transform.position = savedData.playerData.lastCameraPos;
                 //Camera.main.transform.eulerAngles = savedData.playerData.lastCameraRot;
 
@@ -142,11 +157,14 @@ public class SaveDataJSON : MonoBehaviour
             savedData.playerData.currentScene = "Caltanissetta";
             savedData.playerData.takenItems = weaponsManager.TakenWeapons;
             savedData.playerData.currentWeapon = 0;
-            //savedData.playerData.lastCameraPos = new Vector3(-64.0000381f, 6.22015953f, -36.9999847f);
-            //savedData.playerData.lastCameraRot = new Vector3(16f,0f,0f);
+
             savedData.worldData.enemiesPurified = 0;
             savedData.worldData.enemiesKilled = 0;
             savedData.worldData.arenasCompleted = new bool[ArenaScript.MaxArenas];
+
+            savedData.worldData.masterVolume = volumeManager.MasterVolume;
+            savedData.worldData.musicVolume = volumeManager.MusicVolume;
+            savedData.worldData.sfxVolume = volumeManager.SFXvolume;
 
             // SAVE JSON
             string json = JsonUtility.ToJson(savedData);

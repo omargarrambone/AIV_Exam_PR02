@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
 
     [Header("Follow Player Variables")]
     [SerializeField] private Transform defaultCameraTarget;
-    [SerializeField] private float smoothSpeed;
+    [SerializeField] private float smoothSpeed, lerpSpeed;
     public Vector3 DefaultCameraOffset, CameraForwardOffset;
     [SerializeField] private float playerForwardDistance;
 
@@ -74,14 +74,13 @@ public class CameraFollow : MonoBehaviour
 
     public void LoadCameraPosition()
     {
-        ResetCameraTarget();
         CameraRotationOnChangeScene = DefaultCameraRotation.eulerAngles;
-
         CameraForwardOffset = new Vector3(Mathf.Sign(defaultCameraTarget.forward.x), 0, 0) * playerForwardDistance;
 
-        print(CameraForwardOffset);
+        CameraPositionOnChangeScene = SaveDataJSON.SavedData.playerData.playerPos + CameraForwardOffset + DefaultCameraOffset + new Vector3(0,2,0);
 
-        CameraPositionOnChangeScene = SaveDataJSON.SavedData.playerData.playerPos + new Vector3(0f, 2f, 0f) + CameraForwardOffset;
+        ResetCameraTarget();
+        OldRotation = DefaultCameraRotation;
     }
 
     private void Update()
@@ -168,7 +167,8 @@ public class CameraFollow : MonoBehaviour
             }
         }
 
-        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + CameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
+        //transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + CameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
+        transform.position = Vector3.Lerp(transform.position, newCameraPosition + CameraForwardOffset, Time.deltaTime * smoothSpeed * lerpSpeed);
     }
 
     private void LookAtPlayer(Vector3 newCameraPosition)
