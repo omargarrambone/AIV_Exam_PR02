@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0034717766, g: 0.024900146, b: 0.15363325, a: 1}
+  m_IndirectSpecularColor: {r: 0.003473942, g: 0.024900863, b: 0.15363196, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -505,18 +505,106 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07cde9ecae306543bfa7144f93ba773, type: 3}
+--- !u!1 &24303915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 24303916}
+  - component: {fileID: 24303918}
+  - component: {fileID: 24303917}
+  m_Layer: 0
+  m_Name: Cube (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &24303916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24303915}
+  m_LocalRotation: {x: 0.49999994, y: 0.5, z: -0.50000006, w: 0.5}
+  m_LocalPosition: {x: 20.8, y: 46.45, z: 67.5}
+  m_LocalScale: {x: 300, y: 357.11, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 563558979}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
+--- !u!23 &24303917
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24303915}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: af0c7f408319513419137ff1546e3e93, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &24303918
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24303915}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &27392710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -603,12 +691,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -707,12 +800,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -805,12 +903,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -903,12 +1006,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1315,12 +1423,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1413,12 +1526,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1564,12 +1682,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1926,12 +2049,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2640,12 +2768,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4004,12 +4137,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4102,12 +4240,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4200,12 +4343,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4298,12 +4446,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4737,12 +4890,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4781,6 +4939,7 @@ Transform:
   - {fileID: 285997170}
   - {fileID: 1146475259}
   - {fileID: 87430189}
+  - {fileID: 24303916}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5118,6 +5277,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3142172285455200676, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5096603826602078560, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5126,12 +5290,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6300,7 +6469,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2848618
+  m_Name: pb_Mesh-1966498
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -6622,12 +6791,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6857,7 +7031,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2848440
+  m_Name: pb_Mesh-1962974
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7067,7 +7241,7 @@ PrefabInstance:
     - target: {fileID: 1334389865272624210, guid: 36ca1ebd7fee4f148830c5964f6155da,
         type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1334389865272624210, guid: 36ca1ebd7fee4f148830c5964f6155da,
         type: 3}
@@ -7166,6 +7340,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4374758732337247449, guid: 36ca1ebd7fee4f148830c5964f6155da,
         type: 3}
+      propertyPath: hintText
+      value: You can break stone walls with this!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374758732337247449, guid: 36ca1ebd7fee4f148830c5964f6155da,
+        type: 3}
       propertyPath: itemType
       value: 3
       objectReference: {fileID: 0}
@@ -7174,6 +7353,11 @@ PrefabInstance:
       propertyPath: chatBubble
       value: 
       objectReference: {fileID: 316863428}
+    - target: {fileID: 4374758732337247449, guid: 36ca1ebd7fee4f148830c5964f6155da,
+        type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4871681755845677456, guid: 36ca1ebd7fee4f148830c5964f6155da,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7713,7 +7897,7 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
@@ -7722,8 +7906,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
@@ -8121,12 +8310,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8373,12 +8567,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8612,12 +8811,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8869,12 +9073,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9046,12 +9255,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9549,12 +9763,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9700,12 +9919,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10048,12 +10272,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10472,12 +10701,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10570,12 +10804,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10668,12 +10907,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11022,12 +11266,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11332,12 +11581,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12095,12 +12349,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12205,12 +12464,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12967,12 +13231,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13700,12 +13969,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13870,12 +14144,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14483,12 +14762,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15021,12 +15305,17 @@ PrefabInstance:
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9045195944266018979, guid: c07cde9ecae306543bfa7144f93ba773,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15626,7 +15915,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2851036
+  m_Name: pb_Mesh-1964782
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -16760,7 +17049,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -16811,14 +17100,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143261158}
-  m_LocalRotation: {x: 0.18301213, y: 0.0000018626451, z: -0.70710695, w: 0.6830127}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 14.478, y: -15.504, z: -93.967}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &2143261161
 MonoBehaviour:
   m_ObjectHideFlags: 0

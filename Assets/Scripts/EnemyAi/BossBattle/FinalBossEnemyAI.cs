@@ -53,7 +53,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
 
         throwThingRef.OnHitOwner.AddListener(ResetMinionsSpawn);
-        throwThingRef.OnHitOwner.AddListener(() => { healthManager.TakeDamage(damageArancinoToMyself); maxMinions += 5; leftMinions = maxMinions; });
+        throwThingRef.OnHitOwner.AddListener(() => { healthManager.TakeDamage(damageArancinoToMyself); maxMinions += 3; leftMinions = maxMinions; });
         throwThingRef.OnHitOwner.AddListener(SetImmortal);
 
         throwThingRef.OnHitTarget.AddListener(ResetMinionsSpawn);
