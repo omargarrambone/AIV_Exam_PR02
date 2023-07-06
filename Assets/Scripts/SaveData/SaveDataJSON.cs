@@ -49,6 +49,8 @@ public class SaveDataJSON : MonoBehaviour
             savedData.playerData.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             savedData.playerData.takenItems = weaponsManager.TakenWeapons;
             savedData.playerData.currentWeapon = weaponsManager.CurrentSlotIndex;
+           // savedData.playerData.lastCameraPos = Camera.main.transform.position;
+           // savedData.playerData.lastCameraRot = new Vector3(16f, 0f, 0f);
             savedData.worldData.enemiesPurified = NPCManager.PurifiedEnemies;
             savedData.worldData.enemiesKilled = NPCManager.KilledEnemies;
             savedData.worldData.arenasCompleted = ArenaScript.CompletedArenas;
@@ -114,6 +116,9 @@ public class SaveDataJSON : MonoBehaviour
                 NPCManager.KilledEnemies = savedData.worldData.enemiesKilled;
                 ArenaScript.CompletedArenas = savedData.worldData.arenasCompleted;
 
+                //Camera.main.transform.position = savedData.playerData.lastCameraPos;
+                //Camera.main.transform.eulerAngles = savedData.playerData.lastCameraRot;
+
                 //LOAD SCENE
 
                 sceneManager.ChangeScene(sceneManager.NextScene);
@@ -132,13 +137,13 @@ public class SaveDataJSON : MonoBehaviour
         {
             // SAVE VALUES
             savedData.playerData.currentHealth = 100;
-            savedData.playerData.playerPos = new Vector3(-64f, 2.272f, -30f);
+            savedData.playerData.playerPos = new Vector3(-64, 2.22016072f, -30);
             savedData.playerData.playerRot = Quaternion.identity;
             savedData.playerData.currentScene = "Caltanissetta";
             savedData.playerData.takenItems = weaponsManager.TakenWeapons;
             savedData.playerData.currentWeapon = 0;
-            savedData.playerData.lastCameraPos = new Vector3(-64.0000381f, 6.22015953f, -36.9999847f);
-            //savedData.playerData.lastCameraRot = new Vector3(16f, 0f, 0f);
+            //savedData.playerData.lastCameraPos = new Vector3(-64.0000381f, 6.22015953f, -36.9999847f);
+            //savedData.playerData.lastCameraRot = new Vector3(16f,0f,0f);
             savedData.worldData.enemiesPurified = 0;
             savedData.worldData.enemiesKilled = 0;
             savedData.worldData.arenasCompleted = new bool[ArenaScript.MaxArenas];

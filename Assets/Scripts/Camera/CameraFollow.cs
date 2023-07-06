@@ -55,13 +55,7 @@ public class CameraFollow : MonoBehaviour
         //get player as target
         actualCameraTarget = defaultCameraTarget;
 
-        //cool inquadratura
-        CameraRotationOnChangeScene = new Vector3(16f, 0f, 0f);
-        transform.position = new Vector3(-64.0000381f, 6.22015953f, -36.9999847f);
-
-        DefaultCameraRotation = Quaternion.Euler(CameraRotationOnChangeScene);
         Camera.main.transform.rotation = DefaultCameraRotation;
-        OldRotation = Camera.main.transform.rotation;
 
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnNextSceneLoad;
 
@@ -80,9 +74,14 @@ public class CameraFollow : MonoBehaviour
 
     public void LoadCameraPosition()
     {
-        CameraPositionOnChangeScene = SaveDataJSON.SavedData.playerData.playerPos + DefaultCameraOffset + Vector3.forward*playerForwardDistance;
         ResetCameraTarget();
-        
+        CameraRotationOnChangeScene = DefaultCameraRotation.eulerAngles;
+
+        CameraForwardOffset = new Vector3(Mathf.Sign(defaultCameraTarget.forward.x), 0, 0) * playerForwardDistance;
+
+        print(CameraForwardOffset);
+
+        CameraPositionOnChangeScene = SaveDataJSON.SavedData.playerData.playerPos + new Vector3(0f, 2f, 0f) + CameraForwardOffset;
     }
 
     private void Update()
