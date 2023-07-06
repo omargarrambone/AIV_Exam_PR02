@@ -10,6 +10,7 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float speed;
+    [SerializeField] private float deadZone;
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
@@ -66,9 +67,9 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         ApplyGravity();
-        ApplyRotation();
-        ApplyMovement();
         CheckIsGrounded();
+        ApplyMovement();
+        ApplyRotation();
     }
 
     public void LightAttack(InputAction.CallbackContext context)
@@ -126,13 +127,18 @@ public class PlayerInput : MonoBehaviour
 
     private void CheckIsGrounded()
     {
-
         _anim.SetBool("IsGrounded", IsGrounded());
     }
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (ShouldNotMove) { _input = Vector2.zero; _direction = Vector2.zero; return; }
+
         _input = context.ReadValue<Vector2>();
+
+        if (Mathf.Abs(_input.x) > deadZone) _input.x = _input.x > 0 ? 1 : -1;
+        if (Mathf.Abs(_input.y) > deadZone) _input.y = _input.y > 0 ? 1 : -1;
+
         _direction = new Vector3(_input.x, 0.0f, _input.y);
     }
 
@@ -216,7 +222,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed && canDash)
         {
-            if (ShouldNotMove) return;
+            if (GameManager.GameState == GameState.Paused) return;
             StartCoroutine(Dash());
             Dash_SFX.Play();
         }
@@ -226,8 +232,8 @@ public class PlayerInput : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
-        _direction = new Vector3(_input.x, 0.0f, _input.y);
-        _characterController.Move(_direction * dashingPower);
+
+        _characterController.Move(transform.forward * dashingPower);
         _trail.emitting = true;
         yield return new WaitForSeconds(dashingTime);
         _trail.emitting = false;

@@ -9,7 +9,7 @@ public class GoodOrBadEdTrigger : MonoBehaviour
 
     [SerializeField] private AudioSource bgMusic;
 
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(FinishCutscene());
     }
@@ -17,7 +17,7 @@ public class GoodOrBadEdTrigger : MonoBehaviour
     // Update is called once per frame
     IEnumerator FinishCutscene()
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(1);
         bgMusic.Stop();
         if (SaveDataJSON.SavedData.worldData.enemiesPurified <= 5)
         {

@@ -13,15 +13,14 @@ public class CutsceneMngr : MonoBehaviour
     [SerializeField] private Camera CutsceneCamera;
     private Camera MainCamera;
     [SerializeField] private float cutsceneDuration;
-    [SerializeField] private FootSteps footSteps;
-    [SerializeField] private AudioSource backgroundMusicFight;
+    [SerializeField] private AudioSource backgroundMusicFight, ambientAudioSource;
+    [SerializeField] private UnityEngine.Audio.AudioMixer mixer;
 
+    float oldVolumeValue;
 
     private void Start()
     {
             MainCamera = Camera.main;
-            footSteps = PlayerManager.PlayerGameObject.GetComponentInChildren<FootSteps>();
-                
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,13 +28,16 @@ public class CutsceneMngr : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerManager.HidePlayerCanvas();
-            footSteps.GetComponent<AudioSource>().volume = 0;
             cutsceneDirector.SetActive(true);
             PlayerManager.DisablePlayerMovement();
             PlayerManager.SetPosition(240,100,187);
             MainCamera.gameObject.SetActive(false);
             CutsceneCamera.gameObject.SetActive(true);
             StartCoroutine(FinishCutscene());
+
+            mixer.GetFloat("SFXVolume", out oldVolumeValue);
+            mixer.SetFloat("SFXVolume", -80f);
+
         }
 
     }
@@ -45,7 +47,6 @@ public class CutsceneMngr : MonoBehaviour
         yield return new WaitForSeconds(cutsceneDuration);
         backgroundMusicFight.Play();
         PlayerManager.ShowPlayerCanvas();
-        footSteps.GetComponent<AudioSource>().volume = 1f;
         GetComponent<BoxCollider>().enabled = false;
         ninjaForCutscene.SetActive(false);
         enemyForCutscene.SetActive(false);
@@ -53,6 +54,8 @@ public class CutsceneMngr : MonoBehaviour
         MainCamera.gameObject.SetActive(true);
         PlayerManager.SetPosition(229, 100, 200);
         PlayerManager.EnablePlayerMovement();
+
+        mixer.SetFloat("SFXVolume", oldVolumeValue);
 
     }
 }

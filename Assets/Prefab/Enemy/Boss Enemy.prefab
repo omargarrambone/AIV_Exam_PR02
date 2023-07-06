@@ -122,7 +122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7606231666205512893
 Transform:
   m_ObjectHideFlags: 0
@@ -1642,7 +1642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1344018080493802637
 Transform:
   m_ObjectHideFlags: 0
@@ -1907,7 +1907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4668410492262657803
 Transform:
   m_ObjectHideFlags: 0
@@ -2503,14 +2503,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5121658103163138791}
-  m_LocalRotation: {x: 0.70710623, y: -0.00000018253914, z: 0.00000021792938, w: -0.7071073}
-  m_LocalPosition: {x: 11.7, y: 5.1, z: 25.4}
-  m_LocalScale: {x: 65, y: 65.00003, z: 65}
+  m_LocalRotation: {x: 0.000000335276, y: -0.70710766, z: 0.707106, w: -0.00000041536973}
+  m_LocalPosition: {x: 20.4, y: 3, z: 20.9}
+  m_LocalScale: {x: 150, y: 150, z: 150}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2333117748102387041}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -180}
 --- !u!33 &5986594620364186771
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2518,7 +2518,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5121658103163138791}
-  m_Mesh: {fileID: 4300000, guid: 0d9462c2faca90448a7b70566d032ff2, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 18dee7feb9f9e85419f8b9be8e660aab, type: 3}
 --- !u!23 &3938150566976887526
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2580,8 +2580,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28817952, y: 1.4020103, z: 0.20362177}
-  m_Center: {x: -0.032706536, y: 0.8010092, z: 0.0554153}
+  m_Size: {x: 0.3093362, y: 0.50776094, z: 0.20362179}
+  m_Center: {x: 0.0016608968, y: 0.4485021, z: 0.05541554}
 --- !u!114 &4713479716754787023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3917,7 +3917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4060725193903763785
 Transform:
   m_ObjectHideFlags: 0
@@ -3934,7 +3934,7 @@ Transform:
   - {fileID: 1370721206451693582}
   - {fileID: 8394532030557703802}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4677416567676217915
 MonoBehaviour:
@@ -3971,9 +3971,10 @@ MonoBehaviour:
   weapons:
   - {fileID: 5874296152483146333}
   - {fileID: 6674014279918162425}
-  baseMaterial: {fileID: 2100000, guid: 9bc501b055c1fa247ba4c5d1f89d1579, type: 2}
+  baseMaterial: {fileID: 2100000, guid: 6d0613f500c022f48ae1dde75d4fc3c2, type: 2}
   immortalMaterial: {fileID: 2100000, guid: dbf14c8aeac2c594aa17543afdf976a6, type: 2}
-  skinnedMeshRenderer: {fileID: 3270470802434299073}
+  skinnedMeshRenderer: {fileID: 2859223691911066595}
+  attackCamera: {fileID: 0}
   isAttacking: 0
   currentAttack: 0
   maxAttack: 5
@@ -3984,6 +3985,7 @@ MonoBehaviour:
   dizzinessTimer: 3
   minDizzinessTimer: 5
   maxDizzinessTimer: 6
+  minionCamera: {fileID: 0}
   isThrowing: 0
   dissolveEffect: {fileID: 2732767235089498024, guid: 36c9cae896a428b4bac6606b9b77aa00,
     type: 3}
@@ -3992,6 +3994,10 @@ MonoBehaviour:
   enemyGhostPrefabs:
   - {fileID: 1650208938979513574, guid: 32c1bcbc4b0f55046a99ec286ab63b84, type: 3}
   - {fileID: 5621770429164290102, guid: 465392a964932184c87b9a0ad59e0068, type: 3}
+  spawnPosition:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   throwThingRef: {fileID: 0}
   healthRechargeSpeed: 2
   healthRechargeSpeedIncreaseSpeed: 2
@@ -4001,7 +4007,9 @@ MonoBehaviour:
   maxMinions: 8
   currentMinions: 0
   leftMinions: 0
+  rythmCamera: {fileID: 0}
   songManager: {fileID: 0}
+  rythmTransform: {fileID: 0}
 --- !u!114 &5664638594299172371
 MonoBehaviour:
   m_ObjectHideFlags: 0

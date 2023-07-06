@@ -4164,6 +4164,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1904377581}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &899360276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7220,7 +7232,7 @@ Transform:
   m_GameObject: {fileID: 1700799793}
   m_LocalRotation: {x: 0, y: -0.1872612, z: 0, w: 0.9823102}
   m_LocalPosition: {x: -0.1, y: 0, z: 0.25}
-  m_LocalScale: {x: 4.8561826, y: 4.8561826, z: 4.8561826}
+  m_LocalScale: {x: 3.3109453, y: 3.3109453, z: 3.3109453}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2115798271}
@@ -7306,7 +7318,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700799793}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -12219,6 +12231,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 465752169}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 314249073}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
