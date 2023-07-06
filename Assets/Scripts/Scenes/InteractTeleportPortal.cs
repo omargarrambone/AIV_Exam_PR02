@@ -18,4 +18,9 @@ public class InteractTeleportPortal : TeleportPortal
         CameraFollow.CameraPositionOnChangeScene = portal.CameraNextPosition;
         CameraFollow.CameraRotationOnChangeScene = portal.CameraNextRotation;
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        
+    }
 }

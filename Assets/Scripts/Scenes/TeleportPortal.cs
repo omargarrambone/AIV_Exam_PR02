@@ -12,7 +12,7 @@ public class TeleportPortal : MonoBehaviour
 
     [SerializeField] protected BoxCollider CameraLockWallCollider;
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         CameraLockWallCollider.enabled = false;
         CameraLockWallCollider.gameObject.SetActive(false);
