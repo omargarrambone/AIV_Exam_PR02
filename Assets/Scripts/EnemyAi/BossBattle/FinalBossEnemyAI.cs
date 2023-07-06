@@ -53,7 +53,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
 
         throwThingRef.OnHitOwner.AddListener(ResetMinionsSpawn);
-        throwThingRef.OnHitOwner.AddListener(() => { healthManager.TakeDamage(damageArancinoToMyself); });
+        throwThingRef.OnHitOwner.AddListener(() => { healthManager.TakeDamage(damageArancinoToMyself); maxMinions += 5; leftMinions = maxMinions; });
         throwThingRef.OnHitOwner.AddListener(SetImmortal);
 
         throwThingRef.OnHitTarget.AddListener(ResetMinionsSpawn);
@@ -110,6 +110,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 if (distanceFromTarget.magnitude < attackDistance)
                 {
                     isAttacking = true;
+                    SetWeaponsCollider(true);
                     currentState = EnemyState.Attack;
                     attackCounter = 0;
                     currentAttack = maxAttack;

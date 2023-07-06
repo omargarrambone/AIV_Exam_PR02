@@ -59,7 +59,7 @@ public class EnemyDamageManager : MonoBehaviour
         {
             IsHitting = true;        
             GetComponent<Animator>().Play("Knockback");
-            StunnManager.TakeStunn(10f);
+            StunnManager.TakeStunn(30f);
         }
      
     }

@@ -57,6 +57,8 @@ public class CameraFollow : MonoBehaviour
 
         //cool inquadratura
         CameraRotationOnChangeScene = new Vector3(16f, 0f, 0f);
+        transform.position = new Vector3(-64.0000381f, 6.22015953f, -36.9999847f);
+
         DefaultCameraRotation = Quaternion.Euler(CameraRotationOnChangeScene);
         Camera.main.transform.rotation = DefaultCameraRotation;
         OldRotation = Camera.main.transform.rotation;
@@ -69,6 +71,11 @@ public class CameraFollow : MonoBehaviour
     {
         transform.position = CameraPositionOnChangeScene;
         transform.rotation = Quaternion.Euler(CameraRotationOnChangeScene);
+    }
+
+    private void OnDestroy()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnNextSceneLoad;
     }
 
     public void LoadCameraPosition()

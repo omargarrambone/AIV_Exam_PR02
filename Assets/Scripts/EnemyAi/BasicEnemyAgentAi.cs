@@ -25,6 +25,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected List<Transform> patrolWaypoints;
     [SerializeField] protected GameObject healthBar;
     [SerializeField] protected GameObject stunBar;
+    [SerializeField] protected Collider weaponCollider;
     protected CapsuleCollider enemyCollider;
     protected Transform playerTarget;
     protected int currentWaypoint;
@@ -37,7 +38,8 @@ public class BasicEnemyAgentAi : MonoBehaviour
         anim = GetComponent<Animator>();
         enemyCollider = GetComponent<CapsuleCollider>();
         //currentState = EnemyState.Patrol;
-        weapon.GetComponent<BoxCollider>().enabled = false;
+        weaponCollider = weapon.GetComponent<BoxCollider>();
+        if(weaponCollider) weaponCollider.enabled = false;
 
         EnemyWeapon myWeapon = weapon.GetComponent<EnemyWeapon>();
         myWeapon.MyWeaponDamage = attackDamage;
@@ -207,12 +209,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public void StartAttack()
     {
-        weapon.GetComponent<BoxCollider>().enabled = true;
+        weaponCollider.enabled = true;
     }
 
     public void EndAttack()
     {
-        weapon.GetComponent<BoxCollider>().enabled = false;
+        weaponCollider.enabled = false;
     }
 
 }

@@ -17,7 +17,9 @@ public class GoodOrBadEdTrigger : MonoBehaviour
     // Update is called once per frame
     IEnumerator FinishCutscene()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(7);
+        PlayerManager.SetPosition(Vector3.zero);
+        Destroy(PlayerManager.PlayerGameObject.transform.parent.gameObject);
         bgMusic.Stop();
         if (SaveDataJSON.SavedData.worldData.enemiesPurified <= 5)
         {

@@ -137,6 +137,8 @@ public class SaveDataJSON : MonoBehaviour
             savedData.playerData.currentScene = "Caltanissetta";
             savedData.playerData.takenItems = weaponsManager.TakenWeapons;
             savedData.playerData.currentWeapon = 0;
+            savedData.playerData.lastCameraPos = new Vector3(-64.0000381f, 6.22015953f, -36.9999847f);
+            //savedData.playerData.lastCameraRot = new Vector3(16f, 0f, 0f);
             savedData.worldData.enemiesPurified = 0;
             savedData.worldData.enemiesKilled = 0;
             savedData.worldData.arenasCompleted = new bool[ArenaScript.MaxArenas];

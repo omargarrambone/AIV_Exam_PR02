@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class ArancinoScript : MonoBehaviour
 {
     [SerializeField] bool isGoingToTarget;
+    [SerializeField] EnemyWeapon enemyWeapon;
     public Transform throwThingPosition,ownerPositon, targetPosition;
     [SerializeField] Vector3 playerTargetOffset;
     [SerializeField] float distanceToHitTarget,distanceToHitOwner,throwThingSpeedMovement, throwThingSpeedRotation;
@@ -28,6 +29,7 @@ public class ArancinoScript : MonoBehaviour
             float distance = Vector3.Distance(transform.position, targetPosition.position);
             if (distance< distanceToHitTarget)
             {
+                targetPosition.GetComponent<HealthManager>().TakeDamage(enemyWeapon.MyWeaponDamage);
                 OnHitTarget.Invoke();
                 gameObject.SetActive(false);
             }
@@ -44,7 +46,7 @@ public class ArancinoScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (/*other.gameObject.tag == "Sword" ||*/ other.gameObject.tag == "Kick")
+        if (other.gameObject.tag == "Kick")
         {
             isGoingToTarget = false;
             targetPosition = ownerPositon;

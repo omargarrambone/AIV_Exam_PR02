@@ -18,6 +18,8 @@ public struct PlayerData
     public string currentScene;
     public int currentWeapon;
     public bool[] takenItems;
+    public Vector3 lastCameraPos;
+    public Quaternion lastCameraRot;
 }
 
 [System.Serializable]
