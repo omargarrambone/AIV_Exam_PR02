@@ -25,7 +25,7 @@ public class DistanceMainMenu : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("DontDestroyScene");
+                SceneManager.LoadScene("StartingCutscene");
             }
             
         }
