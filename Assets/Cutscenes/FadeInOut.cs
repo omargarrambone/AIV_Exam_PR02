@@ -7,7 +7,7 @@ public class FadeInOut : MonoBehaviour
 {
     public Image blackScreen;
     public static bool FadeinOut = false;
-    public bool AIincreasing = false;
+    public bool AIncreasing = false;
     public float Opacity = 0f;
     public float ChangeSpeed = 0.001f;
     private void Update()
@@ -15,20 +15,20 @@ public class FadeInOut : MonoBehaviour
         if (FadeinOut)
         {
             FadeinOut = false;
-            AIincreasing = true;
+            AIncreasing = true;
         }
-        if (Opacity<1f&&AIincreasing)
+        if (Opacity<1f&&AIncreasing)
         {
             Opacity += ChangeSpeed;
         }
         else
         {
-            if (AIincreasing)
+            if (AIncreasing)
             {
-                AIincreasing = false;
+                AIncreasing = false;
             }
         }
-        if (!AIincreasing&&Opacity>0f)
+        if (!AIncreasing&&Opacity>0f)
         {
             Opacity -= ChangeSpeed;
         }
