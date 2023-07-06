@@ -9,12 +9,6 @@ public class DistanceMainMenu : MonoBehaviour
 
     public float maxDistance;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -25,7 +19,15 @@ public class DistanceMainMenu : MonoBehaviour
     {
         if (Vector3.Distance(Camera.position, Target.position) < maxDistance)
         {
-            SceneManager.LoadScene("DontDestroyScene");
+            if (SaveDataJSON.DoesSavedDataExist())
+            {
+                SceneManager.LoadScene("DontDestroyScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("DontDestroyScene");
+            }
+            
         }
     }
 
