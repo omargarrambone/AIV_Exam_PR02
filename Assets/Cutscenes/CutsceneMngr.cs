@@ -13,7 +13,6 @@ public class CutsceneMngr : MonoBehaviour
     [SerializeField] private Camera CutsceneCamera;
     private Camera MainCamera;
     [SerializeField] private float cutsceneDuration;
-    [SerializeField] private AudioSource backgroundMusicFight, ambientAudioSource;
     [SerializeField] private UnityEngine.Audio.AudioMixer mixer;
 
     float oldVolumeValue;
@@ -45,7 +44,6 @@ public class CutsceneMngr : MonoBehaviour
     IEnumerator FinishCutscene()
     {
         yield return new WaitForSeconds(cutsceneDuration);
-        backgroundMusicFight.Play();
         PlayerManager.ShowPlayerCanvas();
         GetComponent<BoxCollider>().enabled = false;
         ninjaForCutscene.SetActive(false);

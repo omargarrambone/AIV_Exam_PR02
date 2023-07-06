@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 849aba55f6c3eb448bd47ac070d09b70
+  m_OcclusionCullingData: {fileID: 36300000, guid: 8e525ab60752c5f43b600a8ab4551078,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -300,7 +301,7 @@ GameObject:
   m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!4 &16280200
 Transform:
@@ -950,7 +951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 472772, guid: 241659bc2ecdb3c44aae2b1a066043f1, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 472772, guid: 241659bc2ecdb3c44aae2b1a066043f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1081,7 +1082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackScreen: {fileID: 34634173}
   AIncreasing: 0
-  Opacity: 0.95
+  Opacity: 1
   ChangeSpeed: 0.0001
 --- !u!114 &34634173
 MonoBehaviour:
@@ -5607,7 +5608,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &299695690
 PrefabInstance:
@@ -6721,7 +6722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 472772, guid: 241659bc2ecdb3c44aae2b1a066043f1, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 472772, guid: 241659bc2ecdb3c44aae2b1a066043f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8636,7 +8637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420334, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 420334, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
       propertyPath: m_LocalScale.x
@@ -15638,7 +15639,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &864562857
 PrefabInstance:
@@ -22368,7 +22369,7 @@ Transform:
   - {fileID: 2024962590}
   - {fileID: 1038396952}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1085733710
 GameObject:
@@ -22599,7 +22600,7 @@ PrefabInstance:
     - target: {fileID: 6139346230322664320, guid: f25cfd3bdb787d14695dfcb83ee5729f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6139346230322664320, guid: f25cfd3bdb787d14695dfcb83ee5729f,
         type: 3}
@@ -22656,11 +22657,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossArena
       objectReference: {fileID: 0}
+    - target: {fileID: 8982913755988110695, guid: f25cfd3bdb787d14695dfcb83ee5729f,
+        type: 3}
+      propertyPath: enemyWeapon
+      value: 
+      objectReference: {fileID: 1096856909}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f25cfd3bdb787d14695dfcb83ee5729f, type: 3}
+--- !u!114 &1096856909 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8309300305121894464, guid: f25cfd3bdb787d14695dfcb83ee5729f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1096856908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a066cce2ff3dce14a95d75692cc1554c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1097278047
 GameObject:
   m_ObjectHideFlags: 0
@@ -22800,7 +22818,7 @@ Transform:
   - {fileID: 1407520660}
   - {fileID: 886760312}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1102557842
 PrefabInstance:
@@ -23719,7 +23737,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1173396992
 MonoBehaviour:
@@ -23738,8 +23756,6 @@ MonoBehaviour:
   enemyForCutscene: {fileID: 990482743}
   CutsceneCamera: {fileID: 290829966}
   cutsceneDuration: 6.5
-  backgroundMusicFight: {fileID: 1955978243}
-  ambientAudioSource: {fileID: 0}
   mixer: {fileID: 24100000, guid: 08d1e5887ce1cf04d9388a58e636e918, type: 2}
 --- !u!1001 &1175583952
 PrefabInstance:
@@ -23842,7 +23858,7 @@ PrefabInstance:
     - target: {fileID: 5785898515770088128, guid: 36c9cae896a428b4bac6606b9b77aa00,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5785898515770088128, guid: 36c9cae896a428b4bac6606b9b77aa00,
         type: 3}
@@ -31911,7 +31927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420334, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 420334, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
       propertyPath: m_LocalScale.x
@@ -34463,7 +34479,7 @@ Transform:
   - {fileID: 1455418527}
   - {fileID: 1481967238}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1694324929
 Mesh:
@@ -39408,7 +39424,7 @@ GameObject:
   - component: {fileID: 1955978244}
   - component: {fileID: 1955978243}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: Backgroud music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39427,7 +39443,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: de3f19b18eca5c94581b7c4cb200de4f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0

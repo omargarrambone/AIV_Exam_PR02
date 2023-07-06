@@ -9,7 +9,7 @@ public class FadeInOut : MonoBehaviour
     public static bool FadeinOut = false;
     public bool AIncreasing = false;
     public float Opacity = 0f;
-    public float ChangeSpeed = 0.001f;
+    public float ChangeSpeed = 0.1f;
     private void Update()
     {
         if (FadeinOut)
@@ -17,7 +17,7 @@ public class FadeInOut : MonoBehaviour
             FadeinOut = false;
             AIncreasing = true;
         }
-        if (Opacity<1f&&AIncreasing)
+        if (Opacity < 1f && AIncreasing)
         {
             Opacity += ChangeSpeed;
         }
@@ -28,7 +28,7 @@ public class FadeInOut : MonoBehaviour
                 AIncreasing = false;
             }
         }
-        if (!AIncreasing&&Opacity>0f)
+        if (!AIncreasing && Opacity > 0f)
         {
             Opacity -= ChangeSpeed;
         }
