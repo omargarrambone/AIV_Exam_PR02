@@ -224,7 +224,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed && canDash)
         {
-            if (GameManager.GameState == GameState.Paused) return;
+            if (ShouldNotMove || GameManager.GameState == GameState.Paused) return;
             StartCoroutine(Dash());
             Dash_SFX.Play();
         }

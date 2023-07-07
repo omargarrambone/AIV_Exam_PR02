@@ -23,6 +23,8 @@ public class CameraMainMenu : MonoBehaviour
     void Start()
     {
         transform.position = StartPosition.transform.position;
+
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void Update()
