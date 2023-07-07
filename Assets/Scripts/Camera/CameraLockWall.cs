@@ -24,6 +24,11 @@ public class CameraLockWall : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
+        CallOnEnter();
+    }
+
+    public void CallOnEnter()
+    {
         if (isTargetPlayer)
         {
             cameraFollow.SetCameraTarget(PlayerManager.PlayerGameObject.transform, cameraType);
@@ -37,6 +42,11 @@ public class CameraLockWall : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
+        CallOnExit();
+    }
+
+    public void CallOnExit()
+    {
         cameraFollow.ResetCameraTarget();
         OnExit.Invoke();
     }

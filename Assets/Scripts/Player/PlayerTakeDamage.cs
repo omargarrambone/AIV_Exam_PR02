@@ -18,10 +18,12 @@ public class PlayerTakeDamage : MonoBehaviour
    [SerializeField] private float invincibilityTimer = 1f;
    [SerializeField] private float invincibilityCounter;
 
-
+    [SerializeField] AudioSource takenDmg;
 
     private void OnTriggerEnter(Collider other)
     {
+        if (HealthManager.IsImmune) return;
+
         enemyIsAttacking = true;
 
         if (other.gameObject.tag == "EnemyWeapon")
@@ -35,6 +37,8 @@ public class PlayerTakeDamage : MonoBehaviour
             HealthManager.IsImmune = true;
 
             meshRenderer.material = invincibleMaterial;
+
+            takenDmg.Play();
         }
     }
 

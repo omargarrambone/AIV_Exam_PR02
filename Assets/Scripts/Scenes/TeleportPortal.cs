@@ -10,9 +10,9 @@ public class TeleportPortal : MonoBehaviour
     public Vector3 CameraNextPosition;
     public Vector3 CameraNextRotation;
 
-    [SerializeField] private BoxCollider CameraLockWallCollider;
+    [SerializeField] protected BoxCollider CameraLockWallCollider;
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         CameraLockWallCollider.enabled = false;
         CameraLockWallCollider.gameObject.SetActive(false);

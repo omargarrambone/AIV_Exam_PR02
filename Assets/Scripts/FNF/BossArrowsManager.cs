@@ -11,7 +11,7 @@ public class BossArrowsManager : MonoBehaviour
     [SerializeField] private Transform arrowsParent;
     static public UnityEvent OnBossHittedNote;
 
-    private void Start()
+    private void Awake()
     {
         OnBossHittedNote = new UnityEvent();
     }

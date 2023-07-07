@@ -3,11 +3,11 @@ using UnityEngine.Events;
 
 public class HealthManager : MonoBehaviour
 {
-    public float MaxHealth {get; private set;}
-    [SerializeField] private float setMaxHealth=100;
+    public float MaxHealth { get; private set; }
+    [SerializeField] private float setMaxHealth = 100;
     public float CurrentHealth;
     public UnityEvent OnDeath;
-    private Animator anim; 
+    private Animator anim;
     public bool IsImmune;
     public bool IsDead { get { return CurrentHealth <= 0; } }
     public BarScript HealthBar;
@@ -24,6 +24,9 @@ public class HealthManager : MonoBehaviour
     public void AddHealth(float health)
     {
         CurrentHealth += health;
+
+        if (CurrentHealth > MaxHealth) CurrentHealth = MaxHealth;
+
         HealthBar.SetHealth(CurrentHealth);
     }
 
@@ -34,11 +37,11 @@ public class HealthManager : MonoBehaviour
 
         CurrentHealth -= damage;
 
-        if (IsDead)
-        {
-            //GetComponent<CapsuleCollider>().enabled = false;
-            //anim.SetTrigger("Death");
-        }
+        // if (IsDead)
+        // {
+        //GetComponent<CapsuleCollider>().enabled = false;
+        //anim.SetTrigger("Death");
+        //}
 
         HealthBar.SetHealth(CurrentHealth);
 

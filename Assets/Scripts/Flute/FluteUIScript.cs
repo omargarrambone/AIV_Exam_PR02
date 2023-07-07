@@ -8,11 +8,10 @@ public class FluteUIScript : MonoBehaviour
 {
     private System.Tuple<int,FluteArrow, Vector2>[] fluteArrows;
     [SerializeField] private int currentArrowIndex, lastWeaponIndex;
+
     [Header("References")]
-    //[SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private Transform ArrowsUIParent,ArrowsPrefab;
     [SerializeField] private PlayerInput playerInputScript;
-    [SerializeField] private Image musicSheet;
     [SerializeField] private int arrowsToGenerate, maxArrows;
 
     [Header("Events")]
@@ -27,7 +26,6 @@ public class FluteUIScript : MonoBehaviour
         OnStart.AddListener(PlayerManager.DisablePlayerMovement);
         OnCompleted.AddListener(PlayerManager.EnablePlayerMovement);
 
-        musicSheet.color = Color.red;
 
         gameObject.SetActive(false);
     }
@@ -56,8 +54,6 @@ public class FluteUIScript : MonoBehaviour
     {
         if (arrowsToGenerate > maxArrows) arrowsToGenerate = maxArrows;
 
-        //lastWeaponIndex = weaponsManager.CurrentSlotIndex;
-
         OnStart.Invoke();        
     }
 
@@ -71,18 +67,14 @@ public class FluteUIScript : MonoBehaviour
     {
         if (!gameObject.activeSelf) return;
 
-        if (context.performed)
+        if (context.started)
         {
-            //TODO: to fix if a player keeps a key pressed (?)
-
             Vector2 value = context.ReadValue<Vector2>();
 
             if(value == fluteArrows[currentArrowIndex].Item3)
             {
                 ArrowsUIParent.GetChild(currentArrowIndex).gameObject.SetActive(false);
                 OnCorrectArrow.Invoke(fluteArrows[currentArrowIndex].Item2);
-                musicSheet.color = currentArrowIndex % 2 != 0 ? Color.red : Color.blue;
-
                 currentArrowIndex++;
 
                 if (currentArrowIndex >= arrowsToGenerate)
@@ -102,7 +94,6 @@ public class FluteUIScript : MonoBehaviour
 
     void OnFinished()
     {
-        //weaponsManager.SetActualItem(lastWeaponIndex);
         PlayerManager.EnablePlayerMovement();
 
         for (int i = 0; i < ArrowsUIParent.childCount; i++)

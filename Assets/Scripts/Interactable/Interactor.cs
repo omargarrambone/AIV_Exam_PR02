@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class Interactor : MonoBehaviour
 {
@@ -25,7 +26,12 @@ public class Interactor : MonoBehaviour
     {
         if (actualInteractable && actualInteractable.isActiveAndEnabled)
         {
-            guiText.SetText($"Take [{actualInteractable.ItemName}]");
+            if(Gamepad.all.Count > 0)
+                guiText.SetText($"[Y] {actualInteractable.ItemName}");
+            else
+            {
+                guiText.SetText($"[F] {actualInteractable.ItemName}");
+            }
         }
         else
         {

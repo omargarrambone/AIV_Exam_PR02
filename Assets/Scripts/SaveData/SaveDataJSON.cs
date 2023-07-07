@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class SaveDataJSON : MonoBehaviour
 {
@@ -8,15 +9,18 @@ public class SaveDataJSON : MonoBehaviour
 
     private HealthManager healthManager;
     [SerializeField] private WeaponsManager weaponsManager;
+    [SerializeField] private VolumeManager volumeManager;
     [SerializeField] private SceneMngr sceneManager;
     [SerializeField] private FluteScript fluteScript;
+    [SerializeField] private Slider masterSlider, sfxSlider, musicSlider;
     [SerializeField] private SaveData savedData;
     [SerializeField] private UnityEvent OnSave, OnLoad;
-    static public string persistentPath = "";
+    static public string PersistentPath = "";
 
     void Start()
     {
         SetPaths();
+        //InitData();
         healthManager = PlayerManager.PlayerGameObject.GetComponent<HealthManager>();
 
         if (!DoesSavedDataExist())
@@ -25,13 +29,15 @@ public class SaveDataJSON : MonoBehaviour
         }
 
             LoadData();
-
     }
 
-    [ContextMenu("SetPaths")]
-    private void SetPaths()
+    public static void SetPaths()
     {
-        persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData.json";
+        PersistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData.json";
+    }
+
+    private void InitData()
+    {
         savedData = new SaveData();
         savedData.playerData = new PlayerData();
         savedData.worldData = new WorldData();
@@ -40,7 +46,7 @@ public class SaveDataJSON : MonoBehaviour
     [ContextMenu("Save Game")]
     public void SaveData()
     {
-        using (StreamWriter writer = new StreamWriter(persistentPath))
+        using (StreamWriter writer = new StreamWriter(PersistentPath))
         {
             // SAVE VALUES
             savedData.playerData.currentHealth = healthManager.CurrentHealth;
@@ -52,6 +58,10 @@ public class SaveDataJSON : MonoBehaviour
             savedData.worldData.enemiesPurified = NPCManager.PurifiedEnemies;
             savedData.worldData.enemiesKilled = NPCManager.KilledEnemies;
             savedData.worldData.arenasCompleted = ArenaScript.CompletedArenas;
+
+            savedData.worldData.masterVolume = volumeManager.MasterVolume;
+            savedData.worldData.musicVolume = volumeManager.MusicVolume;
+            savedData.worldData.sfxVolume = volumeManager.SFXvolume;
 
             // SAVE JSON
             string json = JsonUtility.ToJson(savedData);
@@ -69,7 +79,7 @@ public class SaveDataJSON : MonoBehaviour
 
         try
         {
-            using (StreamReader reader = new StreamReader(persistentPath))
+            using (StreamReader reader = new StreamReader(PersistentPath))
             {
                 json = reader.ReadToEnd();
             }
@@ -92,7 +102,7 @@ public class SaveDataJSON : MonoBehaviour
     {
         if (DoesSavedDataExist())
         {
-            using (StreamReader reader = new StreamReader(persistentPath))
+            using (StreamReader reader = new StreamReader(PersistentPath))
             {
                 // LOAD JSON
                 string json = reader.ReadToEnd();
@@ -114,6 +124,16 @@ public class SaveDataJSON : MonoBehaviour
                 NPCManager.KilledEnemies = savedData.worldData.enemiesKilled;
                 ArenaScript.CompletedArenas = savedData.worldData.arenasCompleted;
 
+                volumeManager.SetMasterAudio(savedData.worldData.masterVolume);
+                volumeManager.SetMusicAudio(savedData.worldData.musicVolume);
+                volumeManager.SetSFXAudio(savedData.worldData.sfxVolume);
+
+                SetAudioVolumes(volumeManager.MasterVolume, volumeManager.MusicVolume, volumeManager.SFXvolume);
+
+                masterSlider.value = volumeManager.MasterVolume;
+                musicSlider.value = volumeManager.MusicVolume;
+                sfxSlider.value = volumeManager.SFXvolume;
+
                 //LOAD SCENE
 
                 sceneManager.ChangeScene(sceneManager.NextScene);
@@ -121,25 +141,32 @@ public class SaveDataJSON : MonoBehaviour
             }
 
             OnLoad.Invoke();
-
-            Debug.Log("Loaded Game!");
         }
     }
 
     public void CreateDefaultSaveData()
     {
-        using (StreamWriter writer = new StreamWriter(persistentPath))
+        using (StreamWriter writer = new StreamWriter(PersistentPath))
         {
             // SAVE VALUES
             savedData.playerData.currentHealth = 100;
-            savedData.playerData.playerPos = new Vector3(-64f, 2.272f, -30f);
+            savedData.playerData.playerPos = new Vector3(-64, 2.22016072f, -30);
             savedData.playerData.playerRot = Quaternion.identity;
             savedData.playerData.currentScene = "Caltanissetta";
             savedData.playerData.takenItems = weaponsManager.TakenWeapons;
             savedData.playerData.currentWeapon = 0;
+
             savedData.worldData.enemiesPurified = 0;
             savedData.worldData.enemiesKilled = 0;
             savedData.worldData.arenasCompleted = new bool[ArenaScript.MaxArenas];
+
+            savedData.worldData.masterVolume = SavedData.worldData.masterVolume;
+            savedData.worldData.musicVolume = SavedData.worldData.musicVolume;
+            savedData.worldData.sfxVolume = SavedData.worldData.sfxVolume;
+
+            volumeManager.SetMasterAudio(savedData.worldData.masterVolume);
+            volumeManager.SetMusicAudio(savedData.worldData.musicVolume);
+            volumeManager.SetSFXAudio(savedData.worldData.sfxVolume);
 
             // SAVE JSON
             string json = JsonUtility.ToJson(savedData);
@@ -147,7 +174,16 @@ public class SaveDataJSON : MonoBehaviour
         }
 
         OnSave.Invoke();
+    }
 
-        Debug.Log("Saved Game!");
+    public static void SetAudioVolumes(float master, float music, float sfx)
+    {
+        SaveData saveData = SavedData;
+
+        saveData.worldData.masterVolume = master;
+        saveData.worldData.musicVolume = music;
+        saveData.worldData.sfxVolume = sfx;
+
+        SavedData = saveData;
     }
 }

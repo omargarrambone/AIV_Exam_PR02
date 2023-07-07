@@ -12,16 +12,26 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
 
     [Header("PhaseAttack Variables")]
+    [SerializeField] CameraLockWall attackCamera;
     [SerializeField] bool isAttacking;
     [SerializeField] int currentAttack, maxAttack;
     [SerializeField] float attackTimer, attackCounter, rotationSpeed;
     [SerializeField] private float dizzinessCounter, dizzinessTimer, minDizzinessTimer, maxDizzinessTimer;
     [Header("PhaseMinions Variables")]
+    [SerializeField] CameraLockWall minionCamera;
+    [SerializeField] bool isThrowing;
+    [SerializeField] ParticleSystem dissolveEffect;
+    [SerializeField] Transform teleportTransform, throwThingTransform;
     [SerializeField] GameObject[] enemyGhostPrefabs;
-    [SerializeField] float healthRechargeSpeed,spawnTimer, spawnCounter;
-    [SerializeField] int currentMinions, maxMinions;
+    [SerializeField] Transform[] spawnPosition;
+    [SerializeField] ArancinoScript throwThingRef;
+    [SerializeField] float healthRechargeSpeed, healthRechargeSpeedIncreaseSpeed, dissolveTimer, dissolveCounter,damageArancinoToMyself;
+    [SerializeField] int maxMinions, currentMinions, leftMinions;
     [Header("PhaseRythm Variables")]
-    [SerializeField] int test2;
+    [SerializeField] Camera rythmCamera;
+    [SerializeField] SongManager songManager;
+    [SerializeField] Transform rythmTransform;
+    [SerializeField] float cameraLerpTimer, cameraLerpCounter;
 
     protected override void Start()
     {
@@ -33,14 +43,26 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
         stunnManager.StunnDecreaseVelocity = 50.0f;
         stunnManager.Timer = 2f;
         stunnManager.IsImmune = true;
-        healthManager.IsImmune = true;
 
-        skinnedMeshRenderer.material = immortalMaterial;
+        SetImmortal();
 
-        parryChance = 0f;
+        parryTimer = 0f;
 
         currentState = EnemyState.Chase;
         agent.speed = chaseSpeed;
+
+
+        throwThingRef.OnHitOwner.AddListener(ResetMinionsSpawn);
+        throwThingRef.OnHitOwner.AddListener(() => { healthManager.TakeDamage(damageArancinoToMyself); maxMinions += 3; leftMinions = maxMinions; });
+        throwThingRef.OnHitOwner.AddListener(SetImmortal);
+
+        throwThingRef.OnHitTarget.AddListener(ResetMinionsSpawn);
+        throwThingRef.OnHitTarget.AddListener(SetImmortal);
+
+
+        throwThingRef.ownerPositon = transform;
+
+        attackCamera.enabled = true;
     }
 
     private void SetRandomDizziness()
@@ -77,6 +99,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
     private void PhaseAttack()
     {
+
         Vector3 distanceFromTarget = playerTarget.position - agent.transform.position;
 
         switch (currentState)
@@ -87,6 +110,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                 if (distanceFromTarget.magnitude < attackDistance)
                 {
                     isAttacking = true;
+                    SetWeaponsCollider(true);
                     currentState = EnemyState.Attack;
                     attackCounter = 0;
                     currentAttack = maxAttack;
@@ -109,7 +133,7 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
 
                     currentAttack--;
 
-                    if(currentAttack < 1)
+                    if(currentAttack < 0)
                     {
                         isAttacking = false;
                         anim.SetBool("IsAttacking", false);
@@ -117,10 +141,9 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                         if (!isAttacking)
                         {
                             SetWeaponsCollider(false);
-                            agent.isStopped = true;
+                            PauseMovement();
                             currentState = EnemyState.Dizzy;
-                            healthManager.IsImmune = false;
-                            skinnedMeshRenderer.material = baseMaterial;
+                            SetMortal();
                             anim.SetBool("IsDizzy",true);
                             SetRandomDizziness();
                             break;
@@ -139,75 +162,160 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
                     SetRandomDizziness();
                     anim.SetBool("IsDizzy", false);
                     currentState = EnemyState.Chase;
-                    agent.isStopped = false;
+                    ResumeMovement();
                     weapon.gameObject.SetActive(true);
-                    healthManager.IsImmune = true;
                     SetWeaponsCollider(true);
 
                     stunnManager.IsImmune = true;
                     stunnManager.SetStun(0);
-                    skinnedMeshRenderer.material = immortalMaterial;
+                    SetImmortal();
                     break;
                 }
 
                 break;
 
             case EnemyState.Dead:
+                anim.SetBool("IsAttacking", false);
                 currentPhase = FinalBossPhase.PhaseMinions;
-                PowerUpManager.SpawnPowerUpRandom(transform.position);
                 currentState = EnemyState.Healing;
-                healthManager.IsImmune = true;
-                skinnedMeshRenderer.material = immortalMaterial;
+                SetImmortal();
                 anim.SetBool("Stunned", true);
+                anim.SetBool("IsDizzy", false);
+                isAttacking = false;
+                ParticleSystem dis = Instantiate(dissolveEffect, transform.position, dissolveEffect.transform.rotation);
+                dis.transform.localScale = transform.localScale;
+                Destroy(dis.gameObject, 1);
+                PowerUpManager.SpawnPowerUpRandom(transform.position);
+                PauseMovement();
+                gameObject.transform.SetPositionAndRotation(teleportTransform.position, teleportTransform.rotation);
+                leftMinions = maxMinions;
+                attackCamera.CallOnExit();
+                minionCamera.CallOnEnter();
                 break;
         }
     }
 
+    private void ResetMinionsSpawn()
+    {
+        if (healthManager.IsImmune) return;
+
+        currentMinions = 0;
+        currentState = EnemyState.Attack;
+        
+        anim.SetBool("IsSpawning", true);
+        anim.SetBool("IsThrowing", false);
+
+        isThrowing = false;
+    }
+
+    private void PauseMovement()
+    {
+        agent.enabled = true;
+        agent.isStopped = true;
+        agent.enabled = false;
+    }
+
+    private void ResumeMovement()
+    {
+        agent.enabled = true;
+        agent.isStopped = false;
+    }
+
+    private void SetImmortal()
+    {
+        healthManager.IsImmune = true;
+        skinnedMeshRenderer.material = immortalMaterial;
+    }
+
+    private void SetMortal()
+    {
+        healthManager.IsImmune = false;
+        skinnedMeshRenderer.material = baseMaterial;
+    }
+
     private void PhaseMinions()
     {
-        Vector3 distanceFromTarget = playerTarget.position - agent.transform.position;
-
         switch (currentState)
         {
-            case EnemyState.Patrol:
-                break;
-            case EnemyState.Chase:
-                break;
             case EnemyState.Attack:
 
-                if (currentMinions < maxMinions)
+                if (leftMinions <= 0 && !isThrowing)
                 {
-                    spawnCounter -= Time.deltaTime;
-
-                    if(spawnCounter < 0)
-                    {
-                        spawnCounter = spawnTimer;
-
-                        GameObject enemy = Instantiate(enemyGhostPrefabs[Random.Range(0, enemyGhostPrefabs.Length)]);
-
-                        enemy.GetComponent<BasicEnemyAgentAi>().SetWaypoints(patrolWaypoints);
-
-                        currentMinions++;
-                    }
+                    isThrowing = true;
+                    anim.SetBool("IsThrowing", true);
+                    leftMinions = maxMinions;
                 }
+
                 break;
             case EnemyState.Stun:
                 break;
             case EnemyState.Healing:
+
+                healthRechargeSpeed += Time.deltaTime * healthRechargeSpeedIncreaseSpeed;
 
                 healthManager.AddHealth(Time.deltaTime * healthRechargeSpeed);
 
                 if(healthManager.CurrentHealth >= healthManager.MaxHealth)
                 {
                     healthManager.CurrentHealth = healthManager.MaxHealth;
-                    currentState = EnemyState.Attack;
                     anim.SetBool("Stunned", false);
-                    anim.SetBool("IsSpawning", true);
+
+                    dissolveCounter += Time.deltaTime;
+
+                    if (dissolveCounter > dissolveTimer)
+                    {
+                        currentState = EnemyState.Attack;
+                        anim.SetBool("IsSpawning", true);
+                    }
                 }
 
                 break;
             case EnemyState.Dead:
                 anim.SetBool("IsSpawning", false);
+                currentPhase = FinalBossPhase.PhaseRythm;
+                anim.SetTrigger("Dance");
+                songManager.PlaySong();
+                SetMortal();
+                currentState = EnemyState.Patrol;
+                GoToRythmTransform();
+                rythmCamera.transform.position = Camera.main.transform.position;
+                rythmCamera.transform.rotation = Camera.main.transform.rotation;
+                PlayerManager.HidePlayerCanvas();
+                break;
+        }
+
+    }
+
+    public void GoToRythmTransform()
+    {
+        transform.position = rythmTransform.position;
+        transform.rotation = rythmTransform.rotation;
+    }
+
+    private void PhaseRythm()
+    {
+        switch (currentState)
+        {
+            case EnemyState.Patrol:
+                cameraLerpCounter += Time.deltaTime;
+
+                if (cameraLerpCounter > cameraLerpTimer)
+                {
+                    Camera.main.gameObject.SetActive(false);
+                    rythmCamera.gameObject.SetActive(true);
+
+                    currentState = EnemyState.Attack;
+                }
+                break;
+            case EnemyState.Chase:
+                break;
+            case EnemyState.Attack:
+                break;
+            case EnemyState.Stun:
+                break;
+            case EnemyState.Healing:
+                break;
+            case EnemyState.Dead:
                 break;
             case EnemyState.Dizzy:
                 break;
@@ -216,12 +324,35 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
             default:
                 break;
         }
-
     }
 
-    private void PhaseRythm()
+    public void SpawnEnemy()
     {
+        if (currentMinions < maxMinions)
+        {
+                GameObject enemy = Instantiate(enemyGhostPrefabs[Random.Range(0, enemyGhostPrefabs.Length)], spawnPosition[Random.Range(0, spawnPosition.Length)].position, Quaternion.Euler(0,180,0));
+                BasicEnemyAgentAi ai = enemy.GetComponent<BasicEnemyAgentAi>();
+                ai.SetWaypoints(patrolWaypoints);
+                HealthManager hm = enemy.GetComponent<HealthManager>();
+                hm.OnDeath.AddListener(() => { leftMinions--; });
 
+                currentMinions++;
+
+                if (currentMinions >= maxMinions)
+                {
+                    anim.SetBool("IsSpawning", false);
+                }
+        }
+    }
+
+    public void ThrowKunai()
+    {
+        throwThingRef.gameObject.SetActive(true);
+        throwThingRef.gameObject.transform.position = throwThingTransform.position;
+        throwThingRef.targetPosition = playerTarget;
+        Vector3 distanceFromTarget = (playerTarget.position) - throwThingRef.transform.position;
+        throwThingRef.transform.forward = distanceFromTarget;
+        SetMortal();
     }
 }
 

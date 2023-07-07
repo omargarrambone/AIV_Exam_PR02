@@ -9,23 +9,11 @@ public class InteractableChest : MonoBehaviour
 {
     // Start is called before the first frame update
     private bool isOpen = false;
-    private Animator _anim;
-
-    void Start()
-    {
-        _anim = GetComponent<Animator>();
-    }
+    [SerializeField] private Animator _anim;
 
     public void OpenCloseChest()
     {
-        if (isOpen == false)
-        {
-            isOpen = true;
-            _anim.SetBool("isOpen", isOpen);
-        }
-        else if (isOpen == true)
-        {          
-            _anim.SetBool("isOpen", isOpen);
-        }
+        isOpen = !isOpen;
+        _anim.SetBool("isOpen", isOpen);
     }
 }

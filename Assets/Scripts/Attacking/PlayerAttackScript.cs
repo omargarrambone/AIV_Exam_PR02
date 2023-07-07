@@ -16,11 +16,12 @@ public class PlayerAttackScript : MonoBehaviour
 
     public void CallOnStartHit()
     {
-            weaponsManager.SetObjectsColliders(true);
-            OnStartAttack.Invoke();
+        weaponsManager.SetObjectsColliders(true);
+        OnStartAttack.Invoke();
 
-            swordSlash[weaponsManager.CurrentSlotIndex].playRate = slashPlayRate;
-            swordSlash[weaponsManager.CurrentSlotIndex].Play();
+        swordSlash[weaponsManager.CurrentSlotIndex].playRate = slashPlayRate;
+        swordSlash[weaponsManager.CurrentSlotIndex].Play();
+        weaponsManager.Sword_SFX.Play();
     }
 
     public void CallOnEndHit()

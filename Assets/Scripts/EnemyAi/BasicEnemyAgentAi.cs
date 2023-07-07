@@ -9,7 +9,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected EnemyState currentState;
     [SerializeField] protected float chaseSpeed;
     [SerializeField] protected float patrolSpeed;
-    [SerializeField] [Range(0f,1f)] protected float parryChance = 0.3f;
+    protected float parryTimer = 0.3f;
     [SerializeField] protected float attackDistance;
     [SerializeField] protected float attackDamage=5;
 
@@ -25,6 +25,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected List<Transform> patrolWaypoints;
     [SerializeField] protected GameObject healthBar;
     [SerializeField] protected GameObject stunBar;
+    [SerializeField] protected Collider weaponCollider;
     protected CapsuleCollider enemyCollider;
     protected Transform playerTarget;
     protected int currentWaypoint;
@@ -36,10 +37,11 @@ public class BasicEnemyAgentAi : MonoBehaviour
         fov = GetComponent<FieldOfView>();
         anim = GetComponent<Animator>();
         enemyCollider = GetComponent<CapsuleCollider>();
-        currentState = EnemyState.Patrol;
-        weapon.GetComponent<BoxCollider>().enabled = false;
+        //currentState = EnemyState.Patrol;
+        weaponCollider = weapon.GetComponent<BoxCollider>();
+        if(weaponCollider) weaponCollider.enabled = false;
 
-        EnemyWeapon myWeapon = weapon.AddComponent<EnemyWeapon>();
+        EnemyWeapon myWeapon = weapon.GetComponent<EnemyWeapon>();
         myWeapon.MyWeaponDamage = attackDamage;
 
         playerTarget = PlayerManager.PlayerGameObject.transform;
@@ -113,13 +115,13 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 if (enemyDamageManager.IsParrying)
                 {
                     anim.SetBool("IsParrying", true);
-                    parryChance -= Time.deltaTime;
+                    parryTimer -= Time.deltaTime;
                  
-                    if (parryChance <= 0)
+                    if (parryTimer <= 0)
                     {
                         enemyDamageManager.IsParrying = false;
                         anim.SetBool("IsParrying", false);
-                        parryChance = 0.3f;
+                        parryTimer = 0.3f;
                     }
                     break;
                 }
@@ -207,12 +209,12 @@ public class BasicEnemyAgentAi : MonoBehaviour
 
     public void StartAttack()
     {
-        weapon.GetComponent<BoxCollider>().enabled = true;
+        weaponCollider.enabled = true;
     }
 
     public void EndAttack()
     {
-        weapon.GetComponent<BoxCollider>().enabled = false;
+        weaponCollider.enabled = false;
     }
 
 }

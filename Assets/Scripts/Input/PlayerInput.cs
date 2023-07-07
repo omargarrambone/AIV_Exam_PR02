@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +10,7 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float speed;
+    [SerializeField] private float deadZone;
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
@@ -27,6 +29,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private int _numberOfJumps;
     [SerializeField] private int maxNumberOfJumps = 2;
+    //[SerializeField] private bool _isRodPickedUp = false;
 
     [Header("Dash Variables")]
     private bool canDash = true;
@@ -36,6 +39,11 @@ public class PlayerInput : MonoBehaviour
     private float dashingCooldown = 0.6f;
     [SerializeField] private TrailRenderer _trail;
 
+
+    [Header("Sounds")]
+    public AudioSource Dash_SFX;
+    public List<AudioSource> Jump_SFX;
+
     [Header("Animator and RigidBody")]
     private Animator _anim;
 
@@ -43,7 +51,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private GameObject Panel;
 
     [Header("Weapons")]
-    [SerializeField] private WeaponsManager weaponsManager;
+    [SerializeField] private WeaponsManager _weaponsManager;
 
     [Header("Footsteps")]
     public FootSteps _footSteps;
@@ -59,9 +67,9 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         ApplyGravity();
-        ApplyRotation();
-        ApplyMovement();
         CheckIsGrounded();
+        ApplyMovement();
+        ApplyRotation();
     }
 
     public void LightAttack(InputAction.CallbackContext context)
@@ -71,7 +79,7 @@ public class PlayerInput : MonoBehaviour
             if (ShouldNotMove) return;
 
             _anim.SetTrigger("IsAttacking");
-            weaponsManager.OnAttack(context);
+            _weaponsManager.OnAttack(context);
         }
 
     }
@@ -83,8 +91,6 @@ public class PlayerInput : MonoBehaviour
             if (ShouldNotMove) return;
 
             _anim.SetTrigger("IsKicking");
-
-            PlayerManager.DisablePlayerMovement();
         }
     }
 
@@ -119,13 +125,18 @@ public class PlayerInput : MonoBehaviour
 
     private void CheckIsGrounded()
     {
-
         _anim.SetBool("IsGrounded", IsGrounded());
     }
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (ShouldNotMove || GameManager.GameState == GameState.Paused) { _input = Vector2.zero; _direction = Vector2.zero; return; }
+
         _input = context.ReadValue<Vector2>();
+
+        if (Mathf.Abs(_input.x) > deadZone) _input.x = _input.x > 0 ? 1 : -1;
+        if (Mathf.Abs(_input.y) > deadZone) _input.y = _input.y > 0 ? 1 : -1;
+
         _direction = new Vector3(_input.x, 0.0f, _input.y);
     }
 
@@ -133,12 +144,35 @@ public class PlayerInput : MonoBehaviour
     {
         if (!context.performed) return;
 
-        if (!IsGrounded() && _numberOfJumps >= maxNumberOfJumps) return;
-        if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
+        if (ShouldNotMove || GameManager.GameState == GameState.Paused) return;
 
-        _numberOfJumps++;
-        _velocity = jumpPower;
-        _anim.SetInteger("JumpCount", _numberOfJumps);
+            if (_weaponsManager.TakenWeapons[(int)ItemType.LongKatana] == false)
+        {
+            if (!IsGrounded()) return;
+            if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
+
+            _numberOfJumps++;
+            _velocity = jumpPower;
+            _anim.SetInteger("JumpCount", _numberOfJumps);
+        }
+        else
+        {
+            if (!IsGrounded() && _numberOfJumps >= maxNumberOfJumps) return;
+            if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
+
+            _numberOfJumps++;
+            _velocity = jumpPower;
+            _anim.SetInteger("JumpCount", _numberOfJumps);
+        }
+
+        if (_numberOfJumps == 1)
+        {
+            Jump_SFX[0].Play();
+        }
+        else
+        {
+            Jump_SFX[1].Play();
+        }
     }
 
     private IEnumerator WaitForLanding()
@@ -188,8 +222,9 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed && canDash)
         {
-            if (ShouldNotMove) return;
+            if (ShouldNotMove || GameManager.GameState == GameState.Paused) return;
             StartCoroutine(Dash());
+            Dash_SFX.Play();
         }
     }
 
@@ -197,8 +232,8 @@ public class PlayerInput : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
-        _direction = new Vector3(_input.x, 0.0f, _input.y);
-        _characterController.Move(_direction * dashingPower);
+
+        _characterController.Move(transform.forward * dashingPower);
         _trail.emitting = true;
         yield return new WaitForSeconds(dashingTime);
         _trail.emitting = false;

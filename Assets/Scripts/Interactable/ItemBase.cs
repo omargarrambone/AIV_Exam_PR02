@@ -10,6 +10,7 @@ public class ItemBase : MonoBehaviour
     [SerializeField] bool initWeaponsManager;
     static private WeaponsManager weaponsManager;
     [SerializeField] private ItemType itemType;
+    [SerializeField] private string hintText;
     public UnityEvent onPickUp;
 
     private void Start()
@@ -32,5 +33,7 @@ public class ItemBase : MonoBehaviour
         onPickUp.Invoke();
         weaponsManager.AddItem(itemType);
         gameObject.SetActive(false);
+
+        HintWeapon.ShowHint(hintText);
     }
 }

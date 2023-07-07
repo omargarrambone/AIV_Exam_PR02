@@ -122,7 +122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7606231666205512893
 Transform:
   m_ObjectHideFlags: 0
@@ -468,7 +468,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -58.987267, y: 1.8647823, z: -1.5168808e-13}
+  m_ConnectedAnchor: {x: -58.987484, y: 1.8645439, z: -1.5168863e-13}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -747,7 +747,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 4.1157737, y: -2.6920712, z: -9.896708}
+  m_ConnectedAnchor: {x: 4.1157494, y: -2.692128, z: -9.896851}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -910,7 +910,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 33.94747, y: 0.14474684, z: 0.14362001}
+  m_ConnectedAnchor: {x: 33.947834, y: 0.1448201, z: 0.14395869}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -1445,7 +1445,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 4.1157813, y: -2.6920724, z: 9.896708}
+  m_ConnectedAnchor: {x: 4.1157494, y: -2.692128, z: 9.896851}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1642,7 +1642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1344018080493802637
 Transform:
   m_ObjectHideFlags: 0
@@ -1678,7 +1678,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9bc501b055c1fa247ba4c5d1f89d1579, type: 2}
+  - {fileID: 2100000, guid: 5f88d8208b0f48240bffdef89fcee3b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1857,7 +1857,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -33.947433, y: -0.14489532, z: -0.14362538}
+  m_ConnectedAnchor: {x: -33.94701, y: -0.14441288, z: -0.14396405}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1907,7 +1907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4668410492262657803
 Transform:
   m_ObjectHideFlags: 0
@@ -2160,7 +2160,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -40.9205, y: 5.329518, z: 19.098902}
+  m_ConnectedAnchor: {x: -40.920345, y: 5.329642, z: 19.098663}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -2488,6 +2488,7 @@ GameObject:
   - component: {fileID: 5986594620364186771}
   - component: {fileID: 3938150566976887526}
   - component: {fileID: 5874296152483146333}
+  - component: {fileID: 4713479716754787023}
   m_Layer: 0
   m_Name: AXE
   m_TagString: EnemyWeapon
@@ -2502,14 +2503,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5121658103163138791}
-  m_LocalRotation: {x: 0.70710623, y: -0.00000018253914, z: 0.00000021792938, w: -0.7071073}
-  m_LocalPosition: {x: 11.7, y: 5.1, z: 25.4}
-  m_LocalScale: {x: 65, y: 65.00003, z: 65}
+  m_LocalRotation: {x: 0.000000335276, y: -0.70710766, z: 0.707106, w: -0.00000041536973}
+  m_LocalPosition: {x: 20.4, y: 3, z: 20.9}
+  m_LocalScale: {x: 150, y: 150, z: 150}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2333117748102387041}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -180}
 --- !u!33 &5986594620364186771
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2517,7 +2518,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5121658103163138791}
-  m_Mesh: {fileID: 4300000, guid: 0d9462c2faca90448a7b70566d032ff2, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 18dee7feb9f9e85419f8b9be8e660aab, type: 3}
 --- !u!23 &3938150566976887526
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2579,8 +2580,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28817952, y: 1.4020103, z: 0.20362177}
-  m_Center: {x: -0.032706536, y: 0.8010092, z: 0.0554153}
+  m_Size: {x: 0.3075763, y: 0.5075319, z: 0.08629604}
+  m_Center: {x: 0.0028917636, y: 0.45761415, z: 0.0004390827}
+--- !u!114 &4713479716754787023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5121658103163138791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a066cce2ff3dce14a95d75692cc1554c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyWeaponDamage: 20
 --- !u!1 &5192178465918610448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3321,7 +3335,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -10.393268, y: -0.0000009536743, z: 0}
+  m_ConnectedAnchor: {x: -10.393217, y: 0.00029182434, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -3484,7 +3498,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -39.93092, y: 0.000006198883, z: 0.0000009536743}
+  m_ConnectedAnchor: {x: -39.931007, y: -0.00006723404, z: 0.000061035156}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -3845,7 +3859,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 39.930927, y: -0.00005054474, z: 0.00000333786}
+  m_ConnectedAnchor: {x: 39.93099, y: 0.00007200241, z: -0.000056743622}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3903,7 +3917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4060725193903763785
 Transform:
   m_ObjectHideFlags: 0
@@ -3937,9 +3951,8 @@ MonoBehaviour:
   currentState: 1
   chaseSpeed: 10
   patrolSpeed: 2
-  parryChance: 0
   attackDistance: 4
-  attackDamage: 5
+  attackDamage: 20
   agent: {fileID: 268865109394438647}
   weapon: {fileID: 5121658103163138791}
   stunnManager: {fileID: 7965098285453751417}
@@ -3954,13 +3967,15 @@ MonoBehaviour:
   - {fileID: 0}
   healthBar: {fileID: 818850863881396907}
   stunBar: {fileID: 4142684347394334850}
+  weaponCollider: {fileID: 0}
   currentPhase: 0
   weapons:
   - {fileID: 5874296152483146333}
   - {fileID: 6674014279918162425}
-  baseMaterial: {fileID: 2100000, guid: 9bc501b055c1fa247ba4c5d1f89d1579, type: 2}
+  baseMaterial: {fileID: 2100000, guid: 6d0613f500c022f48ae1dde75d4fc3c2, type: 2}
   immortalMaterial: {fileID: 2100000, guid: dbf14c8aeac2c594aa17543afdf976a6, type: 2}
-  skinnedMeshRenderer: {fileID: 3270470802434299073}
+  skinnedMeshRenderer: {fileID: 2859223691911066595}
+  attackCamera: {fileID: 0}
   isAttacking: 0
   currentAttack: 0
   maxAttack: 5
@@ -3969,15 +3984,35 @@ MonoBehaviour:
   rotationSpeed: 4
   dizzinessCounter: 0
   dizzinessTimer: 3
-  minDizzinessTimer: 4
-  maxDizzinessTimer: 7
-  enemyGhostPrefabs: []
-  healthRechargeSpeed: 0
-  spawnTimer: 0
-  spawnCounter: 0
+  minDizzinessTimer: 5
+  maxDizzinessTimer: 6
+  minionCamera: {fileID: 0}
+  isThrowing: 0
+  dissolveEffect: {fileID: 2732767235089498024, guid: 36c9cae896a428b4bac6606b9b77aa00,
+    type: 3}
+  teleportTransform: {fileID: 0}
+  throwThingTransform: {fileID: 0}
+  enemyGhostPrefabs:
+  - {fileID: 1650208938979513574, guid: 32c1bcbc4b0f55046a99ec286ab63b84, type: 3}
+  - {fileID: 5621770429164290102, guid: 465392a964932184c87b9a0ad59e0068, type: 3}
+  spawnPosition:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  throwThingRef: {fileID: 0}
+  healthRechargeSpeed: 20
+  healthRechargeSpeedIncreaseSpeed: 5
+  dissolveTimer: 0.2
+  dissolveCounter: 0
+  damageArancinoToMyself: 67
+  maxMinions: 8
   currentMinions: 0
-  maxMinions: 0
-  test2: 0
+  leftMinions: 0
+  rythmCamera: {fileID: 0}
+  songManager: {fileID: 0}
+  rythmTransform: {fileID: 0}
+  cameraLerpTimer: 0.6
+  cameraLerpCounter: 0
 --- !u!114 &5664638594299172371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4010,12 +4045,12 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.36
   m_Speed: 10
-  m_Acceleration: 8
+  m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 0
-  m_StoppingDistance: 1
+  m_StoppingDistance: 1.3333334
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: -0
@@ -4090,35 +4125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setMaxHealth: 100
+  setMaxHealth: 200
   CurrentHealth: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2163519439290360509}
-        m_TargetAssemblyTypeName: RagdollManager, Assembly-CSharp
-        m_MethodName: SetRagdollColliders
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2163519439290360509}
-        m_TargetAssemblyTypeName: RagdollManager, Assembly-CSharp
-        m_MethodName: SetRagdollColliders
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 4677416567676217915}
         m_TargetAssemblyTypeName: BasicEnemyAgentAi, Assembly-CSharp
         m_MethodName: SetState
@@ -4126,10 +4137,10 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   IsImmune: 1
   HealthBar: {fileID: 3331821116739757678}
@@ -4189,6 +4200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca456d33980bea4b927da8e460526a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ragdollRb: {fileID: 5504128629146956872}
 --- !u!1 &6577935846264206191
 GameObject:
   m_ObjectHideFlags: 0
@@ -4879,7 +4891,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -40.920788, y: 5.3295302, z: -19.098927}
+  m_ConnectedAnchor: {x: -40.92111, y: 5.3296795, z: -19.098663}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:

@@ -36,7 +36,7 @@ public class EnemyDamageManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Sword")
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "Rod")
         {
             PlayerIsAttacking = true;
             ParryTimeIndex = Random.Range(0f, 1f);
@@ -55,12 +55,11 @@ public class EnemyDamageManager : MonoBehaviour
 
             counter = timer;
         }
-        
-        if (other.gameObject.tag == "Kick")      
+        else if (other.gameObject.tag == "Kick")      
         {
             IsHitting = true;        
             GetComponent<Animator>().Play("Knockback");
-            StunnManager.TakeStunn(10f);
+            StunnManager.TakeStunn(30f);
         }
      
     }

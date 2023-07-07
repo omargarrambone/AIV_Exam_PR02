@@ -6,6 +6,9 @@ public class InteractTeleportPortal : TeleportPortal
 {
     public void Teleport()
     {
+        CameraLockWallCollider.enabled = false;
+        CameraLockWallCollider.gameObject.SetActive(false);
+
         TeleportPortal portal = GetComponent<TeleportPortal>();
         PlayerTeleporter.SceneMngr.PlayerPositionInNextScene = portal.PlayerNextPosition;
         PlayerTeleporter.SceneMngr.PlayerRotationInNextScene = PlayerManager.PlayerGameObject.transform.rotation;
@@ -14,6 +17,10 @@ public class InteractTeleportPortal : TeleportPortal
 
         CameraFollow.CameraPositionOnChangeScene = portal.CameraNextPosition;
         CameraFollow.CameraRotationOnChangeScene = portal.CameraNextRotation;
+    }
 
+    protected override void OnTriggerEnter(Collider other)
+    {
+        
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class CameraFollow : MonoBehaviour
 
     [Header("Follow Player Variables")]
     [SerializeField] private Transform defaultCameraTarget;
-    [SerializeField] private float smoothSpeed;
+    [SerializeField] private float smoothSpeed, lerpSpeed;
     public Vector3 DefaultCameraOffset, CameraForwardOffset;
     [SerializeField] private float playerForwardDistance;
 
@@ -25,6 +24,10 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Vector3 diabloCameraPositionOffset;
     [SerializeField] Vector3 diabloCameraRotationOffset;
 
+    [Header("Diablo Camera Slums Variables")]
+    [SerializeField] Vector3 diabloCameraSlumsPositionOffset;
+    [SerializeField] Vector3 diabloCameraSlumsRotationOffset;
+
     [Header("Maze Camera Variables")]
     [SerializeField] Vector3 mazeCameraPositionOffset;
     [SerializeField] Vector3 mazeCameraRotationOffset;
@@ -32,6 +35,10 @@ public class CameraFollow : MonoBehaviour
     [Header("Saving Camera Variables")]
     [SerializeField] Vector3 savingCameraPositionOffset;
     [SerializeField] Vector3 savingCameraRotationOffset;
+
+    [Header("MinionsPhaseBossBattleCamera Camera Variables")]
+    [SerializeField] Vector3 minionsPhaseBossBattleCameraPositionOffset;
+    [SerializeField] Vector3 minionsPhaseBossBattleCameraRotationOffset;
 
     [Header("Lerp Variables")]
     [SerializeField] bool hasStartedLerping;
@@ -43,27 +50,37 @@ public class CameraFollow : MonoBehaviour
     static public Vector3 CameraRotationOnChangeScene;
     static public CameraType ResetCameraType;
 
-    public Vector3 _CameraRotationOnChangeScene;
-    public Vector3 _CameraPositionOnChangeScene;
-
     private void Awake()
     {
         //get player as target
         actualCameraTarget = defaultCameraTarget;
 
-        //cool inquadratura
-        CameraRotationOnChangeScene = new Vector3(16f, 0f, 0f);
-        DefaultCameraRotation = Quaternion.Euler(CameraRotationOnChangeScene);
         Camera.main.transform.rotation = DefaultCameraRotation;
-        OldRotation = Camera.main.transform.rotation;
 
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnNextSceneLoad;
+
+    }
+
+    private void OnNextSceneLoad(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
+    {
+        transform.position = CameraPositionOnChangeScene;
+        transform.rotation = Quaternion.Euler(CameraRotationOnChangeScene);
+    }
+
+    private void OnDestroy()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnNextSceneLoad;
     }
 
     public void LoadCameraPosition()
     {
-        CameraPositionOnChangeScene = SaveDataJSON.SavedData.playerData.playerPos + DefaultCameraOffset + Vector3.forward*playerForwardDistance;
+        CameraRotationOnChangeScene = DefaultCameraRotation.eulerAngles;
+        CameraForwardOffset = new Vector3(Mathf.Sign(defaultCameraTarget.forward.x), 0, 0) * playerForwardDistance;
+
+        CameraPositionOnChangeScene = SaveDataJSON.SavedData.playerData.playerPos + CameraForwardOffset + DefaultCameraOffset + new Vector3(0,2,0);
+
         ResetCameraTarget();
-        
+        OldRotation = DefaultCameraRotation;
     }
 
     private void Update()
@@ -100,35 +117,32 @@ public class CameraFollow : MonoBehaviour
                 break;
 
             case CameraType.DiabloCamera:
-                DiabloCamera(newCameraPosition);
+                SimpleCameraWithOffset(diabloCameraRotationOffset, diabloCameraPositionOffset,newCameraPosition);
+                break;
+
+            case CameraType.DiabloCameraSlums:
+                SimpleCameraWithOffset(diabloCameraSlumsRotationOffset, diabloCameraSlumsPositionOffset,newCameraPosition);
                 break;
 
             case CameraType.MazeCamera:
-                MazeCamera();
+                SimpleCameraWithOffset(mazeCameraRotationOffset, mazeCameraPositionOffset, actualCameraTarget.position);
                 break;
 
             case CameraType.SavingCamera:
-                SavingCamera(newCameraPosition);
+                SimpleCameraWithOffset(savingCameraRotationOffset, savingCameraPositionOffset,newCameraPosition);
+                break;
+
+            case CameraType.MinionsPhaseBossBattleCamera:
+                SimpleCameraWithOffset(minionsPhaseBossBattleCameraRotationOffset,minionsPhaseBossBattleCameraPositionOffset,newCameraPosition);
                 break;
 
         }
     }
 
-    private void SavingCamera(Vector3 newCameraPosition)
+    private void SimpleCameraWithOffset(Vector3 rotation, Vector3 offset,Vector3 newCameraPosition)
     {
-        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + savingCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
-        NextRotation =  Quaternion.Euler(savingCameraRotationOffset);
-    }
-
-    private void DiabloCamera(Vector3 newCameraPosition)
-    {
-        NextRotation = Quaternion.Euler(diabloCameraRotationOffset);
-        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + diabloCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
-    }
-    private void MazeCamera()
-    {
-        NextRotation = Quaternion.Euler(mazeCameraRotationOffset);
-        transform.position = Vector3.SmoothDamp(transform.position, actualCameraTarget.position + mazeCameraPositionOffset, ref smoothDampVelocity, smoothSpeed);
+        NextRotation = Quaternion.Euler(rotation);
+        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + offset, ref smoothDampVelocity, smoothSpeed);
     }
 
     private void FollowPlayer(Vector3 newCameraPosition)
@@ -153,7 +167,8 @@ public class CameraFollow : MonoBehaviour
             }
         }
 
-        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + CameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
+        //transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition + CameraForwardOffset, ref smoothDampVelocity, smoothSpeed);
+        transform.position = Vector3.Lerp(transform.position, newCameraPosition + CameraForwardOffset, Time.deltaTime * smoothSpeed * lerpSpeed);
     }
 
     private void LookAtPlayer(Vector3 newCameraPosition)
@@ -195,12 +210,5 @@ public class CameraFollow : MonoBehaviour
         OldRotation = Camera.main.transform.rotation;
         NextRotation = nextQuaternion;
         hasStartedLerping = true;
-    }
-
-    private void OnLevelWasLoaded(int level)
-    {
-        transform.position = CameraPositionOnChangeScene;
-        transform.rotation = Quaternion.Euler(CameraRotationOnChangeScene);
-
     }
 }

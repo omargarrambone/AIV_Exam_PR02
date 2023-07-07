@@ -15,6 +15,7 @@ public class FootSteps : MonoBehaviour
     [Range(0, 0.5f)] public float RandomVolumeRange;
     [Range(0, 0.3f)] public float RandomPitchRange;
 
+
     private List<AudioSource> sources;
 
     public AudioMixerGroup AudioMixerGroup;
