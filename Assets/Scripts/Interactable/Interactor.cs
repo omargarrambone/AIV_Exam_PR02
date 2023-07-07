@@ -1,45 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class Interactor : MonoBehaviour
 {
-    [SerializeField] private LayerMask interactableLayerMask;
-    [SerializeField] private float maxDistance;
-    private RaycastHit hit;
-    [SerializeField] private Image interactImage;
-    [SerializeField] private Color defaultColor;
-    [SerializeField] private Color interactColor;
-
-    Interactable actualInteractable;
-
-    void Update()
-    {
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance, interactableLayerMask))
-        {
-            Interactable interactable = hit.collider.GetComponent<Interactable>();
-
-            if (interactable != null)
-            {
-                interactImage.color = interactColor;
-                actualInteractable = interactable;
-            }
-
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward*maxDistance, Color.green);
-        }
-        else
-        {
-            interactImage.color = defaultColor;
-            actualInteractable = null;
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward*maxDistance, Color.red);
-        }
-
-    }
+    [SerializeField] private Interactable actualInteractable;
+    [SerializeField] private TMPro.TMP_Text guiText;
+    [SerializeField] private float radius, maxDistance;
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private Collider[] colliders;
 
     public void Interact(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if(context.performed)
-            actualInteractable.onInteract.Invoke();
+        if (context.performed)
+        {
+            if(actualInteractable != null)
+            {
+                actualInteractable.OnInteract.Invoke();
+            }
+        }
     }
 
+    private void Update()
+    {
+        if (actualInteractable && actualInteractable.isActiveAndEnabled)
+        {
+            if(Gamepad.all.Count > 0)
+                guiText.SetText($"[Y] {actualInteractable.ItemName}");
+            else
+            {
+                guiText.SetText($"[F] {actualInteractable.ItemName}");
+            }
+        }
+        else
+        {
+            guiText.SetText("");
+        }
+
+        colliders = Physics.OverlapSphere(transform.position, radius, layerMask);
+
+        if (colliders.Length > 0)
+        {
+            actualInteractable = colliders[0].GetComponent<Interactable>();
+        }
+        else if(actualInteractable!= null)
+        {
+            //actualInteractable.OnPlayerExitRange.Invoke();
+            actualInteractable = null;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 }
