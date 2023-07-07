@@ -5134,6 +5134,7 @@ MonoBehaviour:
   - {fileID: 0}
   healthBar: {fileID: 0}
   stunBar: {fileID: 0}
+  weaponCollider: {fileID: 0}
   dizzinessCounter: 0
   dizzinessTimer: 5
   minDizzinessTimer: 4
@@ -5319,6 +5320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca456d33980bea4b927da8e460526a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ragdollRb: {fileID: 869786275323644136}
 --- !u!1 &8197945996905278544
 GameObject:
   m_ObjectHideFlags: 0
