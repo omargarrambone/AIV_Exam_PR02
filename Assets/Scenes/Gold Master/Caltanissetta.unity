@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.028631816, g: 0.2966058, b: 0.4896375, a: 1}
+  m_IndirectSpecularColor: {r: 0.028648408, g: 0.2966174, b: 0.4896484, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -38216,10 +38216,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7328769727326108106, guid: ceea8697184d51d4e94712f497bc9649,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.696442
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328769727326108106, guid: ceea8697184d51d4e94712f497bc9649,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -23.299341
+      objectReference: {fileID: 0}
     - target: {fileID: 7362068495253311946, guid: ceea8697184d51d4e94712f497bc9649,
         type: 3}
       propertyPath: m_Name
       value: VillagersSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687096209931111696, guid: ceea8697184d51d4e94712f497bc9649,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687096209931111696, guid: ceea8697184d51d4e94712f497bc9649,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

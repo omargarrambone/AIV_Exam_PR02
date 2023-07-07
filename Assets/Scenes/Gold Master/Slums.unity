@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0034717766, g: 0.024900146, b: 0.15363325, a: 1}
+  m_IndirectSpecularColor: {r: 0.003473942, g: 0.024900863, b: 0.15363196, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12617,12 +12617,12 @@ PrefabInstance:
     - target: {fileID: 44872252198382519, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.72
+      value: 3.686
       objectReference: {fileID: 0}
     - target: {fileID: 44872252198382519, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.19321823
+      value: -0.008
       objectReference: {fileID: 0}
     - target: {fileID: 44872252198382519, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
         type: 3}
@@ -12664,31 +12664,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 596080978062168393, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 596080978062168393, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1080
-      objectReference: {fileID: 0}
-    - target: {fileID: 596080978062168393, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 596080978062168393, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 596080978062168393, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 778444225004532110, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
         type: 3}
       propertyPath: sentence.Array.size
@@ -12704,11 +12679,6 @@ PrefabInstance:
       propertyPath: sentence.Array.data[1]
       value: Test in bianco
       objectReference: {fileID: 0}
-    - target: {fileID: 1698420658646033374, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5302076660729778731, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
         type: 3}
       propertyPath: m_Name
@@ -12718,7 +12688,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 53c9e7995df21cc42a3105e4a788bfd4, type: 2}
+      objectReference: {fileID: 9100000, guid: 908abe182b700d24cbd664e458958c27, type: 2}
     - target: {fileID: 5708435118772194511, guid: cd2c980af74167e4a8bbbfd4fccdfc01,
         type: 3}
       propertyPath: m_IsActive

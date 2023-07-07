@@ -132,7 +132,7 @@ public class PlayerInput : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (ShouldNotMove) { _input = Vector2.zero; _direction = Vector2.zero; return; }
+        if (ShouldNotMove || GameManager.GameState == GameState.Paused) { _input = Vector2.zero; _direction = Vector2.zero; return; }
 
         _input = context.ReadValue<Vector2>();
 
@@ -146,7 +146,9 @@ public class PlayerInput : MonoBehaviour
     {
         if (!context.performed) return;
 
-        if (_weaponsManager.TakenWeapons[(int)ItemType.LongKatana] == false)
+        if (ShouldNotMove || GameManager.GameState == GameState.Paused) return;
+
+            if (_weaponsManager.TakenWeapons[(int)ItemType.LongKatana] == false)
         {
             if (!IsGrounded()) return;
             if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
