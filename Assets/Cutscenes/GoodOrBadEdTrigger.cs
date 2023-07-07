@@ -21,7 +21,7 @@ public class GoodOrBadEdTrigger : MonoBehaviour
         PlayerManager.SetPosition(Vector3.zero);
         Destroy(PlayerManager.PlayerGameObject.transform.parent.gameObject);
         bgMusic.Stop();
-        if (SaveDataJSON.SavedData.worldData.enemiesPurified <= 5)
+        if (NPCManager.PurifiedEnemies <= 5)
         {
             SceneManager.LoadScene("BadEdCaltanissetta", LoadSceneMode.Single);
         }
