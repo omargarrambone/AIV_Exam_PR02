@@ -91,8 +91,6 @@ public class PlayerInput : MonoBehaviour
             if (ShouldNotMove) return;
 
             _anim.SetTrigger("IsKicking");
-
-            PlayerManager.DisablePlayerMovement();
         }
     }
 
