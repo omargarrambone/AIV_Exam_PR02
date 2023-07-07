@@ -91,15 +91,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""HeavyAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""dfbd40f7-33e0-4015-aab8-5ea96f79f06f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""0384bbe9-14c1-4724-bdcb-1d129ddcfb47"",
@@ -462,17 +453,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""34856fbd-7327-4fa9-8161-70e674dc4430"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""HeavyAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""54be094d-955f-44f9-a057-322199a5feb9"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -557,7 +537,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
         m_Player_LightAttack = m_Player.FindAction("LightAttack", throwIfNotFound: true);
-        m_Player_HeavyAttack = m_Player.FindAction("HeavyAttack", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Kick = m_Player.FindAction("Kick", throwIfNotFound: true);
     }
@@ -628,7 +607,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Inventory;
     private readonly InputAction m_Player_LightAttack;
-    private readonly InputAction m_Player_HeavyAttack;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Kick;
     public struct PlayerActions
@@ -642,7 +620,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
         public InputAction @LightAttack => m_Wrapper.m_Player_LightAttack;
-        public InputAction @HeavyAttack => m_Wrapper.m_Player_HeavyAttack;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Kick => m_Wrapper.m_Player_Kick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -675,9 +652,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
             @LightAttack.started += instance.OnLightAttack;
             @LightAttack.performed += instance.OnLightAttack;
             @LightAttack.canceled += instance.OnLightAttack;
-            @HeavyAttack.started += instance.OnHeavyAttack;
-            @HeavyAttack.performed += instance.OnHeavyAttack;
-            @HeavyAttack.canceled += instance.OnHeavyAttack;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -709,9 +683,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
             @LightAttack.started -= instance.OnLightAttack;
             @LightAttack.performed -= instance.OnLightAttack;
             @LightAttack.canceled -= instance.OnLightAttack;
-            @HeavyAttack.started -= instance.OnHeavyAttack;
-            @HeavyAttack.performed -= instance.OnHeavyAttack;
-            @HeavyAttack.canceled -= instance.OnHeavyAttack;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -762,7 +733,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnLightAttack(InputAction.CallbackContext context);
-        void OnHeavyAttack(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnKick(InputAction.CallbackContext context);
     }
