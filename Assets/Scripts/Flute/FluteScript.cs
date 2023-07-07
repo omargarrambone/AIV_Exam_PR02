@@ -13,6 +13,7 @@ public class FluteScript : MonoBehaviour
     [SerializeField] float attackDmg;
     [SerializeField] FluteUIScript fluteUIScript;
     public ParticleSystem Dissolve;
+    [SerializeField] private Animator playerAnimator;
 
     private void Start()
     {
@@ -47,6 +48,7 @@ public class FluteScript : MonoBehaviour
             if (atLeastOneEnemyStunned)
             {
                 fluteUIScript.gameObject.SetActive(true);
+                playerAnimator.SetTrigger("IsFluting");
             }
         }
     }
@@ -91,6 +93,8 @@ public class FluteScript : MonoBehaviour
             //timer attack
             isAttacking = true;
         }
+
+        playerAnimator.SetTrigger("IsNotFluting");
     }
 
     public void PlayCorrectNote(FluteArrow fluteArrow)
@@ -101,6 +105,7 @@ public class FluteScript : MonoBehaviour
     public void PlayWrongNote()
     {
         audioSource.PlayOneShot(wrongClip);
+        playerAnimator.SetTrigger("IsNotFluting");
     }
 
     private void Update()
