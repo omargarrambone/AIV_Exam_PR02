@@ -15955,6 +15955,11 @@ PrefabInstance:
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3796239952712670510, guid: 1c64fbe146825d4439e21d3a3c64b4fb,
+        type: 3}
+      propertyPath: _anim
+      value: 
+      objectReference: {fileID: 1170198192}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -15964,6 +15969,12 @@ PrefabInstance:
       addedObject: {fileID: 1042845876}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c64fbe146825d4439e21d3a3c64b4fb, type: 3}
+--- !u!95 &1170198192 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8938481360270419058, guid: 1c64fbe146825d4439e21d3a3c64b4fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1170198191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1170942598
 PrefabInstance:
   m_ObjectHideFlags: 0
