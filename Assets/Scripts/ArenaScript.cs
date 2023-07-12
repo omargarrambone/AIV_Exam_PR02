@@ -53,13 +53,21 @@ public class ArenaScript : MonoBehaviour
             fogWalls[i].SetActive(false);
         }
 
-        if (enemies.Length > 0)
+        try
         {
-            for (int i = 0; i < enemies.Length; i++)
+            if (enemies.Length > 0)
             {
-                if (enemies[i] != null) Destroy(enemies[i]);
+                for (int i = 0; i < enemies.Length; i++)
+                {
+                    if (enemies[i] != null) Destroy(enemies[i]);
+                }
             }
         }
+        catch (System.Exception)
+        {
+
+        }
+
 
         enabled = false;
         gameObject.SetActive(false);

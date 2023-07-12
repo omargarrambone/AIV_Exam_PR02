@@ -20842,6 +20842,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}
+      propertyPath: stunBar
+      value: 
+      objectReference: {fileID: 1608269393}
+    - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1608269394}
+    - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
       propertyPath: dizzinessTimer
       value: 4
       objectReference: {fileID: 0}
@@ -20953,7 +20963,12 @@ PrefabInstance:
     - target: {fileID: 8194704234999075467, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}
       propertyPath: m_Name
-      value: Rotating Enemy (1)
+      value: Rotating Enemy Phantom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194704234999075467, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9014448201641718525, guid: 51b45a22c61148c449ec5f1686bce237, type: 3}
@@ -20964,6 +20979,18 @@ PrefabInstance:
 --- !u!4 &1608269392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5208131769330494903, guid: 51b45a22c61148c449ec5f1686bce237,
+    type: 3}
+  m_PrefabInstance: {fileID: 1608269391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1608269393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1070915702765182825, guid: 51b45a22c61148c449ec5f1686bce237,
+    type: 3}
+  m_PrefabInstance: {fileID: 1608269391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1608269394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2798029068544268588, guid: 51b45a22c61148c449ec5f1686bce237,
     type: 3}
   m_PrefabInstance: {fileID: 1608269391}
   m_PrefabAsset: {fileID: 0}
@@ -23043,6 +23070,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
         type: 3}
+      propertyPath: stunBar
+      value: 
+      objectReference: {fileID: 1803921495}
+    - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1803921496}
+    - target: {fileID: 3210677833921892212, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
       propertyPath: dizzinessTimer
       value: 4
       objectReference: {fileID: 0}
@@ -23146,6 +23183,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rotating Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1803921494}
+    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: AddEnemyToEnemiesKilled
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: EnemyKilled, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927651966519115845, guid: 51b45a22c61148c449ec5f1686bce237,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23160,6 +23237,30 @@ GameObject:
 --- !u!4 &1803921493 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5208131769330494903, guid: 51b45a22c61148c449ec5f1686bce237,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803921491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1803921494 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9014448201641718525, guid: 51b45a22c61148c449ec5f1686bce237,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803921491}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803921492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca456d33980bea4b927da8e460526a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1803921495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1070915702765182825, guid: 51b45a22c61148c449ec5f1686bce237,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803921491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1803921496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2798029068544268588, guid: 51b45a22c61148c449ec5f1686bce237,
     type: 3}
   m_PrefabInstance: {fileID: 1803921491}
   m_PrefabAsset: {fileID: 0}
