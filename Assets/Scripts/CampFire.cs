@@ -15,6 +15,7 @@ public class CampFire : MonoBehaviour
         {
             PlayerManager.PlayerGameObject.transform.forward = (transform.position - PlayerManager.PlayerGameObject.transform.position);
             PlayerManager.PlayerGameObject.transform.eulerAngles = new Vector3(0, PlayerManager.PlayerGameObject.transform.eulerAngles.y, 0);
+            PlayerManager.PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
         }
     }
 }

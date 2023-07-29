@@ -4,31 +4,50 @@ using UnityEngine;
 
 public class RagdollManager : MonoBehaviour
 {
+    float impulseForce=30f;
     Collider[] colliders;
+    Rigidbody[] rigidbodies;
+    [SerializeField] Collider headCollider;
     void Start()
     {
         colliders = GetComponentsInChildren<Collider>();
+        rigidbodies = GetComponentsInChildren<Rigidbody>();
 
-        SetRagdollColliders(false);
+        SetRagdoll(false);
     }
 
-    public void SetRagdollColliders(bool value)
+    public void SetRagdoll(bool value)
     {
         for (int i = 0; i < colliders.Length; i++)
         {
             colliders[i].enabled = value;
+
         }
+
+        for (int i = 0; i < rigidbodies.Length; i++)
+        {
+            rigidbodies[i].isKinematic = !value;
+
+            if (value) rigidbodies[i].AddForce((transform.position - PlayerManager.PlayerGameObject.transform.position).normalized * impulseForce, ForceMode.Impulse);
+        }
+
+        if (value)
+        {
+            transform.localPosition = new Vector3(0f, 1f, 0f);
+        }
+
+        if (headCollider != null ) headCollider.enabled = !value;
     }
 
     [ContextMenu("Enable")]
     public void EnableRagdoll()
     {
-        SetRagdollColliders(true);
+        SetRagdoll(true);
     }
 
     [ContextMenu("Disable")]
     public void DisableRagdoll()
     {
-        SetRagdollColliders(false);
+        SetRagdoll(false);
     }
 }

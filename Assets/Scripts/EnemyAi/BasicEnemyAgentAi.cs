@@ -26,6 +26,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
     [SerializeField] protected GameObject healthBar;
     [SerializeField] protected GameObject stunBar;
     [SerializeField] protected Collider weaponCollider;
+    [SerializeField] protected RagdollManager ragdollManager;
     protected CapsuleCollider enemyCollider;
     protected Transform playerTarget;
     protected int currentWaypoint;
@@ -162,6 +163,7 @@ public class BasicEnemyAgentAi : MonoBehaviour
                 stunBar.SetActive(false);
                 arancini.gameObject.SetActive(false);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
+                ragdollManager.SetRagdoll(true);
                 Destroy(this.gameObject, 5f);
                 break;
 

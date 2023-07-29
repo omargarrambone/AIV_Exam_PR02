@@ -26,7 +26,7 @@ public class ArancinoScript : MonoBehaviour
 
         if (isGoingToTarget)
         {
-            float distance = Vector3.Distance(transform.position, targetPosition.position);
+            float distance = Vector3.Distance(transform.position, targetPosition.position + playerTargetOffset);
             if (distance< distanceToHitTarget)
             {
                 targetPosition.GetComponent<HealthManager>().TakeDamage(enemyWeapon.MyWeaponDamage);

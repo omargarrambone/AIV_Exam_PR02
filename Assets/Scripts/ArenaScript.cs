@@ -63,15 +63,16 @@ public class ArenaScript : MonoBehaviour
                 }
             }
         }
-        catch (System.Exception)
+        catch
         {
-
+            print("Sono crashato porcodio" + enemies);
         }
-
-
-        enabled = false;
-        gameObject.SetActive(false);
-        NPCCounter.OnFinishedEnemy -= CheckFinishedEnemies;
+        finally
+        {
+            enabled = false;
+            gameObject.SetActive(false);
+            NPCCounter.OnFinishedEnemy -= CheckFinishedEnemies;
+        }
     }
 
 }

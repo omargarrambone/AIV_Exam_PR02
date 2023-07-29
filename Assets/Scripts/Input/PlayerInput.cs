@@ -24,6 +24,7 @@ public class PlayerInput : MonoBehaviour
     private float _gravity = -9.81f;
     [SerializeField] private float gravityMultiplier = 3.0f;
     private float _velocity;
+    private Rigidbody _rb;
 
     [Header("Jumping")]
     [SerializeField] private float jumpPower;
@@ -61,7 +62,7 @@ public class PlayerInput : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
-
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -146,24 +147,20 @@ public class PlayerInput : MonoBehaviour
 
         if (ShouldNotMove || GameManager.GameState == GameState.Paused) return;
 
-            if (_weaponsManager.TakenWeapons[(int)ItemType.LongKatana] == false)
+        if (_weaponsManager.TakenWeapons[(int)ItemType.LongKatana] == false)
         {
             if (!IsGrounded()) return;
-            if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
-
-            _numberOfJumps++;
-            _velocity = jumpPower;
-            _anim.SetInteger("JumpCount", _numberOfJumps);
         }
         else
         {
             if (!IsGrounded() && _numberOfJumps >= maxNumberOfJumps) return;
-            if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
-
-            _numberOfJumps++;
-            _velocity = jumpPower;
-            _anim.SetInteger("JumpCount", _numberOfJumps);
         }
+
+        if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
+
+        _numberOfJumps++;
+        _velocity = jumpPower;
+        _anim.SetInteger("JumpCount", _numberOfJumps);
 
         if (_numberOfJumps == 1)
         {

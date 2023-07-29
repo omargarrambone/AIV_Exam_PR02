@@ -7,7 +7,6 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private float setMaxHealth = 100;
     public float CurrentHealth;
     public UnityEvent OnDeath;
-    private Animator anim;
     public bool IsImmune;
     public bool IsDead { get { return CurrentHealth <= 0; } }
     public BarScript HealthBar;
@@ -17,8 +16,6 @@ public class HealthManager : MonoBehaviour
 
         CurrentHealth = MaxHealth;
         HealthBar.SetMaxHealth(MaxHealth);
-
-        anim = GetComponent<Animator>();
     }
 
     public void AddHealth(float health)
@@ -55,6 +52,5 @@ public class HealthManager : MonoBehaviour
     {
         CurrentHealth = MaxHealth;
         HealthBar.SetHealth(CurrentHealth);
-        anim.Play("Idle");
     }
 }
