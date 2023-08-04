@@ -7,7 +7,6 @@ public class FinalBossEnemyAI : BasicEnemyAgentAi
     [SerializeField] FinalBossPhase currentPhase;
     [SerializeField] private Collider[] weapons;
 
-
     [SerializeField] private Material baseMaterial, immortalMaterial;
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
 

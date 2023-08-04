@@ -234,10 +234,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
                 break;
 
-
-            case EnemyState.Healing:
-                break;
-
             case EnemyState.Dead:
 
                 anim.enabled = false;
@@ -270,9 +266,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
                     stunnManager.IsStunned = false;
                 }
 
-                break;
-
-            default:
                 break;
         }
     }

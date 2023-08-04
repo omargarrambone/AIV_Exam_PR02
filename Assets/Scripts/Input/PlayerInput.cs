@@ -24,7 +24,6 @@ public class PlayerInput : MonoBehaviour
     private float _gravity = -9.81f;
     [SerializeField] private float gravityMultiplier = 3.0f;
     private float _velocity;
-    private Rigidbody _rb;
 
     [Header("Jumping")]
     [SerializeField] private float jumpPower;
@@ -62,7 +61,6 @@ public class PlayerInput : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
-        _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
