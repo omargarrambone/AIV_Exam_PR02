@@ -63,10 +63,6 @@ public class ArenaScript : MonoBehaviour
                 }
             }
         }
-        catch
-        {
-            print("Sono crashato porcodio" + enemies);
-        }
         finally
         {
             enabled = false;
