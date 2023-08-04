@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LightProbeControl : MonoBehaviour
 {
+#if UNITY_EDITOR
+
     public LightProbeGroup lp;
 
     public int Width, Height;
@@ -39,4 +41,6 @@ public class LightProbeControl : MonoBehaviour
 
         lp.probePositions = array;
     }
+
+#endif
 }
