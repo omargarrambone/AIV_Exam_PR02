@@ -1297,8 +1297,8 @@ MonoBehaviour:
   currentState: 0
   chaseSpeed: 0
   patrolSpeed: 0
-  parryChance: 0.3
   attackDistance: 0
+  attackDamage: 5
   agent: {fileID: 0}
   weapon: {fileID: 0}
   stunnManager: {fileID: 0}
@@ -1310,6 +1310,7 @@ MonoBehaviour:
   patrolWaypoints: []
   healthBar: {fileID: 0}
   stunBar: {fileID: 0}
+  weaponCollider: {fileID: 0}
 --- !u!95 &202512841924237810
 Animator:
   serializedVersion: 5
@@ -1358,6 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e6296c34fbb9547ab489ae845dc7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setMaxHealth: 100
   CurrentHealth: 0
   OnDeath:
     m_PersistentCalls:
