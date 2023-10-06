@@ -108,6 +108,7 @@ public class RotatingMidBossEnemyAI : BasicEnemyAgentAi
                 gameObject.transform.GetChild(2).GetChild(1).gameObject.SetActive(false);
                 arancini.gameObject.SetActive(false);
                 PowerUpManager.SpawnPowerUpRandom(transform.position);
+                ragdollManager.EnableRagdoll();
                 Destroy(this.gameObject, 5f);
                 break;
 

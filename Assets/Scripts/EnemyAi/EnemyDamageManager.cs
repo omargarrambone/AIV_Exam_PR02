@@ -13,7 +13,7 @@ public class EnemyDamageManager : MonoBehaviour
     public float ParryTimeIndex;
     public bool IsParrying;
     public bool IsHitting;
-    public float ParryChance = 0.4f;
+    public float ParryChance = 0.2f;
     public float timer, counter;
 
     private void Start()

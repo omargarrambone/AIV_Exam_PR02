@@ -63,15 +63,12 @@ public class ArenaScript : MonoBehaviour
                 }
             }
         }
-        catch (System.Exception)
+        finally
         {
-
+            enabled = false;
+            gameObject.SetActive(false);
+            NPCCounter.OnFinishedEnemy -= CheckFinishedEnemies;
         }
-
-
-        enabled = false;
-        gameObject.SetActive(false);
-        NPCCounter.OnFinishedEnemy -= CheckFinishedEnemies;
     }
 
 }

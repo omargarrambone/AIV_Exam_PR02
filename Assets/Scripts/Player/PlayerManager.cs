@@ -94,6 +94,7 @@ public class PlayerManager : MonoBehaviour
             SceneManager.LoadScene("GameOverScene");
             SetPosition(Vector3.zero);
             PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
+            PlayerGameObject.GetComponent<Animator>().Play("Idle");
         }
 
         if (isDying)
@@ -107,6 +108,7 @@ public class PlayerManager : MonoBehaviour
                 CameraFollow.ResetCameraTarget();
                 Destroy(transform.parent.gameObject);
                 PlayerGameObject.GetComponent<HealthManager>().ResetHealth();
+                PlayerGameObject.GetComponent<Animator>().Play("Idle");
                 isDying = false;
             }
         }

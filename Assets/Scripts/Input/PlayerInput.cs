@@ -61,7 +61,6 @@ public class PlayerInput : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
-
     }
 
     private void Update()
@@ -146,24 +145,20 @@ public class PlayerInput : MonoBehaviour
 
         if (ShouldNotMove || GameManager.GameState == GameState.Paused) return;
 
-            if (_weaponsManager.TakenWeapons[(int)ItemType.LongKatana] == false)
+        if (_weaponsManager.TakenWeapons[(int)ItemType.LongKatana] == false)
         {
             if (!IsGrounded()) return;
-            if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
-
-            _numberOfJumps++;
-            _velocity = jumpPower;
-            _anim.SetInteger("JumpCount", _numberOfJumps);
         }
         else
         {
             if (!IsGrounded() && _numberOfJumps >= maxNumberOfJumps) return;
-            if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
-
-            _numberOfJumps++;
-            _velocity = jumpPower;
-            _anim.SetInteger("JumpCount", _numberOfJumps);
         }
+
+        if (_numberOfJumps == 0) StartCoroutine(WaitForLanding());
+
+        _numberOfJumps++;
+        _velocity = jumpPower;
+        _anim.SetInteger("JumpCount", _numberOfJumps);
 
         if (_numberOfJumps == 1)
         {

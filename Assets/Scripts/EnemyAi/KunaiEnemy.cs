@@ -176,9 +176,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
         }
     }
 
-
-
-
     void StandingKunaiEnemy()
     {
         Vector3 distanceFromTarget = playerTarget.position - agent.transform.position;
@@ -237,15 +234,12 @@ public class KunaiEnemy : BasicEnemyAgentAi
 
                 break;
 
-
-            case EnemyState.Healing:
-                break;
-
             case EnemyState.Dead:
-               
-                this.enabled = false;
+
                 anim.enabled = false;
                 enemyCollider.enabled = false;
+                this.enabled = false;
+                ragdollManager.EnableRagdoll();
                 healthBar.SetActive(false);
                 stunBar.SetActive(false);
                 arancini.gameObject.SetActive(false);
@@ -272,9 +266,6 @@ public class KunaiEnemy : BasicEnemyAgentAi
                     stunnManager.IsStunned = false;
                 }
 
-                break;
-
-            default:
                 break;
         }
     }
