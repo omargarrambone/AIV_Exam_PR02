@@ -158,6 +158,7 @@ public class PlayerInput : MonoBehaviour
 
         _numberOfJumps++;
         _velocity = jumpPower;
+
         _anim.SetInteger("JumpCount", _numberOfJumps);
 
         if (_numberOfJumps == 1)
